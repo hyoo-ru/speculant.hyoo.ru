@@ -6,6 +6,17 @@ namespace $.$$ {
 		currency_names() {
 			return Object.keys( this.model().indicators() ).filter( key => key !== 'CSH' )
 		}
+		
+		@ $mol_mem
+		day_start() {
+			return new this.$.$mol_time_moment
+		}
+		
+		@ $mol_mem
+		days() {
+			const history_length = this.indicator( this.currency_names()[0] ).history.length
+			return new Array( history_length ).fill( '' ).map( ( _ , index ) => this.day_start().shift( { day: index } ).toString( 'MM-DD' ) )
+		}
 
 		@ $mol_mem_key
 		indicator( id : string ) {
@@ -31,8 +42,15 @@ namespace $.$$ {
 			]
 		}
 		
-		// @ $mol_mem
-		// buy_buttons() {}
+		@ $mol_mem
+		buy_buttons() {
+			return this.currency_names().map( id => this.Buy_button( id ) )
+		}
+		
+		@ $mol_mem
+		sell_buttons() {
+			return this.currency_names().map( id => this.Sell_button( id ) )
+		}
 		
 		buy( id : string ) {
 			this.model().exchange( id , 1 )
