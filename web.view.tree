@@ -1,64 +1,3 @@
-$mol_scroll $mol_view
-	minimal_height 0
-	_event_scroll_timer?val null
-	field *
-		^
-		scrollTop <= scroll_top?val 0
-		scrollLeft <= scroll_left?val 0
-		tabIndex <= tabindex -1
-	event *
-		^
-		scroll?event <=> event_scroll?event null
-
-$mol_book2 $mol_scroll
-	sub <= pages /$mol_view
-	minimal_width 0
-	Placeholder $mol_view
-
-$mol_link $mol_view
-	dom_name \a
-	attr *
-		^
-		href <= uri \
-		title <= hint \
-		target <= target \_self
-		download <= file_name \
-		mol_link_current <= current false
-	sub /$mol_view_content
-		<= title
-	arg *
-	event *
-		^
-		click?event <=> click?event <=> event_click?event null
-
-$mol_list $mol_view
-	render_visible_only true
-	render_over 0
-	sub <= rows /$mol_view
-	Empty $mol_view
-	Gap_before $mol_view style * paddingTop <= gap_before 0
-	Gap_after $mol_view style * paddingTop <= gap_after 0
-	view_window /
-		0
-		0
-
-$mol_page $mol_view
-	sub /
-		<= Head $mol_view
-			minimal_height 64
-			sub <= head /
-				<= Title $mol_view
-					dom_name \h1
-					sub /
-						<= title
-				<= Tools $mol_view
-					sub <= tools /$mol_view_content
-		<= Body $mol_scroll
-			scroll_top?val <=> body_scroll_top?val 0
-			sub <= body /$mol_view_content
-		<= Foot $mol_view
-			sub <= foot /$mol_view
-
 $mol_svg $mol_view
 	dom_name \svg
 	dom_name_space \http://www.w3.org/2000/svg
@@ -87,27 +26,52 @@ $mol_icon $mol_svg_root
 		<= Path $mol_svg_path
 			geometry <= path \
 
-$mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
+$mol_icon_hackernews $mol_icon path \M2,2H22V22H2V2M11.25,17.5H12.75V13.06L16,7H14.5L12,11.66L9.5,7H8L11.25,13.06V17.5Z
 
-$mol_book2_catalog $mol_book2
-	param \
-	spreads *
-	Spread $mol_view
-	pages /
-		<= Menu $mol_page
-			title <= menu_title \
-			tools <= menu_tools /
-			body /
-				<= Links $mol_list
-					rows <= links /
-	Link!id $mol_link
-		arg <= arg!id *
-		sub /
-			<= spread_title!id \
-	Spread_close $mol_link
-		arg <= spread_close_arg *
-		sub /
-			<= Spread_close_icon $mol_icon_cross
+$mol_link $mol_view
+	dom_name \a
+	attr *
+		^
+		href <= uri \
+		title <= hint \
+		target <= target \_self
+		download <= file_name \
+		mol_link_current <= current false
+	sub /$mol_view_content
+		<= title
+	arg *
+	event *
+		^
+		click?event <=> click?event <=> event_click?event null
+
+$mol_scroll $mol_view
+	minimal_height 0
+	_event_scroll_timer?val null
+	field *
+		^
+		scrollTop <= scroll_top?val 0
+		scrollLeft <= scroll_left?val 0
+		tabIndex <= tabindex -1
+	event *
+		^
+		scroll?event <=> event_scroll?event null
+
+$mol_page $mol_view
+	sub /
+		<= Head $mol_view
+			minimal_height 64
+			sub <= head /
+				<= Title $mol_view
+					dom_name \h1
+					sub /
+						<= title
+				<= Tools $mol_view
+					sub <= tools /$mol_view_content
+		<= Body $mol_scroll
+			scroll_top?val <=> body_scroll_top?val 0
+			sub <= body /$mol_view_content
+		<= Foot $mol_view
+			sub <= foot /$mol_view
 
 $hyoo_speculant_world $mol_object2
 	
@@ -650,7 +614,15 @@ $hyoo_speculant_app_chart $mol_page
 		title <= linear_title!id
 		click?val <=> sell!id?val null
 
-$hyoo_speculant_app $mol_book2_catalog
-	menu_title <= title @ \Sections
-	spreads *
-		chart <= Chart $hyoo_speculant_app_chart 
+$hyoo_speculant_app $mol_view
+	page \chart
+	page_dict *
+		chart <= Chart $hyoo_speculant_app_chart
+			tools /
+				<= News_link $mol_link
+					arg *
+						page \news
+					sub / <= News_icon $mol_icon_hackernews
+		news <= News $mol_page
+			title \news
+			body / \Hello
