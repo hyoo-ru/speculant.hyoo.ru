@@ -1,26 +1,22 @@
 $hyoo_speculant_app_chart $mol_page
 	model $hyoo_speculant_world
-	title <= page_quote_title \Chart
+	title @ \Chart
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
 		graphs /
 			<= Linear_line!id $mol_plot_line
 			<= Linear_dots!id $mol_plot_dot
+	Marker_cross!id $mol_plot_mark_cross
+		labels <= days /string
+		graphs /
+			<= Linear_line!id
+			<= Linear_dots!id
 	body /
 		<= Chart $mol_chart
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
-					title <= vert_title @ \pcs
+					title <= vert_title @ \
 				<= Marker_hor $mol_plot_mark_hor
-					title <= marker_hor_title @ \Months
-					labels <= months /string
-						\January
-						\February
-						\March
-						\April
-				- <= Marker_cross $mol_plot_mark_cross
-					labels <= months
-					graphs /
-						<= Linear_line
-						<= Linear_dots
+					title <= marker_hor_title @ \Days
+					labels <= days

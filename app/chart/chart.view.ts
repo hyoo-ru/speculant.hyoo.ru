@@ -2,9 +2,14 @@ namespace $.$$ {
 
 	export class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
 		
+		@ $mol_mem
+		currency_names() {
+			return [ 'KBK' , 'BRT' , 'RIK' ]
+		}
+
 		@ $mol_mem_key
 		indicator( id : string ) {
-			return this.model().indicators()[ id ]
+			return this.model().indicators()[ id ] as $hyoo_speculant_world_indicator
 		}
 
 		@ $mol_mem_key
@@ -14,16 +19,15 @@ namespace $.$$ {
 		
 		@ $mol_mem_key
 		linear_series( id : string ) {
-			return [ 1, 2, 3, 4, 5, 6 ]
-			// return this.indicator( id ).history
+			return this.indicator( id ).history
 		}
 		
 		@ $mol_mem
 		linear_list() {
-			const key_list = [ 'KBK' , 'BRT' , 'RIK' ]
 			return [
-				... key_list.map( id => this.Linear( id ) ) ,
+				... this.currency_names().map( id => this.Linear( id ) ) ,
 				... super.linear_list() ,
+
 			]
 		}
 
