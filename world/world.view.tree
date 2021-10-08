@@ -1,7 +1,14 @@
 $hyoo_speculant_world $mol_object2
 
 	profile \novice
-	- \novice|pro
+	- \
+		\Выбранный на старте пользователем профиль.
+		\Варианты: novice|pro
+	
+	scoring \care
+	- \
+		\Насколько рисованный инвестор по результатам игры.
+		\Варианты: safe|care|risky
 	
 	exchange!code?diff 0
 	- \
