@@ -1,6 +1,6 @@
 $hyoo_speculant_world $mol_object2
-
-	profile \novice
+	
+	profile?next \novice
 	- \
 		\Выбранный на старте пользователем профиль.
 		\Варианты: novice|pro
@@ -15,7 +15,7 @@ $hyoo_speculant_world $mol_object2
 		\Обменять code(KBK, VRT, etc) на Кэш.
 		\diff показывает сколько менять. +1 - купить, -1 - продать.
 	
-	indicators *
+	indicators?next *
 		- \
 			\По индикаторам строим графики (history),
 			\и показывем текущий курс (current).
@@ -42,7 +42,7 @@ $hyoo_speculant_world $mol_object2
 			current 5
 			history /number
 	
-	news /
+	news?next /
 		- \Новости в мире, влияют на курсы.
 		*
 			title \Крупнейшая соцсеть накрылась
