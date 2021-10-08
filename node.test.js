@@ -4567,27 +4567,38 @@ var $;
                 CSH: {
                     name: "Кэш",
                     type: "currency",
+                    have: 1000,
                     current: 1,
                     history: []
                 },
                 KBK: {
                     name: "Валюта КилоБакс",
                     type: "currency",
-                    current: 5,
+                    have: 0,
+                    current: 100,
                     history: []
                 },
                 BRT: {
                     name: "Облигации мессенджера \"Телетайп\"",
                     type: "bond",
-                    current: 10,
+                    have: 0,
+                    current: 200,
                     history: []
                 },
                 RIK: {
                     name: "Акции соцсети \"МордоСвиток\"",
                     type: "share",
-                    current: 5,
+                    have: 0,
+                    current: 50,
                     history: []
                 }
+            };
+        }
+        entropy() {
+            return {
+                bond: 1,
+                currency: 5,
+                share: 10
             };
         }
         news(next) {
@@ -5184,6 +5195,10 @@ var $;
                 for (const code in prev) {
                     if (code === 'CSH')
                         continue;
+                    const type = prev[code].type;
+                    const entropy = this.entropy()[type];
+                    if (entropy === undefined)
+                        $.$mol_fail(new RangeError(`No entropy for ${type}`));
                     const current = prev[code].current + Math.floor(Math.random() * 2 - 1);
                     const history = [...prev[code].history, current];
                     prev[code] = {

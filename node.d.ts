@@ -1202,27 +1202,36 @@ declare namespace $ {
             CSH: {
                 name: string;
                 type: string;
+                have: number;
                 current: number;
                 history: readonly number[];
             };
             KBK: {
                 name: string;
                 type: string;
+                have: number;
                 current: number;
                 history: readonly number[];
             };
             BRT: {
                 name: string;
                 type: string;
+                have: number;
                 current: number;
                 history: readonly number[];
             };
             RIK: {
                 name: string;
                 type: string;
+                have: number;
                 current: number;
                 history: readonly number[];
             };
+        };
+        entropy(): {
+            bond: number;
+            currency: number;
+            share: number;
         };
         news(next?: any): readonly any[];
     }
@@ -1348,6 +1357,7 @@ declare namespace $.$$ {
     type $hyoo_speculant_world_indicator = {
         name: string;
         type: string;
+        have: number;
         current: number;
         history: readonly number[];
     };
