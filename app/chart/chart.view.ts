@@ -9,17 +9,18 @@ namespace $.$$ {
 
 		@ $mol_mem_key
 		linear_title( id : string ) {
-			return 'title'
+			return this.indicator( id ).name
 		}	
 		
 		@ $mol_mem_key
 		linear_series( id : string ) {
-			return [ 10, 20, 30, 40 ]
+			return [ 1, 2, 3, 4, 5, 6 ]
+			// return this.indicator( id ).history
 		}
 		
 		@ $mol_mem
 		linear_list() {
-			const key_list = Object.keys( this.model().indicators() )
+			const key_list = [ 'KBK' , 'BRT' , 'RIK' ]
 			return [
 				... key_list.map( id => this.Linear( id ) ) ,
 				... super.linear_list() ,
