@@ -3,8 +3,13 @@ namespace $.$$ {
 	export class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
 		
 		@ $mol_mem
-		currency_names() {
-			return Object.keys( this.model().indicators() ).filter( key => key !== 'CSH' )
+		currency_all() {
+			return Object.keys( this.model().indicators() )  as $hyoo_speculant_world_indicator_codes[]
+		}
+		
+		@ $mol_mem
+		currency_chart() {
+			return this.currency_all().filter( key => key !== 'CSH' ) as $hyoo_speculant_world_indicator_codes[]
 		}
 		
 		@ $mol_mem
@@ -14,7 +19,7 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		days() {
-			const history_length = this.indicator( this.currency_names()[0] ).history.length
+			const history_length = this.indicator( this.currency_chart()[0] ).history.length
 			const arr = new Array( history_length ).fill( '' )
 			return arr.map( ( _ , index ) => this.day_start().shift( { day: index } ).toString( 'MM-DD' ) )
 		}
@@ -37,28 +42,24 @@ namespace $.$$ {
 		@ $mol_mem
 		linear_list() {
 			return [
-				... this.currency_names().map( id => this.Linear( id ) ) ,
+				... this.currency_chart().map( id => this.Linear( id ) ) ,
 				... super.linear_list() ,
 
 			]
 		}
 		
-		@ $mol_mem
-		buy_buttons() {
-			return this.currency_names().map( id => this.Buy_button( id ) )
+		buy( index: number ) { 
+			this.model().exchange( this.currency_chart()[ index ] , 1 )
 		}
 		
-		@ $mol_mem
-		sell_buttons() {
-			return this.currency_names().map( id => this.Sell_button( id ) )
+		sell( index: number ) {
+			this.model().exchange( this.currency_chart()[ index ] , -1 )
 		}
 		
-		buy( id : $hyoo_speculant_world_indicator_codes ) {
-			this.model().exchange( id , 1 )
-		}
-		
-		sell( id : $hyoo_speculant_world_indicator_codes ) {
-			this.model().exchange( id , -1 )
+		balance_list() {
+			return this.currency_all().map( id => {
+				return `${ id }: ${ this.indicator( id ).have.toFixed( 2 ) } `
+			} )
 		}
 
 	}

@@ -6,21 +6,23 @@ $hyoo_speculant_app_dashboard $mol_page
 		series_y <= linear_series!id /
 		graphs /
 			<= Linear_line!id $mol_plot_line
-	Buy_button!id $mol_button_major
-		title <= linear_title!id
+	Buy_button!id $mol_button_typed
+		title \+
 		click?val <=> buy!id?val null
-	Sell_button!id $mol_button_major
-		title <= linear_title!id
+	Sell_button!id $mol_button_typed
+		title \-
 		click?val <=> sell!id?val null
 	body /
+		<= Balance $mol_row
+			sub <= balance_list / 
 		<= Chart $hyoo_speculant_chart
+			Legend_tools!index <= Buttons!index $mol_view
+				sub /
+					<= Buy_button!index
+					<= Sell_button!index
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
 					title <= vert_title @ \Values
 				<= Marker_hor $mol_plot_mark_hor
 					title <= marker_hor_title @ \Days
 					labels <= days /
-		<= Buy $mol_view
-			sub <= buy_buttons /
-		<= Sell $mol_view
-			sub <= sell_buttons /
