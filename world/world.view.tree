@@ -1,12 +1,41 @@
 $hyoo_speculant_world $mol_object2
-	tickers /
-		*
-			name \Бакс
-			samples /number
-		*
-			name \Облигации РиК
-			samples /number
+	
+	exchange!code?diff 0
+	- \
+		\Обменять code(KBK, VRT, etc) на Кэш.
+		\diff показываетс сколько менять. +1 - купить, -1 - продать.
+	
+	indicators *
+		- \
+			\По индикаторам строим графики (history),
+			\и показывем текущий курс (current).
+			\Тип определяет поведение на рынке.
+		CSH *
+			- \Кэш - основная валюта. В графиках не показываем.
+			name \Кэш
+			type \currency
+			current 1
+			history /1
+		KBK *
+			name \Валюта КилоБакс
+			type \currency
+			current 5
+			history /number
+		BRT *
+			name \Облигации мессенджера "Телетайп"
+			type \bond
+			current 10
+			history /number
+		RIK *
+			name \Акции соцсети "МордоСвиток"
+			type \share
+			current 5
+			history /number
+	
 	news /
+		- \Новости в мире, влияют на курсы.
 		*
-			title \Фейсбук не отвечает
-			body \Производительность труда выросла в 2.5 раза.
+			title \Крупнейшая соцсеть накрылась
+			body \
+				\Производительность труда выросла **в 2.5 раза.**
+				\
