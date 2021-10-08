@@ -1,5 +1,7 @@
 namespace $.$$ {
 	
+	export type $hyoo_speculant_world_indicator_codes = keyof ReturnType< $.$hyoo_speculant_world['indicators'] >
+	
 	export type $hyoo_speculant_world_indicator = {
 		name: string
 		type: string
@@ -22,7 +24,7 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem
-		indicators(): Record< 'CSH'|'KBK'|'BRT'|'RIK', $hyoo_speculant_world_indicator > {
+		indicators(): Record< $hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator > {
 			
 			this.time()
 			
