@@ -1,0 +1,12 @@
+$hyoo_speculant_world $mol_object2
+	tickers /
+		*
+			name \Бакс
+			samples /number
+		*
+			name \Облигации РиК
+			samples /number
+	news /
+		*
+			title \Фейсбук не отвечает
+			body \Производительность труда выросла в 2.5 раза.
