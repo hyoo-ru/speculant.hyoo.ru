@@ -11,9 +11,11 @@ namespace $.$$ {
 	}
 	
 	export type $hyoo_speculant_world_indicators = Record<
-		$hyoo_speculant_world_indicator_codes,
-		$hyoo_speculant_world_indicator
+	$hyoo_speculant_world_indicator_codes,
+	$hyoo_speculant_world_indicator
 	>
+	
+	export type $hyoo_speculant_world_news = ReturnType< $.$hyoo_speculant_world['news'] >
 	
 	export class $hyoo_speculant_world extends $.$hyoo_speculant_world {
 		
@@ -89,6 +91,23 @@ namespace $.$$ {
 			this.indicators( next )
 			
 			return null
+		}
+		
+		@ $mol_mem
+		news(): $hyoo_speculant_world_news {
+			
+			this.time()
+			
+			const prev = $mol_mem_cached( ()=> this.news() ) ?? super.news()
+			if( Math.random() * ( 10 + this.indicators().CSH.have ) > 1 ) return prev
+			
+			return [
+				... prev, {
+					title: $mol_stub_select_random( this.causes() ),
+					body: $mol_stub_select_random( this.conses() ),
+				},
+			]
+			
 		}
 		
 	}
