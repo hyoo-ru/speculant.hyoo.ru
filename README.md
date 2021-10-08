@@ -1,2 +1,3 @@
-# speculant
-Speculant - ironic finantial strategy inpired by Commersant game 
+# $hyoo_speculant
+
+Ironic financial strategy inspired by Commersant game.
