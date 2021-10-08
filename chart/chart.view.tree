@@ -1,0 +1,6 @@
+$hyoo_speculant_chart $mol_chart
+	sub /
+		<= Plot
+		<= Legend $hyoo_speculant_chart_legend
+			graphs <= graphs_colored
+			Tools!id <= Legend_tools!id $mol_view
