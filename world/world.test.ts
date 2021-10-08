@@ -26,5 +26,33 @@ namespace $.$$ {
 			world.destructor()
 		},
 		
+		'exchange'( $ ) {
+			
+			const world = new $hyoo_speculant_world
+			const csh = world.indicators().CSH.have
+			
+			$mol_assert_equal( world.indicators().VBL.have, 0 )
+			
+			$mol_assert_fail(
+				()=> world.exchange( 'VBL', -2 ),
+				'Required at least 2 VBL',
+			)
+			
+			$mol_assert_fail(
+				()=> world.exchange( 'VBL', +100500 ),
+				`Required at least ${ world.indicators().VBL.current * 100500 } CSH`,
+			)
+			
+			world.exchange( 'VBL', +2 )
+			$mol_assert_equal( world.indicators().VBL.have, 2 )
+			$mol_assert_equal( world.indicators().CSH.have, csh - world.indicators().VBL.current * 2 )
+			
+			world.exchange( 'VBL', -2 )
+			$mol_assert_equal( world.indicators().VBL.have, 0 )
+			$mol_assert_equal( world.indicators().CSH.have, csh )
+			
+			world.destructor()
+		},
+		
 	})
 }
