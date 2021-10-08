@@ -2028,7 +2028,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
         indicator(id: string): any;
-        linear_title(id: string): string;
+        linear_title(id: string): any;
         linear_series(id: string): number[];
         linear_list(): any[];
     }

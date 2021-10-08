@@ -8008,13 +8008,13 @@ var $;
                 return this.model().indicators()[id];
             }
             linear_title(id) {
-                return 'title';
+                return this.indicator(id).name;
             }
             linear_series(id) {
-                return [10, 20, 30, 40];
+                return [1, 2, 3, 4, 5, 6];
             }
             linear_list() {
-                const key_list = Object.keys(this.model().indicators());
+                const key_list = ['KBK', 'BRT', 'RIK'];
                 return [
                     ...key_list.map(id => this.Linear(id)),
                     ...super.linear_list(),
