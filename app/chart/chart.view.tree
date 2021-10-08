@@ -5,14 +5,14 @@ $hyoo_speculant_app_chart $mol_page
 		title <= linear_title!id \
 		series_y <= linear_series!id /
 		graphs /
-			<= Linear_line $mol_plot_line
-			<= Linear_dots $mol_plot_dot
+			<= Linear_line!id $mol_plot_line
+			<= Linear_dots!id $mol_plot_dot
 	body /
 		<= Chart $mol_chart
-			graphs / <= linear_list /
-				- <= Vert_ruler $mol_plot_ruler_vert
+			graphs <= linear_list /
+				<= Vert_ruler $mol_plot_ruler_vert
 					title <= vert_title @ \pcs
-				- <= Marker_hor $mol_plot_mark_hor
+				<= Marker_hor $mol_plot_mark_hor
 					title <= marker_hor_title @ \Months
 					labels <= months /string
 						\January
