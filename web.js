@@ -5494,6 +5494,454 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_svg_text extends $.$mol_svg {
+        dom_name() {
+            return "text";
+        }
+        pos() {
+            return [];
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                x: this.pos_x(),
+                y: this.pos_y(),
+                "text-anchor": this.align()
+            };
+        }
+        sub() {
+            return [
+                this.text()
+            ];
+        }
+        pos_x() {
+            return "";
+        }
+        pos_y() {
+            return "";
+        }
+        align() {
+            return "middle";
+        }
+        text() {
+            return "";
+        }
+    }
+    $.$mol_svg_text = $mol_svg_text;
+})($ || ($ = {}));
+//text.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/svg/text/text.view.css", "[mol_svg_text] {\n\tfill: currentColor;\n\tstroke: none;\n}\n");
+})($ || ($ = {}));
+//text.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_svg_text extends $.$mol_svg_text {
+            pos_x() {
+                return this.pos()[0];
+            }
+            pos_y() {
+                return this.pos()[1];
+            }
+        }
+        $$.$mol_svg_text = $mol_svg_text;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//text.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_svg_rect extends $.$mol_svg {
+        dom_name() {
+            return "rect";
+        }
+        pos() {
+            return [];
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                width: this.width(),
+                height: this.height(),
+                x: this.pos_x(),
+                y: this.pos_y()
+            };
+        }
+        width() {
+            return "0";
+        }
+        height() {
+            return "0";
+        }
+        pos_x() {
+            return "";
+        }
+        pos_y() {
+            return "";
+        }
+    }
+    $.$mol_svg_rect = $mol_svg_rect;
+})($ || ($ = {}));
+//rect.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_svg_rect extends $.$mol_svg_rect {
+            pos_x() {
+                return this.pos()[0];
+            }
+            pos_y() {
+                return this.pos()[1];
+            }
+        }
+        $$.$mol_svg_rect = $mol_svg_rect;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//rect.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_svg_text_box extends $.$mol_svg_group {
+        font_size() {
+            return 16;
+        }
+        width() {
+            return 0;
+        }
+        sub() {
+            return [
+                this.Back(),
+                this.Text()
+            ];
+        }
+        box_width() {
+            return "0.5rem";
+        }
+        box_height() {
+            return "1rem";
+        }
+        box_pos_x() {
+            return this.pos_x();
+        }
+        box_pos_y() {
+            return "0";
+        }
+        Back() {
+            const obj = new this.$.$mol_svg_rect();
+            obj.width = () => this.box_width();
+            obj.height = () => this.box_height();
+            obj.pos = () => [
+                this.box_pos_x(),
+                this.box_pos_y()
+            ];
+            return obj;
+        }
+        pos_x() {
+            return "0";
+        }
+        pos_y() {
+            return "100%";
+        }
+        align() {
+            return "start";
+        }
+        text() {
+            return "";
+        }
+        Text() {
+            const obj = new this.$.$mol_svg_text();
+            obj.pos = () => [
+                this.pos_x(),
+                this.pos_y()
+            ];
+            obj.align = () => this.align();
+            obj.sub = () => [
+                this.text()
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_svg_text_box.prototype, "Back", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_svg_text_box.prototype, "Text", null);
+    $.$mol_svg_text_box = $mol_svg_text_box;
+})($ || ($ = {}));
+//box.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    let canvas;
+    function $mol_font_canvas(next = canvas) {
+        if (!next)
+            next = $.$mol_dom_context.document.createElement('canvas').getContext('2d');
+        return canvas = next;
+    }
+    $.$mol_font_canvas = $mol_font_canvas;
+})($ || ($ = {}));
+//canvas.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_font_measure(size, face, text) {
+        const canvas = $.$mol_font_canvas();
+        canvas.font = size + 'px ' + face;
+        return canvas.measureText(text).width;
+    }
+    $.$mol_font_measure = $mol_font_measure;
+})($ || ($ = {}));
+//measure.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/svg/text/box/box.view.css", "[mol_svg_text_box_back] {\n\tstroke: none;\n\tfill: var(--mol_theme_back);\n}\n");
+})($ || ($ = {}));
+//box.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_svg_text_box extends $.$mol_svg_text_box {
+            box_width() {
+                return `${this.width()}px`;
+            }
+            width() {
+                return $.$mol_font_measure(this.font_size(), this.font_family(), this.text());
+            }
+            box_pos_x() {
+                const align = this.align();
+                if (align === 'end')
+                    return `calc(${this.pos_x()} - ${this.width()})`;
+                if (align === 'middle')
+                    return `calc(${this.pos_x()} - ${Math.round(this.width() / 2)})`;
+                return this.pos_x();
+            }
+            box_pos_y() {
+                return `calc(${this.pos_y()} - ${this.font_size() - 2})`;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_svg_text_box.prototype, "width", null);
+        $$.$mol_svg_text_box = $mol_svg_text_box;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//box.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_mark_cross extends $.$mol_plot_graph {
+        labels() {
+            return [];
+        }
+        title_x_gap() {
+            return 4;
+        }
+        threshold() {
+            return 16;
+        }
+        graphs() {
+            return [];
+        }
+        dimensions() {
+            const obj = new this.$.$mol_vector_2d(this.dimensions_x(), this.dimensions_y());
+            return obj;
+        }
+        sub() {
+            return [
+                this.Curve(),
+                this.Label_x(),
+                this.Label_y()
+            ];
+        }
+        dimensions_x() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_y() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        curve() {
+            return "";
+        }
+        Curve() {
+            const obj = new this.$.$mol_svg_path();
+            obj.geometry = () => this.curve();
+            return obj;
+        }
+        title_x_pos_x() {
+            return "0";
+        }
+        title_x_pos_y() {
+            return "100%";
+        }
+        title_x() {
+            return "";
+        }
+        Label_x() {
+            const obj = new this.$.$mol_svg_text_box();
+            obj.pos_x = () => this.title_x_pos_x();
+            obj.pos_y = () => this.title_x_pos_y();
+            obj.text = () => this.title_x();
+            return obj;
+        }
+        title_y_pos_x() {
+            return "0";
+        }
+        title_y_pos_y() {
+            return "0";
+        }
+        title_y() {
+            return "";
+        }
+        Label_y() {
+            const obj = new this.$.$mol_svg_text_box();
+            obj.pos_x = () => this.title_y_pos_x();
+            obj.pos_y = () => this.title_y_pos_y();
+            obj.text = () => this.title_y();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_mark_cross.prototype, "dimensions", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_mark_cross.prototype, "dimensions_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_mark_cross.prototype, "dimensions_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_mark_cross.prototype, "Curve", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_mark_cross.prototype, "Label_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_mark_cross.prototype, "Label_y", null);
+    $.$mol_plot_mark_cross = $mol_plot_mark_cross;
+})($ || ($ = {}));
+//cross.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/mark/cross/cross.view.css", "[mol_plot_mark_cross_curve] {\n\tcolor: var(--mol_theme_focus);\n\tstroke-width: 1px;\n\tstroke: currentColor;\n\tpointer-events: none;\n}\n\n[mol_plot_mark_cross_label_x], [mol_plot_mark_cross_label_y] {\n\tcolor: var(--mol_theme_focus);\n\tfont-weight: bold;\n\tpointer-events: none;\n}\n\n[mol_plot_mark_cross_label_y] {\n\ttransform: translateY( 4px );\n}\n");
+})($ || ($ = {}));
+//cross.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_mark_cross extends $.$mol_plot_mark_cross {
+            nearest() {
+                let delta = this.threshold() ** 2;
+                const [cursor_x, cursor_y] = this.cursor_position();
+                if (Number.isNaN(cursor_x) || Number.isNaN(cursor_y))
+                    return null;
+                const graphs = this.graphs();
+                let index = 0;
+                let graph = null;
+                const [shift_x, shift_y] = this.shift();
+                const [scale_x, scale_y] = this.scale();
+                for (let current of graphs) {
+                    const indexes = current.indexes();
+                    const series_x = current.series_x();
+                    const series_y = current.series_y();
+                    for (let i of indexes) {
+                        const point_x = shift_x + series_x[i] * scale_x;
+                        const point_y = shift_y + series_y[i] * scale_y;
+                        const diff = (point_x - cursor_x) ** 2 + (point_y - cursor_y) ** 2;
+                        if (diff < delta) {
+                            delta = diff;
+                            index = i;
+                            graph = current;
+                        }
+                    }
+                }
+                if (!graph)
+                    return null;
+                const value = new $.$mol_vector_2d(graph.series_x()[index], graph.series_y()[index]);
+                const scaled = new $.$mol_vector_2d(shift_x + value.x * scale_x, shift_y + value.y * scale_y);
+                return { value, scaled, index };
+            }
+            curve() {
+                const nearest = this.nearest();
+                if (!nearest)
+                    return '';
+                return `M ${nearest.scaled.x.toFixed(3)} 1000 V 0 M 0 ${nearest.scaled.y.toFixed(3)} H 2000`;
+            }
+            title_x() {
+                const nearest = this.nearest();
+                if (!nearest)
+                    return '';
+                const labels = this.labels();
+                if (labels.length > nearest.index)
+                    return labels[nearest.index];
+                return String(nearest.value.x);
+            }
+            title_x_pos_x() {
+                const nearest = this.nearest();
+                if (!nearest)
+                    return '0';
+                const width = this.Label_x().width();
+                return (nearest.scaled.x - width / 2).toFixed(3);
+            }
+            title_x_pos_y() {
+                const nearest = this.nearest();
+                if (!nearest)
+                    return '0';
+                const pos = this.size_real().y - this.title_x_gap();
+                return pos.toFixed(3);
+            }
+            title_y() {
+                const nearest = this.nearest();
+                if (!nearest)
+                    return '';
+                return String(nearest.value.y);
+            }
+            title_y_pos_y() {
+                const nearest = this.nearest();
+                if (!nearest)
+                    return '0';
+                return nearest.scaled.y.toFixed(3);
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_mark_cross.prototype, "nearest", null);
+        $$.$mol_plot_mark_cross = $mol_plot_mark_cross;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//cross.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_plot_line extends $.$mol_plot_graph {
         threshold() {
             return 1;
@@ -5759,262 +6207,6 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //dot.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_svg_text extends $.$mol_svg {
-        dom_name() {
-            return "text";
-        }
-        pos() {
-            return [];
-        }
-        attr() {
-            return {
-                ...super.attr(),
-                x: this.pos_x(),
-                y: this.pos_y(),
-                "text-anchor": this.align()
-            };
-        }
-        sub() {
-            return [
-                this.text()
-            ];
-        }
-        pos_x() {
-            return "";
-        }
-        pos_y() {
-            return "";
-        }
-        align() {
-            return "middle";
-        }
-        text() {
-            return "";
-        }
-    }
-    $.$mol_svg_text = $mol_svg_text;
-})($ || ($ = {}));
-//text.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/svg/text/text.view.css", "[mol_svg_text] {\n\tfill: currentColor;\n\tstroke: none;\n}\n");
-})($ || ($ = {}));
-//text.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_svg_text extends $.$mol_svg_text {
-            pos_x() {
-                return this.pos()[0];
-            }
-            pos_y() {
-                return this.pos()[1];
-            }
-        }
-        $$.$mol_svg_text = $mol_svg_text;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//text.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_svg_rect extends $.$mol_svg {
-        dom_name() {
-            return "rect";
-        }
-        pos() {
-            return [];
-        }
-        attr() {
-            return {
-                ...super.attr(),
-                width: this.width(),
-                height: this.height(),
-                x: this.pos_x(),
-                y: this.pos_y()
-            };
-        }
-        width() {
-            return "0";
-        }
-        height() {
-            return "0";
-        }
-        pos_x() {
-            return "";
-        }
-        pos_y() {
-            return "";
-        }
-    }
-    $.$mol_svg_rect = $mol_svg_rect;
-})($ || ($ = {}));
-//rect.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_svg_rect extends $.$mol_svg_rect {
-            pos_x() {
-                return this.pos()[0];
-            }
-            pos_y() {
-                return this.pos()[1];
-            }
-        }
-        $$.$mol_svg_rect = $mol_svg_rect;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//rect.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_svg_text_box extends $.$mol_svg_group {
-        font_size() {
-            return 16;
-        }
-        width() {
-            return 0;
-        }
-        sub() {
-            return [
-                this.Back(),
-                this.Text()
-            ];
-        }
-        box_width() {
-            return "0.5rem";
-        }
-        box_height() {
-            return "1rem";
-        }
-        box_pos_x() {
-            return this.pos_x();
-        }
-        box_pos_y() {
-            return "0";
-        }
-        Back() {
-            const obj = new this.$.$mol_svg_rect();
-            obj.width = () => this.box_width();
-            obj.height = () => this.box_height();
-            obj.pos = () => [
-                this.box_pos_x(),
-                this.box_pos_y()
-            ];
-            return obj;
-        }
-        pos_x() {
-            return "0";
-        }
-        pos_y() {
-            return "100%";
-        }
-        align() {
-            return "start";
-        }
-        text() {
-            return "";
-        }
-        Text() {
-            const obj = new this.$.$mol_svg_text();
-            obj.pos = () => [
-                this.pos_x(),
-                this.pos_y()
-            ];
-            obj.align = () => this.align();
-            obj.sub = () => [
-                this.text()
-            ];
-            return obj;
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $mol_svg_text_box.prototype, "Back", null);
-    __decorate([
-        $.$mol_mem
-    ], $mol_svg_text_box.prototype, "Text", null);
-    $.$mol_svg_text_box = $mol_svg_text_box;
-})($ || ($ = {}));
-//box.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    let canvas;
-    function $mol_font_canvas(next = canvas) {
-        if (!next)
-            next = $.$mol_dom_context.document.createElement('canvas').getContext('2d');
-        return canvas = next;
-    }
-    $.$mol_font_canvas = $mol_font_canvas;
-})($ || ($ = {}));
-//canvas.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_font_measure(size, face, text) {
-        const canvas = $.$mol_font_canvas();
-        canvas.font = size + 'px ' + face;
-        return canvas.measureText(text).width;
-    }
-    $.$mol_font_measure = $mol_font_measure;
-})($ || ($ = {}));
-//measure.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/svg/text/box/box.view.css", "[mol_svg_text_box_back] {\n\tstroke: none;\n\tfill: var(--mol_theme_back);\n}\n");
-})($ || ($ = {}));
-//box.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_svg_text_box extends $.$mol_svg_text_box {
-            box_width() {
-                return `${this.width()}px`;
-            }
-            width() {
-                return $.$mol_font_measure(this.font_size(), this.font_family(), this.text());
-            }
-            box_pos_x() {
-                const align = this.align();
-                if (align === 'end')
-                    return `calc(${this.pos_x()} - ${this.width()})`;
-                if (align === 'middle')
-                    return `calc(${this.pos_x()} - ${Math.round(this.width() / 2)})`;
-                return this.pos_x();
-            }
-            box_pos_y() {
-                return `calc(${this.pos_y()} - ${this.font_size() - 2})`;
-            }
-        }
-        __decorate([
-            $.$mol_mem
-        ], $mol_svg_text_box.prototype, "width", null);
-        $$.$mol_svg_text_box = $mol_svg_text_box;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//box.view.js.map
 ;
 "use strict";
 var $;
@@ -7711,7 +7903,7 @@ var $;
             return obj;
         }
         title() {
-            return this.page_quote_title();
+            return this.$.$mol_locale.text('$hyoo_speculant_app_chart_title');
         }
         Linear(id) {
             const obj = new this.$.$mol_plot_group();
@@ -7723,13 +7915,19 @@ var $;
             ];
             return obj;
         }
+        Marker_cross(id) {
+            const obj = new this.$.$mol_plot_mark_cross();
+            obj.labels = () => this.days();
+            obj.graphs = () => [
+                this.Linear_line(id),
+                this.Linear_dots(id)
+            ];
+            return obj;
+        }
         body() {
             return [
                 this.Chart()
             ];
-        }
-        page_quote_title() {
-            return "Chart";
         }
         linear_title(id) {
             return "";
@@ -7745,6 +7943,9 @@ var $;
             const obj = new this.$.$mol_plot_dot();
             return obj;
         }
+        days() {
+            return [];
+        }
         vert_title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_chart_vert_title');
         }
@@ -7756,18 +7957,10 @@ var $;
         marker_hor_title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_chart_marker_hor_title');
         }
-        months() {
-            return [
-                "January",
-                "February",
-                "March",
-                "April"
-            ];
-        }
         Marker_hor() {
             const obj = new this.$.$mol_plot_mark_hor();
             obj.title = () => this.marker_hor_title();
-            obj.labels = () => this.months();
+            obj.labels = () => this.days();
             return obj;
         }
         linear_list() {
@@ -7788,6 +7981,9 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_chart.prototype, "Linear", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_chart.prototype, "Marker_cross", null);
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_chart.prototype, "Linear_line", null);
@@ -7813,6 +8009,9 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
+            currency_names() {
+                return ['KBK', 'BRT', 'RIK'];
+            }
             indicator(id) {
                 return this.model().indicators()[id];
             }
@@ -7820,16 +8019,18 @@ var $;
                 return this.indicator(id).name;
             }
             linear_series(id) {
-                return [1, 2, 3, 4, 5, 6];
+                return this.indicator(id).history;
             }
             linear_list() {
-                const key_list = ['KBK', 'BRT', 'RIK'];
                 return [
-                    ...key_list.map(id => this.Linear(id)),
+                    ...this.currency_names().map(id => this.Linear(id)),
                     ...super.linear_list(),
                 ];
             }
         }
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_chart.prototype, "currency_names", null);
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app_chart.prototype, "indicator", null);

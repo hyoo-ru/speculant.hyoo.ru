@@ -243,35 +243,6 @@ $mol_plot_group $mol_plot_graph
 	Sample $mol_plot_graph_sample
 		sub <= graph_samples /$mol_view
 
-$mol_plot_line $mol_plot_graph
-	threshold 1
-	spacing 2
-	color_fill \none
-	dom_name \path
-	attr *
-		^
-		d <= curve \
-	sub /
-		<= Hint
-	-
-	Sample $mol_plot_graph_sample
-		color <= color
-		type <= type
-
-$mol_plot_dot $mol_plot_graph
-	points_max Infinity
-	aspect 1
-	style *
-		^
-		stroke-width <= diameter 8
-	sub /
-		<= Hint
-		<= Curve $mol_svg_path
-			geometry <= curve \
-	-
-	Sample $mol_plot_graph_sample
-		color <= color
-
 $mol_svg_text $mol_svg
 	dom_name \text
 	pos /
@@ -310,6 +281,59 @@ $mol_svg_text_box $mol_svg_group
 			align <= align \start
 			sub /
 				<= text \
+
+$mol_plot_mark_cross $mol_plot_graph
+	labels /string
+	title_x_gap 4
+	threshold 16
+	graphs /$mol_plot_graph
+	dimensions $mol_vector_2d /
+		<= dimensions_x $mol_vector_range /
+			Infinity
+			-Infinity
+		<= dimensions_y $mol_vector_range /
+			Infinity
+			-Infinity
+	sub /
+		<= Curve $mol_svg_path
+			geometry <= curve \
+		<= Label_x $mol_svg_text_box
+			pos_x <= title_x_pos_x \0
+			pos_y <= title_x_pos_y \100%
+			text <= title_x \
+		<= Label_y $mol_svg_text_box
+			pos_x <= title_y_pos_x \0
+			pos_y <= title_y_pos_y \0
+			text <= title_y \
+
+$mol_plot_line $mol_plot_graph
+	threshold 1
+	spacing 2
+	color_fill \none
+	dom_name \path
+	attr *
+		^
+		d <= curve \
+	sub /
+		<= Hint
+	-
+	Sample $mol_plot_graph_sample
+		color <= color
+		type <= type
+
+$mol_plot_dot $mol_plot_graph
+	points_max Infinity
+	aspect 1
+	style *
+		^
+		stroke-width <= diameter 8
+	sub /
+		<= Hint
+		<= Curve $mol_svg_path
+			geometry <= curve \
+	-
+	Sample $mol_plot_graph_sample
+		color <= color
 
 $mol_plot_ruler $mol_plot_graph
 	step 0
@@ -541,30 +565,26 @@ $mol_chart $mol_view
 
 $hyoo_speculant_app_chart $mol_page
 	model $hyoo_speculant_world
-	title <= page_quote_title \Chart
+	title @ \Chart
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
 		graphs /
 			<= Linear_line!id $mol_plot_line
 			<= Linear_dots!id $mol_plot_dot
+	Marker_cross!id $mol_plot_mark_cross
+		labels <= days /string
+		graphs /
+			<= Linear_line!id
+			<= Linear_dots!id
 	body /
 		<= Chart $mol_chart
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
-					title <= vert_title @ \pcs
+					title <= vert_title @ \
 				<= Marker_hor $mol_plot_mark_hor
-					title <= marker_hor_title @ \Months
-					labels <= months /string
-						\January
-						\February
-						\March
-						\April
-				- <= Marker_cross $mol_plot_mark_cross
-					labels <= months
-					graphs /
-						<= Linear_line
-						<= Linear_dots
+					title <= marker_hor_title @ \Days
+					labels <= days
 
 $hyoo_speculant_app $mol_book2_catalog
 	menu_title <= title @ \Sections
