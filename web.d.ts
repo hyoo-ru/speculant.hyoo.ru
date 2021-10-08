@@ -2085,7 +2085,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $hyoo_speculant_app_chart extends $mol_page {
+    class $hyoo_speculant_app_dashboard extends $mol_page {
         model(): $$.$hyoo_speculant_world;
         title(): string;
         Linear(id: any): $$.$mol_plot_group;
@@ -2103,7 +2103,7 @@ declare namespace $ {
         days(): readonly any[];
         Marker_hor(): $$.$mol_plot_mark_hor;
         linear_list(): readonly any[];
-        Chart(): $mol_chart;
+        Dashboard(): $mol_chart;
         buy_buttons(): readonly any[];
         Buy(): $mol_view;
         sell_buttons(): readonly any[];
@@ -2112,7 +2112,7 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
-    class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
+    class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
         currency_names(): string[];
         day_start(): $mol_time_moment;
         days(): string[];
@@ -2242,7 +2242,7 @@ declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
         title(): string;
         page(): string;
-        Page_chart(): $$.$hyoo_speculant_app_chart;
+        Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         Page_news(): $$.$mol_page;
         Source(): $mol_link_source;
         News_icon(): $mol_icon_bell_outline;
@@ -2253,7 +2253,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
         news(): boolean;
-        pages(): ($mol_page | $hyoo_speculant_app_chart)[];
+        pages(): ($mol_page | $hyoo_speculant_app_dashboard)[];
     }
 }
 

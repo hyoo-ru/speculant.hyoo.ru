@@ -7648,13 +7648,13 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $hyoo_speculant_app_chart extends $.$mol_page {
+    class $hyoo_speculant_app_dashboard extends $.$mol_page {
         model() {
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
         }
         title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_chart_title');
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
         }
         Linear(id) {
             const obj = new this.$.$mol_plot_group();
@@ -7679,7 +7679,7 @@ var $;
         }
         body() {
             return [
-                this.Chart(),
+                this.Dashboard(),
                 this.Buy(),
                 this.Sell()
             ];
@@ -7705,7 +7705,7 @@ var $;
             return null;
         }
         vert_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_chart_vert_title');
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_vert_title');
         }
         Vert_ruler() {
             const obj = new this.$.$mol_plot_ruler_vert();
@@ -7713,7 +7713,7 @@ var $;
             return obj;
         }
         marker_hor_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_chart_marker_hor_title');
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_marker_hor_title');
         }
         days() {
             return [];
@@ -7730,7 +7730,7 @@ var $;
                 this.Marker_hor()
             ];
         }
-        Chart() {
+        Dashboard() {
             const obj = new this.$.$mol_chart();
             obj.graphs = () => this.linear_list();
             return obj;
@@ -7754,50 +7754,50 @@ var $;
     }
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_chart.prototype, "model", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "model", null);
     __decorate([
         $.$mol_mem_key
-    ], $hyoo_speculant_app_chart.prototype, "Linear", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Linear", null);
     __decorate([
         $.$mol_mem_key
-    ], $hyoo_speculant_app_chart.prototype, "Buy_button", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Buy_button", null);
     __decorate([
         $.$mol_mem_key
-    ], $hyoo_speculant_app_chart.prototype, "Sell_button", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Sell_button", null);
     __decorate([
         $.$mol_mem_key
-    ], $hyoo_speculant_app_chart.prototype, "Linear_line", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Linear_line", null);
     __decorate([
         $.$mol_mem_key
-    ], $hyoo_speculant_app_chart.prototype, "buy", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "buy", null);
     __decorate([
         $.$mol_mem_key
-    ], $hyoo_speculant_app_chart.prototype, "sell", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_chart.prototype, "Vert_ruler", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Vert_ruler", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_chart.prototype, "Marker_hor", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Marker_hor", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_chart.prototype, "Chart", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Dashboard", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_chart.prototype, "Buy", null);
+    ], $hyoo_speculant_app_dashboard.prototype, "Buy", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_chart.prototype, "Sell", null);
-    $.$hyoo_speculant_app_chart = $hyoo_speculant_app_chart;
+    ], $hyoo_speculant_app_dashboard.prototype, "Sell", null);
+    $.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
 })($ || ($ = {}));
-//chart.view.tree.js.map
+//dashboard.view.tree.js.map
 ;
 "use strict";
 var $;
 (function ($) {
     var $$;
     (function ($$) {
-        class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
+        class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
             currency_names() {
                 return Object.keys(this.model().indicators()).filter(key => key !== 'CSH');
             }
@@ -7839,35 +7839,35 @@ var $;
         }
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_chart.prototype, "currency_names", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_names", null);
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_chart.prototype, "day_start", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "day_start", null);
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_chart.prototype, "days", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "days", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_chart.prototype, "indicator", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "indicator", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_chart.prototype, "linear_title", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "linear_title", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_chart.prototype, "linear_series", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "linear_series", null);
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_chart.prototype, "linear_list", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "linear_list", null);
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_chart.prototype, "buy_buttons", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "buy_buttons", null);
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_chart.prototype, "sell_buttons", null);
-        $$.$hyoo_speculant_app_chart = $hyoo_speculant_app_chart;
+        ], $hyoo_speculant_app_dashboard.prototype, "sell_buttons", null);
+        $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
-//chart.view.js.map
+//dashboard.view.js.map
 ;
 "use strict";
 var $;
@@ -8229,10 +8229,10 @@ var $;
             return this.$.$mol_locale.text('$hyoo_speculant_app_title');
         }
         page() {
-            return "chart";
+            return "dashboard";
         }
-        Page_chart() {
-            const obj = new this.$.$hyoo_speculant_app_chart();
+        Page_dashboard() {
+            const obj = new this.$.$hyoo_speculant_app_dashboard();
             obj.tools = () => [
                 this.Source(),
                 this.News_link()
@@ -8269,7 +8269,7 @@ var $;
     }
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Page_chart", null);
+    ], $hyoo_speculant_app.prototype, "Page_dashboard", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Page_news", null);
@@ -8297,7 +8297,7 @@ var $;
             }
             pages() {
                 return [
-                    this.Page_chart(),
+                    this.Page_dashboard(),
                     ...(this.news() ? [this.Page_news()] : []),
                 ];
             }

@@ -529,9 +529,9 @@ $mol_chart $mol_view
 			hue_base <= hue_base 140
 			hue_shift <= hue_shift 111
 
-$hyoo_speculant_app_chart $mol_page
+$hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
-	title @ \Chart
+	title @ \Dashboard
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
@@ -544,7 +544,7 @@ $hyoo_speculant_app_chart $mol_page
 		title <= linear_title!id
 		click?val <=> sell!id?val null
 	body /
-		<= Chart $mol_chart
+		<= Dashboard $mol_chart
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
 					title <= vert_title @ \Values
@@ -593,8 +593,8 @@ $mol_icon_bell_outline $mol_icon path \M16,17H7V10.5C7,8 9,6 11.5,6C14,6 16,8 16
 
 $hyoo_speculant_app $mol_book2
 	title @ \Speculant
-	page \chart
-	Page_chart $hyoo_speculant_app_chart
+	page \dashboard
+	Page_dashboard $hyoo_speculant_app_dashboard
 		tools /
 			<= Source $mol_link_source
 				uri \https://github.com/hyoo-ru/speculant.hyoo.ru
