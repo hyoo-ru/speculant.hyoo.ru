@@ -8456,7 +8456,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("mol/chart/chart.view.css", "[mol_chart] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-self: stretch;\n\tflex: 1 1 auto;\n\tpadding: .5rem;\n}\n\n[mol_chart_plot] {\n\tflex: 1 0 50%;\n\tmargin: .5rem;\n}\n");
+    $.$mol_style_attach("mol/chart/chart.view.css", "[mol_chart] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-self: stretch;\n\tflex: 1 1 auto;\n}\n\n[mol_chart_plot] {\n\tflex: 1 0 50%;\n\tmargin: .5rem;\n}\n");
 })($ || ($ = {}));
 //chart.view.css.js.map
 ;
@@ -8470,6 +8470,9 @@ var $;
         }
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_chart_title');
+        }
+        chart_zoom() {
+            return 30;
         }
         Linear(id) {
             const obj = new this.$.$mol_plot_group();
@@ -8499,13 +8502,13 @@ var $;
         }
         Buy_button(id) {
             const obj = new this.$.$mol_button_major();
-            obj.title = () => this.button_title(id);
+            obj.title = () => this.linear_title(id);
             obj.click = (val) => this.buy(id, val);
             return obj;
         }
         Sell_button(id) {
             const obj = new this.$.$mol_button_major();
-            obj.title = () => this.button_title(id);
+            obj.title = () => this.linear_title(id);
             obj.click = (val) => this.sell(id, val);
             return obj;
         }
@@ -8569,9 +8572,6 @@ var $;
             const obj = new this.$.$mol_view();
             obj.sub = () => this.sell_buttons();
             return obj;
-        }
-        button_title(id) {
-            return " ";
         }
         buy(id, val) {
             if (val !== undefined)
@@ -8639,6 +8639,15 @@ var $;
             currency_names() {
                 return Object.keys(this.model().indicators()).filter(key => key !== 'CSH');
             }
+            day_start() {
+                return new this.$.$mol_time_moment;
+            }
+            days() {
+                const history_length = this.indicator(this.currency_names()[0]).history.length;
+                const arr = new Array(history_length).fill('');
+                const days = arr.map((_, index) => this.day_start().shift({ day: index }).toString('MM-DD'));
+                return days.slice(-this.chart_zoom());
+            }
             indicator(id) {
                 return this.model().indicators()[id];
             }
@@ -8646,13 +8655,19 @@ var $;
                 return this.indicator(id).name;
             }
             linear_series(id) {
-                return this.indicator(id).history;
+                return this.indicator(id).history.slice(-this.chart_zoom());
             }
             linear_list() {
                 return [
                     ...this.currency_names().map(id => this.Linear(id)),
                     ...super.linear_list(),
                 ];
+            }
+            buy_buttons() {
+                return this.currency_names().map(id => this.Buy_button(id));
+            }
+            sell_buttons() {
+                return this.currency_names().map(id => this.Sell_button(id));
             }
             buy(id) {
                 this.model().exchange(id, 1);
@@ -8665,6 +8680,12 @@ var $;
             $.$mol_mem
         ], $hyoo_speculant_app_chart.prototype, "currency_names", null);
         __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_chart.prototype, "day_start", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_chart.prototype, "days", null);
+        __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app_chart.prototype, "indicator", null);
         __decorate([
@@ -8676,6 +8697,12 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app_chart.prototype, "linear_list", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_chart.prototype, "buy_buttons", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_chart.prototype, "sell_buttons", null);
         $$.$hyoo_speculant_app_chart = $hyoo_speculant_app_chart;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

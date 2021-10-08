@@ -2263,6 +2263,7 @@ declare namespace $ {
     class $hyoo_speculant_app_chart extends $mol_page {
         model(): $$.$hyoo_speculant_world;
         title(): string;
+        chart_zoom(): number;
         Linear(id: any): $$.$mol_plot_group;
         Marker_cross(id: any): $$.$mol_plot_mark_cross;
         body(): readonly any[];
@@ -2283,7 +2284,6 @@ declare namespace $ {
         Buy(): $mol_view;
         sell_buttons(): readonly any[];
         Sell(): $mol_view;
-        button_title(id: any): string;
         buy(id: any, val?: any): any;
         sell(id: any, val?: any): any;
     }
@@ -2292,10 +2292,14 @@ declare namespace $ {
 declare namespace $.$$ {
     class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
         currency_names(): string[];
+        day_start(): $mol_time_moment;
+        days(): string[];
         indicator(id: string): $hyoo_speculant_world_indicator;
         linear_title(id: string): string;
-        linear_series(id: string): readonly number[];
+        linear_series(id: string): number[];
         linear_list(): any[];
+        buy_buttons(): $mol_button_major[];
+        sell_buttons(): $mol_button_major[];
         buy(id: string): void;
         sell(id: string): void;
     }
