@@ -1,0 +1,4 @@
+$hyoo_speculant_app $mol_book2_catalog
+	menu_title <= title @ \Sections
+	spreads *
+		chart <= Chart $hyoo_speculant_app_chart 
