@@ -1,33 +1,28 @@
-$hyoo_speculant_app_chart $mol_page
+$hyoo_speculant_app_chart $mol_view
 	model $hyoo_speculant_world
 	title @ \Chart
-	chart_zoom 30
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
 		graphs /
 			<= Linear_line!id $mol_plot_line
-			<= Linear_dots!id $mol_plot_dot
-	Marker_cross!id $mol_plot_mark_cross
-		labels <= days /string
-		graphs /
-			<= Linear_line!id
-			<= Linear_dots!id
-	body /
-		<= Chart $mol_chart
-			graphs <= linear_list /
-				<= Vert_ruler $mol_plot_ruler_vert
-					title <= vert_title @ \Values
-				<= Marker_hor $mol_plot_mark_hor
-					title <= marker_hor_title @ \Days
-					labels <= days
-		<= Buy $mol_view
-			sub <= buy_buttons /
-		<= Sell $mol_view
-			sub <= sell_buttons /
 	Buy_button!id $mol_button_major
 		title <= linear_title!id
 		click?val <=> buy!id?val null
 	Sell_button!id $mol_button_major
 		title <= linear_title!id
 		click?val <=> sell!id?val null
+	sub /
+		<= List $mol_list
+			rows /
+				<= Chart $mol_chart
+					graphs <= linear_list /
+						<= Vert_ruler $mol_plot_ruler_vert
+							title <= vert_title @ \Values
+						<= Marker_hor $mol_plot_mark_hor
+							title <= marker_hor_title @ \Days
+							labels <= days
+				<= Buy $mol_view
+					sub <= buy_buttons /
+				<= Sell $mol_view
+					sub <= sell_buttons /

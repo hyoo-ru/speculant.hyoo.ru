@@ -7,7 +7,7 @@ namespace $.$$ {
 			return this.$.$mol_state_arg.value( 'page' ) || 'chart'
 		}
 
-		sub() {
+		body() {
 			return [ this.page_dict()[ this.page() ] ]
 		}
 

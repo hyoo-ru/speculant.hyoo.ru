@@ -1,12 +1,14 @@
-$hyoo_speculant_app $mol_view
+$hyoo_speculant_app $mol_page
+	title @ \Speculant
+	tools /
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/speculant.hyoo.ru
+		<= News_link $mol_link
+			arg * page \news
+			sub / <= News_icon $mol_icon_bell_outline
 	page \chart
 	page_dict *
 		chart <= Chart $hyoo_speculant_app_chart
-			tools /
-				<= News_link $mol_link
-					arg *
-						page \news
-					sub / <= News_icon $mol_icon_hackernews
-		news <= News $mol_page
+		news <= News $mol_view
 			title \news
 			body / \Hello
