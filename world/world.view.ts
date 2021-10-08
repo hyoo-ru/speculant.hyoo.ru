@@ -40,7 +40,11 @@ namespace $.$$ {
 				const entropy = this.entropy()[ type ]
 				if( entropy === undefined ) $mol_fail( new RangeError( `No entropy for ${ type }` ) )
 				
-				const current = next[ code ].current + Math.round( ( Math.random() * 2 - 1 ) * entropy )
+				const current = Math.max( 0,
+					+ next[ code ].current
+					+ Math.round( ( Math.random() * 2 - 1 ) * entropy )
+				)
+				
 				const history = [ ... next[ code ].history, current ]
 				
 				next[ code ] = {
