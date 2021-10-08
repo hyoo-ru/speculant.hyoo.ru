@@ -19,7 +19,7 @@ $hyoo_speculant_app_chart $mol_page
 					title <= vert_title @ \Values
 				<= Marker_hor $mol_plot_mark_hor
 					title <= marker_hor_title @ \Days
-					labels <= days
+					labels <= days /
 		<= Buy $mol_view
 			sub <= buy_buttons /
 		<= Sell $mol_view

@@ -53,11 +53,11 @@ namespace $.$$ {
 			return this.currency_names().map( id => this.Sell_button( id ) )
 		}
 		
-		buy( id : string ) {
+		buy( id : $hyoo_speculant_world_indicator_codes ) {
 			this.model().exchange( id , 1 )
 		}
 		
-		sell( id : string ) {
+		sell( id : $hyoo_speculant_world_indicator_codes ) {
 			this.model().exchange( id , -1 )
 		}
 
