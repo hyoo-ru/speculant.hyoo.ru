@@ -13,7 +13,7 @@ $hyoo_speculant_app_dashboard $mol_page
 		title <= linear_title!id
 		click?val <=> sell!id?val null
 	body /
-		<= Dashboard $mol_chart
+		<= Chart $hyoo_speculant_app_dashboard_chart
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
 					title <= vert_title @ \Values
@@ -24,3 +24,15 @@ $hyoo_speculant_app_dashboard $mol_page
 			sub <= buy_buttons /
 		<= Sell $mol_view
 			sub <= sell_buttons /
+$hyoo_speculant_app_dashboard_chart_legend $mol_chart_legend
+	Graph_legend!id $mol_view
+		sub /
+			<= Graph_sample_box!id
+			<= Graph_title!id
+			<= Tools!id $mol_view
+$hyoo_speculant_app_dashboard_chart $mol_chart
+	sub /
+		<= Plot
+		<= Legend $hyoo_speculant_app_dashboard_chart_legend
+			graphs <= graphs_colored
+			Tools!id <= Legend_tools!id $mol_view
