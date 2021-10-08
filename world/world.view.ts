@@ -29,6 +29,8 @@ namespace $.$$ {
 			
 			for( const code in prev ) {
 				
+				if( code === 'CSH' ) continue
+				
 				const current = prev[ code ].current + Math.floor( Math.random() * 2 - 1 )
 				const history = [ ... prev[ code ].history, current ]
 				
