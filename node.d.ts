@@ -1574,6 +1574,227 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_svg_text extends $mol_svg {
+        dom_name(): string;
+        pos(): readonly any[];
+        attr(): {
+            x: string;
+            y: string;
+            "text-anchor": string;
+        };
+        sub(): readonly any[];
+        pos_x(): string;
+        pos_y(): string;
+        align(): string;
+        text(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_svg_text extends $.$mol_svg_text {
+        pos_x(): any;
+        pos_y(): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_svg_rect extends $mol_svg {
+        dom_name(): string;
+        pos(): readonly any[];
+        attr(): {
+            width: string;
+            height: string;
+            x: string;
+            y: string;
+        };
+        width(): string;
+        height(): string;
+        pos_x(): string;
+        pos_y(): string;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_svg_rect extends $.$mol_svg_rect {
+        pos_x(): any;
+        pos_y(): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_svg_text_box extends $mol_svg_group {
+        font_size(): number;
+        width(): number;
+        sub(): readonly any[];
+        box_width(): string;
+        box_height(): string;
+        box_pos_x(): string;
+        box_pos_y(): string;
+        Back(): $$.$mol_svg_rect;
+        pos_x(): string;
+        pos_y(): string;
+        align(): string;
+        text(): string;
+        Text(): $$.$mol_svg_text;
+    }
+}
+
+declare namespace $ {
+    function $mol_font_canvas(next?: CanvasRenderingContext2D): CanvasRenderingContext2D;
+}
+
+declare namespace $ {
+    function $mol_font_measure(size: number, face: string, text: string): number;
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_svg_text_box extends $.$mol_svg_text_box {
+        box_width(): string;
+        width(): number;
+        box_pos_x(): string;
+        box_pos_y(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_plot_ruler extends $mol_plot_graph {
+        step(): number;
+        scale_axis(): number;
+        scale_step(): number;
+        shift_axis(): number;
+        dimensions_axis(): $mol_vector_range<number>;
+        viewport_axis(): $mol_vector_range<number>;
+        axis_points(): readonly number[];
+        normalize(val?: any): number;
+        precision(): number;
+        sub(): readonly any[];
+        Label(index: any): $$.$mol_svg_text;
+        background_x(): string;
+        background_y(): string;
+        background_width(): string;
+        background_height(): string;
+        Background(): $$.$mol_svg_rect;
+        curve(): string;
+        Curve(): $mol_svg_path;
+        labels_formatted(): readonly any[];
+        title_pos_x(): string;
+        title_pos_y(): string;
+        title_align(): string;
+        Title(): $$.$mol_svg_text_box;
+        label_pos_x(index: any): string;
+        label_pos_y(index: any): string;
+        label_pos(index: any): readonly any[];
+        label_text(index: any): string;
+        label_align(): string;
+    }
+}
+
+declare namespace $ {
+    function $mol_math_round_expand(val: number, gap?: number): number;
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_plot_ruler extends $.$mol_plot_ruler {
+        labels_formatted(): $mol_svg_text[];
+        step(): number;
+        snap_to_grid(coord: number): number;
+        axis_points(): number[];
+        precision(): number;
+        label_text(index: number): string;
+        font_size(): number;
+        back(): $mol_svg_path[];
+        front(): readonly $.$mol_svg[];
+    }
+}
+
+declare namespace $ {
+    class $mol_plot_ruler_vert extends $mol_plot_ruler {
+        title_align(): string;
+        label_align(): string;
+        title_pos_y(): string;
+        label_pos_x(v: any): string;
+        background_height(): string;
+        background_width(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_plot_ruler_vert extends $.$mol_plot_ruler_vert {
+        dimensions_axis(): $mol_vector_range<number>;
+        viewport_axis(): $mol_vector_range<number>;
+        scale_axis(): number;
+        scale_step(): number;
+        shift_axis(): number;
+        curve(): string;
+        title_pos_x(): string;
+        label_pos_y(index: number): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_plot_ruler_hor extends $mol_plot_ruler {
+        title_align(): string;
+        label_align(): string;
+        title_pos_x(): string;
+        title_pos_y(): string;
+        label_pos_y(v: any): string;
+        background_width(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_plot_ruler_hor extends $.$mol_plot_ruler_hor {
+        dimensions_axis(): $mol_vector_range<number>;
+        viewport_axis(): $mol_vector_range<number>;
+        scale_axis(): number;
+        scale_step(): number;
+        shift_axis(): number;
+        curve(): string;
+        label_pos_x(index: number): string;
+        background_y(): string;
+        title_pos_y(): string;
+        background_height(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_plot_mark_hor extends $mol_plot_ruler_hor {
+        labels(): readonly string[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_plot_mark_hor extends $.$mol_plot_mark_hor {
+        series_x(): readonly number[];
+        labels(): readonly string[];
+        visible_indexes(): number[];
+        curve(): string;
+        label_text(index: number): string;
+        labels_formatted(): $mol_svg_text[];
+        label_pos_x(index: number): string;
+        label_pos_y(index: number): string;
+    }
+}
+
+declare namespace $ {
     class $mol_chart_legend extends $mol_scroll {
         graphs(): readonly $mol_plot_graph[];
         sub(): readonly $mol_view[];
@@ -1792,8 +2013,13 @@ declare namespace $ {
         page_quote_title(): string;
         linear_title(id: any): string;
         linear_series(id: any): readonly any[];
-        Linear_line(): $$.$mol_plot_line;
-        Linear_dots(): $$.$mol_plot_dot;
+        Linear_line(id: any): $$.$mol_plot_line;
+        Linear_dots(id: any): $$.$mol_plot_dot;
+        vert_title(): string;
+        Vert_ruler(): $$.$mol_plot_ruler_vert;
+        marker_hor_title(): string;
+        months(): readonly string[];
+        Marker_hor(): $$.$mol_plot_mark_hor;
         linear_list(): readonly any[];
         Chart(): $mol_chart;
     }
