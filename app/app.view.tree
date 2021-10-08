@@ -1,4 +1,12 @@
-$hyoo_speculant_app $mol_book2_catalog
-	menu_title <= title @ \Sections
-	spreads *
-		chart <= Chart $hyoo_speculant_app_chart 
+$hyoo_speculant_app $mol_view
+	page \chart
+	page_dict *
+		chart <= Chart $hyoo_speculant_app_chart
+			tools /
+				<= News_link $mol_link
+					arg *
+						page \news
+					sub / <= News_icon $mol_icon_hackernews
+		news <= News $mol_page
+			title \news
+			body / \Hello
