@@ -16,7 +16,7 @@ $hyoo_speculant_app_chart $mol_page
 		<= Chart $mol_chart
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
-					title <= vert_title @ \
+					title <= vert_title @ \Values
 				<= Marker_hor $mol_plot_mark_hor
 					title <= marker_hor_title @ \Days
 					labels <= days
