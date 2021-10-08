@@ -4370,21 +4370,21 @@ var $;
                     history: []
                 },
                 KBK: {
-                    name: "Валюта КилоБакс",
+                    name: "КилоБакс",
                     type: "currency",
                     have: 0,
                     current: 100,
                     history: []
                 },
                 BRT: {
-                    name: "Облигации мессенджера \"Телетайп\"",
+                    name: "Телетайп",
                     type: "bond",
                     have: 0,
                     current: 200,
                     history: []
                 },
                 RIK: {
-                    name: "Акции соцсети \"МордоСвиток\"",
+                    name: "МордоСвиток",
                     type: "share",
                     have: 0,
                     current: 50,
@@ -4998,7 +4998,7 @@ var $;
                     const entropy = this.entropy()[type];
                     if (entropy === undefined)
                         $.$mol_fail(new RangeError(`No entropy for ${type}`));
-                    const current = next[code].current + Math.floor(Math.random() * 2 - 1);
+                    const current = next[code].current + Math.round((Math.random() * 2 - 1) * entropy);
                     const history = [...next[code].history, current];
                     next[code] = {
                         ...next[code],
