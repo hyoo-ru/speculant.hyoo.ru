@@ -3,12 +3,15 @@ namespace $.$$ {
 	export class $hyoo_speculant_app extends $.$hyoo_speculant_app {
 
 		@ $mol_mem
-		page() {
-			return this.$.$mol_state_arg.value( 'page' ) || 'chart'
+		news() {
+			return this.$.$mol_state_arg.value( 'news' ) !== null
 		}
 
-		body() {
-			return [ this.page_dict()[ this.page() ] ]
+		pages() {
+			return [
+				this.Page_chart() ,
+				... ( this.news() ? [ this.Page_news() ]  : [] ) ,
+			]
 		}
 
 	}
