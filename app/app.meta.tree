@@ -1,0 +1,4 @@
+deploy \/hyoo/speculant/logo/logo.svg
+deploy \/hyoo/speculant/app/manifest.json
+
+include \/mol/offline/install
