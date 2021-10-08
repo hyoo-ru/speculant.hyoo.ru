@@ -1,49 +1,3 @@
-$mol_svg $mol_view
-	dom_name \svg
-	dom_name_space \http://www.w3.org/2000/svg
-	font_size 16
-	font_family \
-
-$mol_svg_root $mol_svg
-	dom_name \svg
-	attr *
-		^
-		viewBox <= view_box \0 0 100 100
-		preserveAspectRatio <= aspect \xMidYMid
-
-$mol_svg_path $mol_svg
-	dom_name \path
-	attr *
-		^
-		d <= geometry \
-
-
-$mol_icon $mol_svg_root
-	view_box \0 0 24 24
-	minimal_width 16
-	minimal_height 16
-	sub /
-		<= Path $mol_svg_path
-			geometry <= path \
-
-$mol_icon_hackernews $mol_icon path \M2,2H22V22H2V2M11.25,17.5H12.75V13.06L16,7H14.5L12,11.66L9.5,7H8L11.25,13.06V17.5Z
-
-$mol_link $mol_view
-	dom_name \a
-	attr *
-		^
-		href <= uri \
-		title <= hint \
-		target <= target \_self
-		download <= file_name \
-		mol_link_current <= current false
-	sub /$mol_view_content
-		<= title
-	arg *
-	event *
-		^
-		click?event <=> click?event <=> event_click?event null
-
 $mol_scroll $mol_view
 	minimal_height 0
 	_event_scroll_timer?val null
@@ -55,6 +9,11 @@ $mol_scroll $mol_view
 	event *
 		^
 		scroll?event <=> event_scroll?event null
+
+$mol_book2 $mol_scroll
+	sub <= pages /$mol_view
+	minimal_width 0
+	Placeholder $mol_view
 
 $mol_page $mol_view
 	sub /
@@ -85,7 +44,7 @@ $hyoo_speculant_world $mol_object2
 		\Насколько рисованный инвестор по результатам игры.
 		\Варианты: safe|care|risky
 	
-	exchange!code?diff 0
+	exchange!code?diff null
 	- \
 		\Обменять code(KBK, VRT, etc) на Кэш.
 		\diff показывает сколько менять. +1 - купить, -1 - продать.
@@ -140,6 +99,12 @@ $hyoo_speculant_world $mol_object2
 			body \
 				\Производительность труда выросла **в 2.5 раза.**
 				\
+
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
 
 $mol_svg_group $mol_svg
 	dom_name \g
@@ -223,69 +188,6 @@ $mol_plot_group $mol_plot_graph
 	Sample $mol_plot_graph_sample
 		sub <= graph_samples /$mol_view
 
-$mol_svg_text $mol_svg
-	dom_name \text
-	pos /
-	attr *
-		^
-		x <= pos_x \
-		y <= pos_y \
-		text-anchor <= align \middle
-	sub /
-		<= text \
-
-$mol_svg_rect $mol_svg
-	dom_name \rect
-	pos /
-	attr *
-		^
-		width <= width \0
-		height <= height \0
-		x <= pos_x \
-		y <= pos_y \
-
-$mol_svg_text_box $mol_svg_group
-	font_size 16
-	width 0
-	sub /
-		<= Back $mol_svg_rect
-			width <= box_width \0.5rem
-			height <= box_height \1rem
-			pos /
-				<= box_pos_x <= pos_x
-				<= box_pos_y \0
-		<= Text $mol_svg_text
-			pos /
-				<= pos_x \0
-				<= pos_y \100%
-			align <= align \start
-			sub /
-				<= text \
-
-$mol_plot_mark_cross $mol_plot_graph
-	labels /string
-	title_x_gap 4
-	threshold 16
-	graphs /$mol_plot_graph
-	dimensions $mol_vector_2d /
-		<= dimensions_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= dimensions_y $mol_vector_range /
-			Infinity
-			-Infinity
-	sub /
-		<= Curve $mol_svg_path
-			geometry <= curve \
-		<= Label_x $mol_svg_text_box
-			pos_x <= title_x_pos_x \0
-			pos_y <= title_x_pos_y \100%
-			text <= title_x \
-		<= Label_y $mol_svg_text_box
-			pos_x <= title_y_pos_x \0
-			pos_y <= title_y_pos_y \0
-			text <= title_y \
-
 $mol_speck $mol_view
 	attr *
 		^
@@ -338,19 +240,51 @@ $mol_plot_line $mol_plot_graph
 		color <= color
 		type <= type
 
-$mol_plot_dot $mol_plot_graph
-	points_max Infinity
-	aspect 1
-	style *
+$mol_svg_text $mol_svg
+	dom_name \text
+	pos /
+	attr *
 		^
-		stroke-width <= diameter 8
+		x <= pos_x \
+		y <= pos_y \
+		text-anchor <= align \middle
 	sub /
-		<= Hint
-		<= Curve $mol_svg_path
-			geometry <= curve \
-	-
-	Sample $mol_plot_graph_sample
-		color <= color
+		<= text \
+
+$mol_svg_rect $mol_svg
+	dom_name \rect
+	pos /
+	attr *
+		^
+		width <= width \0
+		height <= height \0
+		x <= pos_x \
+		y <= pos_y \
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$mol_svg_text_box $mol_svg_group
+	font_size 16
+	width 0
+	sub /
+		<= Back $mol_svg_rect
+			width <= box_width \0.5rem
+			height <= box_height \1rem
+			pos /
+				<= box_pos_x <= pos_x
+				<= box_pos_y \0
+		<= Text $mol_svg_text
+			pos /
+				<= pos_x \0
+				<= pos_y \100%
+			align <= align \start
+			sub /
+				<= text \
 
 $mol_plot_ruler $mol_plot_graph
 	step 0
@@ -418,6 +352,13 @@ $mol_chart_legend $mol_scroll
 			<= Graph_title!id $mol_view
 				sub /
 					<= graph_title!id \
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
 
 $mol_touch $mol_plugin
 	start_zoom?val 0
@@ -583,18 +524,17 @@ $mol_chart $mol_view
 $hyoo_speculant_app_chart $mol_page
 	model $hyoo_speculant_world
 	title @ \Chart
-	chart_zoom 30
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
 		graphs /
 			<= Linear_line!id $mol_plot_line
-			<= Linear_dots!id $mol_plot_dot
-	Marker_cross!id $mol_plot_mark_cross
-		labels <= days /string
-		graphs /
-			<= Linear_line!id
-			<= Linear_dots!id
+	Buy_button!id $mol_button_major
+		title <= linear_title!id
+		click?val <=> buy!id?val null
+	Sell_button!id $mol_button_major
+		title <= linear_title!id
+		click?val <=> sell!id?val null
 	body /
 		<= Chart $mol_chart
 			graphs <= linear_list /
@@ -602,27 +542,57 @@ $hyoo_speculant_app_chart $mol_page
 					title <= vert_title @ \Values
 				<= Marker_hor $mol_plot_mark_hor
 					title <= marker_hor_title @ \Days
-					labels <= days
+					labels <= days /
 		<= Buy $mol_view
 			sub <= buy_buttons /
 		<= Sell $mol_view
 			sub <= sell_buttons /
-	Buy_button!id $mol_button_major
-		title <= linear_title!id
-		click?val <=> buy!id?val null
-	Sell_button!id $mol_button_major
-		title <= linear_title!id
-		click?val <=> sell!id?val null
 
-$hyoo_speculant_app $mol_view
+$mol_link $mol_view
+	dom_name \a
+	attr *
+		^
+		href <= uri \
+		title <= hint \
+		target <= target \_self
+		download <= file_name \
+		mol_link_current <= current false
+	sub /$mol_view_content
+		<= title
+	arg *
+	event *
+		^
+		click?event <=> click?event <=> event_click?event null
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_icon_github_circle $mol_icon path \M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z
+
+$mol_link_source $mol_link
+	hint @ \Source code
+	sub /
+		<= Icon $mol_icon_github_circle
+
+$mol_icon_bell $mol_icon path \M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4C10,2.9 10.9,2 12,2C13.1,2 14,2.9 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21C14,22.1 13.1,23 12,23C10.9,23 10,22.1 10,21
+
+$mol_icon_bell_outline $mol_icon path \M16,17H7V10.5C7,8 9,6 11.5,6C14,6 16,8 16,10.5M18,16V10.5C18,7.43 15.86,4.86 13,4.18V3.5C13,2.67 12.33,2 11.5,2C10.67,2 10,2.67 10,3.5V4.18C7.13,4.86 5,7.43 5,10.5V16L3,18V19H20V18M11.5,22C12.6,22 13.5,21.1 13.5,20H9.5C9.5,21.1 10.4,22 11.5,22Z
+
+$hyoo_speculant_app $mol_book2
+	title @ \Speculant
 	page \chart
-	page_dict *
-		chart <= Chart $hyoo_speculant_app_chart
-			tools /
-				<= News_link $mol_link
-					arg *
-						page \news
-					sub / <= News_icon $mol_icon_hackernews
-		news <= News $mol_page
-			title \news
-			body / \Hello
+	Page_chart $hyoo_speculant_app_chart
+		tools /
+			<= Source $mol_link_source
+				uri \https://github.com/hyoo-ru/speculant.hyoo.ru
+			<= News_link $mol_link
+				arg * news \
+				sub / <= News_icon $mol_icon_bell_outline
+	Page_news $mol_page
+		title \news
+		body / \Hello

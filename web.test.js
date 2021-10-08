@@ -1477,15 +1477,6 @@ var $;
 ;
 "use strict";
 var $;
-(function ($_1) {
-    $_1.$mol_test_mocks.push($ => {
-        $.$mol_after_work = $_1.$mol_after_mock_timeout;
-    });
-})($ || ($ = {}));
-//work.test.js.map
-;
-"use strict";
-var $;
 (function ($) {
     class $mol_style_sheet_test1 extends $.$mol_view {
         Item() { return new $.$mol_view; }
@@ -1711,55 +1702,6 @@ var $;
 ;
 "use strict";
 var $;
-(function ($_1) {
-    $_1.$mol_test_mocks.push(context => {
-        class $mol_state_arg_mock extends $_1.$mol_state_arg {
-            static $ = context;
-            static href(next) { return next || ''; }
-        }
-        __decorate([
-            $_1.$mol_mem
-        ], $mol_state_arg_mock, "href", null);
-        context.$mol_state_arg = $mol_state_arg_mock;
-    });
-    $_1.$mol_test({
-        'args as dictionary'($) {
-            $.$mol_state_arg.href('#!foo=bar/xxx');
-            $_1.$mol_assert_like($.$mol_state_arg.dict(), { foo: 'bar', xxx: '' });
-            $.$mol_state_arg.dict({ foo: null, yyy: '', lol: '123' });
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!yyy/lol=123');
-        },
-        'one value from args'($) {
-            $.$mol_state_arg.href('#!foo=bar/xxx');
-            $_1.$mol_assert_equal($.$mol_state_arg.value('foo'), 'bar');
-            $_1.$mol_assert_equal($.$mol_state_arg.value('xxx'), '');
-            $.$mol_state_arg.value('foo', 'lol');
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo=lol/xxx');
-            $.$mol_state_arg.value('foo', '');
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo/xxx');
-            $.$mol_state_arg.value('foo', null);
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!xxx');
-        },
-        'nested args'($) {
-            const base = new $.$mol_state_arg('nested.');
-            class Nested extends $_1.$mol_state_arg {
-                constructor(prefix) {
-                    super(base.prefix + prefix);
-                }
-                static value = (key, next) => base.value(key, next);
-            }
-            $.$mol_state_arg.href('#!foo=bar/nested.xxx=123');
-            $_1.$mol_assert_equal(Nested.value('foo'), null);
-            $_1.$mol_assert_equal(Nested.value('xxx'), '123');
-            Nested.value('foo', 'lol');
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo=bar/nested.xxx=123/nested.foo=lol');
-        },
-    });
-})($ || ($ = {}));
-//arg.web.test.js.map
-;
-"use strict";
-var $;
 (function ($) {
     $.$mol_test({
         'null by default'() {
@@ -1776,6 +1718,71 @@ var $;
     });
 })($ || ($ = {}));
 //session.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test_mocks.push(context => {
+        class $mol_state_local_mock extends $.$mol_state_local {
+            static state = {};
+            static value(key, next = this.state[key], force) {
+                return this.state[key] = (next || null);
+            }
+        }
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_state_local_mock, "value", null);
+        context.$mol_state_local = $mol_state_local_mock;
+    });
+})($ || ($ = {}));
+//local.mock.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'local get set delete'() {
+            var key = '$mol_state_local_test:' + Math.random();
+            $.$mol_assert_equal($.$mol_state_local.value(key), null);
+            $.$mol_state_local.value(key, 123);
+            $.$mol_assert_equal($.$mol_state_local.value(key), 123);
+            $.$mol_state_local.value(key, null);
+            $.$mol_assert_equal($.$mol_state_local.value(key), null);
+        },
+    });
+})($ || ($ = {}));
+//local.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'decode utf8 string'() {
+            const str = 'Hello, ΧΨΩЫ';
+            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
+            $.$mol_assert_equal($.$mol_charset_decode(encoded), str);
+            $.$mol_assert_equal($.$mol_charset_decode(encoded, 'utf8'), str);
+        },
+        'decode empty string'() {
+            const encoded = new Uint8Array([]);
+            $.$mol_assert_equal($.$mol_charset_decode(encoded), '');
+        },
+    });
+})($ || ($ = {}));
+//decode.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'encode utf8 string'() {
+            const str = 'Hello, ΧΨΩЫ';
+            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
+            $.$mol_assert_like($.$mol_charset_encode(str), encoded);
+        },
+    });
+})($ || ($ = {}));
+//encode.test.js.map
 ;
 "use strict";
 var $;
@@ -1856,6 +1863,15 @@ var $;
 "use strict";
 var $;
 (function ($_1) {
+    $_1.$mol_test_mocks.push($ => {
+        $.$mol_after_work = $_1.$mol_after_mock_timeout;
+    });
+})($ || ($ = {}));
+//work.test.js.map
+;
+"use strict";
+var $;
+(function ($_1) {
     var $$;
     (function ($$) {
         $_1.$mol_test({
@@ -1876,75 +1892,24 @@ var $;
                 $_1.$mol_assert_equal(world.indicators().KBK.history.slice(-1)[0], world.indicators().KBK.current);
                 world.destructor();
             },
+            'exchange'($) {
+                const world = new $$.$hyoo_speculant_world;
+                const csh = world.indicators().CSH.have;
+                $_1.$mol_assert_equal(world.indicators().VBL.have, 0);
+                $_1.$mol_assert_fail(() => world.exchange('VBL', -2), 'Required at least 2 VBL');
+                $_1.$mol_assert_fail(() => world.exchange('VBL', +100500), `Required at least ${world.indicators().VBL.current * 100500} CSH`);
+                world.exchange('VBL', +2);
+                $_1.$mol_assert_equal(world.indicators().VBL.have, 2);
+                $_1.$mol_assert_equal(world.indicators().CSH.have, csh - world.indicators().VBL.current * 2);
+                world.exchange('VBL', -2);
+                $_1.$mol_assert_equal(world.indicators().VBL.have, 0);
+                $_1.$mol_assert_equal(world.indicators().CSH.have, csh);
+                world.destructor();
+            },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
 })($ || ($ = {}));
 //world.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test_mocks.push(context => {
-        class $mol_state_local_mock extends $.$mol_state_local {
-            static state = {};
-            static value(key, next = this.state[key], force) {
-                return this.state[key] = (next || null);
-            }
-        }
-        __decorate([
-            $.$mol_mem_key
-        ], $mol_state_local_mock, "value", null);
-        context.$mol_state_local = $mol_state_local_mock;
-    });
-})($ || ($ = {}));
-//local.mock.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'local get set delete'() {
-            var key = '$mol_state_local_test:' + Math.random();
-            $.$mol_assert_equal($.$mol_state_local.value(key), null);
-            $.$mol_state_local.value(key, 123);
-            $.$mol_assert_equal($.$mol_state_local.value(key), 123);
-            $.$mol_state_local.value(key, null);
-            $.$mol_assert_equal($.$mol_state_local.value(key), null);
-        },
-    });
-})($ || ($ = {}));
-//local.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'decode utf8 string'() {
-            const str = 'Hello, ΧΨΩЫ';
-            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
-            $.$mol_assert_equal($.$mol_charset_decode(encoded), str);
-            $.$mol_assert_equal($.$mol_charset_decode(encoded, 'utf8'), str);
-        },
-        'decode empty string'() {
-            const encoded = new Uint8Array([]);
-            $.$mol_assert_equal($.$mol_charset_decode(encoded), '');
-        },
-    });
-})($ || ($ = {}));
-//decode.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'encode utf8 string'() {
-            const str = 'Hello, ΧΨΩЫ';
-            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
-            $.$mol_assert_like($.$mol_charset_encode(str), encoded);
-        },
-    });
-})($ || ($ = {}));
-//encode.test.js.map
 ;
 "use strict";
 var $;
@@ -2071,6 +2036,147 @@ var $;
     })($$ = $_1.$$ || ($_1.$$ = {}));
 })($ || ($ = {}));
 //button.test.js.map
+;
+"use strict";
+var $;
+(function ($_1) {
+    $_1.$mol_test_mocks.push(context => {
+        class $mol_state_arg_mock extends $_1.$mol_state_arg {
+            static $ = context;
+            static href(next) { return next || ''; }
+        }
+        __decorate([
+            $_1.$mol_mem
+        ], $mol_state_arg_mock, "href", null);
+        context.$mol_state_arg = $mol_state_arg_mock;
+    });
+    $_1.$mol_test({
+        'args as dictionary'($) {
+            $.$mol_state_arg.href('#!foo=bar/xxx');
+            $_1.$mol_assert_like($.$mol_state_arg.dict(), { foo: 'bar', xxx: '' });
+            $.$mol_state_arg.dict({ foo: null, yyy: '', lol: '123' });
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!yyy/lol=123');
+        },
+        'one value from args'($) {
+            $.$mol_state_arg.href('#!foo=bar/xxx');
+            $_1.$mol_assert_equal($.$mol_state_arg.value('foo'), 'bar');
+            $_1.$mol_assert_equal($.$mol_state_arg.value('xxx'), '');
+            $.$mol_state_arg.value('foo', 'lol');
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo=lol/xxx');
+            $.$mol_state_arg.value('foo', '');
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo/xxx');
+            $.$mol_state_arg.value('foo', null);
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!xxx');
+        },
+        'nested args'($) {
+            const base = new $.$mol_state_arg('nested.');
+            class Nested extends $_1.$mol_state_arg {
+                constructor(prefix) {
+                    super(base.prefix + prefix);
+                }
+                static value = (key, next) => base.value(key, next);
+            }
+            $.$mol_state_arg.href('#!foo=bar/nested.xxx=123');
+            $_1.$mol_assert_equal(Nested.value('foo'), null);
+            $_1.$mol_assert_equal(Nested.value('xxx'), '123');
+            Nested.value('foo', 'lol');
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo=bar/nested.xxx=123/nested.foo=lol');
+        },
+    });
+})($ || ($ = {}));
+//arg.web.test.js.map
+;
+"use strict";
+//equals.test.js.map
+;
+"use strict";
+//equals.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'equal paths'() {
+            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]);
+            $.$mol_assert_like(diff, {
+                prefix: [1, 2, 3, 4],
+                suffix: [[], [], []],
+            });
+        },
+        'different suffix'() {
+            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 5, 4]);
+            $.$mol_assert_like(diff, {
+                prefix: [1, 2],
+                suffix: [[3, 4], [3, 5], [5, 4]],
+            });
+        },
+        'one contains other'() {
+            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2], [1, 2, 3]);
+            $.$mol_assert_like(diff, {
+                prefix: [1, 2],
+                suffix: [[3, 4], [], [3]],
+            });
+        },
+        'fully different'() {
+            const diff = $.$mol_diff_path([1, 2], [3, 4], [5, 6]);
+            $.$mol_assert_like(diff, {
+                prefix: [],
+                suffix: [[1, 2], [3, 4], [5, 6]],
+            });
+        },
+    });
+})($ || ($ = {}));
+//path.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_diff_path(...paths) {
+        const limit = Math.min(...paths.map(path => path.length));
+        lookup: for (var i = 0; i < limit; ++i) {
+            const first = paths[0][i];
+            for (let j = 1; j < paths.length; ++j) {
+                if (paths[j][i] !== first)
+                    break lookup;
+            }
+        }
+        return {
+            prefix: paths[0].slice(0, i),
+            suffix: paths.map(path => path.slice(i)),
+        };
+    }
+    $.$mol_diff_path = $mol_diff_path;
+})($ || ($ = {}));
+//path.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_error_mix extends Error {
+        errors;
+        constructor(message, ...errors) {
+            super(message);
+            this.errors = errors;
+            if (errors.length) {
+                const stacks = [...errors.map(error => error.stack), this.stack];
+                const diff = $.$mol_diff_path(...stacks.map(stack => {
+                    if (!stack)
+                        return [];
+                    return stack.split('\n').reverse();
+                }));
+                const head = diff.prefix.reverse().join('\n');
+                const tails = diff.suffix.map(path => path.reverse().map(line => line.replace(/^(?!\s+at)/, '\tat (.) ')).join('\n')).join('\n\tat (.) -----\n');
+                this.stack = `Error: ${this.constructor.name}\n\tat (.) /"""\\\n${tails}\n\tat (.) \\___/\n${head}`;
+                this.message += errors.map(error => '\n' + error.message).join('');
+            }
+        }
+        toJSON() {
+            return this.message;
+        }
+    }
+    $.$mol_error_mix = $mol_error_mix;
+})($ || ($ = {}));
+//mix.js.map
 ;
 "use strict";
 var $;
@@ -2941,97 +3047,5 @@ var $;
     $.$mol_view_tree_compile = $mol_view_tree_compile;
 })($ || ($ = {}));
 //tree.js.map
-;
-"use strict";
-//equals.test.js.map
-;
-"use strict";
-//equals.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'equal paths'() {
-            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]);
-            $.$mol_assert_like(diff, {
-                prefix: [1, 2, 3, 4],
-                suffix: [[], [], []],
-            });
-        },
-        'different suffix'() {
-            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 5, 4]);
-            $.$mol_assert_like(diff, {
-                prefix: [1, 2],
-                suffix: [[3, 4], [3, 5], [5, 4]],
-            });
-        },
-        'one contains other'() {
-            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2], [1, 2, 3]);
-            $.$mol_assert_like(diff, {
-                prefix: [1, 2],
-                suffix: [[3, 4], [], [3]],
-            });
-        },
-        'fully different'() {
-            const diff = $.$mol_diff_path([1, 2], [3, 4], [5, 6]);
-            $.$mol_assert_like(diff, {
-                prefix: [],
-                suffix: [[1, 2], [3, 4], [5, 6]],
-            });
-        },
-    });
-})($ || ($ = {}));
-//path.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_diff_path(...paths) {
-        const limit = Math.min(...paths.map(path => path.length));
-        lookup: for (var i = 0; i < limit; ++i) {
-            const first = paths[0][i];
-            for (let j = 1; j < paths.length; ++j) {
-                if (paths[j][i] !== first)
-                    break lookup;
-            }
-        }
-        return {
-            prefix: paths[0].slice(0, i),
-            suffix: paths.map(path => path.slice(i)),
-        };
-    }
-    $.$mol_diff_path = $mol_diff_path;
-})($ || ($ = {}));
-//path.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_error_mix extends Error {
-        errors;
-        constructor(message, ...errors) {
-            super(message);
-            this.errors = errors;
-            if (errors.length) {
-                const stacks = [...errors.map(error => error.stack), this.stack];
-                const diff = $.$mol_diff_path(...stacks.map(stack => {
-                    if (!stack)
-                        return [];
-                    return stack.split('\n').reverse();
-                }));
-                const head = diff.prefix.reverse().join('\n');
-                const tails = diff.suffix.map(path => path.reverse().map(line => line.replace(/^(?!\s+at)/, '\tat (.) ')).join('\n')).join('\n\tat (.) -----\n');
-                this.stack = `Error: ${this.constructor.name}\n\tat (.) /"""\\\n${tails}\n\tat (.) \\___/\n${head}`;
-                this.message += errors.map(error => '\n' + error.message).join('');
-            }
-        }
-        toJSON() {
-            return this.message;
-        }
-    }
-    $.$mol_error_mix = $mol_error_mix;
-})($ || ($ = {}));
-//mix.js.map
 
 //# sourceMappingURL=web.test.js.map
