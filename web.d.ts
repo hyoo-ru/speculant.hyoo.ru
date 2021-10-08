@@ -1034,7 +1034,9 @@ declare namespace $ {
             currency: number;
             share: number;
         };
-        news(next?: any): readonly any[];
+        news(): readonly any[];
+        causes(): readonly string[];
+        conses(): readonly string[];
     }
 }
 
@@ -1170,6 +1172,48 @@ declare namespace $ {
     }
 }
 
+declare namespace $ {
+    class $mol_unit extends $mol_object {
+        'valueOf()': number;
+        constructor(value?: number);
+        prefix(): string;
+        postfix(): string;
+        valueOf(): number;
+        delimiter(): string;
+        value_view(): string;
+        toString(): string;
+        static summ(a: $mol_unit, b: $mol_unit): any;
+        mult(m: number): this;
+    }
+}
+
+declare namespace $ {
+    class $mol_unit_money extends $mol_unit {
+    }
+    class $mol_unit_money_usd extends $mol_unit_money {
+        prefix(): string;
+    }
+    class $mol_unit_money_rur extends $mol_unit_money {
+        postfix(): string;
+    }
+}
+
+declare namespace $ {
+    function $mol_stub_select_random<Value>(list: readonly Value[]): Value;
+    function $mol_stub_strings(prefix?: string, count?: number, length?: number): any[];
+    function $mol_stub_code(length?: number): string;
+    function $mol_stub_price(max?: number): $mol_unit_money_usd;
+    function $mol_stub_product_name(): string;
+    function $mol_stub_company_name_big(): string;
+    function $mol_stub_company_name_small(): string;
+    function $mol_stub_company_name(): string;
+    function $mol_stub_person_name(): string;
+    function $mol_stub_person_avatar(size?: number): string;
+    function $mol_stub_city(): string;
+    function $mol_stub_time(maxShift?: number): $mol_time_moment;
+    function $mol_stub_message(max_length: number): string;
+}
+
 declare namespace $.$$ {
     type $hyoo_speculant_world_indicator_codes = keyof ReturnType<$.$hyoo_speculant_world['indicators']>;
     type $hyoo_speculant_world_indicator = {
@@ -1180,10 +1224,12 @@ declare namespace $.$$ {
         history: readonly number[];
     };
     type $hyoo_speculant_world_indicators = Record<$hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator>;
+    type $hyoo_speculant_world_news = ReturnType<$.$hyoo_speculant_world['news']>;
     class $hyoo_speculant_world extends $.$hyoo_speculant_world {
         time(next?: 'next'): $mol_time_moment;
         indicators(next?: $hyoo_speculant_world_indicators): $hyoo_speculant_world_indicators;
         exchange(code: $hyoo_speculant_world_indicator_codes, diff: number): null;
+        news(): $hyoo_speculant_world_news;
     }
 }
 
