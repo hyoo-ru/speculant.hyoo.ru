@@ -5200,22 +5200,23 @@ var $;
             indicators() {
                 this.time();
                 const prev = $.$mol_mem_cached(() => this.indicators()) ?? super.indicators();
-                for (const code in prev) {
+                const next = { ...prev };
+                for (const code in next) {
                     if (code === 'CSH')
                         continue;
-                    const type = prev[code].type;
+                    const type = next[code].type;
                     const entropy = this.entropy()[type];
                     if (entropy === undefined)
                         $.$mol_fail(new RangeError(`No entropy for ${type}`));
-                    const current = prev[code].current + Math.floor(Math.random() * 2 - 1);
-                    const history = [...prev[code].history, current];
-                    prev[code] = {
-                        ...prev[code],
+                    const current = next[code].current + Math.floor(Math.random() * 2 - 1);
+                    const history = [...next[code].history, current];
+                    next[code] = {
+                        ...next[code],
                         current,
                         history,
                     };
                 }
-                return { ...prev };
+                return next;
             }
         }
         __decorate([
