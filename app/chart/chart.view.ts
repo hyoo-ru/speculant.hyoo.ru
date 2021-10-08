@@ -4,7 +4,7 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		currency_names() {
-			return [ 'KBK' , 'BRT' , 'RIK' ]
+			return Object.keys( this.model().indicators() ).filter( key => key !== 'CSH' )
 		}
 
 		@ $mol_mem_key
@@ -29,6 +29,17 @@ namespace $.$$ {
 				... super.linear_list() ,
 
 			]
+		}
+		
+		// @ $mol_mem
+		// buy_buttons() {}
+		
+		buy( id : string ) {
+			this.model().exchange( id , 1 )
+		}
+		
+		sell( id : string ) {
+			this.model().exchange( id , -1 )
 		}
 
 	}

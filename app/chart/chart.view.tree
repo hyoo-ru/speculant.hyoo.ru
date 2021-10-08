@@ -20,3 +20,13 @@ $hyoo_speculant_app_chart $mol_page
 				<= Marker_hor $mol_plot_mark_hor
 					title <= marker_hor_title @ \Days
 					labels <= days
+		<= Buy $mol_view
+			sub <= buy_buttons /
+		<= Sell $mol_view
+			sub <= sell_buttons /
+	Buy_button!id $mol_button_major
+		title <= button_title!id \ 
+		click?val <=> buy!id?val null
+	Sell_button!id $mol_button_major
+		title <= button_title!id \ 
+		click?val <=> sell!id?val null
