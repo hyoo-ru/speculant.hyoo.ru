@@ -4969,17 +4969,34 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_world extends $.$hyoo_speculant_world {
-            time(reset) {
+            time(next) {
                 this.$.$mol_state_time.now(1000);
                 const prev = $.$mol_mem_cached(() => this.time());
                 if (!prev)
                     return new $.$mol_time_moment().mask('0000-00-00');
                 return prev.shift({ day: +1 });
             }
+            indicators() {
+                this.time();
+                const prev = $.$mol_mem_cached(() => this.indicators()) ?? super.indicators();
+                for (const code in prev) {
+                    const current = prev[code].current + Math.floor(Math.random() * 2 - 1);
+                    const history = [...prev[code].history, current];
+                    prev[code] = {
+                        ...prev[code],
+                        current,
+                        history,
+                    };
+                }
+                return { ...prev };
+            }
         }
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_world.prototype, "time", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_world.prototype, "indicators", null);
         $$.$hyoo_speculant_world = $hyoo_speculant_world;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

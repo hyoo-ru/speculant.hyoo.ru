@@ -136,7 +136,7 @@ $hyoo_speculant_world $mol_object2
 			name \Кэш
 			type \currency
 			current 1
-			history /1
+			history /number
 		KBK *
 			name \Валюта КилоБакс
 			type \currency

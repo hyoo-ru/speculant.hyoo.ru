@@ -1927,9 +1927,20 @@ var $;
             'timer'($) {
                 const world = new $$.$hyoo_speculant_world;
                 $_1.$mol_assert_equal(world.time().toString(), new $_1.$mol_time_moment().toString('YYYY-MM-DD'));
-                world.time(!!'next');
+                world.time('next');
                 $_1.$mol_assert_unique(world.time().toString(), new $_1.$mol_time_moment().toString('YYYY-MM-DD'));
-            }
+                world.destructor();
+            },
+            'indicators'($) {
+                const world = new $$.$hyoo_speculant_world;
+                $_1.$mol_assert_equal(world.indicators().CSH.current, 1);
+                $_1.$mol_assert_equal(world.indicators().KBK.history.length, 1);
+                world.time('next');
+                $_1.$mol_assert_equal(world.indicators().CSH.current, 1);
+                $_1.$mol_assert_equal(world.indicators().KBK.history.length, 2);
+                $_1.$mol_assert_equal(world.indicators().KBK.history.slice(-1)[0], world.indicators().KBK.current);
+                world.destructor();
+            },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
 })($ || ($ = {}));

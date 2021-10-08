@@ -1203,7 +1203,7 @@ declare namespace $ {
                 name: string;
                 type: string;
                 current: number;
-                history: readonly 1[];
+                history: readonly number[];
             };
             KBK: {
                 name: string;
@@ -1345,8 +1345,15 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
+    type $hyoo_speculant_world_indicator = {
+        name: string;
+        type: string;
+        current: number;
+        history: readonly number[];
+    };
     class $hyoo_speculant_world extends $.$hyoo_speculant_world {
-        time(reset?: boolean): $mol_time_moment;
+        time(next?: 'next'): $mol_time_moment;
+        indicators(): Record<'CSH' | 'KBK' | 'BRT' | 'RIK', $hyoo_speculant_world_indicator>;
     }
 }
 
