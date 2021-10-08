@@ -1227,6 +1227,13 @@ declare namespace $ {
                 current: number;
                 history: readonly number[];
             };
+            VBL: {
+                name: string;
+                type: string;
+                have: number;
+                current: number;
+                history: readonly number[];
+            };
         };
         entropy(): {
             bond: number;
@@ -1354,6 +1361,7 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
+    type $hyoo_speculant_world_indicator_codes = keyof ReturnType<$.$hyoo_speculant_world['indicators']>;
     type $hyoo_speculant_world_indicator = {
         name: string;
         type: string;
@@ -1363,7 +1371,7 @@ declare namespace $.$$ {
     };
     class $hyoo_speculant_world extends $.$hyoo_speculant_world {
         time(next?: 'next'): $mol_time_moment;
-        indicators(): Record<'CSH' | 'KBK' | 'BRT' | 'RIK', $hyoo_speculant_world_indicator>;
+        indicators(): Record<$hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator>;
     }
 }
 

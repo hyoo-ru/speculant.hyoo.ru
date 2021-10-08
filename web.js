@@ -4389,6 +4389,13 @@ var $;
                     have: 0,
                     current: 50,
                     history: []
+                },
+                VBL: {
+                    name: "Вблизи",
+                    type: "share",
+                    have: 0,
+                    current: 30,
+                    history: []
                 }
             };
         }

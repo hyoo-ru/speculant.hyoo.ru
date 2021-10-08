@@ -156,6 +156,12 @@ $hyoo_speculant_world $mol_object2
 			have 0
 			current 50
 			history /number
+		VBL *
+			name \Вблизи
+			type \share
+			have 0
+			current 30
+			history /number
 	
 	entropy *
 		- \Волатильность разных типов индикаторов
