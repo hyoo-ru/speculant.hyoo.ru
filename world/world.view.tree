@@ -1,9 +1,12 @@
 $hyoo_speculant_world $mol_object2
+
+	profile \novice
+	- \novice|pro
 	
 	exchange!code?diff 0
 	- \
 		\Обменять code(KBK, VRT, etc) на Кэш.
-		\diff показываетс сколько менять. +1 - купить, -1 - продать.
+		\diff показывает сколько менять. +1 - купить, -1 - продать.
 	
 	indicators *
 		- \
