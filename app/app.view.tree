@@ -1,7 +1,7 @@
 $hyoo_speculant_app $mol_book2
 	title @ \Speculant
-	page \chart
-	Page_chart $hyoo_speculant_app_chart
+	page \dashboard
+	Page_dashboard $hyoo_speculant_app_dashboard
 		tools /
 			<= Source $mol_link_source
 				uri \https://github.com/hyoo-ru/speculant.hyoo.ru

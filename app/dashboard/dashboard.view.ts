@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	export class $hyoo_speculant_app_chart extends $.$hyoo_speculant_app_chart {
+	export class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
 		
 		@ $mol_mem
 		currency_names() {

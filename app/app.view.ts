@@ -9,7 +9,7 @@ namespace $.$$ {
 
 		pages() {
 			return [
-				this.Page_chart() ,
+				this.Page_dashboard() ,
 				... ( this.news() ? [ this.Page_news() ]  : [] ) ,
 			]
 		}

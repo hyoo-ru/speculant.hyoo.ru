@@ -1,6 +1,6 @@
-$hyoo_speculant_app_chart $mol_page
+$hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
-	title @ \Chart
+	title @ \Dashboard
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
@@ -13,7 +13,7 @@ $hyoo_speculant_app_chart $mol_page
 		title <= linear_title!id
 		click?val <=> sell!id?val null
 	body /
-		<= Chart $mol_chart
+		<= Dashboard $mol_chart
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
 					title <= vert_title @ \Values
