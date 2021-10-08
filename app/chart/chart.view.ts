@@ -15,7 +15,9 @@ namespace $.$$ {
 		@ $mol_mem
 		days() {
 			const history_length = this.indicator( this.currency_names()[0] ).history.length
-			return new Array( history_length ).fill( '' ).map( ( _ , index ) => this.day_start().shift( { day: index } ).toString( 'MM-DD' ) )
+			const arr = new Array( history_length ).fill( '' )
+			const days = arr.map( ( _ , index ) => this.day_start().shift( { day: index } ).toString( 'MM-DD' ) )
+			return days.slice( - this.chart_zoom() )
 		}
 
 		@ $mol_mem_key
@@ -30,7 +32,7 @@ namespace $.$$ {
 		
 		@ $mol_mem_key
 		linear_series( id : string ) {
-			return this.indicator( id ).history
+			return this.indicator( id ).history.slice( - this.chart_zoom() )
 		}
 		
 		@ $mol_mem

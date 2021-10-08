@@ -1,6 +1,7 @@
 $hyoo_speculant_app_chart $mol_page
 	model $hyoo_speculant_world
 	title @ \Chart
+	chart_zoom 30
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
