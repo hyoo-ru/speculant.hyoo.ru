@@ -10,7 +10,7 @@ $hyoo_speculant_world $mol_object2
 		\Насколько рисованный инвестор по результатам игры.
 		\Варианты: safe|care|risky
 	
-	exchange!code?diff 0
+	exchange!code?diff null
 	- \
 		\Обменять code(KBK, VRT, etc) на Кэш.
 		\diff показывает сколько менять. +1 - купить, -1 - продать.
