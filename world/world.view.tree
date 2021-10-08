@@ -24,23 +24,33 @@ $hyoo_speculant_world $mol_object2
 			- \Кэш - основная валюта. В графиках не показываем.
 			name \Кэш
 			type \currency
+			have 1000
 			current 1
 			history /number
 		KBK *
 			name \Валюта КилоБакс
 			type \currency
-			current 5
+			have 0
+			current 100
 			history /number
 		BRT *
 			name \Облигации мессенджера "Телетайп"
 			type \bond
-			current 10
+			have 0
+			current 200
 			history /number
 		RIK *
 			name \Акции соцсети "МордоСвиток"
 			type \share
-			current 5
+			have 0
+			current 50
 			history /number
+	
+	entropy *
+		- \Волатильность разных типов индикаторов
+		bond 1
+		currency 5
+		share 10
 	
 	news?next /
 		- \Новости в мире, влияют на курсы.

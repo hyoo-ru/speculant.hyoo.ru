@@ -3,6 +3,7 @@ namespace $.$$ {
 	export type $hyoo_speculant_world_indicator = {
 		name: string
 		type: string
+		have: number
 		current: number
 		history: readonly number[]
 	}
@@ -30,6 +31,11 @@ namespace $.$$ {
 			for( const code in prev ) {
 				
 				if( code === 'CSH' ) continue
+				
+				const type = prev[ code ].type
+				
+				const entropy = this.entropy()[ type ]
+				if( entropy === undefined ) $mol_fail( new RangeError( `No entropy for ${ type }` ) )
 				
 				const current = prev[ code ].current + Math.floor( Math.random() * 2 - 1 )
 				const history = [ ... prev[ code ].history, current ]
