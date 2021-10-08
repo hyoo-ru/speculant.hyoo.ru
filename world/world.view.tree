@@ -28,19 +28,19 @@ $hyoo_speculant_world $mol_object2
 			current 1
 			history /number
 		KBK *
-			name \Валюта КилоБакс
+			name \КилоБакс
 			type \currency
 			have 0
 			current 100
 			history /number
 		BRT *
-			name \Облигации мессенджера "Телетайп"
+			name \Телетайп
 			type \bond
 			have 0
 			current 200
 			history /number
 		RIK *
-			name \Акции соцсети "МордоСвиток"
+			name \МордоСвиток
 			type \share
 			have 0
 			current 50
