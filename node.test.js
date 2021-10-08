@@ -5182,6 +5182,8 @@ var $;
                 this.time();
                 const prev = $.$mol_mem_cached(() => this.indicators()) ?? super.indicators();
                 for (const code in prev) {
+                    if (code === 'CSH')
+                        continue;
                     const current = prev[code].current + Math.floor(Math.random() * 2 - 1);
                     const history = [...prev[code].history, current];
                     prev[code] = {
