@@ -1,13 +1,18 @@
 $hyoo_speculant_app $mol_book2
+	model $hyoo_speculant_world
 	title @ \Speculant
-	page \dashboard
 	Page_dashboard $hyoo_speculant_app_dashboard
+		model <= model
 		tools /
 			<= Source $mol_link_source
 				uri \https://github.com/hyoo-ru/speculant.hyoo.ru
-			<= News_link $mol_link
+			<= News_open $mol_link
 				arg * news \
-				sub / <= News_icon $mol_icon_bell_outline
-	Page_news $mol_page
-		title \news
-		body / \Hello
+				sub / <= News_open_icon $mol_icon_bell_outline
+	Page_news $hyoo_speculant_app_news
+		model <= model
+		tools /
+			<= News_close $mol_link
+				arg *
+					news null
+				sub / <= News_close_icon $mol_icon_cross

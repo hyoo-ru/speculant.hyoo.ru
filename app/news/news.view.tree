@@ -1,0 +1,12 @@
+$hyoo_speculant_app_news $mol_page
+	model $hyoo_speculant_world
+	title @ \News
+	body /
+		<= List $mol_list
+			rows <= news_list /
+	News_item!id $mol_list
+		rows /
+			<= News_item_title!id $mol_text
+				text <= news_item_title!id \
+			<= News_item_body!id $mol_text
+				text <= news_item_body!id \
