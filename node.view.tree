@@ -265,8 +265,6 @@ $mol_plot_line $mol_plot_graph
 		color <= color
 		type <= type
 
-$mol_row $mol_view
-
 $mol_svg_text $mol_svg
 	dom_name \text
 	pos /
@@ -580,15 +578,18 @@ $hyoo_speculant_app_dashboard $mol_page
 	Sell_button!id $mol_button_typed
 		title \-
 		click?val <=> sell!id?val null
-	Balance_currency!id $mol_labeler
-		title <= currency_name!id \
-		content / <= currency_have!id \
+	Rate!index $mol_labeler
+		title \Курс
+		content / <= rate!index \
+	Balance_currency!index $mol_labeler
+		title \Баланс
+		content / <= currency_have!index \
 	body /
-		<= Balance $mol_row
-			sub <= balance_list / 
 		<= Chart $hyoo_speculant_chart
 			Legend_tools!index <= Buttons!index $mol_view
 				sub /
+					<= Rate!index
+					<= Balance_currency!index
 					<= Buy_button!index
 					<= Sell_button!index
 			graphs <= linear_list /

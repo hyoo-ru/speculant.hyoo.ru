@@ -5908,22 +5908,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_row extends $.$mol_view {
-    }
-    $.$mol_row = $mol_row;
-})($ || ($ = {}));
-//row.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
-})($ || ($ = {}));
-//row.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_svg_text extends $.$mol_svg {
         dom_name() {
             return "text";
@@ -8033,17 +8017,24 @@ var $;
             obj.click = (val) => this.sell(id, val);
             return obj;
         }
-        Balance_currency(id) {
+        Rate(index) {
             const obj = new this.$.$mol_labeler();
-            obj.title = () => this.currency_name(id);
+            obj.title = () => "Курс";
             obj.content = () => [
-                this.currency_have(id)
+                this.rate(index)
+            ];
+            return obj;
+        }
+        Balance_currency(index) {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => "Баланс";
+            obj.content = () => [
+                this.currency_have(index)
             ];
             return obj;
         }
         body() {
             return [
-                this.Balance(),
                 this.Chart()
             ];
         }
@@ -8081,23 +8072,17 @@ var $;
                 return val;
             return null;
         }
-        currency_name(id) {
+        rate(index) {
             return "";
         }
-        currency_have(id) {
+        currency_have(index) {
             return "";
-        }
-        balance_list() {
-            return [];
-        }
-        Balance() {
-            const obj = new this.$.$mol_row();
-            obj.sub = () => this.balance_list();
-            return obj;
         }
         Buttons(index) {
             const obj = new this.$.$mol_view();
             obj.sub = () => [
+                this.Rate(index),
+                this.Balance_currency(index),
                 this.Buy_button(index),
                 this.Sell_button(index)
             ];
@@ -8150,6 +8135,9 @@ var $;
     ], $hyoo_speculant_app_dashboard.prototype, "Sell_button", null);
     __decorate([
         $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Rate", null);
+    __decorate([
+        $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Balance_currency", null);
     __decorate([
         $.$mol_mem
@@ -8163,9 +8151,6 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "Balance", null);
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Buttons", null);
@@ -8242,14 +8227,11 @@ var $;
             sell(index) {
                 this.model().exchange(this.currency_chart()[index], -1);
             }
-            currency_name(id) {
-                return this.indicator(id).name;
+            currency_have(index) {
+                return this.indicator(this.currency_chart()[index]).have.toString();
             }
-            currency_have(id) {
-                return this.indicator(id).have.toFixed(2);
-            }
-            balance_list() {
-                return this.currency_all().map(id => this.Balance_currency(id));
+            rate(index) {
+                return this.indicator(this.currency_chart()[index]).current.toString();
             }
             balance_total() {
                 const list = this.currency_chart().map(id => this.indicator(id));
@@ -8288,10 +8270,10 @@ var $;
         ], $hyoo_speculant_app_dashboard.prototype, "linear_list", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_name", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_have", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_have", null);
+        ], $hyoo_speculant_app_dashboard.prototype, "rate", null);
         $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

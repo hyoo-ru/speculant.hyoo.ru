@@ -1660,14 +1660,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_row extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_svg_text extends $mol_svg {
         dom_name(): string;
         pos(): readonly any[];
@@ -2150,7 +2142,8 @@ declare namespace $ {
         Linear(id: any): $$.$mol_plot_group;
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
-        Balance_currency(id: any): $mol_labeler;
+        Rate(index: any): $mol_labeler;
+        Balance_currency(index: any): $mol_labeler;
         body(): readonly any[];
         balance_total_title(): string;
         balance_total(): string;
@@ -2160,10 +2153,8 @@ declare namespace $ {
         Linear_line(id: any): $$.$mol_plot_line;
         buy(id: any, val?: any): any;
         sell(id: any, val?: any): any;
-        currency_name(id: any): string;
-        currency_have(id: any): string;
-        balance_list(): readonly any[];
-        Balance(): $mol_row;
+        rate(index: any): string;
+        currency_have(index: any): string;
         Buttons(index: any): $mol_view;
         vert_title(): string;
         Vert_ruler(): $$.$mol_plot_ruler_vert;
@@ -2191,9 +2182,8 @@ declare namespace $.$$ {
         linear_list(): any[];
         buy(index: number): void;
         sell(index: number): void;
-        currency_name(id: string): string;
-        currency_have(id: string): string;
-        balance_list(): $mol_labeler[];
+        currency_have(index: number): string;
+        rate(index: number): string;
         balance_total(): string;
     }
 }
