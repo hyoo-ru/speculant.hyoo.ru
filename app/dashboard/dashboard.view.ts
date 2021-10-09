@@ -45,7 +45,7 @@ namespace $.$$ {
 			const sum = list.reduce( ( sum , cur ) => {
 				return sum + ( cur.current * cur.have )
 			} , 0 )
-			return ( sum + this.indicator( 'CSH' ).have )
+			return ( sum + this.indicator( 'CSH' ).have ).toLocaleString()
 		}
 		
 		@ $mol_mem
@@ -55,7 +55,7 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		balance_cash() {
-			return this.indicator( 'CSH' ).have.toString()
+			return this.indicator( 'CSH' ).have.toLocaleString()
 		}
 		
 		@ $mol_mem
