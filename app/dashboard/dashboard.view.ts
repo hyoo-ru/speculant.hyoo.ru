@@ -63,6 +63,12 @@ namespace $.$$ {
 			return this.currency_work().map( id => this.Row( id ) )
 		}
 		
+		@ $mol_mem_key
+		Currency_diff( id : string ) {
+			const indicator = this.indicator( id )
+			return indicator.diff > 0 ? this.Icon_currency_up( id ) : this.Icon_currency_down( id )
+		}
+		
 	}
 
 }
