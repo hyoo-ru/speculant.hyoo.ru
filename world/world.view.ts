@@ -130,6 +130,7 @@ namespace $.$$ {
 			return new $mol_time_moment().shift({ year: 1 }).mask( '0000-00-00' )
 		}
 		
+		@ $mol_mem
 		age( next?: string ): string {
 			if( next ) return next
 			

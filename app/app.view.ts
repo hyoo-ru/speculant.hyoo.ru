@@ -3,12 +3,18 @@ namespace $.$$ {
 	export class $hyoo_speculant_app extends $.$hyoo_speculant_app {
 		
 		@ $mol_mem
+		age( next?: string ) {
+			return this.model().age( next )
+		}
+
+		@ $mol_mem
 		profile( id: string ) {
 			return this.model().profiles()[ id ]
 		}
 		
 		select_profile( next?: string ) {
 			this.model().profile( next )
+			if ( next ) this.age( 'go' ) //??
 		}
 		
 		profile_dict() {
@@ -20,9 +26,10 @@ namespace $.$$ {
 		}
 
 		pages() {
-			// return [ this.Page_final() ]
 			return [
-				... ( this.model().profile() === 'other' ? [ this.Page_profile() ] : [ this.Page_dashboard() ] ) ,
+				... ( this.age() === 'ready' ? [ this.Page_profile() ] : []) ,
+				... ( this.age() === 'go' ? [ this.Page_dashboard() ] : []) ,
+				... ( this.age() === 'finish' ? [ this.Page_final() ] : []) ,
 				... this.chat_pages(),
 			]
 		}
