@@ -8,6 +8,7 @@ namespace $.$$ {
 		have: number
 		current: number
 		diff: number
+		trend: number
 		history: readonly number[]
 	}
 	
@@ -52,7 +53,10 @@ namespace $.$$ {
 				
 				const current = Math.max( 0,
 					+ next[ code ].current
-					+ Math.round( ( Math.random() * 2 - 1 ) * entropy )
+					+ Math.round(
+						+ next[ code ].trend
+						+ ( Math.random() * 2 - 1 ) * entropy
+					)
 				)
 				
 				const diff = current - next[ code ].current
@@ -101,15 +105,18 @@ namespace $.$$ {
 		news(): $hyoo_speculant_world_news {
 			
 			const moment = this.time()
+			const indicators = this.indicators()
 			
 			const prev = $mol_mem_cached( ()=> this.news() ) ?? super.news()
-			if( Math.random() * ( 10 + this.indicators().CSH.have ) > 10 ) return prev
+			if( Math.random() > .1 ) return prev
+			
+			const template = $mol_stub_select_random( this.news_templates() )
+			const indicator = $mol_stub_select_random( Object.keys( indicators ) )
 			
 			return [
 				... prev, {
 					moment: moment.toString( 'YYYY-MM-DD' ),
-					title: $mol_stub_select_random( this.causes() ),
-					body: $mol_stub_select_random( this.conses() ),
+					text: template.text.replace(  '{name}', indicators[ indicator ].name ),
 				},
 			]
 			
