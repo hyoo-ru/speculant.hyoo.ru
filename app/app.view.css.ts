@@ -8,10 +8,10 @@ namespace $.$$ {
 			flex: {
 				basis: rem(30),
 			},
-			
-			Body: {
-				alignItems: 'center' ,
-			}
+		} ,
+		
+		Page_profile_content: {
+			padding: $mol_gap.block ,
 		} ,
 		
 		Page_final: {
