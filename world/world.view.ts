@@ -4,6 +4,7 @@ namespace $.$$ {
 	
 	export type $hyoo_speculant_world_indicator = {
 		name: string
+		icon: string
 		type: string
 		have: number
 		current: number

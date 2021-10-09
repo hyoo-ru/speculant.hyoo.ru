@@ -52,6 +52,7 @@ $hyoo_speculant_world $mol_object2
 		CSH *
 			- \Кэш - основная валюта. В графиках не показываем.
 			name \Кэш
+			icon \about:blank
 			type \currency
 			have 1000
 			current 1
@@ -60,6 +61,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		KBK *
 			name \КилоБакс
+			icon \about:blank
 			type \currency
 			have 0
 			current 100
@@ -68,6 +70,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		TLT *
 			name \Телетайп
+			icon \https://api.faviconkit.com/telegram.org/16
 			type \bond
 			have 0
 			current 200
@@ -76,6 +79,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		CHK *
 			name \ЧоКак
+			icon \https://api.faviconkit.com/whatsapp.com/16
 			type \bond
 			have 0
 			current 100
@@ -84,6 +88,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		LKN *
 			name \ЛицеКнига
+			icon \https://api.faviconkit.com/facebook.com/16
 			type \share
 			have 0
 			current 50
@@ -92,6 +97,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		TTK *
 			name \ТукТок
+			icon \https://api.faviconkit.com/tiktok.com/16
 			type \share
 			have 0
 			current 60
@@ -100,6 +106,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		VBL *
 			name \ВБлизи
+			icon \https://api.faviconkit.com/vk.com/16
 			type \share
 			have 0
 			current 30
@@ -108,6 +115,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		OGR *
 			name \Одногруппники
+			icon \https://api.faviconkit.com/ok.ru/16
 			type \share
 			have 0
 			current 20
