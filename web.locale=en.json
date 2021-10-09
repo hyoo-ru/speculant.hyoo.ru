@@ -1,8 +1,7 @@
 {
-	"$hyoo_speculant_app_Page_profile_title": "Кто вы?",
+	"$hyoo_speculant_app_app_title": "Спекулянтъ",
 	"$hyoo_speculant_app_dashboard_balance_total_title": "Баланс",
 	"$hyoo_speculant_app_dashboard_title": "Dashboard",
-	"$hyoo_speculant_app_title": "Спекулянтъ",
 	"$mol_chat_title": "Discussion",
 	"$mol_lights_toggle_hint": "Toggle lights",
 	"$mol_link_source_hint": "Source code"

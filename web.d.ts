@@ -1134,6 +1134,31 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_page extends $mol_view {
+        sub(): readonly any[];
+        Title(): $mol_view;
+        tools(): readonly $mol_view_content[];
+        Tools(): $mol_view;
+        head(): readonly any[];
+        Head(): $mol_view;
+        body_scroll_top(val?: any): number;
+        body(): readonly $mol_view_content[];
+        Body(): $$.$mol_scroll;
+        foot(): readonly $mol_view[];
+        Foot(): $mol_view;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
+    class $mol_page extends $.$mol_page {
+        body_scroll_top(next?: number): number;
+    }
+}
+
+declare namespace $ {
     class $mol_state_local<Value> extends $mol_object {
         static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
         static native(): Storage | {
@@ -1259,31 +1284,6 @@ declare namespace $ {
         static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
         static text(key: string): string;
         static warn(key: string): null;
-    }
-}
-
-declare namespace $ {
-    class $mol_page extends $mol_view {
-        sub(): readonly any[];
-        Title(): $mol_view;
-        tools(): readonly $mol_view_content[];
-        Tools(): $mol_view;
-        head(): readonly any[];
-        Head(): $mol_view;
-        body_scroll_top(val?: any): number;
-        body(): readonly $mol_view_content[];
-        Body(): $$.$mol_scroll;
-        foot(): readonly $mol_view[];
-        Foot(): $mol_view;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $.$$ {
-    class $mol_page extends $.$mol_page {
-        body_scroll_top(next?: number): number;
     }
 }
 
@@ -2569,12 +2569,15 @@ declare namespace $ {
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         Page_profile(): $$.$mol_page;
         Profile_button(id: any): $mol_button_major;
+        app_title(): string;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
         chat_pages(): $$.$mol_page[];
         Chat(): $$.$mol_chat;
         Theme(): $$.$mol_theme_auto;
-        profile_buttons(): readonly any[];
+        Description(): $$.$mol_text;
+        Select_profile(): $$.$mol_text;
+        page_profile_body(): readonly any[];
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
     }
@@ -2590,6 +2593,7 @@ declare namespace $.$$ {
         profile_buttons(): $mol_button_major[];
         profile_title(id: string): any;
         profile_select(id: string): void;
+        page_profile_body(): ($mol_text | $mol_button_major)[];
     }
 }
 
