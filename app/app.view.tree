@@ -13,6 +13,7 @@ $hyoo_speculant_app $mol_book2
 	Page_dashboard $hyoo_speculant_app_dashboard
 		model <= model
 		tools <= page_tools
+		user_profile <= user_profile
 	Page_profile $mol_page
 		title @ \Кто вы?
 		tools <= page_tools
