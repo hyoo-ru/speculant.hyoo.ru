@@ -78,7 +78,7 @@ $hyoo_speculant_world $mol_object2
 			history /number
 		KBK *
 			name \КилоБакс
-			icon \about:blank
+			icon \https://api.faviconkit.com/netflix.com/16
 			type \currency
 			have 0
 			current 100
@@ -555,6 +555,15 @@ $mol_labeler $mol_list
 			minimal_height 24
 			sub <= content /
 
+$mol_image2 $mol_view
+	links /
+	aspect 1
+	sub /
+		<= Content $mol_view
+			style *
+				paddingTop <= height \100%
+				backgroundImage <= background \
+
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
 	title @ \Dashboard
@@ -583,7 +592,11 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= currency_have!id \
 	Row!id $mol_view
 		sub /
-			<= Currency_name!id $mol_view sub / <= currency_name!id \
+			<= Currency_name!id $mol_view
+				sub /
+					<= Currency_icon!id $mol_image2
+						links / <= currency_icon_link!id \
+					<= currency_name!id \
 			<= Rate!id
 			<= Sell_button!id
 			<= Balance_currency!id

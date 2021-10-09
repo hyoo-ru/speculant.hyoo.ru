@@ -3174,7 +3174,7 @@ var $;
                 },
                 KBK: {
                     name: "КилоБакс",
-                    icon: "about:blank",
+                    icon: "https://api.faviconkit.com/netflix.com/16",
                     type: "currency",
                     have: 0,
                     current: 100,
@@ -8075,6 +8075,74 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_image2 extends $.$mol_view {
+        links() {
+            return [];
+        }
+        aspect() {
+            return 1;
+        }
+        sub() {
+            return [
+                this.Content()
+            ];
+        }
+        height() {
+            return "100%";
+        }
+        background() {
+            return "";
+        }
+        Content() {
+            const obj = new this.$.$mol_view();
+            obj.style = () => ({
+                paddingTop: this.height(),
+                backgroundImage: this.background()
+            });
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_image2.prototype, "Content", null);
+    $.$mol_image2 = $mol_image2;
+})($ || ($ = {}));
+//image2.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/image2/image2.view.css", "[mol_image2] {\n\tflex: 0 1 auto;\n\tmax-width: 100%;\n\tbox-shadow: 0 0 0 1px var(--mol_theme_line);\n\tborder-radius: var(--mol_gap_round);\n\toverflow: hidden;\n}\n\n[mol_image2_content] {\n\tdisplay: block;\n\tbackground-size: cover;\n\tbackground-position: top center;\n\tflex: auto;\n}\n");
+})($ || ($ = {}));
+//image2.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_image2 extends $.$mol_image2 {
+            background() {
+                return this.links().map(link => `url("${link}")`).join(' , ');
+            }
+            height() {
+                return `${100 / this.aspect()}%`;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_image2.prototype, "background", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_image2.prototype, "height", null);
+        $$.$mol_image2 = $mol_image2;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//image2.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $hyoo_speculant_app_dashboard extends $.$mol_page {
         model() {
             const obj = new this.$.$hyoo_speculant_world();
@@ -8211,12 +8279,23 @@ var $;
         currency_have(id) {
             return "";
         }
+        currency_icon_link(id) {
+            return "";
+        }
+        Currency_icon(id) {
+            const obj = new this.$.$mol_image2();
+            obj.links = () => [
+                this.currency_icon_link(id)
+            ];
+            return obj;
+        }
         currency_name(id) {
             return "";
         }
         Currency_name(id) {
             const obj = new this.$.$mol_view();
             obj.sub = () => [
+                this.Currency_icon(id),
                 this.currency_name(id)
             ];
             return obj;
@@ -8289,6 +8368,9 @@ var $;
     ], $hyoo_speculant_app_dashboard.prototype, "Currency_diff", null);
     __decorate([
         $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Currency_icon", null);
+    __decorate([
+        $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Currency_name", null);
     __decorate([
         $.$mol_mem
@@ -8305,7 +8387,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const { rem, per } = $.$mol_style_unit;
+        const { rem, per, px } = $.$mol_style_unit;
         $.$mol_style_define($$.$hyoo_speculant_app_dashboard, {
             flex: {
                 basis: rem(30),
@@ -8322,6 +8404,7 @@ var $;
                     grow: 1,
                     basis: rem(3),
                 },
+                justifyContent: 'flex-end',
             },
             Currency_list: {
                 padding: $.$mol_gap.block,
@@ -8345,6 +8428,11 @@ var $;
             Icon_currency_down: {
                 color: 'red',
             },
+            Currency_icon: {
+                width: px(16),
+                height: px(16),
+                marginRight: '1rem',
+            }
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -8400,6 +8488,9 @@ var $;
                 const indicator = this.indicator(id);
                 return indicator.diff > 0 ? this.Icon_currency_up(id) : this.Icon_currency_down(id);
             }
+            currency_icon_link(id) {
+                return this.indicator(id).icon;
+            }
         }
         __decorate([
             $.$mol_mem
@@ -8431,6 +8522,9 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app_dashboard.prototype, "Currency_diff", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_icon_link", null);
         $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

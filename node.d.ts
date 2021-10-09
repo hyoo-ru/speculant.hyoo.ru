@@ -2330,6 +2330,27 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_image2 extends $mol_view {
+        links(): readonly any[];
+        aspect(): number;
+        sub(): readonly any[];
+        height(): string;
+        background(): string;
+        Content(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_image2 extends $.$mol_image2 {
+        background(): string;
+        height(): string;
+    }
+}
+
+declare namespace $ {
     class $hyoo_speculant_app_dashboard extends $mol_page {
         model(): $$.$hyoo_speculant_world;
         title(): string;
@@ -2358,6 +2379,8 @@ declare namespace $ {
         rate(id: any): string;
         Currency_diff(id: any): $mol_view;
         currency_have(id: any): string;
+        currency_icon_link(id: any): string;
+        Currency_icon(id: any): $$.$mol_image2;
         currency_name(id: any): string;
         Currency_name(id: any): $mol_view;
         currency_list(): readonly any[];
@@ -2384,6 +2407,7 @@ declare namespace $.$$ {
         balance_cash(): string;
         currency_list(): $mol_view[];
         Currency_diff(id: string): $mol_icon_arrow_down_bold | $mol_icon_arrow_up_bold;
+        currency_icon_link(id: string): string;
     }
 }
 
