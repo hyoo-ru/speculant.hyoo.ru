@@ -63,6 +63,7 @@ $hyoo_speculant_world $mol_object2
 		*
 			title \# Новый профи вышел на рынок
 			body \Все спекулянты замерли в ожидании.
+			moment \
 	causes /string
 		- \События в мире
 		\# Крупнейшая соцсеть накрылась

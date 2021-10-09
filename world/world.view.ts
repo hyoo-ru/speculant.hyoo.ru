@@ -96,13 +96,14 @@ namespace $.$$ {
 		@ $mol_mem
 		news(): $hyoo_speculant_world_news {
 			
-			this.time()
+			const moment = this.time()
 			
 			const prev = $mol_mem_cached( ()=> this.news() ) ?? super.news()
-			if( Math.random() * ( 10 + this.indicators().CSH.have ) > 1 ) return prev
+			if( Math.random() * ( 10 + this.indicators().CSH.have ) > 1000 ) return prev
 			
 			return [
 				... prev, {
+					moment: moment.toString( 'YYYY-MM-DD' ),
 					title: $mol_stub_select_random( this.causes() ),
 					body: $mol_stub_select_random( this.conses() ),
 				},

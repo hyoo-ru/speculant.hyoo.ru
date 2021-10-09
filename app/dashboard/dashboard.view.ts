@@ -18,9 +18,13 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem
+		history_length() {
+			return this.indicator( this.currency_chart()[0] ).history.length
+		}
+		
+		@ $mol_mem
 		days() {
-			const history_length = this.indicator( this.currency_chart()[0] ).history.length
-			const arr = new Array( history_length ).fill( '' )
+			const arr = new Array( this.history_length() ).fill( '' )
 			return arr.map( ( _ , index ) => this.day_start().shift( { day: index } ).toString( 'MM-DD' ) )
 		}
 

@@ -4,7 +4,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		news_list() {
-			return this.model().news().map( news => this.News_item( news ) )
+			return this.model().news().map( news => this.News_item( news ) ).reverse()
 		}
 		
 		@ $mol_mem_key
@@ -14,8 +14,12 @@ namespace $.$$ {
 		
 		@ $mol_mem_key
 		news_item_body( news_item: any ) {
-			console.log( { news_item } )
 			return news_item.body
+		}
+		
+		@ $mol_mem_key
+		news_item_date( news_item: any ) {
+			return news_item.moment
 		}
 
 	}
