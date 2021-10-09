@@ -8337,7 +8337,7 @@ var $;
                 return this.indicator(id).icon;
             }
             date() {
-                return this.model().time().toString('DD Mon YY');
+                return this.model().time().toString('DD Mon');
             }
         }
         __decorate([
