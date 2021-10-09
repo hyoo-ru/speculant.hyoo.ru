@@ -16,9 +16,14 @@ $hyoo_speculant_app_dashboard $mol_page
 		title \-
 		click?val <=> sell!id?val null
 	Rate!id $mol_view
-		sub / <= rate!id \
+		sub /
+			<= rate!id \
+			<= Currency_diff!id $mol_view
+	Icon_currency_up!id $mol_icon_arrow_top_right
+	Icon_currency_down!id $mol_icon_arrow_bottom_right
 	Balance_currency!id $mol_view
-		sub / <= currency_have!id \
+		sub /
+			<= currency_have!id \
 	Row!id $mol_view
 		sub /
 			<= Currency_name!id $mol_view sub / <= currency_name!id \

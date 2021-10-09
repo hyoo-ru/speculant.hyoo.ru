@@ -43,7 +43,14 @@ namespace $.$$ {
 		Foot_list: {
 			width: per(100),
 		} ,
+		
+		Icon_currency_up: {
+			color: 'green' ,
+		} ,
 
+		Icon_currency_down: {
+			color: 'red' ,
+		} ,
 	} )
 
 }
