@@ -76,7 +76,7 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		date() {
-			return this.model().time().toString( 'DD Mon YYYY' )
+			return this.model().time().toString( 'DD Mon YY' )
 		}
 	}
 
