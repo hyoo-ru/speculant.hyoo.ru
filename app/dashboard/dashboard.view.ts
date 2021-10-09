@@ -63,7 +63,7 @@ namespace $.$$ {
 		currency_list() {
 			return this.currency_work().map( id => this.Row( id ) )
 		}
-
+		
 	}
 
 }

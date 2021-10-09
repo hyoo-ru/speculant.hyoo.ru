@@ -1,11 +1,10 @@
-$hyoo_speculant_app_news $mol_page
+$hyoo_speculant_app_news $mol_list
 	model $hyoo_speculant_world
-	title @ \Новости
 	unread_count 0
 	News_item!id $hyoo_speculant_app_news_item
 		news_item <= news_item!id \
 		news_read?val <=> news_read!id?val false
-	body /
+	rows /
 		<= List $mol_list
 			rows <= news_list /
 $hyoo_speculant_app_news_item $mol_list
