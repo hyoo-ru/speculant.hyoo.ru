@@ -2330,6 +2330,18 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_icon_plus extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_minus extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
     class $mol_image2 extends $mol_view {
         links(): readonly any[];
         aspect(): number;
@@ -2377,7 +2389,9 @@ declare namespace $ {
         title_list(): readonly any[];
         Title_list(): $mol_view;
         buy(id: any, val?: any): any;
+        Buy_button_icon(id: any): $mol_icon_plus;
         sell(id: any, val?: any): any;
+        Sell_button_icon(id: any): $mol_icon_minus;
         rate(id: any): string;
         Currency_diff(id: any): $mol_view;
         currency_have(id: any): string;

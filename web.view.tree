@@ -555,6 +555,10 @@ $mol_labeler $mol_list
 			minimal_height 24
 			sub <= content /
 
+$mol_icon_plus $mol_icon path \M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z
+
+$mol_icon_minus $mol_icon path \M19,13H5V11H19V13Z
+
 $mol_image2 $mol_view
 	links /
 	aspect 1
@@ -579,11 +583,13 @@ $hyoo_speculant_app_dashboard $mol_page
 				title \Дата
 				content / <= date \
 	Buy_button!id $mol_button_typed
-		title \+
 		click?val <=> buy!id?val null
+		sub /
+			<= Buy_button_icon!id $mol_icon_plus
 	Sell_button!id $mol_button_typed
-		title \-
 		click?val <=> sell!id?val null
+		sub /
+			<= Sell_button_icon!id $mol_icon_minus
 	Rate!id $mol_view
 		sub /
 			<= rate!id \

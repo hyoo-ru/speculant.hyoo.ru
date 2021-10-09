@@ -7901,6 +7901,30 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_plus extends $.$mol_icon {
+        path() {
+            return "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z";
+        }
+    }
+    $.$mol_icon_plus = $mol_icon_plus;
+})($ || ($ = {}));
+//plus.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_minus extends $.$mol_icon {
+        path() {
+            return "M19,13H5V11H19V13Z";
+        }
+    }
+    $.$mol_icon_minus = $mol_icon_minus;
+})($ || ($ = {}));
+//minus.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_image2 extends $.$mol_view {
         links() {
             return [];
@@ -7982,14 +8006,18 @@ var $;
         }
         Buy_button(id) {
             const obj = new this.$.$mol_button_typed();
-            obj.title = () => "+";
             obj.click = (val) => this.buy(id, val);
+            obj.sub = () => [
+                this.Buy_button_icon(id)
+            ];
             return obj;
         }
         Sell_button(id) {
             const obj = new this.$.$mol_button_typed();
-            obj.title = () => "-";
             obj.click = (val) => this.sell(id, val);
+            obj.sub = () => [
+                this.Sell_button_icon(id)
+            ];
             return obj;
         }
         Rate(id) {
@@ -8102,10 +8130,18 @@ var $;
                 return val;
             return null;
         }
+        Buy_button_icon(id) {
+            const obj = new this.$.$mol_icon_plus();
+            return obj;
+        }
         sell(id, val) {
             if (val !== undefined)
                 return val;
             return null;
+        }
+        Sell_button_icon(id) {
+            const obj = new this.$.$mol_icon_minus();
+            return obj;
         }
         rate(id) {
             return "";
@@ -8203,7 +8239,13 @@ var $;
     ], $hyoo_speculant_app_dashboard.prototype, "buy", null);
     __decorate([
         $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Buy_button_icon", null);
+    __decorate([
+        $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Sell_button_icon", null);
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Currency_diff", null);
