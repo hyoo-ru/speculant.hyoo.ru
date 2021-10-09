@@ -8085,8 +8085,8 @@ var $;
         }
         body() {
             return [
-                this.Currency_list(),
-                this.News()
+                this.News(),
+                this.Currency_list()
             ];
         }
         balance_total_title() {
