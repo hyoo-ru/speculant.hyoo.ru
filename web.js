@@ -5116,336 +5116,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_labeler extends $.$mol_list {
-        rows() {
-            return [
-                this.Label(),
-                this.Content()
-            ];
-        }
-        label() {
-            return [
-                this.title()
-            ];
-        }
-        Label() {
-            const obj = new this.$.$mol_view();
-            obj.minimal_height = () => 24;
-            obj.sub = () => this.label();
-            return obj;
-        }
-        content() {
-            return [];
-        }
-        Content() {
-            const obj = new this.$.$mol_view();
-            obj.minimal_height = () => 24;
-            obj.sub = () => this.content();
-            return obj;
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $mol_labeler.prototype, "Label", null);
-    __decorate([
-        $.$mol_mem
-    ], $mol_labeler.prototype, "Content", null);
-    $.$mol_labeler = $mol_labeler;
-})($ || ($ = {}));
-//labeler.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n}\n");
-})($ || ($ = {}));
-//labeler.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $hyoo_speculant_app_dashboard extends $.$mol_page {
-        model() {
-            const obj = new this.$.$hyoo_speculant_world();
-            return obj;
-        }
-        title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
-        }
-        Title() {
-            return this.Title_list();
-        }
-        Buy_button(id) {
-            const obj = new this.$.$mol_button_typed();
-            obj.title = () => "+";
-            obj.click = (val) => this.buy(id, val);
-            return obj;
-        }
-        Sell_button(id) {
-            const obj = new this.$.$mol_button_typed();
-            obj.title = () => "-";
-            obj.click = (val) => this.sell(id, val);
-            return obj;
-        }
-        Rate(id) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                this.rate(id)
-            ];
-            return obj;
-        }
-        Balance_currency(id) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                this.currency_have(id)
-            ];
-            return obj;
-        }
-        Row(id) {
-            const obj = new this.$.$mol_row();
-            obj.sub = () => [
-                this.Currency_name(id),
-                this.Rate(id),
-                this.Balance_currency(id),
-                this.Buy_button(id),
-                this.Sell_button(id)
-            ];
-            return obj;
-        }
-        body() {
-            return [
-                this.Currency_list()
-            ];
-        }
-        balance_total_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_balance_total_title');
-        }
-        balance_total() {
-            return "";
-        }
-        Balance_total() {
-            const obj = new this.$.$mol_labeler();
-            obj.title = () => this.balance_total_title();
-            obj.content = () => [
-                this.balance_total()
-            ];
-            return obj;
-        }
-        balance_cash_title() {
-            return "";
-        }
-        balance_cash() {
-            return "";
-        }
-        Balance_cash() {
-            const obj = new this.$.$mol_labeler();
-            obj.title = () => this.balance_cash_title();
-            obj.content = () => [
-                this.balance_cash()
-            ];
-            return obj;
-        }
-        title_list() {
-            return [
-                this.Balance_total(),
-                this.Balance_cash()
-            ];
-        }
-        Title_list() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => this.title_list();
-            return obj;
-        }
-        buy(id, val) {
-            if (val !== undefined)
-                return val;
-            return null;
-        }
-        sell(id, val) {
-            if (val !== undefined)
-                return val;
-            return null;
-        }
-        rate(id) {
-            return "";
-        }
-        currency_have(id) {
-            return "";
-        }
-        currency_name(id) {
-            return "";
-        }
-        Currency_name(id) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                this.currency_name(id)
-            ];
-            return obj;
-        }
-        currency_list() {
-            return [];
-        }
-        Currency_list() {
-            const obj = new this.$.$mol_list();
-            obj.rows = () => this.currency_list();
-            return obj;
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "model", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Buy_button", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Sell_button", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Rate", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Balance_currency", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Row", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "Balance_total", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "Balance_cash", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "Title_list", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "buy", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Currency_name", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "Currency_list", null);
-    $.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
-})($ || ($ = {}));
-//dashboard.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        const { rem } = $.$mol_style_unit;
-        $.$mol_style_define($$.$hyoo_speculant_app_dashboard, {
-            flex: {
-                basis: rem(30),
-            },
-            Balance_total: {
-                marginRight: '1rem',
-            },
-            Head: {
-                justifyContent: 'space-between',
-            },
-            Rate: {
-                padding: $.$mol_gap.text,
-            },
-            Currency_name: {
-                padding: $.$mol_gap.text,
-            },
-            Balance_currency: {
-                padding: $.$mol_gap.text,
-            },
-        });
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//dashboard.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
-            currency_all() {
-                return Object.keys(this.model().indicators());
-            }
-            currency_work() {
-                return this.currency_all().filter(key => key !== 'CSH');
-            }
-            indicator(id) {
-                return this.model().indicators()[id];
-            }
-            currency_name(id) {
-                return this.indicator(id).name;
-            }
-            buy(id) {
-                this.model().exchange(id, 1);
-            }
-            sell(id) {
-                this.model().exchange(id, -1);
-            }
-            currency_have(id) {
-                return this.indicator(id).have.toString();
-            }
-            rate(id) {
-                return this.indicator(id).current.toString();
-            }
-            balance_total() {
-                const list = this.currency_work().map(id => this.indicator(id));
-                const sum = list.reduce((sum, cur) => {
-                    return sum + (cur.current * cur.have);
-                }, 0);
-                return (sum + this.indicator('CSH').have).toFixed(2);
-            }
-            balance_cash_title() {
-                return this.indicator('CSH').name;
-            }
-            balance_cash() {
-                return this.indicator('CSH').have.toString();
-            }
-            currency_list() {
-                return this.currency_work().map(id => this.Row(id));
-            }
-        }
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_all", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_work", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app_dashboard.prototype, "indicator", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_name", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_have", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app_dashboard.prototype, "rate", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app_dashboard.prototype, "balance_cash_title", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app_dashboard.prototype, "balance_cash", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app_dashboard.prototype, "currency_list", null);
-        $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//dashboard.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_paragraph extends $.$mol_view {
         line_height() {
             return 24;
@@ -7933,13 +7603,10 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $hyoo_speculant_app_news extends $.$mol_page {
+    class $hyoo_speculant_app_news extends $.$mol_list {
         model() {
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
-        }
-        title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_news_title');
         }
         unread_count() {
             return 0;
@@ -7950,7 +7617,7 @@ var $;
             obj.news_read = (val) => this.news_read(id, val);
             return obj;
         }
-        body() {
+        rows() {
             return [
                 this.List()
             ];
@@ -8132,6 +7799,345 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //news.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_labeler extends $.$mol_list {
+        rows() {
+            return [
+                this.Label(),
+                this.Content()
+            ];
+        }
+        label() {
+            return [
+                this.title()
+            ];
+        }
+        Label() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 24;
+            obj.sub = () => this.label();
+            return obj;
+        }
+        content() {
+            return [];
+        }
+        Content() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 24;
+            obj.sub = () => this.content();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_labeler.prototype, "Label", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_labeler.prototype, "Content", null);
+    $.$mol_labeler = $mol_labeler;
+})($ || ($ = {}));
+//labeler.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n}\n");
+})($ || ($ = {}));
+//labeler.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $hyoo_speculant_app_dashboard extends $.$mol_page {
+        model() {
+            const obj = new this.$.$hyoo_speculant_world();
+            return obj;
+        }
+        title() {
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
+        }
+        Title() {
+            return this.Title_list();
+        }
+        Buy_button(id) {
+            const obj = new this.$.$mol_button_typed();
+            obj.title = () => "+";
+            obj.click = (val) => this.buy(id, val);
+            return obj;
+        }
+        Sell_button(id) {
+            const obj = new this.$.$mol_button_typed();
+            obj.title = () => "-";
+            obj.click = (val) => this.sell(id, val);
+            return obj;
+        }
+        Rate(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.rate(id)
+            ];
+            return obj;
+        }
+        Balance_currency(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.currency_have(id)
+            ];
+            return obj;
+        }
+        Row(id) {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => [
+                this.Currency_name(id),
+                this.Rate(id),
+                this.Balance_currency(id),
+                this.Buy_button(id),
+                this.Sell_button(id)
+            ];
+            return obj;
+        }
+        Currency_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.currency_list();
+            return obj;
+        }
+        News() {
+            const obj = new this.$.$hyoo_speculant_app_news();
+            obj.model = () => this.model();
+            return obj;
+        }
+        body() {
+            return [
+                this.Currency_list(),
+                this.News()
+            ];
+        }
+        balance_total_title() {
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_balance_total_title');
+        }
+        balance_total() {
+            return "";
+        }
+        Balance_total() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.balance_total_title();
+            obj.content = () => [
+                this.balance_total()
+            ];
+            return obj;
+        }
+        balance_cash_title() {
+            return "";
+        }
+        balance_cash() {
+            return "";
+        }
+        Balance_cash() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.balance_cash_title();
+            obj.content = () => [
+                this.balance_cash()
+            ];
+            return obj;
+        }
+        title_list() {
+            return [
+                this.Balance_total(),
+                this.Balance_cash()
+            ];
+        }
+        Title_list() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => this.title_list();
+            return obj;
+        }
+        buy(id, val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        sell(id, val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        rate(id) {
+            return "";
+        }
+        currency_have(id) {
+            return "";
+        }
+        currency_name(id) {
+            return "";
+        }
+        Currency_name(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.currency_name(id)
+            ];
+            return obj;
+        }
+        currency_list() {
+            return [];
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "model", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Buy_button", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Sell_button", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Rate", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Balance_currency", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Row", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Currency_list", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "News", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Balance_total", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Balance_cash", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Title_list", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "buy", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app_dashboard.prototype, "Currency_name", null);
+    $.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
+})($ || ($ = {}));
+//dashboard.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { rem } = $.$mol_style_unit;
+        $.$mol_style_define($$.$hyoo_speculant_app_dashboard, {
+            flex: {
+                basis: rem(30),
+            },
+            Balance_total: {
+                marginRight: '1rem',
+            },
+            Head: {
+                justifyContent: 'space-between',
+            },
+            Rate: {
+                padding: $.$mol_gap.text,
+            },
+            Currency_name: {
+                padding: $.$mol_gap.text,
+            },
+            Balance_currency: {
+                padding: $.$mol_gap.text,
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//dashboard.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
+            currency_all() {
+                return Object.keys(this.model().indicators());
+            }
+            currency_work() {
+                return this.currency_all().filter(key => key !== 'CSH');
+            }
+            indicator(id) {
+                return this.model().indicators()[id];
+            }
+            currency_name(id) {
+                return this.indicator(id).name;
+            }
+            buy(id) {
+                this.model().exchange(id, 1);
+            }
+            sell(id) {
+                this.model().exchange(id, -1);
+            }
+            currency_have(id) {
+                return this.indicator(id).have.toString();
+            }
+            rate(id) {
+                return this.indicator(id).current.toString();
+            }
+            balance_total() {
+                const list = this.currency_work().map(id => this.indicator(id));
+                const sum = list.reduce((sum, cur) => {
+                    return sum + (cur.current * cur.have);
+                }, 0);
+                return (sum + this.indicator('CSH').have).toFixed(2);
+            }
+            balance_cash_title() {
+                return this.indicator('CSH').name;
+            }
+            balance_cash() {
+                return this.indicator('CSH').have.toString();
+            }
+            currency_list() {
+                return this.currency_work().map(id => this.Row(id));
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_all", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_work", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app_dashboard.prototype, "indicator", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_name", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_have", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app_dashboard.prototype, "rate", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "balance_cash_title", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "balance_cash", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "currency_list", null);
+        $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//dashboard.view.js.map
 ;
 "use strict";
 var $;
@@ -8353,30 +8359,6 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //toggle.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_icon_bell extends $.$mol_icon {
-        path() {
-            return "M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4C10,2.9 10.9,2 12,2C13.1,2 14,2.9 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21C14,22.1 13.1,23 12,23C10.9,23 10,22.1 10,21";
-        }
-    }
-    $.$mol_icon_bell = $mol_icon_bell;
-})($ || ($ = {}));
-//bell.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_icon_bell_outline extends $.$mol_icon {
-        path() {
-            return "M16,17H7V10.5C7,8 9,6 11.5,6C14,6 16,8 16,10.5M18,16V10.5C18,7.43 15.86,4.86 13,4.18V3.5C13,2.67 12.33,2 11.5,2C10.67,2 10,2.67 10,3.5V4.18C7.13,4.86 5,7.43 5,10.5V16L3,18V19H20V18M11.5,22C12.6,22 13.5,21.1 13.5,20H9.5C9.5,21.1 10.4,22 11.5,22Z";
-        }
-    }
-    $.$mol_icon_bell_outline = $mol_icon_bell_outline;
-})($ || ($ = {}));
-//outline.view.tree.js.map
 ;
 "use strict";
 var $;
@@ -8744,19 +8726,7 @@ var $;
             obj.tools = () => [
                 this.Source(),
                 this.Lights(),
-                this.News_open(),
                 this.Chat()
-            ];
-            return obj;
-        }
-        read_count() {
-            return this.Page_news().read_count();
-        }
-        Page_news() {
-            const obj = new this.$.$hyoo_speculant_app_news();
-            obj.model = () => this.model();
-            obj.tools = () => [
-                this.News_close()
             ];
             return obj;
         }
@@ -8773,51 +8743,11 @@ var $;
             const obj = new this.$.$mol_lights_toggle();
             return obj;
         }
-        unread_count() {
-            return 0;
-        }
-        News_unread_count() {
-            const obj = new this.$.$mol_speck();
-            obj.value = () => this.unread_count();
-            return obj;
-        }
-        News_open_icon() {
-            const obj = new this.$.$mol_icon_bell_outline();
-            return obj;
-        }
-        news_open_sub() {
-            return [
-                this.News_unread_count(),
-                this.News_open_icon()
-            ];
-        }
-        News_open() {
-            const obj = new this.$.$mol_link();
-            obj.arg = () => ({
-                news: ""
-            });
-            obj.sub = () => this.news_open_sub();
-            return obj;
-        }
         chat_pages() {
             return this.Chat().pages();
         }
         Chat() {
             const obj = new this.$.$mol_chat();
-            return obj;
-        }
-        News_close_icon() {
-            const obj = new this.$.$mol_icon_cross();
-            return obj;
-        }
-        News_close() {
-            const obj = new this.$.$mol_link();
-            obj.arg = () => ({
-                news: null
-            });
-            obj.sub = () => [
-                this.News_close_icon()
-            ];
             return obj;
         }
     }
@@ -8829,9 +8759,6 @@ var $;
     ], $hyoo_speculant_app.prototype, "Page_dashboard", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Page_news", null);
-    __decorate([
-        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Theme", null);
     __decorate([
         $.$mol_mem
@@ -8841,22 +8768,7 @@ var $;
     ], $hyoo_speculant_app.prototype, "Lights", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "News_unread_count", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "News_open_icon", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "News_open", null);
-    __decorate([
-        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Chat", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "News_close_icon", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "News_close", null);
     $.$hyoo_speculant_app = $hyoo_speculant_app;
 })($ || ($ = {}));
 //app.view.tree.js.map
@@ -8867,11 +8779,7 @@ var $;
     var $$;
     (function ($$) {
         const { rem } = $.$mol_style_unit;
-        $.$mol_style_define($$.$hyoo_speculant_app, {
-            News_unread_count: {
-                wordBreak: 'keep-all',
-            }
-        });
+        $.$mol_style_define($$.$hyoo_speculant_app, {});
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //app.view.css.js.map
@@ -8882,35 +8790,13 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_app extends $.$hyoo_speculant_app {
-            news() {
-                return this.$.$mol_state_arg.value('news') !== null;
-            }
             pages() {
                 return [
                     this.Page_dashboard(),
-                    ...(this.news() ? [this.Page_news()] : []),
                     ...this.chat_pages(),
                 ];
             }
-            news_open_sub() {
-                return this.unread_count() === 0
-                    ? [this.News_open_icon()]
-                    : [this.News_unread_count(), this.News_open_icon()];
-            }
-            unread_count() {
-                this.$.$mol_state_time.now(1000);
-                return this.model().news().length - this.read_count();
-            }
         }
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app.prototype, "news", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app.prototype, "news_open_sub", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app.prototype, "unread_count", null);
         $$.$hyoo_speculant_app = $hyoo_speculant_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

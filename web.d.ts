@@ -1504,69 +1504,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_labeler extends $mol_list {
-        rows(): readonly any[];
-        label(): readonly $mol_view_content[];
-        Label(): $mol_view;
-        content(): readonly any[];
-        Content(): $mol_view;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $hyoo_speculant_app_dashboard extends $mol_page {
-        model(): $$.$hyoo_speculant_world;
-        title(): string;
-        Title(): $mol_view;
-        Buy_button(id: any): $mol_button_typed;
-        Sell_button(id: any): $mol_button_typed;
-        Rate(id: any): $mol_view;
-        Balance_currency(id: any): $mol_view;
-        Row(id: any): $mol_row;
-        body(): readonly any[];
-        balance_total_title(): string;
-        balance_total(): string;
-        Balance_total(): $mol_labeler;
-        balance_cash_title(): string;
-        balance_cash(): string;
-        Balance_cash(): $mol_labeler;
-        title_list(): readonly any[];
-        Title_list(): $mol_view;
-        buy(id: any, val?: any): any;
-        sell(id: any, val?: any): any;
-        rate(id: any): string;
-        currency_have(id: any): string;
-        currency_name(id: any): string;
-        Currency_name(id: any): $mol_view;
-        currency_list(): readonly any[];
-        Currency_list(): $$.$mol_list;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $.$$ {
-    class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
-        currency_all(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
-        currency_work(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
-        indicator(id: string): $hyoo_speculant_world_indicator;
-        currency_name(id: string): string;
-        buy(id: $hyoo_speculant_world_indicator_codes): void;
-        sell(id: $hyoo_speculant_world_indicator_codes): void;
-        currency_have(id: $hyoo_speculant_world_indicator_codes): string;
-        rate(id: $hyoo_speculant_world_indicator_codes): string;
-        balance_total(): string;
-        balance_cash_title(): string;
-        balance_cash(): string;
-        currency_list(): $mol_row[];
-    }
-}
-
-declare namespace $ {
     class $mol_paragraph extends $mol_view {
         line_height(): number;
         letter_width(): number;
@@ -2319,12 +2256,11 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $hyoo_speculant_app_news extends $mol_page {
+    class $hyoo_speculant_app_news extends $mol_list {
         model(): $$.$hyoo_speculant_world;
-        title(): string;
         unread_count(): number;
         News_item(id: any): $$.$hyoo_speculant_app_news_item;
-        body(): readonly any[];
+        rows(): readonly any[];
         news_item(id: any): string;
         news_read(id: any, val?: any): boolean;
         news_list(): readonly any[];
@@ -2360,6 +2296,70 @@ declare namespace $.$$ {
         news_item_title(): any;
         news_item_body(): string;
         news_item_date(): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_labeler extends $mol_list {
+        rows(): readonly any[];
+        label(): readonly $mol_view_content[];
+        Label(): $mol_view;
+        content(): readonly any[];
+        Content(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $hyoo_speculant_app_dashboard extends $mol_page {
+        model(): $$.$hyoo_speculant_world;
+        title(): string;
+        Title(): $mol_view;
+        Buy_button(id: any): $mol_button_typed;
+        Sell_button(id: any): $mol_button_typed;
+        Rate(id: any): $mol_view;
+        Balance_currency(id: any): $mol_view;
+        Row(id: any): $mol_row;
+        Currency_list(): $$.$mol_list;
+        News(): $$.$hyoo_speculant_app_news;
+        body(): readonly any[];
+        balance_total_title(): string;
+        balance_total(): string;
+        Balance_total(): $mol_labeler;
+        balance_cash_title(): string;
+        balance_cash(): string;
+        Balance_cash(): $mol_labeler;
+        title_list(): readonly any[];
+        Title_list(): $mol_view;
+        buy(id: any, val?: any): any;
+        sell(id: any, val?: any): any;
+        rate(id: any): string;
+        currency_have(id: any): string;
+        currency_name(id: any): string;
+        Currency_name(id: any): $mol_view;
+        currency_list(): readonly any[];
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
+    class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
+        currency_all(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
+        currency_work(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
+        indicator(id: string): $hyoo_speculant_world_indicator;
+        currency_name(id: string): string;
+        buy(id: $hyoo_speculant_world_indicator_codes): void;
+        sell(id: $hyoo_speculant_world_indicator_codes): void;
+        currency_have(id: $hyoo_speculant_world_indicator_codes): string;
+        rate(id: $hyoo_speculant_world_indicator_codes): string;
+        balance_total(): string;
+        balance_cash_title(): string;
+        balance_cash(): string;
+        currency_list(): $mol_row[];
     }
 }
 
@@ -2442,18 +2442,6 @@ declare namespace $ {
 declare namespace $.$$ {
     class $mol_lights_toggle extends $.$mol_lights_toggle {
         lights(next?: boolean): boolean;
-    }
-}
-
-declare namespace $ {
-    class $mol_icon_bell extends $mol_icon {
-        path(): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_icon_bell_outline extends $mol_icon {
-        path(): string;
     }
 }
 
@@ -2560,20 +2548,11 @@ declare namespace $ {
         title(): string;
         plugins(): readonly any[];
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
-        read_count(): number;
-        Page_news(): $$.$hyoo_speculant_app_news;
         Theme(): $$.$mol_theme_auto;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
-        unread_count(): number;
-        News_unread_count(): $mol_speck;
-        News_open_icon(): $mol_icon_bell_outline;
-        news_open_sub(): readonly any[];
-        News_open(): $$.$mol_link;
         chat_pages(): $$.$mol_page[];
         Chat(): $$.$mol_chat;
-        News_close_icon(): $mol_icon_cross;
-        News_close(): $$.$mol_link;
     }
 }
 
@@ -2582,10 +2561,7 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
-        news(): boolean;
-        pages(): ($mol_page | $hyoo_speculant_app_dashboard | $hyoo_speculant_app_news)[];
-        news_open_sub(): ($mol_speck | $mol_icon_bell_outline)[];
-        unread_count(): number;
+        pages(): ($mol_page | $hyoo_speculant_app_dashboard)[];
     }
 }
 

@@ -226,47 +226,6 @@ $mol_list $mol_view
 		0
 		0
 
-$mol_labeler $mol_list
-	rows /
-		<= Label $mol_view
-			minimal_height 24
-			sub <= label /$mol_view_content
-				<= title
-		<= Content $mol_view
-			minimal_height 24
-			sub <= content /
-
-$hyoo_speculant_app_dashboard $mol_page
-	model $hyoo_speculant_world
-	title @ \Dashboard
-	Title <= Title_list $mol_view
-		sub <= title_list /
-			<= Balance_total $mol_labeler
-				title <= balance_total_title @ \Баланс
-				content / <= balance_total \
-			<= Balance_cash $mol_labeler
-				title <= balance_cash_title \
-				content / <= balance_cash \
-	Buy_button!id $mol_button_typed
-		title \+
-		click?val <=> buy!id?val null
-	Sell_button!id $mol_button_typed
-		title \-
-		click?val <=> sell!id?val null
-	Rate!id $mol_view
-		sub / <= rate!id \
-	Balance_currency!id $mol_view
-		sub / <= currency_have!id \
-	Row!id $mol_row
-		sub /
-			<= Currency_name!id $mol_view sub / <= currency_name!id \
-			<= Rate!id
-			<= Balance_currency!id
-			<= Buy_button!id
-			<= Sell_button!id
-	body / <= Currency_list $mol_list
-		rows <= currency_list /
-
 $mol_paragraph $mol_view
 	line_height 24
 	letter_width 7
@@ -539,14 +498,13 @@ $mol_text_image $mol_view
 	sub /
 		<= title?val \
 
-$hyoo_speculant_app_news $mol_page
+$hyoo_speculant_app_news $mol_list
 	model $hyoo_speculant_world
-	title @ \Новости
 	unread_count 0
 	News_item!id $hyoo_speculant_app_news_item
 		news_item <= news_item!id \
 		news_read?val <=> news_read!id?val false
-	body /
+	rows /
 		<= List $mol_list
 			rows <= news_list /
 $hyoo_speculant_app_news_item $mol_list
@@ -558,6 +516,52 @@ $hyoo_speculant_app_news_item $mol_list
 			text <= news_item_title \
 		<= News_item_body $mol_text
 			text <= news_item_body \
+
+$mol_labeler $mol_list
+	rows /
+		<= Label $mol_view
+			minimal_height 24
+			sub <= label /$mol_view_content
+				<= title
+		<= Content $mol_view
+			minimal_height 24
+			sub <= content /
+
+$hyoo_speculant_app_dashboard $mol_page
+	model $hyoo_speculant_world
+	title @ \Dashboard
+	Title <= Title_list $mol_view
+		sub <= title_list /
+			<= Balance_total $mol_labeler
+				title <= balance_total_title @ \Баланс
+				content / <= balance_total \
+			<= Balance_cash $mol_labeler
+				title <= balance_cash_title \
+				content / <= balance_cash \
+	Buy_button!id $mol_button_typed
+		title \+
+		click?val <=> buy!id?val null
+	Sell_button!id $mol_button_typed
+		title \-
+		click?val <=> sell!id?val null
+	Rate!id $mol_view
+		sub / <= rate!id \
+	Balance_currency!id $mol_view
+		sub / <= currency_have!id \
+	Row!id $mol_row
+		sub /
+			<= Currency_name!id $mol_view sub / <= currency_name!id \
+			<= Rate!id
+			<= Balance_currency!id
+			<= Buy_button!id
+			<= Sell_button!id
+	Currency_list $mol_list
+		rows <= currency_list /
+	News $hyoo_speculant_app_news
+		model <= model
+	body /
+		<= Currency_list
+		<= News
 
 $mol_theme_auto $mol_plugin
 	attr * mol_theme <= theme \
@@ -577,10 +581,6 @@ $mol_lights_toggle $mol_check_icon
 	Icon <= Lights_icon $mol_icon_brightness_6
 	hint @ \Toggle lights
 	checked?val <=> lights?val false
-
-$mol_icon_bell $mol_icon path \M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4C10,2.9 10.9,2 12,2C13.1,2 14,2.9 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21C14,22.1 13.1,23 12,23C10.9,23 10,22.1 10,21
-
-$mol_icon_bell_outline $mol_icon path \M16,17H7V10.5C7,8 9,6 11.5,6C14,6 16,8 16,10.5M18,16V10.5C18,7.43 15.86,4.86 13,4.18V3.5C13,2.67 12.33,2 11.5,2C10.67,2 10,2.67 10,3.5V4.18C7.13,4.86 5,7.43 5,10.5V16L3,18V19H20V18M11.5,22C12.6,22 13.5,21.1 13.5,20H9.5C9.5,21.1 10.4,22 11.5,22Z
 
 $mol_icon_forum $mol_icon path \M17,12V3C17,2.45 16.55,2 16,2H3C2.45,2 2,2.45 2,3V17L6,13H16C16.55,13 17,12.55 17,12M21,6H19V15H6V17C6,17.55 6.45,18 7,18H18L22,22V7C22,6.45 21.55,6 21,6Z
 
@@ -636,19 +636,5 @@ $hyoo_speculant_app $mol_book2
 			<= Source $mol_link_source
 				uri \https://github.com/hyoo-ru/speculant.hyoo.ru
 			<= Lights $mol_lights_toggle
-			<= News_open $mol_link
-				arg * news \
-				sub <= news_open_sub /
-					<= News_unread_count $mol_speck
-						value <= unread_count 0
-					<= News_open_icon $mol_icon_bell_outline
 			<= Chat $mol_chat
 				pages => chat_pages
-	Page_news $hyoo_speculant_app_news
-		read_count => read_count
-		model <= model
-		tools /
-			<= News_close $mol_link
-				arg *
-					news null
-				sub / <= News_close_icon $mol_icon_cross
