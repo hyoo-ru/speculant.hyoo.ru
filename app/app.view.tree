@@ -1,5 +1,4 @@
 $hyoo_speculant_app $mol_book2
-	user_profile?val \
 	model $hyoo_speculant_world
 	title <= app_title @ \Спекулянтъ
 	page_tools /
@@ -13,15 +12,17 @@ $hyoo_speculant_app $mol_book2
 	Page_dashboard $hyoo_speculant_app_dashboard
 		model <= model
 		tools <= page_tools
-		user_profile <= user_profile
 	Page_profile $mol_page
 		title <= app_title
 		tools <= page_tools
-		body <= page_profile_body /
+		body /
 			<= Description $mol_text
 				text \Многие думают, что инвестиции - это про сложный анализ графиков и тп, но мы хотим показать, что на самом деле это про чтение новостей и своевременную ребалансировку портфеля. И наша игра помогает понять как те или иные новости влияют на рынок.
 			<= Select_profile $mol_text
 				text \# Кто вы?
+			<= Profile_switch $mol_switch
+				value?val <=> select_profile?val null
+				options <= profile_dict *
 	Profile_button!id $mol_button_major
 		title <= profile_title!id \
 		click?val <=> profile_select!id?val null

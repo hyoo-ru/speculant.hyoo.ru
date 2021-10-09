@@ -4,7 +4,7 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		currency_all() {
-			return this.model().profiles()[ this.user_profile() ].indicators as $hyoo_speculant_world_indicator_codes[]
+			return this.model().profiles()[ this.model().profile() ].indicators as $hyoo_speculant_world_indicator_codes[]
 		}
 		
 		@ $mol_mem
