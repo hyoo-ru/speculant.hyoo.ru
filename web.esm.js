@@ -7911,8 +7911,7 @@ var $;
         }
         body() {
             return [
-                this.News(),
-                this.Currency_list()
+                this.Body_list()
             ];
         }
         balance_total_title() {
@@ -7983,6 +7982,14 @@ var $;
         currency_list() {
             return [];
         }
+        Body_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.News(),
+                this.Currency_list()
+            ];
+            return obj;
+        }
     }
     __decorate([
         $.$mol_mem
@@ -8026,6 +8033,9 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Currency_name", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Body_list", null);
     $.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
 })($ || ($ = {}));
 //dashboard.view.tree.js.map
@@ -8142,49 +8152,60 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_plugin extends $.$mol_view {
-        dom_node(next) {
-            const node = next || $.$mol_owning_get(this, $.$mol_view).dom_node();
-            $.$mol_dom_render_attributes(node, this.attr_static());
-            const events = this.event();
-            for (let event_name in events) {
-                node.addEventListener(event_name, $.$mol_fiber_root(events[event_name]), { passive: false });
-            }
-            return node;
-        }
-        attr_static() {
-            return {};
-        }
-        event() {
-            return {};
-        }
-        render() {
-            this.dom_node_actual();
+    class $mol_button_major extends $.$mol_button_typed {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_theme: "$mol_theme_accent"
+            };
         }
     }
-    __decorate([
-        $.$mol_mem
-    ], $mol_plugin.prototype, "dom_node", null);
-    $.$mol_plugin = $mol_plugin;
+    $.$mol_button_major = $mol_button_major;
 })($ || ($ = {}));
-//plugin.js.map
+//major.view.tree.js.map
 ;
 "use strict";
 var $;
 (function ($) {
-    class $mol_theme_auto extends $.$mol_plugin {
-        attr() {
-            return {
-                mol_theme: this.theme()
-            };
-        }
-        theme() {
-            return "";
+    $.$mol_style_attach("mol/button/major/major.view.css", "[mol_button_major][disabled] {\n\topacity: .5;\n\tfilter: grayscale();\n}\n");
+})($ || ($ = {}));
+//major.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_github_circle extends $.$mol_icon {
+        path() {
+            return "M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z";
         }
     }
-    $.$mol_theme_auto = $mol_theme_auto;
+    $.$mol_icon_github_circle = $mol_icon_github_circle;
 })($ || ($ = {}));
-//auto.view.tree.js.map
+//circle.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_link_source extends $.$mol_link {
+        hint() {
+            return this.$.$mol_locale.text('$mol_link_source_hint');
+        }
+        sub() {
+            return [
+                this.Icon()
+            ];
+        }
+        Icon() {
+            const obj = new this.$.$mol_icon_github_circle();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_link_source.prototype, "Icon", null);
+    $.$mol_link_source = $mol_link_source;
+})($ || ($ = {}));
+//source.view.tree.js.map
 ;
 "use strict";
 var $;
@@ -8232,57 +8253,6 @@ var $;
     $.$mol_lights = $mol_lights;
 })($ || ($ = {}));
 //lights.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_theme_auto extends $.$mol_theme_auto {
-            theme() {
-                return this.$.$mol_lights() ? '$mol_theme_light' : '$mol_theme_dark';
-            }
-        }
-        $$.$mol_theme_auto = $mol_theme_auto;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//auto.view.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_icon_github_circle extends $.$mol_icon {
-        path() {
-            return "M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z";
-        }
-    }
-    $.$mol_icon_github_circle = $mol_icon_github_circle;
-})($ || ($ = {}));
-//circle.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_link_source extends $.$mol_link {
-        hint() {
-            return this.$.$mol_locale.text('$mol_link_source_hint');
-        }
-        sub() {
-            return [
-                this.Icon()
-            ];
-        }
-        Icon() {
-            const obj = new this.$.$mol_icon_github_circle();
-            return obj;
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $mol_link_source.prototype, "Icon", null);
-    $.$mol_link_source = $mol_link_source;
-})($ || ($ = {}));
-//source.view.tree.js.map
 ;
 "use strict";
 var $;
@@ -8707,13 +8677,87 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_plugin extends $.$mol_view {
+        dom_node(next) {
+            const node = next || $.$mol_owning_get(this, $.$mol_view).dom_node();
+            $.$mol_dom_render_attributes(node, this.attr_static());
+            const events = this.event();
+            for (let event_name in events) {
+                node.addEventListener(event_name, $.$mol_fiber_root(events[event_name]), { passive: false });
+            }
+            return node;
+        }
+        attr_static() {
+            return {};
+        }
+        event() {
+            return {};
+        }
+        render() {
+            this.dom_node_actual();
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plugin.prototype, "dom_node", null);
+    $.$mol_plugin = $mol_plugin;
+})($ || ($ = {}));
+//plugin.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_theme_auto extends $.$mol_plugin {
+        attr() {
+            return {
+                mol_theme: this.theme()
+            };
+        }
+        theme() {
+            return "";
+        }
+    }
+    $.$mol_theme_auto = $mol_theme_auto;
+})($ || ($ = {}));
+//auto.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_theme_auto extends $.$mol_theme_auto {
+            theme() {
+                return this.$.$mol_lights() ? '$mol_theme_light' : '$mol_theme_dark';
+            }
+        }
+        $$.$mol_theme_auto = $mol_theme_auto;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//auto.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $hyoo_speculant_app extends $.$mol_book2 {
+        user_profile(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
         model() {
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
         }
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_title');
+        }
+        page_tools() {
+            return [
+                this.Source(),
+                this.Lights(),
+                this.Chat()
+            ];
         }
         plugins() {
             return [
@@ -8723,15 +8767,20 @@ var $;
         Page_dashboard() {
             const obj = new this.$.$hyoo_speculant_app_dashboard();
             obj.model = () => this.model();
-            obj.tools = () => [
-                this.Source(),
-                this.Lights(),
-                this.Chat()
-            ];
+            obj.tools = () => this.page_tools();
             return obj;
         }
-        Theme() {
-            const obj = new this.$.$mol_theme_auto();
+        Page_profile() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => this.$.$mol_locale.text('$hyoo_speculant_app_Page_profile_title');
+            obj.tools = () => this.page_tools();
+            obj.body = () => this.profile_buttons();
+            return obj;
+        }
+        Profile_button(id) {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => this.profile_title(id);
+            obj.click = (val) => this.profile_select(id, val);
             return obj;
         }
         Source() {
@@ -8750,7 +8799,25 @@ var $;
             const obj = new this.$.$mol_chat();
             return obj;
         }
+        Theme() {
+            const obj = new this.$.$mol_theme_auto();
+            return obj;
+        }
+        profile_buttons() {
+            return [];
+        }
+        profile_title(id) {
+            return "";
+        }
+        profile_select(id, val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
     }
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "user_profile", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "model", null);
@@ -8759,7 +8826,10 @@ var $;
     ], $hyoo_speculant_app.prototype, "Page_dashboard", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Theme", null);
+    ], $hyoo_speculant_app.prototype, "Page_profile", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app.prototype, "Profile_button", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Source", null);
@@ -8769,6 +8839,12 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Chat", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Theme", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app.prototype, "profile_select", null);
     $.$hyoo_speculant_app = $hyoo_speculant_app;
 })($ || ($ = {}));
 //app.view.tree.js.map
@@ -8779,7 +8855,22 @@ var $;
     var $$;
     (function ($$) {
         const { rem } = $.$mol_style_unit;
-        $.$mol_style_define($$.$hyoo_speculant_app, {});
+        $.$mol_style_define($$.$hyoo_speculant_app, {
+            Page_profile: {
+                flex: {
+                    basis: rem(30),
+                },
+                Body: {
+                    alignItems: 'center',
+                }
+            },
+            Profile_button: {
+                margin: {
+                    bottom: rem(1),
+                },
+                maxWidth: rem(14),
+            }
+        });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //app.view.css.js.map
@@ -8790,13 +8881,37 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+            profile(id) {
+                return this.model().profiles()[id];
+            }
             pages() {
+                if (!this.user_profile()) {
+                    return [this.Page_profile()];
+                }
                 return [
                     this.Page_dashboard(),
                     ...this.chat_pages(),
                 ];
             }
+            profile_buttons() {
+                return Object.keys(this.model().profiles()).map(id => this.Profile_button(id));
+            }
+            profile_title(id) {
+                return this.profile(id).title;
+            }
+            profile_select(id) {
+                this.user_profile(id);
+            }
         }
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "profile", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "profile_buttons", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app.prototype, "profile_title", null);
         $$.$hyoo_speculant_app = $hyoo_speculant_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

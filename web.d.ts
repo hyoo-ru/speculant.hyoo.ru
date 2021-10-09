@@ -2340,6 +2340,7 @@ declare namespace $ {
         currency_name(id: any): string;
         Currency_name(id: any): $mol_view;
         currency_list(): readonly any[];
+        Body_list(): $$.$mol_list;
     }
 }
 
@@ -2364,41 +2365,18 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_plugin extends $mol_view {
-        dom_node(next?: Element): Element;
-        attr_static(): {
-            [key: string]: string | number | boolean;
-        };
-        event(): {
-            [key: string]: (event: Event) => void;
-        };
-        render(): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_theme_auto extends $mol_plugin {
+    class $mol_button_major extends $mol_button_typed {
         attr(): {
             mol_theme: string;
+            disabled: boolean;
+            role: string;
+            tabindex: number;
+            title: string;
         };
-        theme(): string;
     }
 }
 
 declare namespace $ {
-    class $mol_media extends $mol_object2 {
-        static match(query: string): boolean;
-    }
-}
-
-declare namespace $ {
-    function $mol_lights(this: $, next?: boolean): boolean;
-}
-
-declare namespace $.$$ {
-    class $mol_theme_auto extends $.$mol_theme_auto {
-        theme(): "$mol_theme_light" | "$mol_theme_dark";
-    }
 }
 
 declare namespace $ {
@@ -2413,6 +2391,16 @@ declare namespace $ {
         sub(): readonly any[];
         Icon(): $mol_icon_github_circle;
     }
+}
+
+declare namespace $ {
+    class $mol_media extends $mol_object2 {
+        static match(query: string): boolean;
+    }
+}
+
+declare namespace $ {
+    function $mol_lights(this: $, next?: boolean): boolean;
 }
 
 declare namespace $ {
@@ -2543,16 +2531,51 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_plugin extends $mol_view {
+        dom_node(next?: Element): Element;
+        attr_static(): {
+            [key: string]: string | number | boolean;
+        };
+        event(): {
+            [key: string]: (event: Event) => void;
+        };
+        render(): void;
+    }
+}
+
+declare namespace $ {
+    class $mol_theme_auto extends $mol_plugin {
+        attr(): {
+            mol_theme: string;
+        };
+        theme(): string;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_theme_auto extends $.$mol_theme_auto {
+        theme(): "$mol_theme_light" | "$mol_theme_dark";
+    }
+}
+
+declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
+        user_profile(val?: any): string;
         model(): $$.$hyoo_speculant_world;
         title(): string;
+        page_tools(): readonly any[];
         plugins(): readonly any[];
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
-        Theme(): $$.$mol_theme_auto;
+        Page_profile(): $$.$mol_page;
+        Profile_button(id: any): $mol_button_major;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
         chat_pages(): $$.$mol_page[];
         Chat(): $$.$mol_chat;
+        Theme(): $$.$mol_theme_auto;
+        profile_buttons(): readonly any[];
+        profile_title(id: any): string;
+        profile_select(id: any, val?: any): any;
     }
 }
 
@@ -2561,7 +2584,11 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+        profile(id: string): any;
         pages(): ($mol_page | $hyoo_speculant_app_dashboard)[];
+        profile_buttons(): $mol_button_major[];
+        profile_title(id: string): any;
+        profile_select(id: string): void;
     }
 }
 
