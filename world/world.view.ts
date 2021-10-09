@@ -112,7 +112,9 @@ namespace $.$$ {
 			if( Math.random() > .1 ) return prev
 			
 			const template = $mol_stub_select_random( this.news_templates() )
-			const indicator = $mol_stub_select_random( Object.keys( indicators ) )
+			const indicator = $mol_stub_select_random(
+				this.profiles()[ this.profile() ].indicators
+			)
 			
 			return [
 				... prev, {
