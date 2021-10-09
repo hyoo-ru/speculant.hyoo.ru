@@ -20,7 +20,7 @@ namespace $.$$ {
 		}
 
 		pages() {
-
+			// return [ this.Page_final() ]
 			return [
 				... ( this.model().profile() === 'other' ? [ this.Page_profile() ] : [ this.Page_dashboard() ] ) ,
 				... this.chat_pages(),
