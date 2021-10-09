@@ -14,5 +14,10 @@
 		<div mol_view_root="$hyoo_speculant_app"></div>
 		<script src="web.js"></script>
 	</body>
+	
+	<script>
+		window.onerror = function(a,b,c) { alert( a+' '+b+' '+c ) }
+		window.onload = function(){ window.onerror = null }
+	</script>
 
 </html>
