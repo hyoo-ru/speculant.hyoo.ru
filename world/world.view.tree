@@ -1,9 +1,37 @@
 $hyoo_speculant_world $mol_object2
 	
-	profile?next \novice
+	profile?next \other
 	- \
 		\Выбранный на старте пользователем профиль.
-		\Варианты: novice|pro
+	profiles *
+		scholar *
+			title \Школьник
+			indicators /
+				\KBK
+				\BRT
+				\RIK
+				\VBL
+		student *
+			title \Студент
+			indicators /
+				\KBK
+				\BRT
+				\RIK
+				\VBL
+		mature *
+			title \Взрослый
+			indicators /
+				\KBK
+				\BRT
+				\RIK
+				\VBL
+		pensioner *
+			title \Пенсионер
+			indicators /
+				\KBK
+				\BRT
+				\RIK
+				\VBL
 	
 	scoring \care
 	- \
