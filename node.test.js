@@ -8209,6 +8209,9 @@ var $;
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
         }
+        currency_all() {
+            return [];
+        }
         Title() {
             return this.Title_list();
         }
@@ -9594,6 +9597,22 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_row extends $.$mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//row.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//row.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_icon_share extends $.$mol_icon {
         path() {
             return "M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z";
@@ -9674,6 +9693,12 @@ var $;
                 this.Theme()
             ];
         }
+        balance_total() {
+            return this.Page_dashboard().balance_total();
+        }
+        currency_all() {
+            return this.Page_dashboard().currency_all();
+        }
         Page_dashboard() {
             const obj = new this.$.$hyoo_speculant_app_dashboard();
             obj.model = () => this.model();
@@ -9682,7 +9707,7 @@ var $;
         }
         Page_profile() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Спекулянтъ";
+            obj.title = () => "СпекулянтЪ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
                 this.Page_profile_content()
@@ -9695,13 +9720,29 @@ var $;
             obj.click = (val) => this.profile_select(id, val);
             return obj;
         }
+        Portfolio_item(id) {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.portfolio_title(id);
+            obj.content = () => [
+                this.protfolio_have(id)
+            ];
+            return obj;
+        }
+        Balance_total() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.balance_total_title();
+            obj.content = () => [
+                this.balance_total()
+            ];
+            return obj;
+        }
         Page_final() {
             const obj = new this.$.$mol_page();
             obj.title = () => "СпекулянтЪ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
-                this.Portfolio(),
-                this.Conglaturation()
+                this.Final_text(),
+                this.Portfolio()
             ];
             obj.foot = () => [
                 this.Share()
@@ -9775,16 +9816,29 @@ var $;
                 return val;
             return null;
         }
-        Portfolio() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                "Портфель табличкой"
-            ];
+        portfolio_title(id) {
+            return "";
+        }
+        protfolio_have(id) {
+            return "";
+        }
+        balance_total_title() {
+            return this.$.$mol_locale.text('$hyoo_speculant_app_balance_total_title');
+        }
+        final_text() {
+            return "# Игра завершена!\n## За один год ваш капитал увеличился на {balance} единиц\n## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) \n## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)";
+        }
+        Final_text() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.final_text();
             return obj;
         }
-        Conglaturation() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => "# Игра завершена!\n## За один год {увеличили|уменьшили} ваш капитал на {balance} единиц\n## Как насчёт пройти [школу инвестора](https://school.vtb.ru/) и попробовать снова?\n## Или даже воспользоваться [приложением от ВТБ](http://olb.ru/app), чтобы попробовать себя в реальном деле?";
+        protfolio() {
+            return [];
+        }
+        Portfolio() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => this.protfolio();
             return obj;
         }
         share_uri() {
@@ -9809,6 +9863,12 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app.prototype, "Profile_button", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_app.prototype, "Portfolio_item", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Balance_total", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Page_final", null);
@@ -9847,10 +9907,10 @@ var $;
     ], $hyoo_speculant_app.prototype, "profile_select", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Portfolio", null);
+    ], $hyoo_speculant_app.prototype, "Final_text", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Conglaturation", null);
+    ], $hyoo_speculant_app.prototype, "Portfolio", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Share", null);
@@ -9898,11 +9958,16 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+            age(next) {
+                return this.model().age(next);
+            }
             profile(id) {
                 return this.model().profiles()[id];
             }
             select_profile(next) {
                 this.model().profile(next);
+                if (next)
+                    this.age('go');
             }
             profile_dict() {
                 return Object.keys(this.model().profiles()).reduce((dict, id) => {
@@ -9911,16 +9976,54 @@ var $;
                     return dict;
                 }, {});
             }
+            indicator(id) {
+                return this.model().indicators()[id];
+            }
             pages() {
                 return [
-                    ...(this.model().profile() === 'other' ? [this.Page_profile()] : [this.Page_dashboard()]),
+                    ...(this.age() === 'ready' ? [this.Page_profile()] : []),
+                    ...(this.age() === 'go' ? [this.Page_dashboard()] : []),
+                    ...(this.age() === 'finish' ? [this.Page_final()] : []),
                     ...this.chat_pages(),
+                ];
+            }
+            final_text() {
+                return super.final_text().replace('{balance}', String(Number(this.balance_total()) - 1000));
+            }
+            portfolio_title(id) {
+                return this.indicator(id).name;
+            }
+            portfolio_have(id) {
+                return this.indicator(id).have.toString();
+            }
+            portfolio() {
+                return [
+                    this.Balance_total(),
+                    ...this.currency_all().map(id => this.Portfolio_item(id))
                 ];
             }
         }
         __decorate([
             $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "age", null);
+        __decorate([
+            $.$mol_mem
         ], $hyoo_speculant_app.prototype, "profile", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app.prototype, "indicator", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "final_text", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app.prototype, "portfolio_title", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_speculant_app.prototype, "portfolio_have", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "portfolio", null);
         $$.$hyoo_speculant_app = $hyoo_speculant_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

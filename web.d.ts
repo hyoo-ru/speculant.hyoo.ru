@@ -2394,6 +2394,7 @@ declare namespace $ {
     class $hyoo_speculant_app_dashboard extends $mol_page {
         model(): $$.$hyoo_speculant_world;
         title(): string;
+        currency_all(): readonly any[];
         Title(): $mol_view;
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
@@ -2865,6 +2866,14 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_icon_share extends $mol_icon {
         path(): string;
     }
@@ -2895,9 +2904,13 @@ declare namespace $ {
         model(): $$.$hyoo_speculant_world;
         page_tools(): readonly any[];
         plugins(): readonly any[];
+        balance_total(): string;
+        currency_all(): ("KBK" | "INS" | "LKN" | "TTK" | "TLT" | "VBL" | "CHK" | "OGR" | "CSH")[];
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         Page_profile(): $$.$mol_page;
         Profile_button(id: any): $mol_button_major;
+        Portfolio_item(id: any): $mol_labeler;
+        Balance_total(): $mol_labeler;
         Page_final(): $$.$mol_page;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
@@ -2913,8 +2926,13 @@ declare namespace $ {
         Page_profile_content(): $$.$mol_list;
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
-        Portfolio(): $mol_view;
-        Conglaturation(): $$.$mol_text;
+        portfolio_title(id: any): string;
+        protfolio_have(id: any): string;
+        balance_total_title(): string;
+        final_text(): string;
+        Final_text(): $$.$mol_text;
+        protfolio(): readonly any[];
+        Portfolio(): $mol_row;
         share_uri(): string;
         Share(): $$.$mol_button_share;
     }
@@ -2925,10 +2943,16 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+        age(next?: string): string;
         profile(id: string): any;
         select_profile(next?: string): void;
         profile_dict(): {};
+        indicator(id: string): $hyoo_speculant_world_indicator;
         pages(): ($mol_page | $hyoo_speculant_app_dashboard)[];
+        final_text(): string;
+        portfolio_title(id: string): string;
+        portfolio_have(id: string): string;
+        portfolio(): $mol_labeler[];
     }
 }
 
