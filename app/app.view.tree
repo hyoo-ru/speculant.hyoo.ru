@@ -1,5 +1,6 @@
 $hyoo_speculant_app $mol_book2
 	model $hyoo_speculant_world
+	balance_total \
 	page_tools /
 		<= Source $mol_link_source
 			uri \https://github.com/hyoo-ru/speculant.hyoo.ru
