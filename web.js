@@ -8249,6 +8249,7 @@ var $;
                     basis: rem(3),
                 },
                 justifyContent: 'flex-end',
+                wordBreak: 'keep-all',
             },
             Currency_list: {
                 padding: $.$mol_gap.block,
@@ -8336,7 +8337,7 @@ var $;
                 return this.indicator(id).icon;
             }
             date() {
-                return this.model().time().toString('DD Mon YYYY');
+                return this.model().time().toString('DD Mon YY');
             }
         }
         __decorate([
