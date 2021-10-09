@@ -125,5 +125,18 @@ namespace $.$$ {
 			
 		}
 		
+		@ $mol_mem
+		time_end() {
+			return new $mol_time_moment().shift({ year: 1 }).mask( '0000-00-00' )
+		}
+		
+		age( next?: string ): string {
+			if( next ) return next
+			
+			if( this.time().toString() >= this.time_end().toString() ) return 'finish'
+			
+			return $mol_mem_cached( ()=> this.age() ) ?? super.age()
+		}
+		
 	}
 }

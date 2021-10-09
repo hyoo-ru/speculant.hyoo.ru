@@ -1,5 +1,8 @@
 $hyoo_speculant_world $mol_object2
 	
+	time $mol_time_moment
+	time_end $mol_time_moment
+	
 	profile?next \other
 	- \
 		\Выбранный на старте пользователем профиль.
