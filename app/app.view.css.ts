@@ -6,11 +6,21 @@ namespace $.$$ {
 
 		Page_profile: {
 			flex: {
-				basis: rem( 30 ) ,
-			} ,
+				basis: rem(30),
+			},
 			
 			Body: {
 				alignItems: 'center' ,
+			}
+		} ,
+		
+		Page_final: {
+			flex: {
+				basis: rem(30),
+			},
+			
+			Foot: {
+				justifyContent: 'center',
 			}
 		} ,
 		
