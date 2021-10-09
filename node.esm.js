@@ -10786,12 +10786,16 @@ var $;
             news_read(news_item, read) {
                 return read ?? false;
             }
-            unread_count() {
-                const count = this.news_list().reduce((sum, news_item) => {
-                    const read = Number(!this.news_read(news_item));
-                    return sum + read;
-                }, 10);
-                return count;
+            read_count(next) {
+                return next ?? 0;
+            }
+            read() {
+                this.read_count(this.model().news().length);
+            }
+            auto() {
+                $.$mol_fiber_defer(() => {
+                    this.read();
+                });
             }
         }
         __decorate([
@@ -10805,7 +10809,7 @@ var $;
         ], $hyoo_speculant_app_news.prototype, "news_read", null);
         __decorate([
             $.$mol_mem
-        ], $hyoo_speculant_app_news.prototype, "unread_count", null);
+        ], $hyoo_speculant_app_news.prototype, "read_count", null);
         $$.$hyoo_speculant_app_news = $hyoo_speculant_app_news;
         class $hyoo_speculant_app_news_item extends $.$hyoo_speculant_app_news_item {
             current() {
@@ -10820,11 +10824,6 @@ var $;
             news_item_date() {
                 return this.current().moment;
             }
-            read() {
-                this.news_read(true);
-            }
-            auto() {
-            }
         }
         __decorate([
             $.$mol_mem
@@ -10838,9 +10837,6 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app_news_item.prototype, "news_item_date", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app_news_item.prototype, "read", null);
         $$.$hyoo_speculant_app_news_item = $hyoo_speculant_app_news_item;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -10938,8 +10934,8 @@ var $;
             ];
             return obj;
         }
-        unread_count() {
-            return this.Page_news().unread_count();
+        read_count() {
+            return this.Page_news().read_count();
         }
         Page_news() {
             const obj = new this.$.$hyoo_speculant_app_news();
@@ -10953,6 +10949,9 @@ var $;
             const obj = new this.$.$mol_link_source();
             obj.uri = () => "https://github.com/hyoo-ru/speculant.hyoo.ru";
             return obj;
+        }
+        unread_count() {
+            return 0;
         }
         News_unread_count() {
             const obj = new this.$.$mol_speck();
@@ -11058,6 +11057,10 @@ var $;
                     ? [this.News_open_icon()]
                     : [this.News_unread_count(), this.News_open_icon()];
             }
+            unread_count() {
+                this.$.$mol_state_time.now(1000);
+                return this.model().news().length - this.read_count();
+            }
         }
         __decorate([
             $.$mol_mem
@@ -11065,6 +11068,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "news_open_sub", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "unread_count", null);
         $$.$hyoo_speculant_app = $hyoo_speculant_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

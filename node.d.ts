@@ -2929,15 +2929,15 @@ declare namespace $.$$ {
         news_list(): $hyoo_speculant_app_news_item[];
         news_item(item: any): any;
         news_read(news_item: any, read?: boolean): boolean;
-        unread_count(): number;
+        read_count(next?: number): number;
+        read(): void;
+        auto(): void;
     }
     class $hyoo_speculant_app_news_item extends $.$hyoo_speculant_app_news_item {
         current(): any;
         news_item_title(): any;
         news_item_body(): any;
         news_item_date(): any;
-        read(): void;
-        auto(): void;
     }
 }
 
@@ -2978,9 +2978,10 @@ declare namespace $ {
         model(): $$.$hyoo_speculant_world;
         title(): string;
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
-        unread_count(): number;
+        read_count(): number;
         Page_news(): $$.$hyoo_speculant_app_news;
         Source(): $mol_link_source;
+        unread_count(): number;
         News_unread_count(): $mol_speck;
         News_open_icon(): $mol_icon_bell_outline;
         news_open_sub(): readonly any[];
@@ -2998,6 +2999,7 @@ declare namespace $.$$ {
         news(): boolean;
         pages(): ($hyoo_speculant_app_dashboard | $hyoo_speculant_app_news)[];
         news_open_sub(): ($mol_speck | $mol_icon_bell_outline)[];
+        unread_count(): number;
     }
 }
 
