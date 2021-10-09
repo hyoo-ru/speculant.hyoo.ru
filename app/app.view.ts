@@ -24,6 +24,11 @@ namespace $.$$ {
 				return dict
 			} , {} )
 		}
+		
+		@ $mol_mem_key
+		indicator( id : string ) {
+			return this.model().indicators()[ id ] as $hyoo_speculant_world_indicator
+		}
 
 		pages() {
 			return [
@@ -31,6 +36,29 @@ namespace $.$$ {
 				... ( this.age() === 'go' ? [ this.Page_dashboard() ] : []) ,
 				... ( this.age() === 'finish' ? [ this.Page_final() ] : []) ,
 				... this.chat_pages(),
+			]
+		}
+		
+		@ $mol_mem
+		final_text() {
+			return super.final_text().replace( '{balance}' , String( Number(this.balance_total()) - 1000 ))
+		}
+		
+		@ $mol_mem_key
+		portfolio_title( id : string ) {
+			return this.indicator( id ).name
+		}
+		
+		@ $mol_mem_key
+		portfolio_have( id : string ) {
+			return this.indicator( id ).have.toString()
+		}
+		
+		@ $mol_mem
+		portfolio() {
+			return [
+				this.Balance_total() ,
+				... this.currency_all().map( id => this.Portfolio_item( id ) )
 			]
 		}
 		

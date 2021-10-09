@@ -1,6 +1,7 @@
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
 	title @ \Dashboard
+	currency_all /
 	Title <= Title_list $mol_view
 		sub <= title_list /
 			<= Balance_total $mol_labeler

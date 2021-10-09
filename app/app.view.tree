@@ -11,8 +11,10 @@ $hyoo_speculant_app $mol_book2
 	Page_dashboard $hyoo_speculant_app_dashboard
 		model <= model
 		tools <= page_tools
+		balance_total => balance_total
+		currency_all => currency_all
 	Page_profile $mol_page
-		title \Спекулянтъ
+		title \СпекулянтЪ
 		tools <= page_tools
 		body /
 			<= Description $mol_text
@@ -30,18 +32,25 @@ $hyoo_speculant_app $mol_book2
 		title <= profile_title!id \
 		click?val <=> profile_select!id?val null
 	-
+	Portfolio_item!id $mol_labeler
+		title <= portfolio_title!id \
+		content / <= protfolio_have!id \
+	Balance_total $mol_labeler
+		title <= balance_total_title @ \Баланс
+		content / <= balance_total
 	Page_final $mol_page
 		title \СпекулянтЪ
 		tools <= page_tools
-		body /
-			<= Portfolio $mol_view
-				sub / \Портфель табличкой
-			<= Conglaturation $mol_text
-				text \ 
-					\# Игра завершена!
-					\## За один год {увеличили|уменьшили} ваш капитал на {balance} единиц
-					\## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) 
-					\## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)
+		body / <= Final_list $mol_list
+			rows /
+				<= Final_text $mol_text
+					text <= final_text \ 
+						\# Игра завершена!
+						\## За один год ваш капитал увеличился на {balance} единиц
+						\## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) 
+						\## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)
+				<= Portfolio $mol_row
+					sub <= protfolio /
 		foot /
 			<= Share $mol_button_share
 				uri <= share_uri \
