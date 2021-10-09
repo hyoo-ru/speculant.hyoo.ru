@@ -122,6 +122,11 @@ $hyoo_speculant_world $mol_object2
 	news_templates /
 		- \Шаблоны новостей
 		*
+			trend -5
+			text \
+				\# Утечка персональных данных
+				\Хорошо, что в {name} нет на вас досье.
+		*
 			trend -1
 			text \
 				\# Сайт {name} не отвечает
