@@ -181,94 +181,6 @@ $mol_page $mol_view
 		<= Foot $mol_view
 			sub <= foot /$mol_view
 
-$mol_svg $mol_view
-	dom_name \svg
-	dom_name_space \http://www.w3.org/2000/svg
-	font_size 16
-	font_family \
-
-$mol_svg_group $mol_svg
-	dom_name \g
-
-$mol_svg_title $mol_svg
-	dom_name \title
-	sub /
-		<= title
-
-$mol_plot_graph $mol_svg_group
-	series_x /number
-	series_y /number
-	-
-	attr *
-		^
-		mol_plot_graph_type <= type \solid
-	-
-	style *
-		^
-		color <= color \
-	-
-	viewport $mol_vector_2d /
-		<= viewport_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= viewport_y $mol_vector_range /
-			Infinity
-			-Infinity
-	shift /number
-		0
-		0
-	scale /number
-		1
-		1
-	cursor_position $mol_vector_2d /
-		NaN
-		NaN
-	dimensions_pane $mol_vector_2d /
-		<= dimensions_pane_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= dimensions_pane_y $mol_vector_range /
-			Infinity
-			-Infinity
-	dimensions $mol_vector_2d /
-		<= dimensions_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= dimensions_y $mol_vector_range /
-			Infinity
-			-Infinity
-	size_real $mol_vector_2d /
-		0
-		0
-	gap $mol_vector_2d /
-		<= gap_x $mol_vector_range /
-			0
-			0
-		<= gap_y $mol_vector_range /
-			0
-			0
-	indexes /number
-	points /readonly(number)[]
-	front /$mol_svg
-	back /$mol_svg
-	Hint $mol_svg_title
-		title <= hint <= title \
-	hue NaN
-	Sample null
-
-$mol_plot_graph_sample $mol_view
-	attr *
-		^
-		mol_plot_graph_type <= type \solid
-	style *
-		^
-		color <= color \black
-
-$mol_plot_group $mol_plot_graph
-	sub <= graphs_enriched <= graphs /$mol_plot_graph
-	Sample $mol_plot_graph_sample
-		sub <= graph_samples /$mol_view
-
 $mol_speck $mol_view
 	attr *
 		^
@@ -301,6 +213,8 @@ $mol_button $mol_view
 
 $mol_button_typed $mol_button
 
+$mol_row $mol_view
+
 $mol_list $mol_view
 	render_visible_only true
 	render_over 0
@@ -322,319 +236,6 @@ $mol_labeler $mol_list
 			minimal_height 24
 			sub <= content /
 
-$mol_plot_line $mol_plot_graph
-	threshold 1
-	spacing 2
-	color_fill \none
-	dom_name \path
-	attr *
-		^
-		d <= curve \
-	sub /
-		<= Hint
-	-
-	Sample $mol_plot_graph_sample
-		color <= color
-		type <= type
-
-$mol_svg_text $mol_svg
-	dom_name \text
-	pos /
-	attr *
-		^
-		x <= pos_x \
-		y <= pos_y \
-		text-anchor <= align \middle
-	sub /
-		<= text \
-
-$mol_svg_rect $mol_svg
-	dom_name \rect
-	pos /
-	attr *
-		^
-		width <= width \0
-		height <= height \0
-		x <= pos_x \
-		y <= pos_y \
-
-$mol_svg_path $mol_svg
-	dom_name \path
-	attr *
-		^
-		d <= geometry \
-
-
-$mol_svg_text_box $mol_svg_group
-	font_size 16
-	width 0
-	sub /
-		<= Back $mol_svg_rect
-			width <= box_width \0.5rem
-			height <= box_height \1rem
-			pos /
-				<= box_pos_x <= pos_x
-				<= box_pos_y \0
-		<= Text $mol_svg_text
-			pos /
-				<= pos_x \0
-				<= pos_y \100%
-			align <= align \start
-			sub /
-				<= text \
-
-$mol_plot_ruler $mol_plot_graph
-	step 0
-	scale_axis 1
-	scale_step 1
-	shift_axis 1
-	dimensions_axis $mol_vector_range /
-		Infinity
-		-Infinity
-	viewport_axis $mol_vector_range /
-		Infinity
-		-Infinity
-	axis_points /number
-	normalize?val 0
-	precision 1
-	sub /
-		<= Background $mol_svg_rect
-			pos_x <= background_x \0
-			pos_y <= background_y \0
-			width <= background_width \100%
-			height <= background_height \14
-		<= Curve $mol_svg_path
-			geometry <= curve \
-		<= labels_formatted /
-		<= Title $mol_svg_text_box
-			pos_x <= title_pos_x \0
-			pos_y <= title_pos_y \100%
-			align <= title_align \start
-			text <= title
-	Label!index $mol_svg_text
-		pos <= label_pos!index /
-			<= label_pos_x!index \
-			<= label_pos_y!index \
-		text <= label_text!index \
-		align <= label_align \
-
-$mol_plot_ruler_vert $mol_plot_ruler
-	title_align \end
-	label_align \end
-	title_pos_y \14
-	label_pos_x!v <= title_pos_x
-	background_height \100%
-	background_width <= title_pos_x
-
-$mol_plot_ruler_hor $mol_plot_ruler
-	title_align \start
-	label_align \middle
-	title_pos_x \0
-	title_pos_y \100%
-	label_pos_y!v <= title_pos_y
-	background_width \100%
-
-$mol_plot_mark_hor $mol_plot_ruler_hor
-	labels /string
-
-$mol_chart_legend $mol_scroll
-	graphs /$mol_plot_graph
-	graphs_front /$mol_plot_graph
-	sub <= graph_legends /$mol_view
-	-
-	Graph_legend!id $mol_view
-		sub /
-			<= Graph_sample_box!id $mol_view
-				sub /
-					<= Graph_sample!id null
-			<= Graph_title!id $mol_view
-				sub /
-					<= graph_title!id \
-
-$mol_svg_root $mol_svg
-	dom_name \svg
-	attr *
-		^
-		viewBox <= view_box \0 0 100 100
-		preserveAspectRatio <= aspect \xMidYMid
-
-$mol_touch $mol_plugin
-	start_zoom?val 0
-	start_distance?val 0
-	zoom?val 1
-	action_type?val \
-	action_point?val $mol_vector_2d /
-		NaN
-		NaN
-	-
-	start_pan?val /
-		0
-		0
-	pan?val $mol_vector_2d /
-		0
-		0
-	pointer_center $mol_vector_2d /
-		NaN
-		NaN
-	-
-	start_pos?val null
-	swipe_precision 16
-	-
-	swipe_right?val null
-	swipe_bottom?val null
-	swipe_left?val null
-	swipe_top?val null
-	-
-	swipe_from_right?val null
-	swipe_from_bottom?val null
-	swipe_from_left?val null
-	swipe_from_top?val null
-	-
-	swipe_to_right?val null
-	swipe_to_bottom?val null
-	swipe_to_left?val null
-	swipe_to_top?val null
-	-
-	draw?event null
-	-
-	style *
-		^
-		touch-action \none
-		overscroll-behavior \none
-	-
-	event *
-		^
-		pointerdown?event <=> event_start?event null
-		pointermove?event <=> event_move?event null
-		pointerup?event <=> event_end?event null
-		pointerleave?event <=> event_end?event null
-		wheel?event <=> event_wheel?event null
-		contextmenu?event <=> event_menu?event null
-
-$mol_plot_pane $mol_svg_root
-	aspect \none
-	-
-	hue_base?val NaN
-	hue_shift?val 111
-	-
-	gap_hor 48
-	gap_vert 24
-	gap_left <= gap_hor
-	gap_right <= gap_hor
-	gap_top <= gap_vert
-	gap_bottom <= gap_vert
-	gap $mol_vector_2d /
-		<= gap_x $mol_vector_range /
-			<= gap_left
-			<= gap_right
-		<= gap_y $mol_vector_range /
-			<= gap_bottom
-			<= gap_top
-	-
-	shift_limit $mol_vector_2d /
-		<= shift_limit_x $mol_vector_range /
-			0
-			0
-		<= shift_limit_y $mol_vector_range /
-			0
-			0
-	shift_default $mol_vector_2d /
-		0
-		0
-	shift?val $mol_vector_2d /
-		0
-		0
-	scale_limit $mol_vector_2d /
-		<= scale_limit_x $mol_vector_range /
-			0
-			Infinity
-		<= scale_limit_y $mol_vector_range /
-			0
-			-Infinity
-	scale_default $mol_vector_2d /
-		0
-		0
-	scale?val $mol_vector_2d /
-		1
-		-1
-	scale_x?val 1
-	scale_y?val -1
-	size $mol_vector_2d /
-		0
-		0
-	size_real $mol_vector_2d /
-		1
-		1
-	dimensions $mol_vector_2d /
-		<= dimensions_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= dimensions_y $mol_vector_range /
-			Infinity
-			-Infinity
-	dimensions_viewport $mol_vector_2d /
-		<= dimensions_viewport_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= dimensions_viewport_y $mol_vector_range /
-			Infinity
-			-Infinity
-	-
-	sub <= graphs_sorted /$mol_svg
-	graphs_colored <= graphs_positioned <= graphs_visible <= graphs /$mol_plot_graph
-	-
-	plugins /
-		^
-		<= Touch $mol_touch
-			zoom?val <=> zoom?val 1
-			pan?val <=> shift?val
-			pointer_center => cursor_position
-			action_type => action_type
-			action_point => action_point
-			draw?event <=> draw?event null
-	event *
-		^
-		dblclick?event <=> reset?event null
-
-$mol_chart $mol_view
-	gap_hor 48
-	gap_vert 24
-	gap_left <= gap_hor
-	gap_right <= gap_hor
-	gap_bottom <= gap_vert
-	gap_top <= gap_vert
-	graphs /$mol_plot_graph
-	sub /
-		<= Legend $mol_chart_legend
-			graphs <= graphs_colored
-		<= Plot $mol_plot_pane
-			scale_x?val => zoom?val
-			zoom?val <=> zoom?val
-			gap_left <= gap_left
-			gap_right <= gap_right
-			gap_bottom <= gap_bottom
-			gap_top <= gap_top
-			graphs <= graphs
-			graphs_colored => graphs_colored
-			hue_base <= hue_base 140
-			hue_shift <= hue_shift 111
-
-$mol_row $mol_view
-
-$hyoo_speculant_chart_legend $mol_chart_legend
-	Graph_legend!id $mol_row
-		sub <= rows!id /
-			<= Graph_sample_box!id
-			<= Graph_title!id
-			<= Tools!id /
-
-$hyoo_speculant_chart $mol_chart
-	sub /
-		<= Plot
-		<= Legend $hyoo_speculant_chart_legend
-			graphs <= graphs_colored
-			Tools!id <= Legend_tools!id /
-
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
 	title @ \Dashboard
@@ -646,34 +247,25 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= Balance_cash $mol_labeler
 				title <= balance_cash_title \
 				content / <= balance_cash \
-	Linear!id $mol_plot_group
-		title <= linear_title!id \
-		series_y <= linear_series!id /
-		graphs /
-			<= Linear_line!id $mol_plot_line
 	Buy_button!id $mol_button_typed
 		title \+
 		click?val <=> buy!id?val null
 	Sell_button!id $mol_button_typed
 		title \-
 		click?val <=> sell!id?val null
-	Rate!index $mol_view
-		sub / <= rate!index \
-	Balance_currency!index $mol_view
-		sub / <= currency_have!index \
-	body /
-		<= Chart $hyoo_speculant_chart
-			Legend_tools!index <= Buttons!index /
-				<= Rate!index
-				<= Balance_currency!index
-				<= Buy_button!index
-				<= Sell_button!index
-			graphs <= linear_list /
-				<= Vert_ruler $mol_plot_ruler_vert
-					title <= vert_title @ \Values
-				<= Marker_hor $mol_plot_mark_hor
-					title <= marker_hor_title @ \Days
-					labels <= days /
+	Rate!id $mol_view
+		sub / <= rate!id \
+	Balance_currency!id $mol_view
+		sub / <= currency_have!id \
+	Row!id $mol_row
+		sub /
+			<= Currency_name!id $mol_view sub / <= currency_name!id \
+			<= Rate!id
+			<= Balance_currency!id
+			<= Buy_button!id
+			<= Sell_button!id
+	body / <= Currency_list $mol_list
+		rows <= currency_list /
 
 $mol_paragraph $mol_view
 	line_height 24
@@ -751,6 +343,26 @@ $mol_check $mol_button_minor
 			<= Title $mol_view
 				sub /
 					<= title \
+
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
 
 $mol_icon $mol_svg_root
 	view_box \0 0 24 24
