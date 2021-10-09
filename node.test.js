@@ -3156,6 +3156,7 @@ var $;
             return {
                 CSH: {
                     name: "Кэш",
+                    icon: "about:blank",
                     type: "currency",
                     have: 1000,
                     current: 1,
@@ -3165,6 +3166,7 @@ var $;
                 },
                 KBK: {
                     name: "КилоБакс",
+                    icon: "about:blank",
                     type: "currency",
                     have: 0,
                     current: 100,
@@ -3174,6 +3176,7 @@ var $;
                 },
                 TLT: {
                     name: "Телетайп",
+                    icon: "https://api.faviconkit.com/telegram.org/16",
                     type: "bond",
                     have: 0,
                     current: 200,
@@ -3183,6 +3186,7 @@ var $;
                 },
                 CHK: {
                     name: "ЧоКак",
+                    icon: "https://api.faviconkit.com/whatsapp.com/16",
                     type: "bond",
                     have: 0,
                     current: 100,
@@ -3192,6 +3196,7 @@ var $;
                 },
                 LKN: {
                     name: "ЛицеКнига",
+                    icon: "https://api.faviconkit.com/facebook.com/16",
                     type: "share",
                     have: 0,
                     current: 50,
@@ -3201,6 +3206,7 @@ var $;
                 },
                 TTK: {
                     name: "ТукТок",
+                    icon: "https://api.faviconkit.com/tiktok.com/16",
                     type: "share",
                     have: 0,
                     current: 60,
@@ -3210,6 +3216,7 @@ var $;
                 },
                 VBL: {
                     name: "ВБлизи",
+                    icon: "https://api.faviconkit.com/vk.com/16",
                     type: "share",
                     have: 0,
                     current: 30,
@@ -3219,6 +3226,7 @@ var $;
                 },
                 OGR: {
                     name: "Одногруппники",
+                    icon: "https://api.faviconkit.com/ok.ru/16",
                     type: "share",
                     have: 0,
                     current: 20,

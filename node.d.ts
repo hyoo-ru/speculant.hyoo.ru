@@ -892,6 +892,7 @@ declare namespace $ {
         indicators(next?: any): {
             CSH: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -901,6 +902,7 @@ declare namespace $ {
             };
             KBK: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -910,6 +912,7 @@ declare namespace $ {
             };
             TLT: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -919,6 +922,7 @@ declare namespace $ {
             };
             CHK: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -928,6 +932,7 @@ declare namespace $ {
             };
             LKN: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -937,6 +942,7 @@ declare namespace $ {
             };
             TTK: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -946,6 +952,7 @@ declare namespace $ {
             };
             VBL: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -955,6 +962,7 @@ declare namespace $ {
             };
             OGR: {
                 name: string;
+                icon: string;
                 type: string;
                 have: number;
                 current: number;
@@ -1146,6 +1154,7 @@ declare namespace $.$$ {
     type $hyoo_speculant_world_indicator_codes = keyof ReturnType<$.$hyoo_speculant_world['indicators']>;
     type $hyoo_speculant_world_indicator = {
         name: string;
+        icon: string;
         type: string;
         have: number;
         current: number;
