@@ -60,9 +60,9 @@ $hyoo_speculant_world $mol_object2
 			trend 0
 			history /number
 		KBK *
-			name \КилоБакс
+			name \ДалаемФлекс
 			icon \https://api.faviconkit.com/netflix.com/16
-			type \currency
+			type \share
 			have 0
 			current 100
 			diff 0
