@@ -1461,6 +1461,74 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_svg extends $mol_view {
+        dom_name(): string;
+        dom_name_space(): string;
+        font_size(): number;
+        font_family(): string;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_svg extends $.$mol_svg {
+        computed_style(): CSSStyleDeclaration;
+        font_size(): number;
+        font_family(): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_svg_root extends $mol_svg {
+        dom_name(): string;
+        attr(): {
+            viewBox: string;
+            preserveAspectRatio: string;
+        };
+        view_box(): string;
+        aspect(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_svg_path extends $mol_svg {
+        dom_name(): string;
+        attr(): {
+            d: string;
+        };
+        geometry(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon extends $mol_svg_root {
+        view_box(): string;
+        minimal_width(): number;
+        minimal_height(): number;
+        sub(): readonly any[];
+        path(): string;
+        Path(): $mol_svg_path;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_icon_arrow_top_right extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_arrow_bottom_right extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
     class $mol_list extends $mol_view {
         render_visible_only(): boolean;
         render_over(): number;
@@ -1826,62 +1894,6 @@ declare namespace $.$$ {
         sub(): readonly $mol_view_content[];
         label(): readonly any[];
     }
-}
-
-declare namespace $ {
-    class $mol_svg extends $mol_view {
-        dom_name(): string;
-        dom_name_space(): string;
-        font_size(): number;
-        font_family(): string;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_svg extends $.$mol_svg {
-        computed_style(): CSSStyleDeclaration;
-        font_size(): number;
-        font_family(): any;
-    }
-}
-
-declare namespace $ {
-    class $mol_svg_root extends $mol_svg {
-        dom_name(): string;
-        attr(): {
-            viewBox: string;
-            preserveAspectRatio: string;
-        };
-        view_box(): string;
-        aspect(): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_svg_path extends $mol_svg {
-        dom_name(): string;
-        attr(): {
-            d: string;
-        };
-        geometry(): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_icon extends $mol_svg_root {
-        view_box(): string;
-        minimal_width(): number;
-        minimal_height(): number;
-        sub(): readonly any[];
-        path(): string;
-        Path(): $mol_svg_path;
-    }
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -2304,6 +2316,8 @@ declare namespace $ {
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
         Rate(id: any): $mol_view;
+        Icon_currency_up(id: any): $mol_icon_arrow_top_right;
+        Icon_currency_down(id: any): $mol_icon_arrow_bottom_right;
         Balance_currency(id: any): $mol_view;
         Row(id: any): $mol_view;
         Currency_list(): $$.$mol_list;
@@ -2321,6 +2335,7 @@ declare namespace $ {
         buy(id: any, val?: any): any;
         sell(id: any, val?: any): any;
         rate(id: any): string;
+        Currency_diff(id: any): $mol_view;
         currency_have(id: any): string;
         currency_name(id: any): string;
         Currency_name(id: any): $mol_view;
@@ -2347,6 +2362,7 @@ declare namespace $.$$ {
         balance_cash_title(): string;
         balance_cash(): string;
         currency_list(): $mol_view[];
+        Currency_diff(id: string): $mol_icon_arrow_top_right | $mol_icon_arrow_bottom_right;
     }
 }
 
