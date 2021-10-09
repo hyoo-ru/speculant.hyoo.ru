@@ -4118,6 +4118,7 @@ var $;
                     return prev;
                 const template = $.$mol_stub_select_random(this.news_templates());
                 const indicator = $.$mol_stub_select_random(this.profiles()[this.profile()].indicators);
+                indicators[indicator].trend += template.trend;
                 const name = indicators[indicator].name;
                 return [
                     ...prev, {
