@@ -9,29 +9,22 @@ $hyoo_speculant_world $mol_object2
 	profiles *
 		- \Варианты профилей
 		scholar *
-			title \Школьник
-			indicators /
+			title \Учусь
+			indicators /string
 				\KBK
-				\TLT
+				\INS
 				\LKN
 				\TTK
-		student *
-			title \Студент
-			indicators /
+		mature *
+			title \Работаю
+			indicators /string
 				\KBK
 				\TLT
-				\LKN
-				\VBL
-		mature *
-			title \Взрослый
-			indicators /
-				\KBK
-				\CHK
 				\LKN
 				\VBL
 		pensioner *
 			title \Пенсионер
-			indicators /
+			indicators /string
 				\KBK
 				\CHK
 				\LKN
@@ -104,6 +97,15 @@ $hyoo_speculant_world $mol_object2
 			type \share
 			have 0
 			current 60
+			diff 0
+			trend 0
+			history /number
+		INS *
+			name \ИнтерСпам
+			icon \https://api.faviconkit.com/instagram.com/16
+			type \share
+			have 0
+			current 50
 			diff 0
 			trend 0
 			history /number

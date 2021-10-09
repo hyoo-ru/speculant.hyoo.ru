@@ -17,17 +17,23 @@ $hyoo_speculant_app $mol_book2
 		title \СпекулянтЪ
 		tools <= page_tools
 		body /
-			<= Description $mol_text
-				text \Многие думают, что инвестиции - это про сложный анализ графиков и тп, но мы хотим показать, что на самом деле это про чтение новостей и своевременную ребалансировку портфеля. И наша игра помогает понять как те или иные новости влияют на рынок.
-			<= User_name_quest $mol_text
-				text \# Ваше имя:
-			<= User_name $mol_string
-				value?val <=> user_name?val null
-			<= Select_profile $mol_text
-				text \# Кто вы?
-			<= Profile_switch $mol_switch
-				value?val <=> select_profile?val null
-				options <= profile_dict *
+			<= Page_profile_content $mol_list rows /
+				<= Description $mol_text
+					text \
+						\Многие думают, что инвестиции - это про сложный анализ монструозных графиков.
+						\Но мы хотим показать, что на самом деле это **про чтение новостей и своевременную ребалансировку** портфеля.
+						\И наша игра помогает понять, как те или иные новости влияют на рынок.
+						\
+						\В вашем рапоряжении **1 игровой год**, который пролетит за **считанные минуты**.
+						\Ваша задача - **заработать миллион** кэша (это у нас тут валюта такая).
+						\
+						\Но сперва быстрое знакомство..
+				<= User_name $mol_string
+					hint \Имя
+					value?val <=> user_name?val null
+				<= Profile_switch $mol_switch
+					value?val <=> select_profile?val null
+					options <= profile_dict *
 	Profile_button!id $mol_button_major
 		title <= profile_title!id \
 		click?val <=> profile_select!id?val null
@@ -41,16 +47,15 @@ $hyoo_speculant_app $mol_book2
 	Page_final $mol_page
 		title \СпекулянтЪ
 		tools <= page_tools
-		body / <= Final_list $mol_list
-			rows /
-				<= Final_text $mol_text
-					text <= final_text \ 
-						\# Игра завершена!
-						\## За один год ваш капитал увеличился на {balance} единиц
-						\## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) 
-						\## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)
-				<= Portfolio $mol_row
-					sub <= protfolio /
+		body /
+			<= Final_text $mol_text
+				text <= final_text \ 
+					\# Игра завершена!
+					\## За один год ваш капитал увеличился на {balance} единиц
+					\## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) 
+					\## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)
+			<= Portfolio $mol_row
+				sub <= protfolio /
 		foot /
 			<= Share $mol_button_share
 				uri <= share_uri \

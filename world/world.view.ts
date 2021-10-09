@@ -23,7 +23,9 @@ namespace $.$$ {
 	export class $hyoo_speculant_world extends $.$hyoo_speculant_world {
 		
 		@ $mol_mem
-		time( next?: 'next' ): $mol_time_moment {
+		time( next?: $mol_time_moment ): $mol_time_moment {
+			
+			if( next ) return next
 			
 			this.$.$mol_state_time.now( 1000 )
 			
@@ -113,13 +115,15 @@ namespace $.$$ {
 			
 			const template = $mol_stub_select_random( this.news_templates() )
 			const indicator = $mol_stub_select_random(
-				this.profiles()[ this.profile() ].indicators
+				this.profiles()[ this.profile() ].indicators as readonly string[]
 			)
+			
+			const name = indicators[ indicator ].name
 			
 			return [
 				... prev, {
 					moment: moment.toString( 'YYYY-MM-DD' ),
-					text: template.text.replace(  '{name}', indicators[ indicator ].name ),
+					text: template.text.replace( '{name}', name ),
 				},
 			]
 			
