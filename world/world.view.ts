@@ -113,13 +113,15 @@ namespace $.$$ {
 			
 			const template = $mol_stub_select_random( this.news_templates() )
 			const indicator = $mol_stub_select_random(
-				this.profiles()[ this.profile() ].indicators
+				this.profiles()[ this.profile() ].indicators as readonly string[]
 			)
+			
+			const name = indicators[ indicator ].name
 			
 			return [
 				... prev, {
 					moment: moment.toString( 'YYYY-MM-DD' ),
-					text: template.text.replace(  '{name}', indicators[ indicator ].name ),
+					text: template.text.replace( '{name}', name ),
 				},
 			]
 			
