@@ -55,6 +55,24 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem
+		currency_all() {
+			return this.model().profiles()[ this.model().profile() ].indicators as $hyoo_speculant_world_indicator_codes[]
+		}
+
+		@ $mol_mem
+		currency_work() {
+			return this.currency_all().filter( key => key !== 'CSH' ) as $hyoo_speculant_world_indicator_codes[]
+		}
+		balance_total() {
+			const list = this.currency_work().map( id => this.indicator( id ) )
+			const sum = list.reduce( ( sum , cur ) => {
+				return sum + ( cur.current * cur.have )
+			} , 0 )
+			return ( sum + this.indicator( 'CSH' ).have ).toString()
+		}
+		
+
+		@ $mol_mem
 		portfolio() {
 			return [
 				this.Balance_total() ,
