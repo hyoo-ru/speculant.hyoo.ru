@@ -18,12 +18,18 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem
-		unread_count() {
-			const count = this.news_list().reduce( ( sum , news_item ) => {
-				const read = Number( !this.news_read( news_item ) )
-				return sum + read
-			} , 10 )
-			return count
+		read_count( next? : number ) {
+			return next ?? 0
+		}
+		
+		read() {
+			this.read_count( this.model().news().length )
+		}
+		
+		auto() {
+			$mol_fiber_defer( () => {
+				this.read()
+			} )
 		}
 		
 	}
@@ -50,14 +56,6 @@ namespace $.$$ {
 			return this.current().moment
 		}
 		
-		@ $mol_mem
-		read() {
-			this.news_read( true )
-		}
-		
-		auto() {
-			// this.read() // bug
-		}
 	}
 
 }

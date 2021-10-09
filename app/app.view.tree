@@ -10,10 +10,10 @@ $hyoo_speculant_app $mol_book2
 				arg * news \
 				sub <= news_open_sub /
 					<= News_unread_count $mol_speck
-						value <= unread_count
+						value <= unread_count 0
 					<= News_open_icon $mol_icon_bell_outline
 	Page_news $hyoo_speculant_app_news
-		unread_count => unread_count
+		read_count => read_count
 		model <= model
 		tools /
 			<= News_close $mol_link

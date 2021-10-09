@@ -71,7 +71,10 @@ namespace $.$$ {
 		}
 		
 		balance_list() {
-			return this.currency_all().map( id => this.Balance_currency( id ) )
+			return [
+				this.Balance_total() ,
+				... this.currency_all().map( id => this.Balance_currency( id ) ) ,
+			]
 		}
 		
 		balance_total() {

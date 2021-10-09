@@ -15,9 +15,10 @@ $hyoo_speculant_app_dashboard $mol_page
 	Balance_currency!id $mol_labeler
 		title <= currency_name!id \
 		content / <= currency_have!id \
+	Balance_total $mol_labeler
+		title <= balance_total_title @ \Баланс
+		content / <= balance_total \
 	body /
-		<= Balance_total $mol_row
-			sub / <= balance_total \
 		<= Balance $mol_row
 			sub <= balance_list / 
 		<= Chart $hyoo_speculant_chart
