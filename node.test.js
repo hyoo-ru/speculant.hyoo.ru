@@ -4054,6 +4054,8 @@ var $;
     (function ($$) {
         class $hyoo_speculant_world extends $.$hyoo_speculant_world {
             time(next) {
+                if (next)
+                    return next;
                 this.$.$mol_state_time.now(1000);
                 const prev = $.$mol_mem_cached(() => this.time());
                 if (!prev)
@@ -11808,7 +11810,7 @@ var $;
             'timer'($) {
                 const world = new $$.$hyoo_speculant_world;
                 $_1.$mol_assert_equal(world.time().toString(), new $_1.$mol_time_moment().toString('YYYY-MM-DD'));
-                world.time('next');
+                world.time(null);
                 $_1.$mol_assert_unique(world.time().toString(), new $_1.$mol_time_moment().toString('YYYY-MM-DD'));
                 world.destructor();
             },
@@ -11817,7 +11819,7 @@ var $;
                 $_1.$mol_assert_equal(world.indicators().CSH.current, 1);
                 $_1.$mol_assert_equal(world.indicators().KBK.history.length, 1);
                 const kbk = world.indicators().KBK.current;
-                world.time('next');
+                world.time(null);
                 $_1.$mol_assert_equal(world.indicators().CSH.current, 1);
                 $_1.$mol_assert_equal(world.indicators().KBK.history.length, 2);
                 $_1.$mol_assert_equal(world.indicators().KBK.history.slice(-1)[0], world.indicators().KBK.current);

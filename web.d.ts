@@ -1153,7 +1153,7 @@ declare namespace $.$$ {
     type $hyoo_speculant_world_indicators = Record<$hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator>;
     type $hyoo_speculant_world_news = ReturnType<$.$hyoo_speculant_world['news']>;
     class $hyoo_speculant_world extends $.$hyoo_speculant_world {
-        time(next?: 'next'): $mol_time_moment;
+        time(next?: $mol_time_moment): $mol_time_moment;
         indicators(next?: $hyoo_speculant_world_indicators): $hyoo_speculant_world_indicators;
         exchange(code: $hyoo_speculant_world_indicator_codes, diff: number): null;
         news(): $hyoo_speculant_world_news;

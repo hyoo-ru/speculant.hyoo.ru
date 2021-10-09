@@ -3805,6 +3805,8 @@ var $;
     (function ($$) {
         class $hyoo_speculant_world extends $.$hyoo_speculant_world {
             time(next) {
+                if (next)
+                    return next;
                 this.$.$mol_state_time.now(1000);
                 const prev = $.$mol_mem_cached(() => this.time());
                 if (!prev)
