@@ -20,6 +20,12 @@ namespace $.$$ {
 				? [ this.News_open_icon() ]
 				: [ this.News_unread_count() , this.News_open_icon() ]
 		}
+		
+		@ $mol_mem
+		unread_count() {
+			this.$.$mol_state_time.now( 1000 )
+			return this.model().news().length - this.read_count()
+		}
 
 	}
 
