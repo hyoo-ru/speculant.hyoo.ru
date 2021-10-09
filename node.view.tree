@@ -263,13 +263,13 @@ $mol_icon $mol_svg_root
 		<= Path $mol_svg_path
 			geometry <= path \
 
-$mol_icon_arrow_down $mol_icon path \M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z
-
-$mol_icon_arrow_down_bold $mol_icon path \M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z
-
 $mol_icon_arrow_up $mol_icon path \M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z
 
 $mol_icon_arrow_up_bold $mol_icon path \M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z
+
+$mol_icon_arrow_down $mol_icon path \M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z
+
+$mol_icon_arrow_down_bold $mol_icon path \M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z
 
 $mol_list $mol_view
 	render_visible_only true
@@ -585,8 +585,8 @@ $hyoo_speculant_app_dashboard $mol_page
 		sub /
 			<= rate!id \
 			<= Currency_diff!id $mol_view
-	Icon_currency_up!id $mol_icon_arrow_down_bold
-	Icon_currency_down!id $mol_icon_arrow_up_bold
+	Icon_currency_up!id $mol_icon_arrow_up_bold
+	Icon_currency_down!id $mol_icon_arrow_down_bold
 	Balance_currency!id $mol_view
 		sub /
 			<= currency_have!id \

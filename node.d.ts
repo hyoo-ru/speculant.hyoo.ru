@@ -1526,18 +1526,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_icon_arrow_down extends $mol_icon {
-        path(): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_icon_arrow_down_bold extends $mol_icon {
-        path(): string;
-    }
-}
-
-declare namespace $ {
     class $mol_icon_arrow_up extends $mol_icon {
         path(): string;
     }
@@ -1545,6 +1533,18 @@ declare namespace $ {
 
 declare namespace $ {
     class $mol_icon_arrow_up_bold extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_arrow_down extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_arrow_down_bold extends $mol_icon {
         path(): string;
     }
 }
@@ -2358,8 +2358,8 @@ declare namespace $ {
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
         Rate(id: any): $mol_view;
-        Icon_currency_up(id: any): $mol_icon_arrow_down_bold;
-        Icon_currency_down(id: any): $mol_icon_arrow_up_bold;
+        Icon_currency_up(id: any): $mol_icon_arrow_up_bold;
+        Icon_currency_down(id: any): $mol_icon_arrow_down_bold;
         Balance_currency(id: any): $mol_view;
         Row(id: any): $mol_view;
         Currency_list(): $$.$mol_list;
@@ -2406,7 +2406,7 @@ declare namespace $.$$ {
         balance_cash_title(): string;
         balance_cash(): string;
         currency_list(): $mol_view[];
-        Currency_diff(id: string): $mol_icon_arrow_down_bold | $mol_icon_arrow_up_bold;
+        Currency_diff(id: string): $mol_icon_arrow_up_bold | $mol_icon_arrow_down_bold;
         currency_icon_link(id: string): string;
     }
 }

@@ -5248,30 +5248,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_icon_arrow_down extends $.$mol_icon {
-        path() {
-            return "M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z";
-        }
-    }
-    $.$mol_icon_arrow_down = $mol_icon_arrow_down;
-})($ || ($ = {}));
-//down.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_icon_arrow_down_bold extends $.$mol_icon {
-        path() {
-            return "M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z";
-        }
-    }
-    $.$mol_icon_arrow_down_bold = $mol_icon_arrow_down_bold;
-})($ || ($ = {}));
-//bold.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_icon_arrow_up extends $.$mol_icon {
         path() {
             return "M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z";
@@ -5290,6 +5266,30 @@ var $;
         }
     }
     $.$mol_icon_arrow_up_bold = $mol_icon_arrow_up_bold;
+})($ || ($ = {}));
+//bold.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_arrow_down extends $.$mol_icon {
+        path() {
+            return "M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z";
+        }
+    }
+    $.$mol_icon_arrow_down = $mol_icon_arrow_down;
+})($ || ($ = {}));
+//down.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_arrow_down_bold extends $.$mol_icon {
+        path() {
+            return "M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z";
+        }
+    }
+    $.$mol_icon_arrow_down_bold = $mol_icon_arrow_down_bold;
 })($ || ($ = {}));
 //bold.view.tree.js.map
 ;
@@ -8167,11 +8167,11 @@ var $;
             return obj;
         }
         Icon_currency_up(id) {
-            const obj = new this.$.$mol_icon_arrow_down_bold();
+            const obj = new this.$.$mol_icon_arrow_up_bold();
             return obj;
         }
         Icon_currency_down(id) {
-            const obj = new this.$.$mol_icon_arrow_up_bold();
+            const obj = new this.$.$mol_icon_arrow_down_bold();
             return obj;
         }
         Balance_currency(id) {
