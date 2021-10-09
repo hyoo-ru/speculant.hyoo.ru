@@ -2882,13 +2882,12 @@ declare namespace $ {
         Chat(): $$.$mol_chat;
         Theme(): $$.$mol_theme_auto;
         Description(): $$.$mol_text;
-        User_name_quest(): $$.$mol_text;
         user_name(val?: any): any;
         User_name(): $$.$mol_string;
-        Select_profile(): $$.$mol_text;
         select_profile(val?: any): any;
         profile_dict(): {};
         Profile_switch(): $$.$mol_switch;
+        Page_profile_content(): $$.$mol_list;
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
         Portfolio(): $mol_view;

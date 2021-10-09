@@ -4152,6 +4152,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_world.prototype, "time_end", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_world.prototype, "age", null);
         $$.$hyoo_speculant_world = $hyoo_speculant_world;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -9687,11 +9690,7 @@ var $;
             obj.title = () => "Спекулянтъ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
-                this.Description(),
-                this.User_name_quest(),
-                this.User_name(),
-                this.Select_profile(),
-                this.Profile_switch()
+                this.Page_profile_content()
             ];
             return obj;
         }
@@ -9736,12 +9735,7 @@ var $;
         }
         Description() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Многие думают, что инвестиции - это про сложный анализ графиков и тп, но мы хотим показать, что на самом деле это про чтение новостей и своевременную ребалансировку портфеля. И наша игра помогает понять как те или иные новости влияют на рынок.";
-            return obj;
-        }
-        User_name_quest() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => "# Ваше имя:";
+            obj.text = () => "Многие думают, что инвестиции - это про сложный анализ монструозных графиков.\nНо мы хотим показать, что на самом деле это **про чтение новостей и своевременную ребалансировку** портфеля.\nИ наша игра помогает понять, как те или иные новости влияют на рынок.\n\nВ вашем рапоряжении **1 игровой год**, который пролетит за **считанные минуты**.\nВаша задача - **заработать миллион** кэша (это у нас тут валюта такая).\n\nНо сперва быстрое знакомство..";
             return obj;
         }
         user_name(val) {
@@ -9751,12 +9745,8 @@ var $;
         }
         User_name() {
             const obj = new this.$.$mol_string();
+            obj.hint = () => "Имя";
             obj.value = (val) => this.user_name(val);
-            return obj;
-        }
-        Select_profile() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => "# Кто вы?";
             return obj;
         }
         select_profile(val) {
@@ -9771,6 +9761,15 @@ var $;
             const obj = new this.$.$mol_switch();
             obj.value = (val) => this.select_profile(val);
             obj.options = () => this.profile_dict();
+            return obj;
+        }
+        Page_profile_content() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Description(),
+                this.User_name(),
+                this.Profile_switch()
+            ];
             return obj;
         }
         profile_title(id) {
@@ -9835,22 +9834,19 @@ var $;
     ], $hyoo_speculant_app.prototype, "Description", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "User_name_quest", null);
-    __decorate([
-        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "user_name", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "User_name", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Select_profile", null);
-    __decorate([
-        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "select_profile", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Profile_switch", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Page_profile_content", null);
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app.prototype, "profile_select", null);
@@ -9878,9 +9874,9 @@ var $;
                 flex: {
                     basis: rem(30),
                 },
-                Body: {
-                    alignItems: 'center',
-                }
+            },
+            Page_profile_content: {
+                padding: $.$mol_gap.block,
             },
             Page_final: {
                 flex: {
