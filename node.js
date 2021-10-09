@@ -3993,7 +3993,7 @@ var $;
             news() {
                 const moment = this.time();
                 const prev = $.$mol_mem_cached(() => this.news()) ?? super.news();
-                if (Math.random() * (10 + this.indicators().CSH.have) > 1000)
+                if (Math.random() * (10 + this.indicators().CSH.have) > 10)
                     return prev;
                 return [
                     ...prev, {
