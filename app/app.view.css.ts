@@ -4,6 +4,20 @@ namespace $.$$ {
 
 	$mol_style_define( $hyoo_speculant_app , {
 
+		Page_profile: {
+			flex: {
+				basis: rem( 30 ) ,
+			} ,
+			justifyContent: 'center' ,
+		} ,
+		
+		Profile_button: {
+			margin: {
+				bottom: rem( 1 ) ,
+			} ,
+			maxWidth: rem( 14 ) ,
+		}
+		
 	} )
 
 }
