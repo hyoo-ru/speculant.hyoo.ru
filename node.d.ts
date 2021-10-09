@@ -2150,6 +2150,7 @@ declare namespace $ {
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
         Balance_currency(id: any): $mol_labeler;
+        Balance_total(): $mol_labeler;
         body(): readonly any[];
         linear_title(id: any): string;
         linear_series(id: any): readonly any[];
@@ -2158,8 +2159,8 @@ declare namespace $ {
         sell(id: any, val?: any): any;
         currency_name(id: any): string;
         currency_have(id: any): string;
+        balance_total_title(): string;
         balance_total(): string;
-        Balance_total(): $mol_row;
         balance_list(): readonly any[];
         Balance(): $mol_row;
         Buttons(index: any): $mol_view;

@@ -8038,9 +8038,16 @@ var $;
             ];
             return obj;
         }
+        Balance_total() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.balance_total_title();
+            obj.content = () => [
+                this.balance_total()
+            ];
+            return obj;
+        }
         body() {
             return [
-                this.Balance_total(),
                 this.Balance(),
                 this.Chart()
             ];
@@ -8071,15 +8078,11 @@ var $;
         currency_have(id) {
             return "";
         }
+        balance_total_title() {
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_balance_total_title');
+        }
         balance_total() {
             return "";
-        }
-        Balance_total() {
-            const obj = new this.$.$mol_row();
-            obj.sub = () => [
-                this.balance_total()
-            ];
-            return obj;
         }
         balance_list() {
             return [];
@@ -8146,6 +8149,9 @@ var $;
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Balance_currency", null);
     __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Balance_total", null);
+    __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Linear_line", null);
     __decorate([
@@ -8154,9 +8160,6 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app_dashboard.prototype, "Balance_total", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app_dashboard.prototype, "Balance", null);
@@ -8183,10 +8186,7 @@ var $;
     (function ($$) {
         $.$mol_style_define($$.$hyoo_speculant_app_dashboard, {
             Balance_total: {
-                fontSize: '2rem',
-                justifyContent: 'center',
-                padding: $.$mol_gap.block,
-                paddingBottom: '0px',
+                fontWeight: 'bold',
             }
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -8243,7 +8243,10 @@ var $;
                 return this.indicator(id).have.toFixed(2);
             }
             balance_list() {
-                return this.currency_all().map(id => this.Balance_currency(id));
+                return [
+                    this.Balance_total(),
+                    ...this.currency_all().map(id => this.Balance_currency(id)),
+                ];
             }
             balance_total() {
                 const list = this.currency_chart().map(id => this.indicator(id));
