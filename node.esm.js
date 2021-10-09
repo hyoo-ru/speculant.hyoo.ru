@@ -5256,26 +5256,50 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_icon_arrow_top_right extends $.$mol_icon {
+    class $mol_icon_arrow_down extends $.$mol_icon {
         path() {
-            return "M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z";
+            return "M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z";
         }
     }
-    $.$mol_icon_arrow_top_right = $mol_icon_arrow_top_right;
+    $.$mol_icon_arrow_down = $mol_icon_arrow_down;
 })($ || ($ = {}));
-//right.view.tree.js.map
+//down.view.tree.js.map
 ;
 "use strict";
 var $;
 (function ($) {
-    class $mol_icon_arrow_bottom_right extends $.$mol_icon {
+    class $mol_icon_arrow_down_bold extends $.$mol_icon {
         path() {
-            return "M5,6.41L6.41,5L17,15.59V9H19V19H9V17H15.59L5,6.41Z";
+            return "M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z";
         }
     }
-    $.$mol_icon_arrow_bottom_right = $mol_icon_arrow_bottom_right;
+    $.$mol_icon_arrow_down_bold = $mol_icon_arrow_down_bold;
 })($ || ($ = {}));
-//right.view.tree.js.map
+//bold.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_arrow_up extends $.$mol_icon {
+        path() {
+            return "M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z";
+        }
+    }
+    $.$mol_icon_arrow_up = $mol_icon_arrow_up;
+})($ || ($ = {}));
+//up.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_arrow_up_bold extends $.$mol_icon {
+        path() {
+            return "M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z";
+        }
+    }
+    $.$mol_icon_arrow_up_bold = $mol_icon_arrow_up_bold;
+})($ || ($ = {}));
+//bold.view.tree.js.map
 ;
 "use strict";
 var $;
@@ -8083,11 +8107,11 @@ var $;
             return obj;
         }
         Icon_currency_up(id) {
-            const obj = new this.$.$mol_icon_arrow_top_right();
+            const obj = new this.$.$mol_icon_arrow_down_bold();
             return obj;
         }
         Icon_currency_down(id) {
-            const obj = new this.$.$mol_icon_arrow_bottom_right();
+            const obj = new this.$.$mol_icon_arrow_up_bold();
             return obj;
         }
         Balance_currency(id) {
