@@ -3104,206 +3104,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $hyoo_speculant_world extends $.$mol_object2 {
-        profile(next) {
-            if (next !== undefined)
-                return next;
-            return "other";
-        }
-        profiles() {
-            return {
-                scholar: {
-                    title: "Школьник",
-                    indicators: [
-                        "KBK",
-                        "TLT",
-                        "LKN",
-                        "TTK"
-                    ]
-                },
-                student: {
-                    title: "Студент",
-                    indicators: [
-                        "KBK",
-                        "TLT",
-                        "LKN",
-                        "VBL"
-                    ]
-                },
-                mature: {
-                    title: "Взрослый",
-                    indicators: [
-                        "KBK",
-                        "CHK",
-                        "LKN",
-                        "VBL"
-                    ]
-                },
-                pensioner: {
-                    title: "Пенсионер",
-                    indicators: [
-                        "KBK",
-                        "CHK",
-                        "LKN",
-                        "OGR"
-                    ]
-                }
-            };
-        }
-        scoring() {
-            return "care";
-        }
-        exchange(code, diff) {
-            if (diff !== undefined)
-                return diff;
-            return null;
-        }
-        indicators(next) {
-            if (next !== undefined)
-                return next;
-            return {
-                CSH: {
-                    name: "Кэш",
-                    icon: "about:blank",
-                    type: "currency",
-                    have: 1000,
-                    current: 1,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                KBK: {
-                    name: "КилоБакс",
-                    icon: "https://api.faviconkit.com/netflix.com/16",
-                    type: "currency",
-                    have: 0,
-                    current: 100,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                TLT: {
-                    name: "Телетайп",
-                    icon: "https://api.faviconkit.com/telegram.org/16",
-                    type: "bond",
-                    have: 0,
-                    current: 200,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                CHK: {
-                    name: "ЧоКак",
-                    icon: "https://api.faviconkit.com/whatsapp.com/16",
-                    type: "bond",
-                    have: 0,
-                    current: 100,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                LKN: {
-                    name: "ЛицеКнига",
-                    icon: "https://api.faviconkit.com/facebook.com/16",
-                    type: "share",
-                    have: 0,
-                    current: 50,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                TTK: {
-                    name: "ТукТок",
-                    icon: "https://api.faviconkit.com/tiktok.com/16",
-                    type: "share",
-                    have: 0,
-                    current: 60,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                VBL: {
-                    name: "ВБлизи",
-                    icon: "https://api.faviconkit.com/vk.com/16",
-                    type: "share",
-                    have: 0,
-                    current: 30,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                },
-                OGR: {
-                    name: "Однокашники",
-                    icon: "https://api.faviconkit.com/ok.ru/16",
-                    type: "share",
-                    have: 0,
-                    current: 20,
-                    diff: 0,
-                    trend: 0,
-                    history: []
-                }
-            };
-        }
-        entropy() {
-            return {
-                bond: 1,
-                currency: 5,
-                share: 10
-            };
-        }
-        news() {
-            return [
-                {
-                    text: "*Новый профи вышел на рынок*\nВсе спекулянты замерли в ожидании.",
-                    moment: ""
-                }
-            ];
-        }
-        news_templates() {
-            return [
-                {
-                    trend: -5,
-                    text: "*Утечка персональных данных*\nХорошо, что в **{name}** нет на вас досье."
-                },
-                {
-                    trend: -1,
-                    text: "Сайт **{name}** не отвечает\nПроизводительность труда выросла в два раза."
-                },
-                {
-                    trend: -1,
-                    text: "*РосЮсбНаблюд заблокировал* **{name}**\nВаш любимый сайт теперь открывается через раз."
-                },
-                {
-                    trend: 0,
-                    text: "*Московия вступила в ЗНАТО*\nИнтернет группа Ананимус взяла ответственность на себя."
-                },
-                {
-                    trend: 5,
-                    text: "*Айрон Маск твитнул что-то про* **{name}**\nБиржы еле справляются с начавшимся ажиотажем."
-                },
-                {
-                    trend: 1,
-                    text: "*Новый отчёт финансового аналитика*\nНичего интересного про **{name}** в нём нет."
-                }
-            ];
-        }
-    }
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_world.prototype, "profile", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_world.prototype, "exchange", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_world.prototype, "indicators", null);
-    $.$hyoo_speculant_world = $hyoo_speculant_world;
-})($ || ($ = {}));
-//world.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_time_base {
         static patterns = {};
         static formatter(pattern) {
@@ -3852,6 +3652,228 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $hyoo_speculant_world extends $.$mol_object2 {
+        time() {
+            const obj = new this.$.$mol_time_moment();
+            return obj;
+        }
+        time_end() {
+            const obj = new this.$.$mol_time_moment();
+            return obj;
+        }
+        profile(next) {
+            if (next !== undefined)
+                return next;
+            return "other";
+        }
+        profiles() {
+            return {
+                scholar: {
+                    title: "Школьник",
+                    indicators: [
+                        "KBK",
+                        "TLT",
+                        "LKN",
+                        "TTK"
+                    ]
+                },
+                student: {
+                    title: "Студент",
+                    indicators: [
+                        "KBK",
+                        "TLT",
+                        "LKN",
+                        "VBL"
+                    ]
+                },
+                mature: {
+                    title: "Взрослый",
+                    indicators: [
+                        "KBK",
+                        "CHK",
+                        "LKN",
+                        "VBL"
+                    ]
+                },
+                pensioner: {
+                    title: "Пенсионер",
+                    indicators: [
+                        "KBK",
+                        "CHK",
+                        "LKN",
+                        "OGR"
+                    ]
+                }
+            };
+        }
+        scoring() {
+            return "care";
+        }
+        exchange(code, diff) {
+            if (diff !== undefined)
+                return diff;
+            return null;
+        }
+        indicators(next) {
+            if (next !== undefined)
+                return next;
+            return {
+                CSH: {
+                    name: "Кэш",
+                    icon: "about:blank",
+                    type: "currency",
+                    have: 1000,
+                    current: 1,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                KBK: {
+                    name: "ДалаемФлекс",
+                    icon: "https://api.faviconkit.com/netflix.com/16",
+                    type: "share",
+                    have: 0,
+                    current: 100,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                TLT: {
+                    name: "Телетайп",
+                    icon: "https://api.faviconkit.com/telegram.org/16",
+                    type: "bond",
+                    have: 0,
+                    current: 200,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                CHK: {
+                    name: "ЧоКак",
+                    icon: "https://api.faviconkit.com/whatsapp.com/16",
+                    type: "bond",
+                    have: 0,
+                    current: 100,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                LKN: {
+                    name: "ЛицеКнига",
+                    icon: "https://api.faviconkit.com/facebook.com/16",
+                    type: "share",
+                    have: 0,
+                    current: 50,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                TTK: {
+                    name: "ТукТок",
+                    icon: "https://api.faviconkit.com/tiktok.com/16",
+                    type: "share",
+                    have: 0,
+                    current: 60,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                VBL: {
+                    name: "ВБлизи",
+                    icon: "https://api.faviconkit.com/vk.com/16",
+                    type: "share",
+                    have: 0,
+                    current: 30,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                OGR: {
+                    name: "Однокашники",
+                    icon: "https://api.faviconkit.com/ok.ru/16",
+                    type: "share",
+                    have: 0,
+                    current: 20,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                }
+            };
+        }
+        entropy() {
+            return {
+                bond: 1,
+                currency: 5,
+                share: 10
+            };
+        }
+        age(next) {
+            if (next !== undefined)
+                return next;
+            return "ready";
+        }
+        news() {
+            return [
+                {
+                    text: "*Новый профи вышел на рынок*\nВсе спекулянты замерли в ожидании.",
+                    moment: ""
+                }
+            ];
+        }
+        news_templates() {
+            return [
+                {
+                    trend: -5,
+                    text: "*Утечка персональных данных*\nХорошо, что в **{name}** нет на вас досье."
+                },
+                {
+                    trend: -1,
+                    text: "Сайт **{name}** не отвечает\nПроизводительность труда выросла в два раза."
+                },
+                {
+                    trend: -1,
+                    text: "*РосЮсбНаблюд заблокировал* **{name}**\nВаш любимый сайт теперь открывается через раз."
+                },
+                {
+                    trend: 0,
+                    text: "*Московия вступила в ЗНАТО*\nИнтернет группа Ананимус взяла ответственность на себя."
+                },
+                {
+                    trend: 5,
+                    text: "*Айрон Маск твитнул что-то про* **{name}**\nБиржы еле справляются с начавшимся ажиотажем."
+                },
+                {
+                    trend: 1,
+                    text: "*Новый отчёт финансового аналитика*\nНичего интересного про **{name}** в нём нет."
+                }
+            ];
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_world.prototype, "time", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_world.prototype, "time_end", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_world.prototype, "profile", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_speculant_world.prototype, "exchange", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_world.prototype, "indicators", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_world.prototype, "age", null);
+    $.$hyoo_speculant_world = $hyoo_speculant_world;
+})($ || ($ = {}));
+//world.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_after_work extends $.$mol_after_timeout {
     }
     $.$mol_after_work = $mol_after_work;
@@ -4098,13 +4120,24 @@ var $;
                 if (Math.random() > .1)
                     return prev;
                 const template = $.$mol_stub_select_random(this.news_templates());
-                const indicator = $.$mol_stub_select_random(Object.keys(indicators));
+                const indicator = $.$mol_stub_select_random(this.profiles()[this.profile()].indicators);
+                const name = indicators[indicator].name;
                 return [
                     ...prev, {
                         moment: moment.toString('YYYY-MM-DD'),
-                        text: template.text.replace('{name}', indicators[indicator].name),
+                        text: template.text.replace('{name}', name),
                     },
                 ];
+            }
+            time_end() {
+                return new $.$mol_time_moment().shift({ year: 1 }).mask('0000-00-00');
+            }
+            age(next) {
+                if (next)
+                    return next;
+                if (this.time().toString() >= this.time_end().toString())
+                    return 'finish';
+                return $.$mol_mem_cached(() => this.age()) ?? super.age();
             }
         }
         __decorate([
@@ -4116,6 +4149,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_world.prototype, "news", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_world.prototype, "time_end", null);
         $$.$hyoo_speculant_world = $hyoo_speculant_world;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -9560,6 +9596,69 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_share extends $.$mol_icon {
+        path() {
+            return "M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z";
+        }
+    }
+    $.$mol_icon_share = $mol_icon_share;
+})($ || ($ = {}));
+//share.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_share_variant extends $.$mol_icon {
+        path() {
+            return "M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8C19.66,8 21,6.66 21,5C21,3.34 19.66,2 18,2C16.34,2 15,3.34 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9C4.34,9 3,10.34 3,12C3,13.66 4.34,15 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19C20.92,17.39 19.61,16.08 18,16.08Z";
+        }
+    }
+    $.$mol_icon_share_variant = $mol_icon_share_variant;
+})($ || ($ = {}));
+//variant.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_button_share extends $.$mol_button_minor {
+        uri() {
+            return "";
+        }
+        sub() {
+            return [
+                this.Icon()
+            ];
+        }
+        Icon() {
+            const obj = new this.$.$mol_icon_share_variant();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_button_share.prototype, "Icon", null);
+    $.$mol_button_share = $mol_button_share;
+})($ || ($ = {}));
+//share.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_button_share extends $.$mol_button_share {
+            click() {
+                this.$.$mol_dom_context.navigator.share({ url: this.uri() });
+            }
+        }
+        $$.$mol_button_share = $mol_button_share;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//share.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $hyoo_speculant_app extends $.$mol_book2 {
         model() {
             const obj = new this.$.$hyoo_speculant_world();
@@ -9600,6 +9699,19 @@ var $;
             const obj = new this.$.$mol_button_major();
             obj.title = () => this.profile_title(id);
             obj.click = (val) => this.profile_select(id, val);
+            return obj;
+        }
+        Page_final() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "СпекулянтЪ";
+            obj.tools = () => this.page_tools();
+            obj.body = () => [
+                this.Portfolio(),
+                this.Conglaturation()
+            ];
+            obj.foot = () => [
+                this.Share()
+            ];
             return obj;
         }
         Source() {
@@ -9669,6 +9781,27 @@ var $;
                 return val;
             return null;
         }
+        Portfolio() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                "Портфель табличкой"
+            ];
+            return obj;
+        }
+        Conglaturation() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "# Игра завершена!\n## За один год {увеличили|уменьшили} ваш капитал на {balance} единиц\n## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) \n## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)";
+            return obj;
+        }
+        share_uri() {
+            return "";
+        }
+        Share() {
+            const obj = new this.$.$mol_button_share();
+            obj.uri = () => this.share_uri();
+            obj.title = () => "Поделиться";
+            return obj;
+        }
     }
     __decorate([
         $.$mol_mem
@@ -9682,6 +9815,9 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app.prototype, "Profile_button", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Page_final", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Source", null);
@@ -9718,6 +9854,15 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app.prototype, "profile_select", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Portfolio", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Conglaturation", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Share", null);
     $.$hyoo_speculant_app = $hyoo_speculant_app;
 })($ || ($ = {}));
 //app.view.tree.js.map
@@ -9735,6 +9880,14 @@ var $;
                 },
                 Body: {
                     alignItems: 'center',
+                }
+            },
+            Page_final: {
+                flex: {
+                    basis: rem(30),
+                },
+                Foot: {
+                    justifyContent: 'center',
                 }
             },
             Profile_switch: {

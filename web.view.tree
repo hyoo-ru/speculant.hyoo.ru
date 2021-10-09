@@ -17,6 +17,9 @@ $mol_book2 $mol_scroll
 
 $hyoo_speculant_world $mol_object2
 	
+	time $mol_time_moment
+	time_end $mol_time_moment
+	
 	profile?next \other
 	- \
 		\Выбранный на старте пользователем профиль.
@@ -24,28 +27,28 @@ $hyoo_speculant_world $mol_object2
 		- \Варианты профилей
 		scholar *
 			title \Школьник
-			indicators /
+			indicators /string
 				\KBK
 				\TLT
 				\LKN
 				\TTK
 		student *
 			title \Студент
-			indicators /
+			indicators /string
 				\KBK
 				\TLT
 				\LKN
 				\VBL
 		mature *
 			title \Взрослый
-			indicators /
+			indicators /string
 				\KBK
 				\CHK
 				\LKN
 				\VBL
 		pensioner *
 			title \Пенсионер
-			indicators /
+			indicators /string
 				\KBK
 				\CHK
 				\LKN
@@ -77,9 +80,9 @@ $hyoo_speculant_world $mol_object2
 			trend 0
 			history /number
 		KBK *
-			name \КилоБакс
+			name \ДалаемФлекс
 			icon \https://api.faviconkit.com/netflix.com/16
-			type \currency
+			type \share
 			have 0
 			current 100
 			diff 0
@@ -146,6 +149,9 @@ $hyoo_speculant_world $mol_object2
 		currency 5
 		share 10
 	
+	age?next \ready
+		- \Этап мира: ready|go|finish
+	
 	news /
 		- \Новости в мире, влияют на курсы.
 		*
@@ -153,6 +159,7 @@ $hyoo_speculant_world $mol_object2
 				\*Новый профи вышел на рынок*
 				\Все спекулянты замерли в ожидании.
 			moment \
+	
 	news_templates /
 		- \Шаблоны новостей
 		*
@@ -738,6 +745,15 @@ $mol_switch $mol_view
 	keys /string
 	sub <= items /$mol_check
 
+$mol_icon_share $mol_icon path \M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z
+
+$mol_icon_share_variant $mol_icon path \M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8C19.66,8 21,6.66 21,5C21,3.34 19.66,2 18,2C16.34,2 15,3.34 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9C4.34,9 3,10.34 3,12C3,13.66 4.34,15 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19C20.92,17.39 19.61,16.08 18,16.08Z
+
+$mol_button_share $mol_button_minor
+	uri \
+	sub /
+		<= Icon $mol_icon_share_variant
+
 $hyoo_speculant_app $mol_book2
 	model $hyoo_speculant_world
 	page_tools /
@@ -769,3 +785,20 @@ $hyoo_speculant_app $mol_book2
 	Profile_button!id $mol_button_major
 		title <= profile_title!id \
 		click?val <=> profile_select!id?val null
+	-
+	Page_final $mol_page
+		title \СпекулянтЪ
+		tools <= page_tools
+		body /
+			<= Portfolio $mol_view
+				sub / \Портфель табличкой
+			<= Conglaturation $mol_text
+				text \ 
+					\# Игра завершена!
+					\## За один год {увеличили|уменьшили} ваш капитал на {balance} единиц
+					\## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) 
+					\## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)
+		foot /
+			<= Share $mol_button_share
+				uri <= share_uri \
+				title \Поделиться

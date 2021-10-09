@@ -867,121 +867,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $hyoo_speculant_world extends $mol_object2 {
-        profile(next?: any): string;
-        profiles(): {
-            scholar: {
-                title: string;
-                indicators: readonly any[];
-            };
-            student: {
-                title: string;
-                indicators: readonly any[];
-            };
-            mature: {
-                title: string;
-                indicators: readonly any[];
-            };
-            pensioner: {
-                title: string;
-                indicators: readonly any[];
-            };
-        };
-        scoring(): string;
-        exchange(code: any, diff?: any): any;
-        indicators(next?: any): {
-            CSH: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            KBK: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            TLT: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            CHK: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            LKN: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            TTK: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            VBL: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-            OGR: {
-                name: string;
-                icon: string;
-                type: string;
-                have: number;
-                current: number;
-                diff: number;
-                trend: number;
-                history: readonly number[];
-            };
-        };
-        entropy(): {
-            bond: number;
-            currency: number;
-            share: number;
-        };
-        news(): readonly any[];
-        news_templates(): readonly any[];
-    }
-}
-
-declare namespace $ {
     class $mol_time_base {
         static patterns: Record<string, (arg: any) => string>;
         static formatter(pattern: string): (arg: any) => string;
@@ -1098,6 +983,124 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $hyoo_speculant_world extends $mol_object2 {
+        time(): $mol_time_moment;
+        time_end(): $mol_time_moment;
+        profile(next?: any): string;
+        profiles(): {
+            scholar: {
+                title: string;
+                indicators: readonly string[];
+            };
+            student: {
+                title: string;
+                indicators: readonly string[];
+            };
+            mature: {
+                title: string;
+                indicators: readonly string[];
+            };
+            pensioner: {
+                title: string;
+                indicators: readonly string[];
+            };
+        };
+        scoring(): string;
+        exchange(code: any, diff?: any): any;
+        indicators(next?: any): {
+            CSH: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            KBK: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            TLT: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            CHK: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            LKN: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            TTK: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            VBL: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            OGR: {
+                name: string;
+                icon: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+        };
+        entropy(): {
+            bond: number;
+            currency: number;
+            share: number;
+        };
+        age(next?: any): string;
+        news(): readonly any[];
+        news_templates(): readonly any[];
+    }
+}
+
+declare namespace $ {
     class $mol_after_work extends $mol_after_timeout {
     }
 }
@@ -1169,6 +1172,8 @@ declare namespace $.$$ {
         indicators(next?: $hyoo_speculant_world_indicators): $hyoo_speculant_world_indicators;
         exchange(code: $hyoo_speculant_world_indicator_codes, diff: number): null;
         news(): $hyoo_speculant_world_news;
+        time_end(): $mol_time_moment;
+        age(next?: string): string;
     }
 }
 
@@ -2837,6 +2842,32 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_icon_share extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_share_variant extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_button_share extends $mol_button_minor {
+        uri(): string;
+        sub(): readonly any[];
+        Icon(): $mol_icon_share_variant;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_button_share extends $.$mol_button_share {
+        click(): void;
+    }
+}
+
+declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
         model(): $$.$hyoo_speculant_world;
         page_tools(): readonly any[];
@@ -2844,6 +2875,7 @@ declare namespace $ {
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         Page_profile(): $$.$mol_page;
         Profile_button(id: any): $mol_button_major;
+        Page_final(): $$.$mol_page;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
         chat_pages(): $$.$mol_page[];
@@ -2859,6 +2891,10 @@ declare namespace $ {
         Profile_switch(): $$.$mol_switch;
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
+        Portfolio(): $mol_view;
+        Conglaturation(): $$.$mol_text;
+        share_uri(): string;
+        Share(): $$.$mol_button_share;
     }
 }
 
