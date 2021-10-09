@@ -531,7 +531,7 @@ $hyoo_speculant_app_news_item $mol_list
 $mol_labeler $mol_list
 	rows /
 		<= Label $mol_view
-			minimal_height 24
+			minimal_height 16
 			sub <= label /$mol_view_content
 				<= title
 		<= Content $mol_view
@@ -573,6 +573,8 @@ $hyoo_speculant_app_dashboard $mol_page
 	body / <= Body_list $mol_list
 		rows /
 			<= News
+	foot / <= Foot_list $mol_list
+		rows /
 			<= Currency_list
 
 $mol_button_major $mol_button_typed

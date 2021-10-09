@@ -2309,6 +2309,7 @@ declare namespace $ {
         Currency_list(): $$.$mol_list;
         News(): $$.$hyoo_speculant_app_news;
         body(): readonly any[];
+        foot(): readonly any[];
         balance_total_title(): string;
         balance_total(): string;
         Balance_total(): $mol_labeler;
@@ -2325,6 +2326,7 @@ declare namespace $ {
         Currency_name(id: any): $mol_view;
         currency_list(): readonly any[];
         Body_list(): $$.$mol_list;
+        Foot_list(): $$.$mol_list;
     }
 }
 

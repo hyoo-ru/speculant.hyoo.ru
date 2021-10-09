@@ -7977,7 +7977,7 @@ var $;
         }
         Label() {
             const obj = new this.$.$mol_view();
-            obj.minimal_height = () => 24;
+            obj.minimal_height = () => 16;
             obj.sub = () => this.label();
             return obj;
         }
@@ -8004,7 +8004,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n}\n");
+    $.$mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tcolor: var(--mol_theme_shade);\n\tline-height: 1rem;\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n}\n");
 })($ || ($ = {}));
 //labeler.view.css.js.map
 ;
@@ -8072,6 +8072,11 @@ var $;
         body() {
             return [
                 this.Body_list()
+            ];
+        }
+        foot() {
+            return [
+                this.Foot_list()
             ];
         }
         balance_total_title() {
@@ -8145,7 +8150,13 @@ var $;
         Body_list() {
             const obj = new this.$.$mol_list();
             obj.rows = () => [
-                this.News(),
+                this.News()
+            ];
+            return obj;
+        }
+        Foot_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
                 this.Currency_list()
             ];
             return obj;
@@ -8196,6 +8207,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app_dashboard.prototype, "Body_list", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Foot_list", null);
     $.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
 })($ || ($ = {}));
 //dashboard.view.tree.js.map
@@ -8205,7 +8219,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const { rem } = $.$mol_style_unit;
+        const { rem, per } = $.$mol_style_unit;
         $.$mol_style_define($$.$hyoo_speculant_app_dashboard, {
             flex: {
                 basis: rem(30),
@@ -8235,6 +8249,9 @@ var $;
             },
             Balance_currency: {
                 padding: $.$mol_gap.text,
+            },
+            Foot_list: {
+                width: per(100),
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
