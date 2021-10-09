@@ -9187,11 +9187,8 @@ var $;
                     alignItems: 'center',
                 }
             },
-            Profile_button: {
-                margin: {
-                    bottom: rem(1),
-                },
-                maxWidth: rem(14),
+            Profile_switch: {
+                flex: 'none',
             }
         });
     })($$ = $.$$ || ($.$$ = {}));
