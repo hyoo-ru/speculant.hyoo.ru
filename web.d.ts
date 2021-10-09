@@ -966,10 +966,6 @@ declare namespace $ {
                 title: string;
                 indicators: readonly string[];
             };
-            student: {
-                title: string;
-                indicators: readonly string[];
-            };
             mature: {
                 title: string;
                 indicators: readonly string[];

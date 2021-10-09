@@ -3669,7 +3669,7 @@ var $;
         profiles() {
             return {
                 scholar: {
-                    title: "Школьник",
+                    title: "Учусь",
                     indicators: [
                         "KBK",
                         "INS",
@@ -3677,20 +3677,11 @@ var $;
                         "TTK"
                     ]
                 },
-                student: {
-                    title: "Студент",
+                mature: {
+                    title: "Работаю",
                     indicators: [
                         "KBK",
                         "TLT",
-                        "LKN",
-                        "VBL"
-                    ]
-                },
-                mature: {
-                    title: "Взрослый",
-                    indicators: [
-                        "KBK",
-                        "CHK",
                         "LKN",
                         "VBL"
                     ]

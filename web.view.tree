@@ -26,24 +26,17 @@ $hyoo_speculant_world $mol_object2
 	profiles *
 		- \Варианты профилей
 		scholar *
-			title \Школьник
+			title \Учусь
 			indicators /string
 				\KBK
 				\INS
 				\LKN
 				\TTK
-		student *
-			title \Студент
+		mature *
+			title \Работаю
 			indicators /string
 				\KBK
 				\TLT
-				\LKN
-				\VBL
-		mature *
-			title \Взрослый
-			indicators /string
-				\KBK
-				\CHK
 				\LKN
 				\VBL
 		pensioner *
