@@ -882,7 +882,16 @@ declare namespace $ {
                 trend: number;
                 history: readonly number[];
             };
-            BRT: {
+            TLT: {
+                name: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            CHK: {
                 name: string;
                 type: string;
                 have: number;
@@ -2350,8 +2359,8 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
-        currency_all(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
-        currency_work(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
+        currency_all(): ("KBK" | "TLT" | "LKN" | "TTK" | "VBL" | "CHK" | "OGR" | "CSH")[];
+        currency_work(): ("KBK" | "TLT" | "LKN" | "TTK" | "VBL" | "CHK" | "OGR" | "CSH")[];
         indicator(id: string): $hyoo_speculant_world_indicator;
         currency_name(id: string): string;
         buy(id: $hyoo_speculant_world_indicator_codes): void;

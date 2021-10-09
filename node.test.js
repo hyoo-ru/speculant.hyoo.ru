@@ -3108,7 +3108,7 @@ var $;
                     title: "Школьник",
                     indicators: [
                         "KBK",
-                        "BRT",
+                        "TLT",
                         "LKN",
                         "TTK"
                     ]
@@ -3117,7 +3117,7 @@ var $;
                     title: "Студент",
                     indicators: [
                         "KBK",
-                        "BRT",
+                        "TLT",
                         "LKN",
                         "VBL"
                     ]
@@ -3126,7 +3126,7 @@ var $;
                     title: "Взрослый",
                     indicators: [
                         "KBK",
-                        "BRT",
+                        "CHK",
                         "LKN",
                         "VBL"
                     ]
@@ -3135,7 +3135,7 @@ var $;
                     title: "Пенсионер",
                     indicators: [
                         "KBK",
-                        "BRT",
+                        "CHK",
                         "LKN",
                         "OGR"
                     ]
@@ -3172,11 +3172,20 @@ var $;
                     trend: 0,
                     history: []
                 },
-                BRT: {
+                TLT: {
                     name: "Телетайп",
                     type: "bond",
                     have: 0,
                     current: 200,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                CHK: {
+                    name: "ЧоКак",
+                    type: "bond",
+                    have: 0,
+                    current: 100,
                     diff: 0,
                     trend: 0,
                     history: []
@@ -3236,6 +3245,10 @@ var $;
         }
         news_templates() {
             return [
+                {
+                    trend: -5,
+                    text: "# Утечка персональных данных\nХорошо, что в {name} нет на вас досье."
+                },
                 {
                     trend: -1,
                     text: "# Сайт {name} не отвечает\nПроизводительность труда выросла **в 2.5 раза.**"

@@ -25,28 +25,28 @@ $hyoo_speculant_world $mol_object2
 			title \Школьник
 			indicators /
 				\KBK
-				\BRT
+				\TLT
 				\LKN
 				\TTK
 		student *
 			title \Студент
 			indicators /
 				\KBK
-				\BRT
+				\TLT
 				\LKN
 				\VBL
 		mature *
 			title \Взрослый
 			indicators /
 				\KBK
-				\BRT
+				\CHK
 				\LKN
 				\VBL
 		pensioner *
 			title \Пенсионер
 			indicators /
 				\KBK
-				\BRT
+				\CHK
 				\LKN
 				\OGR
 	
@@ -82,11 +82,19 @@ $hyoo_speculant_world $mol_object2
 			diff 0
 			trend 0
 			history /number
-		BRT *
+		TLT *
 			name \Телетайп
 			type \bond
 			have 0
 			current 200
+			diff 0
+			trend 0
+			history /number
+		CHK *
+			name \ЧоКак
+			type \bond
+			have 0
+			current 100
 			diff 0
 			trend 0
 			history /number
@@ -138,6 +146,11 @@ $hyoo_speculant_world $mol_object2
 			moment \
 	news_templates /
 		- \Шаблоны новостей
+		*
+			trend -5
+			text \
+				\# Утечка персональных данных
+				\Хорошо, что в {name} нет на вас досье.
 		*
 			trend -1
 			text \
