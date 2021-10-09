@@ -22,6 +22,7 @@ namespace $.$$ {
 				grow: 1,
 				basis: rem(3),
 			},
+			justifyContent: 'flex-end' ,
 		} ,
 		
 		Currency_list: {
