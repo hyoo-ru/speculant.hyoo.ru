@@ -1,0 +1,16 @@
+{
+	"short_name": "Спекулянтъ",
+	"name": "Спекулянтъ",
+	"icons": [
+		{
+			"src": "../../../hyoo/speculant/logo/logo.svg",
+			"type": "image/svg+xml",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "../../..",
+	"background_color": "#000000",
+	"theme_color": "#000000",
+	"orientation":  "portrait",
+	"display": "fullscreen"
+}
