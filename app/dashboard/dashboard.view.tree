@@ -33,4 +33,6 @@ $hyoo_speculant_app_dashboard $mol_page
 	body / <= Body_list $mol_list
 		rows /
 			<= News
+	foot / <= Foot_list $mol_list
+		rows /
 			<= Currency_list

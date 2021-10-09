@@ -48,7 +48,6 @@ namespace $.$$ {
 			return ( sum + this.indicator( 'CSH' ).have ).toFixed( 2 )
 		}
 		
-
 		@ $mol_mem
 		balance_cash_title() {
 			return this.indicator( 'CSH' ).name

@@ -1,6 +1,6 @@
 namespace $.$$ {
 	
-	const { rem } = $mol_style_unit
+	const { rem, per } = $mol_style_unit
 
 	$mol_style_define( $hyoo_speculant_app_dashboard , {
 
@@ -38,6 +38,10 @@ namespace $.$$ {
 
 		Balance_currency: {
 			padding: $mol_gap.text ,
+		} ,
+		
+		Foot_list: {
+			width: per(100),
 		} ,
 
 	} )
