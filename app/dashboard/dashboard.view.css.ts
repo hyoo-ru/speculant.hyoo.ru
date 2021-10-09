@@ -4,7 +4,11 @@ namespace $.$$ {
 
 		Balance_total: {
 			fontWeight: 'bold' ,
-		}
+		} ,
+
+		Head: {
+			justifyContent: 'space-between' ,
+		} ,
 
 	} )
 
