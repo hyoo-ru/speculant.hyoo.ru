@@ -20,13 +20,13 @@ $hyoo_speculant_app_dashboard $mol_page
 		sub / <= rate!id \
 	Balance_currency!id $mol_view
 		sub / <= currency_have!id \
-	Row!id $mol_row
+	Row!id $mol_view
 		sub /
 			<= Currency_name!id $mol_view sub / <= currency_name!id \
 			<= Rate!id
+			<= Sell_button!id
 			<= Balance_currency!id
 			<= Buy_button!id
-			<= Sell_button!id
 	Currency_list $mol_list
 		rows <= currency_list /
 	News $hyoo_speculant_app_news

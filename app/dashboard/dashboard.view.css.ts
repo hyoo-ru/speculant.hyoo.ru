@@ -18,10 +18,22 @@ namespace $.$$ {
 		
 		Rate: {
 			padding: $mol_gap.text ,
+			flex: {
+				grow: 1,
+				basis: rem(3),
+			},
+		} ,
+		
+		Currency_list: {
+			padding: $mol_gap.block ,
 		} ,
 		
 		Currency_name: {
 			padding: $mol_gap.text ,
+			flex: {
+				grow: 1,
+				basis: rem(10),
+			},
 		} ,
 
 		Balance_currency: {
