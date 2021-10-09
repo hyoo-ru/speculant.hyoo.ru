@@ -1,13 +1,19 @@
 $hyoo_speculant_app_news $mol_page
 	model $hyoo_speculant_world
-	title @ \News
+	title @ \Новости
+	unread_count 0
+	News_item!id $hyoo_speculant_app_news_item
+		news_item <= news_item!id \
+		news_read?val <=> news_read!id?val false
 	body /
 		<= List $mol_list
 			rows <= news_list /
-	News_item!id $mol_list
-		rows /
-			<= Date!id $mol_view sub / <= news_item_date!id \
-			<= News_item_title!id $mol_text
-				text <= news_item_title!id \
-			<= News_item_body!id $mol_text
-				text <= news_item_body!id \
+$hyoo_speculant_app_news_item $mol_list
+	news_item \
+	news_read?val false
+	rows /
+		<= Date $mol_view sub / <= news_item_date \
+		<= News_item_title $mol_text
+			text <= news_item_title \
+		<= News_item_body $mol_text
+			text <= news_item_body \

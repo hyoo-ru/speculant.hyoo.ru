@@ -14,6 +14,13 @@ namespace $.$$ {
 			]
 		}
 
+		@ $mol_mem
+		news_open_sub() {
+			return this.unread_count() === 0
+				? [ this.News_open_icon() ]
+				: [ this.News_unread_count() , this.News_open_icon() ]
+		}
+
 	}
 
 }

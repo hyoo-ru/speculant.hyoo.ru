@@ -8,8 +8,12 @@ $hyoo_speculant_app $mol_book2
 				uri \https://github.com/hyoo-ru/speculant.hyoo.ru
 			<= News_open $mol_link
 				arg * news \
-				sub / <= News_open_icon $mol_icon_bell_outline
+				sub <= news_open_sub /
+					<= News_unread_count $mol_speck
+						value <= unread_count
+					<= News_open_icon $mol_icon_bell_outline
 	Page_news $hyoo_speculant_app_news
+		unread_count => unread_count
 		model <= model
 		tools /
 			<= News_close $mol_link
