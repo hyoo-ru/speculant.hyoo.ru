@@ -3127,6 +3127,7 @@ var $;
                     type: "currency",
                     have: 1000,
                     current: 1,
+                    diff: 0,
                     history: []
                 },
                 KBK: {
@@ -3134,6 +3135,7 @@ var $;
                     type: "currency",
                     have: 0,
                     current: 100,
+                    diff: 0,
                     history: []
                 },
                 BRT: {
@@ -3141,6 +3143,7 @@ var $;
                     type: "bond",
                     have: 0,
                     current: 200,
+                    diff: 0,
                     history: []
                 },
                 RIK: {
@@ -3148,6 +3151,7 @@ var $;
                     type: "share",
                     have: 0,
                     current: 50,
+                    diff: 0,
                     history: []
                 },
                 VBL: {
@@ -3155,6 +3159,7 @@ var $;
                     type: "share",
                     have: 0,
                     current: 30,
+                    diff: 0,
                     history: []
                 }
             };
@@ -3962,10 +3967,12 @@ var $;
                         $.$mol_fail(new RangeError(`No entropy for ${type}`));
                     const current = Math.max(0, +next[code].current
                         + Math.round((Math.random() * 2 - 1) * entropy));
+                    const diff = current - next[code].current;
                     const history = [...next[code].history, current];
                     next[code] = {
                         ...next[code],
                         current,
+                        diff,
                         history,
                     };
                 }

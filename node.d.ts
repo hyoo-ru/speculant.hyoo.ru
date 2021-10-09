@@ -877,6 +877,7 @@ declare namespace $ {
                 type: string;
                 have: number;
                 current: number;
+                diff: number;
                 history: readonly number[];
             };
             KBK: {
@@ -884,6 +885,7 @@ declare namespace $ {
                 type: string;
                 have: number;
                 current: number;
+                diff: number;
                 history: readonly number[];
             };
             BRT: {
@@ -891,6 +893,7 @@ declare namespace $ {
                 type: string;
                 have: number;
                 current: number;
+                diff: number;
                 history: readonly number[];
             };
             RIK: {
@@ -898,6 +901,7 @@ declare namespace $ {
                 type: string;
                 have: number;
                 current: number;
+                diff: number;
                 history: readonly number[];
             };
             VBL: {
@@ -905,6 +909,7 @@ declare namespace $ {
                 type: string;
                 have: number;
                 current: number;
+                diff: number;
                 history: readonly number[];
             };
         };
@@ -1095,6 +1100,7 @@ declare namespace $.$$ {
         type: string;
         have: number;
         current: number;
+        diff: number;
         history: readonly number[];
     };
     type $hyoo_speculant_world_indicators = Record<$hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator>;
