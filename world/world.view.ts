@@ -119,7 +119,7 @@ namespace $.$$ {
 			const indicator = $mol_stub_select_random(
 				this.profiles()[ this.profile() ].indicators as readonly string[]
 			)
-			
+			indicators[ indicator ].trend += template.trend
 			const name = indicators[ indicator ].name
 			
 			return [
