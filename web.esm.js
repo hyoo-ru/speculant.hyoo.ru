@@ -2964,7 +2964,7 @@ var $;
                     history: []
                 },
                 OGR: {
-                    name: "Одногруппники",
+                    name: "Однокашники",
                     icon: "https://api.faviconkit.com/ok.ru/16",
                     type: "share",
                     have: 0,

@@ -131,7 +131,7 @@ $hyoo_speculant_world $mol_object2
 			trend 0
 			history /number
 		OGR *
-			name \Одногруппники
+			name \Однокашники
 			icon \https://api.faviconkit.com/ok.ru/16
 			type \share
 			have 0
