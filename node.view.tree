@@ -29,7 +29,7 @@ $hyoo_speculant_world $mol_object2
 			title \Школьник
 			indicators /string
 				\KBK
-				\TLT
+				\INS
 				\LKN
 				\TTK
 		student *
@@ -121,6 +121,15 @@ $hyoo_speculant_world $mol_object2
 			type \share
 			have 0
 			current 60
+			diff 0
+			trend 0
+			history /number
+		INS *
+			name \ИнтерСпам
+			icon \https://api.faviconkit.com/instagram.com/16
+			type \share
+			have 0
+			current 50
 			diff 0
 			trend 0
 			history /number

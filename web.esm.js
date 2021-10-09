@@ -3403,7 +3403,7 @@ var $;
                     title: "Школьник",
                     indicators: [
                         "KBK",
-                        "TLT",
+                        "INS",
                         "LKN",
                         "TTK"
                     ]
@@ -3505,6 +3505,16 @@ var $;
                     type: "share",
                     have: 0,
                     current: 60,
+                    diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                INS: {
+                    name: "ИнтерСпам",
+                    icon: "https://api.faviconkit.com/instagram.com/16",
+                    type: "share",
+                    have: 0,
+                    current: 50,
                     diff: 0,
                     trend: 0,
                     history: []
