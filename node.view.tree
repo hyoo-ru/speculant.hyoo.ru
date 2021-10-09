@@ -679,6 +679,44 @@ $mol_chat $mol_link
 $mol_theme_auto $mol_plugin
 	attr * mol_theme <= theme \
 
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection?val /number
+	auto /
+		<= selection_watcher null
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed?val <=> value?val \
+		placeholder <= hint \ 
+		spellcheck <= spellcheck false
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+	attr *
+		^
+		maxlength <= length_max Infinity
+		type <= type?val \text
+	event *
+		^
+		input?event <=> event_change?event null
+		keydown?event <=> event_key_press?event null
+	plugins /
+		<= Submit $mol_hotkey
+			key * enter?event <=> submit?event null
+
 $mol_switch $mol_view
 	Option!id $mol_check
 		checked?val <=> option_checked!id?val false
@@ -711,6 +749,10 @@ $hyoo_speculant_app $mol_book2
 		body /
 			<= Description $mol_text
 				text \Многие думают, что инвестиции - это про сложный анализ графиков и тп, но мы хотим показать, что на самом деле это про чтение новостей и своевременную ребалансировку портфеля. И наша игра помогает понять как те или иные новости влияют на рынок.
+			<= User_name_quest $mol_text
+				text \# Ваше имя:
+			<= User_name $mol_string
+				value?val <=> user_name?val null
 			<= Select_profile $mol_text
 				text \# Кто вы?
 			<= Profile_switch $mol_switch
