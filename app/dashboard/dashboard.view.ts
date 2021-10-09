@@ -45,7 +45,7 @@ namespace $.$$ {
 			const sum = list.reduce( ( sum , cur ) => {
 				return sum + ( cur.current * cur.have )
 			} , 0 )
-			return ( sum + this.indicator( 'CSH' ).have ).toFixed( 2 )
+			return ( sum + this.indicator( 'CSH' ).have )
 		}
 		
 		@ $mol_mem
