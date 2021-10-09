@@ -599,9 +599,14 @@ $hyoo_speculant_chart $mol_chart
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
 	title @ \Dashboard
-	Title <= Balance_total $mol_labeler
-		title <= balance_total_title @ \Баланс
-		content / <= balance_total \
+	Title <= Title_list $mol_view
+		sub <= title_list /
+			<= Balance_total $mol_labeler
+				title <= balance_total_title @ \Баланс
+				content / <= balance_total \
+			<= Balance_cash $mol_labeler
+				title <= balance_cash_title \
+				content / <= balance_cash \
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /

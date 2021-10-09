@@ -8071,7 +8071,7 @@ var $;
             return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
         }
         Title() {
-            return this.Balance_total();
+            return this.Title_list();
         }
         Linear(id) {
             const obj = new this.$.$mol_plot_group();
@@ -8125,6 +8125,31 @@ var $;
             obj.content = () => [
                 this.balance_total()
             ];
+            return obj;
+        }
+        balance_cash_title() {
+            return "";
+        }
+        balance_cash() {
+            return "";
+        }
+        Balance_cash() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.balance_cash_title();
+            obj.content = () => [
+                this.balance_cash()
+            ];
+            return obj;
+        }
+        title_list() {
+            return [
+                this.Balance_total(),
+                this.Balance_cash()
+            ];
+        }
+        Title_list() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => this.title_list();
             return obj;
         }
         linear_title(id) {
@@ -8216,6 +8241,12 @@ var $;
         $.$mol_mem
     ], $hyoo_speculant_app_dashboard.prototype, "Balance_total", null);
     __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Balance_cash", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Title_list", null);
+    __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "Linear_line", null);
     __decorate([
@@ -8248,7 +8279,7 @@ var $;
                 basis: rem(30),
             },
             Balance_total: {
-                fontWeight: 'bold',
+                marginRight: '1rem',
             },
             Head: {
                 justifyContent: 'space-between',
@@ -8330,6 +8361,12 @@ var $;
                 }, 0);
                 return (sum + this.indicator('CSH').have).toFixed(2);
             }
+            balance_cash_title() {
+                return this.indicator('CSH').name;
+            }
+            balance_cash() {
+                return this.indicator('CSH').have.toString();
+            }
         }
         __decorate([
             $.$mol_mem
@@ -8364,6 +8401,12 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app_dashboard.prototype, "rate", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "balance_cash_title", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "balance_cash", null);
         $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
