@@ -3100,7 +3100,47 @@ var $;
         profile(next) {
             if (next !== undefined)
                 return next;
-            return "novice";
+            return "other";
+        }
+        profiles() {
+            return {
+                scholar: {
+                    title: "Школьник",
+                    indicators: [
+                        "KBK",
+                        "BRT",
+                        "RIK",
+                        "VBL"
+                    ]
+                },
+                student: {
+                    title: "Студент",
+                    indicators: [
+                        "KBK",
+                        "BRT",
+                        "RIK",
+                        "VBL"
+                    ]
+                },
+                mature: {
+                    title: "Взрослый",
+                    indicators: [
+                        "KBK",
+                        "BRT",
+                        "RIK",
+                        "VBL"
+                    ]
+                },
+                pensioner: {
+                    title: "Пенсионер",
+                    indicators: [
+                        "KBK",
+                        "BRT",
+                        "RIK",
+                        "VBL"
+                    ]
+                }
+            };
         }
         scoring() {
             return "care";

@@ -843,6 +843,24 @@ declare namespace $.$$ {
 declare namespace $ {
     class $hyoo_speculant_world extends $mol_object2 {
         profile(next?: any): string;
+        profiles(): {
+            scholar: {
+                title: string;
+                indicators: readonly any[];
+            };
+            student: {
+                title: string;
+                indicators: readonly any[];
+            };
+            mature: {
+                title: string;
+                indicators: readonly any[];
+            };
+            pensioner: {
+                title: string;
+                indicators: readonly any[];
+            };
+        };
         scoring(): string;
         exchange(code: any, diff?: any): any;
         indicators(next?: any): {
@@ -2201,8 +2219,8 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
-        currency_all(): ("CSH" | "KBK" | "BRT" | "RIK" | "VBL")[];
-        currency_chart(): ("CSH" | "KBK" | "BRT" | "RIK" | "VBL")[];
+        currency_all(): ("KBK" | "BRT" | "RIK" | "VBL" | "CSH")[];
+        currency_chart(): ("KBK" | "BRT" | "RIK" | "VBL" | "CSH")[];
         day_start(): $mol_time_moment;
         history_length(): number;
         days(): string[];
