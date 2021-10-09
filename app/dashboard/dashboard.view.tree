@@ -1,5 +1,6 @@
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
+	user_profile \
 	title @ \Dashboard
 	Title <= Title_list $mol_view
 		sub <= title_list /
