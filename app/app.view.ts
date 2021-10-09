@@ -31,6 +31,15 @@ namespace $.$$ {
 		profile_select( id : string ) {
 			this.user_profile( id )
 		} 
+		
+		@ $mol_mem
+		page_profile_body() {
+			return [
+				this.Description() ,
+				this.Select_profile() ,
+				... this.profile_buttons() ,
+			]
+		}
 
 	}
 
