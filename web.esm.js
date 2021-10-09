@@ -2875,7 +2875,7 @@ var $;
                     history: []
                 },
                 RIK: {
-                    name: "МордоСвиток",
+                    name: "ЛицеСвиток",
                     type: "share",
                     have: 0,
                     current: 50,
@@ -7716,27 +7716,42 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_row extends $.$mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//row.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//row.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $hyoo_speculant_chart_legend extends $.$mol_chart_legend {
         Graph_legend(id) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
+            const obj = new this.$.$mol_row();
+            obj.sub = () => this.rows(id);
+            return obj;
+        }
+        Tools(id) {
+            return [];
+        }
+        rows(id) {
+            return [
                 this.Graph_sample_box(id),
                 this.Graph_title(id),
                 this.Tools(id)
             ];
-            return obj;
-        }
-        Tools(id) {
-            const obj = new this.$.$mol_view();
-            return obj;
         }
     }
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_chart_legend.prototype, "Graph_legend", null);
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_chart_legend.prototype, "Tools", null);
     $.$hyoo_speculant_chart_legend = $hyoo_speculant_chart_legend;
 })($ || ($ = {}));
 //legend.view.tree.js.map
@@ -7746,20 +7761,31 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        $.$mol_style_define($.$hyoo_speculant_chart_legend, {
-            Graph_legend: {
-                whiteSpace: 'nowrap',
-                flex: {
-                    grow: 0,
-                    shrink: 0,
-                    basis: 'auto',
-                },
-                alignItems: 'center',
-            },
+        $.$mol_style_define($$.$hyoo_speculant_chart_legend, {
+            Graph_legend: {},
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //legend.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $hyoo_speculant_chart_legend extends $.$hyoo_speculant_chart_legend {
+            rows(id) {
+                return [
+                    this.Graph_sample_box(id),
+                    this.Graph_title(id),
+                    ...this.Tools(id),
+                ];
+            }
+        }
+        $$.$hyoo_speculant_chart_legend = $hyoo_speculant_chart_legend;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//legend.view.js.map
 ;
 "use strict";
 var $;
@@ -7772,8 +7798,7 @@ var $;
             ];
         }
         Legend_tools(id) {
-            const obj = new this.$.$mol_view();
-            return obj;
+            return [];
         }
         Legend() {
             const obj = new this.$.$hyoo_speculant_chart_legend();
@@ -7782,9 +7807,6 @@ var $;
             return obj;
         }
     }
-    __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_chart.prototype, "Legend_tools", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_chart.prototype, "Legend", null);
@@ -7828,17 +7850,15 @@ var $;
             return obj;
         }
         Rate(index) {
-            const obj = new this.$.$mol_labeler();
-            obj.title = () => "Курс";
-            obj.content = () => [
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
                 this.rate(index)
             ];
             return obj;
         }
         Balance_currency(index) {
-            const obj = new this.$.$mol_labeler();
-            obj.title = () => "Баланс";
-            obj.content = () => [
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
                 this.currency_have(index)
             ];
             return obj;
@@ -7889,14 +7909,12 @@ var $;
             return "";
         }
         Buttons(index) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
+            return [
                 this.Rate(index),
                 this.Balance_currency(index),
                 this.Buy_button(index),
                 this.Sell_button(index)
             ];
-            return obj;
         }
         vert_title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_vert_title');
@@ -7962,9 +7980,6 @@ var $;
         $.$mol_mem_key
     ], $hyoo_speculant_app_dashboard.prototype, "sell", null);
     __decorate([
-        $.$mol_mem_key
-    ], $hyoo_speculant_app_dashboard.prototype, "Buttons", null);
-    __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app_dashboard.prototype, "Vert_ruler", null);
     __decorate([
@@ -7982,12 +7997,32 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const { rem } = $.$mol_style_unit;
         $.$mol_style_define($$.$hyoo_speculant_app_dashboard, {
+            flex: {
+                basis: rem(30),
+            },
             Balance_total: {
                 fontWeight: 'bold',
             },
             Head: {
                 justifyContent: 'space-between',
+            },
+            Chart: {
+                Legend: {
+                    Graph_sample_box: {
+                        padding: $.$mol_gap.text,
+                    },
+                    Graph_title: {
+                        padding: $.$mol_gap.text,
+                    },
+                },
+            },
+            Rate: {
+                padding: $.$mol_gap.text,
+            },
+            Balance_currency: {
+                padding: $.$mol_gap.text,
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -10587,6 +10622,24 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const { rem } = $.$mol_style_unit;
+        $.$mol_style_define($$.$hyoo_speculant_app_news, {
+            flex: {
+                basis: rem(30),
+            },
+            List: {
+                padding: $.$mol_gap.block,
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//news.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
         class $hyoo_speculant_app_news extends $.$hyoo_speculant_app_news {
             news_list() {
                 return this.model().news().map(news => this.News_item(news)).reverse();
@@ -10656,6 +10709,85 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_theme_auto extends $.$mol_plugin {
+        attr() {
+            return {
+                mol_theme: this.theme()
+            };
+        }
+        theme() {
+            return "";
+        }
+    }
+    $.$mol_theme_auto = $mol_theme_auto;
+})($ || ($ = {}));
+//auto.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_media extends $.$mol_object2 {
+        static match(query) {
+            const res = this.$.$mol_dom_context.matchMedia(query);
+            res.onchange = () => $.$mol_mem_cached(() => this.match(query), res.matches);
+            return res.matches;
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_media, "match", null);
+    $.$mol_media = $mol_media;
+})($ || ($ = {}));
+//media.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function parse(theme) {
+        if (theme === 'true')
+            return true;
+        if (theme === 'false')
+            return false;
+        return null;
+    }
+    function $mol_lights(next) {
+        const arg = parse(this.$mol_state_arg.value('mol_lights'));
+        const base = this.$mol_media.match('(prefers-color-scheme: light)');
+        if (next === undefined) {
+            return arg ?? this.$mol_state_local.value('$mol_lights') ?? base;
+        }
+        else {
+            if (arg === null) {
+                this.$mol_state_local.value('$mol_lights', next === base ? null : next);
+            }
+            else {
+                this.$mol_state_arg.value('mol_lights', String(next));
+            }
+            return next;
+        }
+    }
+    $.$mol_lights = $mol_lights;
+})($ || ($ = {}));
+//lights.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_theme_auto extends $.$mol_theme_auto {
+            theme() {
+                return this.$.$mol_lights() ? '$mol_theme_light' : '$mol_theme_dark';
+            }
+        }
+        $$.$mol_theme_auto = $mol_theme_auto;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//auto.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_icon_github_circle extends $.$mol_icon {
         path() {
             return "M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z";
@@ -10692,6 +10824,82 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_check_icon extends $.$mol_check {
+    }
+    $.$mol_check_icon = $mol_check_icon;
+})($ || ($ = {}));
+//icon.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/check/icon/icon.view.css", "[mol_check_icon][mol_check_checked] {\n\tcolor: var(--mol_theme_focus);\n}\n");
+})($ || ($ = {}));
+//icon.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_brightness_6 extends $.$mol_icon {
+        path() {
+            return "M12,18V6C15.31,6 18,8.69 18,12C18,15.31 15.31,18 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z";
+        }
+    }
+    $.$mol_icon_brightness_6 = $mol_icon_brightness_6;
+})($ || ($ = {}));
+//6.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_lights_toggle extends $.$mol_check_icon {
+        Icon() {
+            return this.Lights_icon();
+        }
+        hint() {
+            return this.$.$mol_locale.text('$mol_lights_toggle_hint');
+        }
+        checked(val) {
+            return this.lights(val);
+        }
+        Lights_icon() {
+            const obj = new this.$.$mol_icon_brightness_6();
+            return obj;
+        }
+        lights(val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_lights_toggle.prototype, "Lights_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_lights_toggle.prototype, "lights", null);
+    $.$mol_lights_toggle = $mol_lights_toggle;
+})($ || ($ = {}));
+//toggle.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_lights_toggle extends $.$mol_lights_toggle {
+            lights(next) {
+                return this.$.$mol_lights(next);
+            }
+        }
+        $$.$mol_lights_toggle = $mol_lights_toggle;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//toggle.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_icon_bell extends $.$mol_icon {
         path() {
             return "M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4C10,2.9 10.9,2 12,2C13.1,2 14,2.9 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21C14,22.1 13.1,23 12,23C10.9,23 10,22.1 10,21";
@@ -10716,6 +10924,42 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_forum extends $.$mol_icon {
+        path() {
+            return "M17,12V3C17,2.45 16.55,2 16,2H3C2.45,2 2,2.45 2,3V17L6,13H16C16.55,13 17,12.55 17,12M21,6H19V15H6V17C6,17.55 6.45,18 7,18H18L22,22V7C22,6.45 21.55,6 21,6Z";
+        }
+    }
+    $.$mol_icon_forum = $mol_icon_forum;
+})($ || ($ = {}));
+//forum.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_forum_outline extends $.$mol_icon {
+        path() {
+            return "M15,4V11H5.17L4,12.17V4H15M16,2H3C2.45,2 2,2.45 2,3V17L6,13H16C16.55,13 17,12.55 17,12V3C17,2.45 16.55,2 16,2M21,6H19V15H6V17C6,17.55 6.45,18 7,18H18L22,22V7C22,6.45 21.55,6 21,6Z";
+        }
+    }
+    $.$mol_icon_forum_outline = $mol_icon_forum_outline;
+})($ || ($ = {}));
+//outline.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_open_in_new extends $.$mol_icon {
+        path() {
+            return "M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V12H19V19Z";
+        }
+    }
+    $.$mol_icon_open_in_new = $mol_icon_open_in_new;
+})($ || ($ = {}));
+//new.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_icon_cross extends $.$mol_icon {
         path() {
             return "M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z";
@@ -10728,6 +10972,302 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_frame extends $.$mol_scroll {
+        dom_name() {
+            return "iframe";
+        }
+        attr() {
+            return {
+                src: this.uri(),
+                srcdoc: this.html(),
+                allow: this.allow()
+            };
+        }
+        fullscreen() {
+            return true;
+        }
+        accelerometer() {
+            return true;
+        }
+        autoplay() {
+            return true;
+        }
+        encription() {
+            return true;
+        }
+        gyroscope() {
+            return true;
+        }
+        pip() {
+            return true;
+        }
+        uri(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+        html() {
+            return null;
+        }
+        allow() {
+            return "";
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_frame.prototype, "uri", null);
+    $.$mol_frame = $mol_frame;
+})($ || ($ = {}));
+//frame.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_wait_timeout = $.$mol_fiber_sync((timeout) => new Promise(done => new $.$mol_after_timeout(timeout, () => done(null))));
+})($ || ($ = {}));
+//timeout.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_define($.$mol_frame, {
+        border: {
+            style: 'none',
+        },
+        flex: 'auto',
+    });
+})($ || ($ = {}));
+//frame.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_frame extends $.$mol_frame {
+            window() {
+                const node = this.dom_node();
+                this.uri_resource();
+                return $.$mol_fiber_sync(() => new Promise((done, fail) => {
+                    new $.$mol_after_timeout(3_000, () => {
+                        try {
+                            if (node.contentWindow.location.href === 'about:blank') {
+                                done(node.contentWindow);
+                            }
+                        }
+                        catch { }
+                    });
+                    node.onload = () => {
+                        done(node.contentWindow);
+                    };
+                    node.onerror = (event) => {
+                        fail(typeof event === 'string' ? new Error(event) : event.error || event);
+                    };
+                }))();
+            }
+            uri_resource() {
+                return this.uri().replace(/#.*/, '');
+            }
+            _uri_sync;
+            uri_listener() {
+                const node = this.dom_node();
+                return new $.$mol_dom_listener($.$mol_dom_context, 'message', $.$mol_fiber_root((event) => {
+                    if (event.source !== node.contentWindow)
+                        return;
+                    if (!Array.isArray(event.data))
+                        return;
+                    if (event.data[0] !== 'hashchange')
+                        return;
+                    this._uri_sync?.destructor();
+                    this._uri_sync = $.$mol_fiber.current;
+                    $.$mol_wait_timeout(1000);
+                    this.uri(event.data[1]);
+                }));
+            }
+            render() {
+                const node = super.render();
+                this.uri_listener();
+                this.window();
+                return node;
+            }
+            allow() {
+                return [
+                    ...this.fullscreen() ? ['fullscreen'] : [],
+                    ...this.accelerometer() ? ['accelerometer'] : [],
+                    ...this.autoplay() ? ['autoplay'] : [],
+                    ...this.encription() ? ['encrypted-media'] : [],
+                    ...this.gyroscope() ? ['gyroscope'] : [],
+                    ...this.pip() ? ['picture-in-picture'] : [],
+                ].join(';');
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_frame.prototype, "window", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_frame.prototype, "uri_resource", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_frame.prototype, "uri_listener", null);
+        $$.$mol_frame = $mol_frame;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//frame.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_chat extends $.$mol_link {
+        seed() {
+            return "";
+        }
+        opened() {
+            return false;
+        }
+        arg() {
+            return {
+                mol_chat: ""
+            };
+        }
+        hint() {
+            return this.title();
+        }
+        sub() {
+            return [
+                this.Icon()
+            ];
+        }
+        pages() {
+            return [
+                this.Page()
+            ];
+        }
+        Icon() {
+            const obj = new this.$.$mol_icon_forum_outline();
+            return obj;
+        }
+        title() {
+            return this.$.$mol_locale.text('$mol_chat_title');
+        }
+        external() {
+            return "";
+        }
+        External_icon() {
+            const obj = new this.$.$mol_icon_open_in_new();
+            return obj;
+        }
+        Esternal() {
+            const obj = new this.$.$mol_link();
+            obj.uri = () => this.external();
+            obj.sub = () => [
+                this.External_icon()
+            ];
+            return obj;
+        }
+        Close_icon() {
+            const obj = new this.$.$mol_icon_cross();
+            return obj;
+        }
+        Close() {
+            const obj = new this.$.$mol_link();
+            obj.arg = () => ({
+                mol_chat: null
+            });
+            obj.sub = () => [
+                this.Close_icon()
+            ];
+            return obj;
+        }
+        embed() {
+            return "";
+        }
+        Embed() {
+            const obj = new this.$.$mol_frame();
+            obj.uri = () => this.embed();
+            return obj;
+        }
+        Page() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => this.title();
+            obj.tools = () => [
+                this.Esternal(),
+                this.Close()
+            ];
+            obj.Body = () => this.Embed();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "Icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "External_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "Esternal", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "Close_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "Close", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "Embed", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chat.prototype, "Page", null);
+    $.$mol_chat = $mol_chat;
+})($ || ($ = {}));
+//chat.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/chat/chat.view.css", "[mol_chat_page] {\n\tflex: 1 0 30rem;\n}\n");
+})($ || ($ = {}));
+//chat.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_chat extends $.$mol_chat {
+            opened() {
+                return this.$.$mol_state_arg.value('mol_chat') !== null;
+            }
+            pages() {
+                return this.opened() ? [this.Page()] : [];
+            }
+            external() {
+                const seed = this.seed();
+                const origin = new URL(this.$.$mol_state_arg.href()).origin;
+                return `https://talks.hyoo.ru/#!chat=${encodeURIComponent(origin + '/' + seed)}`;
+            }
+            embed() {
+                const seed = this.seed();
+                const lights = String(this.$.$mol_lights());
+                const embed = this.$.$mol_state_arg.href();
+                return `https://talks.hyoo.ru/#!chat=${encodeURIComponent(seed)}/embed=${encodeURIComponent(embed)}/mol_lights=${lights}`;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_chat.prototype, "external", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_chat.prototype, "embed", null);
+        $$.$mol_chat = $mol_chat;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//chat.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $hyoo_speculant_app extends $.$mol_book2 {
         model() {
             const obj = new this.$.$hyoo_speculant_world();
@@ -10736,12 +11276,19 @@ var $;
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_title');
         }
+        plugins() {
+            return [
+                this.Theme()
+            ];
+        }
         Page_dashboard() {
             const obj = new this.$.$hyoo_speculant_app_dashboard();
             obj.model = () => this.model();
             obj.tools = () => [
                 this.Source(),
-                this.News_open()
+                this.Lights(),
+                this.News_open(),
+                this.Chat()
             ];
             return obj;
         }
@@ -10756,9 +11303,17 @@ var $;
             ];
             return obj;
         }
+        Theme() {
+            const obj = new this.$.$mol_theme_auto();
+            return obj;
+        }
         Source() {
             const obj = new this.$.$mol_link_source();
             obj.uri = () => "https://github.com/hyoo-ru/speculant.hyoo.ru";
+            return obj;
+        }
+        Lights() {
+            const obj = new this.$.$mol_lights_toggle();
             return obj;
         }
         unread_count() {
@@ -10787,6 +11342,13 @@ var $;
             obj.sub = () => this.news_open_sub();
             return obj;
         }
+        chat_pages() {
+            return this.Chat().pages();
+        }
+        Chat() {
+            const obj = new this.$.$mol_chat();
+            return obj;
+        }
         News_close_icon() {
             const obj = new this.$.$mol_icon_cross();
             return obj;
@@ -10813,7 +11375,13 @@ var $;
     ], $hyoo_speculant_app.prototype, "Page_news", null);
     __decorate([
         $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Theme", null);
+    __decorate([
+        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Source", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Lights", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "News_unread_count", null);
@@ -10823,6 +11391,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "News_open", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Chat", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "News_close_icon", null);
@@ -10861,6 +11432,7 @@ var $;
                 return [
                     this.Page_dashboard(),
                     ...(this.news() ? [this.Page_news()] : []),
+                    ...this.chat_pages(),
                 ];
             }
             news_open_sub() {

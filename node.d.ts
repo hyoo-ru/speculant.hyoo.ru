@@ -2117,20 +2117,35 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $hyoo_speculant_chart_legend extends $mol_chart_legend {
-        Graph_legend(id: any): $mol_view;
-        Tools(id: any): $mol_view;
+        Graph_legend(id: any): $mol_row;
+        Tools(id: any): readonly any[];
+        rows(id: any): readonly any[];
     }
 }
 
 declare namespace $.$$ {
 }
 
+declare namespace $.$$ {
+    class $hyoo_speculant_chart_legend extends $.$hyoo_speculant_chart_legend {
+        rows(id: any): any[];
+    }
+}
+
 declare namespace $ {
     class $hyoo_speculant_chart extends $mol_chart {
         sub(): readonly any[];
-        Legend_tools(id: any): $mol_view;
-        Legend(): $hyoo_speculant_chart_legend;
+        Legend_tools(id: any): readonly any[];
+        Legend(): $$.$hyoo_speculant_chart_legend;
     }
 }
 
@@ -2142,8 +2157,8 @@ declare namespace $ {
         Linear(id: any): $$.$mol_plot_group;
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
-        Rate(index: any): $mol_labeler;
-        Balance_currency(index: any): $mol_labeler;
+        Rate(index: any): $mol_view;
+        Balance_currency(index: any): $mol_view;
         body(): readonly any[];
         balance_total_title(): string;
         balance_total(): string;
@@ -2155,7 +2170,7 @@ declare namespace $ {
         sell(id: any, val?: any): any;
         rate(index: any): string;
         currency_have(index: any): string;
-        Buttons(index: any): $mol_view;
+        Buttons(index: any): readonly any[];
         vert_title(): string;
         Vert_ruler(): $$.$mol_plot_ruler_vert;
         marker_hor_title(): string;
@@ -2916,6 +2931,9 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
     class $hyoo_speculant_app_news extends $.$hyoo_speculant_app_news {
         news_list(): $hyoo_speculant_app_news_item[];
         news_item(item: any): any;
@@ -2929,6 +2947,31 @@ declare namespace $.$$ {
         news_item_title(): any;
         news_item_body(): any;
         news_item_date(): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_theme_auto extends $mol_plugin {
+        attr(): {
+            mol_theme: string;
+        };
+        theme(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_media extends $mol_object2 {
+        static match(query: string): boolean;
+    }
+}
+
+declare namespace $ {
+    function $mol_lights(this: $, next?: boolean): boolean;
+}
+
+declare namespace $.$$ {
+    class $mol_theme_auto extends $.$mol_theme_auto {
+        theme(): "$mol_theme_light" | "$mol_theme_dark";
     }
 }
 
@@ -2947,6 +2990,36 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_check_icon extends $mol_check {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_icon_brightness_6 extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_lights_toggle extends $mol_check_icon {
+        Icon(): $mol_icon_brightness_6;
+        hint(): string;
+        checked(val?: any): boolean;
+        Lights_icon(): $mol_icon_brightness_6;
+        lights(val?: any): boolean;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_lights_toggle extends $.$mol_lights_toggle {
+        lights(next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
     class $mol_icon_bell extends $mol_icon {
         path(): string;
     }
@@ -2959,8 +3032,99 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_icon_forum extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_forum_outline extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_open_in_new extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
     class $mol_icon_cross extends $mol_icon {
         path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_frame extends $mol_scroll {
+        dom_name(): string;
+        attr(): {
+            src: string;
+            srcdoc: any;
+            allow: string;
+        };
+        fullscreen(): boolean;
+        accelerometer(): boolean;
+        autoplay(): boolean;
+        encription(): boolean;
+        gyroscope(): boolean;
+        pip(): boolean;
+        uri(val?: any): string;
+        html(): any;
+        allow(): string;
+    }
+}
+
+declare namespace $ {
+    const $mol_wait_timeout: (timeout: number) => unknown;
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_frame extends $.$mol_frame {
+        window(): Window;
+        uri_resource(): string;
+        _uri_sync: $mol_fiber | undefined;
+        uri_listener(): $mol_dom_listener;
+        render(): void;
+        allow(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_chat extends $mol_link {
+        seed(): string;
+        opened(): boolean;
+        arg(): {
+            mol_chat: string;
+        };
+        hint(): string;
+        sub(): readonly any[];
+        pages(): readonly any[];
+        Icon(): $mol_icon_forum_outline;
+        title(): string;
+        external(): string;
+        External_icon(): $mol_icon_open_in_new;
+        Esternal(): $$.$mol_link;
+        Close_icon(): $mol_icon_cross;
+        Close(): $$.$mol_link;
+        embed(): string;
+        Embed(): $$.$mol_frame;
+        Page(): $$.$mol_page;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_chat extends $.$mol_chat {
+        opened(): boolean;
+        pages(): $mol_page[];
+        external(): string;
+        embed(): string;
     }
 }
 
@@ -2968,15 +3132,20 @@ declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
         model(): $$.$hyoo_speculant_world;
         title(): string;
+        plugins(): readonly any[];
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         read_count(): number;
         Page_news(): $$.$hyoo_speculant_app_news;
+        Theme(): $$.$mol_theme_auto;
         Source(): $mol_link_source;
+        Lights(): $$.$mol_lights_toggle;
         unread_count(): number;
         News_unread_count(): $mol_speck;
         News_open_icon(): $mol_icon_bell_outline;
         news_open_sub(): readonly any[];
         News_open(): $$.$mol_link;
+        chat_pages(): $$.$mol_page[];
+        Chat(): $$.$mol_chat;
         News_close_icon(): $mol_icon_cross;
         News_close(): $$.$mol_link;
     }
@@ -2988,7 +3157,7 @@ declare namespace $.$$ {
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
         news(): boolean;
-        pages(): ($hyoo_speculant_app_dashboard | $hyoo_speculant_app_news)[];
+        pages(): ($mol_page | $hyoo_speculant_app_dashboard | $hyoo_speculant_app_news)[];
         news_open_sub(): ($mol_speck | $mol_icon_bell_outline)[];
         unread_count(): number;
     }
