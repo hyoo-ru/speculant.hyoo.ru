@@ -129,6 +129,9 @@ $hyoo_speculant_world $mol_object2
 		currency 5
 		share 10
 	
+	age?next \ready
+		- \Этап мира: ready|go|finish
+	
 	news /
 		- \Новости в мире, влияют на курсы.
 		*
@@ -136,6 +139,7 @@ $hyoo_speculant_world $mol_object2
 				\*Новый профи вышел на рынок*
 				\Все спекулянты замерли в ожидании.
 			moment \
+	
 	news_templates /
 		- \Шаблоны новостей
 		*
