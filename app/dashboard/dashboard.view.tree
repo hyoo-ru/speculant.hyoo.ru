@@ -1,6 +1,9 @@
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
 	title @ \Dashboard
+	Title <= Balance_total $mol_labeler
+		title <= balance_total_title @ \Баланс
+		content / <= balance_total \
 	Linear!id $mol_plot_group
 		title <= linear_title!id \
 		series_y <= linear_series!id /
@@ -15,9 +18,6 @@ $hyoo_speculant_app_dashboard $mol_page
 	Balance_currency!id $mol_labeler
 		title <= currency_name!id \
 		content / <= currency_have!id \
-	Balance_total $mol_labeler
-		title <= balance_total_title @ \Баланс
-		content / <= balance_total \
 	body /
 		<= Balance $mol_row
 			sub <= balance_list / 
