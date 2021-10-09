@@ -8040,9 +8040,6 @@ var $;
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
         }
-        user_profile() {
-            return "";
-        }
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
         }
@@ -8264,7 +8261,7 @@ var $;
     (function ($$) {
         class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
             currency_all() {
-                return this.model().profiles()[this.user_profile()].indicators;
+                return this.model().profiles()[this.model().profile()].indicators;
             }
             currency_work() {
                 return this.currency_all().filter(key => key !== 'CSH');
@@ -8926,12 +8923,119 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $hyoo_speculant_app extends $.$mol_book2 {
-        user_profile(val) {
+    class $mol_switch extends $.$mol_view {
+        Option(id) {
+            const obj = new this.$.$mol_check();
+            obj.checked = (val) => this.option_checked(id, val);
+            obj.label = () => this.option_label(id);
+            obj.enabled = () => this.option_enabled(id);
+            obj.hint = () => this.option_hint(id);
+            obj.minimal_height = () => 24;
+            return obj;
+        }
+        value(val) {
             if (val !== undefined)
                 return val;
+            return null;
+        }
+        options() {
+            return {};
+        }
+        keys() {
+            return [];
+        }
+        sub() {
+            return this.items();
+        }
+        option_checked(id, val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+        option_title(id) {
             return "";
         }
+        option_label(id) {
+            return [
+                this.option_title(id)
+            ];
+        }
+        enabled() {
+            return true;
+        }
+        option_enabled(id) {
+            return this.enabled();
+        }
+        option_hint(id) {
+            return "";
+        }
+        items() {
+            return [];
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_switch.prototype, "Option", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_switch.prototype, "value", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_switch.prototype, "option_checked", null);
+    $.$mol_switch = $mol_switch;
+})($ || ($ = {}));
+//switch.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/switch/switch.view.css", "[mol_switch] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tflex: 1 1 auto;\n\tborder-radius: var(--mol_gap_round);\n}\n\n[mol_switch_option] {\n\tflex: 0 1 auto;\n}\n\n[mol_switch_option][mol_check_checked=\"true\"] {\n\tcolor: var(--mol_theme_focus);\n\ttext-shadow: 0 0;\n}\n");
+})($ || ($ = {}));
+//switch.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_switch extends $.$mol_switch {
+            value(next) {
+                return $.$mol_state_session.value(`${this}.value()`, next);
+            }
+            options() {
+                return {};
+            }
+            keys() {
+                return Object.keys(this.options());
+            }
+            items() {
+                return this.keys().map(key => this.Option(key));
+            }
+            option_title(key) {
+                return this.options()[key];
+            }
+            option_checked(key, next) {
+                if (next === void 0)
+                    return this.value() == key;
+                this.value(next ? key : null);
+                return next;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_switch.prototype, "keys", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_switch.prototype, "items", null);
+        $$.$mol_switch = $mol_switch;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//switch.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $hyoo_speculant_app extends $.$mol_book2 {
         model() {
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
@@ -8955,14 +9059,17 @@ var $;
             const obj = new this.$.$hyoo_speculant_app_dashboard();
             obj.model = () => this.model();
             obj.tools = () => this.page_tools();
-            obj.user_profile = () => this.user_profile();
             return obj;
         }
         Page_profile() {
             const obj = new this.$.$mol_page();
             obj.title = () => this.app_title();
             obj.tools = () => this.page_tools();
-            obj.body = () => this.page_profile_body();
+            obj.body = () => [
+                this.Description(),
+                this.Select_profile(),
+                this.Profile_switch()
+            ];
             return obj;
         }
         Profile_button(id) {
@@ -9004,11 +9111,19 @@ var $;
             obj.text = () => "# Кто вы?";
             return obj;
         }
-        page_profile_body() {
-            return [
-                this.Description(),
-                this.Select_profile()
-            ];
+        select_profile(val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        profile_dict() {
+            return {};
+        }
+        Profile_switch() {
+            const obj = new this.$.$mol_switch();
+            obj.value = (val) => this.select_profile(val);
+            obj.options = () => this.profile_dict();
+            return obj;
         }
         profile_title(id) {
             return "";
@@ -9019,9 +9134,6 @@ var $;
             return null;
         }
     }
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "user_profile", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "model", null);
@@ -9052,6 +9164,12 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Select_profile", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "select_profile", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Profile_switch", null);
     __decorate([
         $.$mol_mem_key
     ], $hyoo_speculant_app.prototype, "profile_select", null);
@@ -9094,44 +9212,26 @@ var $;
             profile(id) {
                 return this.model().profiles()[id];
             }
+            select_profile(next) {
+                this.model().profile(next);
+            }
+            profile_dict() {
+                return Object.keys(this.model().profiles()).reduce((dict, id) => {
+                    const profile = this.profile(id);
+                    dict[id] = profile.title;
+                    return dict;
+                }, {});
+            }
             pages() {
-                if (!this.user_profile()) {
-                    return [this.Page_profile()];
-                }
                 return [
-                    this.Page_dashboard(),
+                    ...(this.model().profile() === 'other' ? [this.Page_profile()] : [this.Page_dashboard()]),
                     ...this.chat_pages(),
-                ];
-            }
-            profile_buttons() {
-                return Object.keys(this.model().profiles()).map(id => this.Profile_button(id));
-            }
-            profile_title(id) {
-                return this.profile(id).title;
-            }
-            profile_select(id) {
-                this.user_profile(id);
-            }
-            page_profile_body() {
-                return [
-                    this.Description(),
-                    this.Select_profile(),
-                    ...this.profile_buttons(),
                 ];
             }
         }
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "profile", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app.prototype, "profile_buttons", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app.prototype, "profile_title", null);
-        __decorate([
-            $.$mol_mem
-        ], $hyoo_speculant_app.prototype, "page_profile_body", null);
         $$.$hyoo_speculant_app = $hyoo_speculant_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

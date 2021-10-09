@@ -2307,7 +2307,6 @@ declare namespace $ {
 declare namespace $ {
     class $hyoo_speculant_app_dashboard extends $mol_page {
         model(): $$.$hyoo_speculant_world;
-        user_profile(): string;
         title(): string;
         Title(): $mol_view;
         Buy_button(id: any): $mol_button_typed;
@@ -2552,8 +2551,40 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_switch extends $mol_view {
+        Option(id: any): $$.$mol_check;
+        value(val?: any): any;
+        options(): {};
+        keys(): readonly string[];
+        sub(): readonly $mol_check[];
+        option_checked(id: any, val?: any): boolean;
+        option_title(id: any): string;
+        option_label(id: any): readonly any[];
+        enabled(): boolean;
+        option_enabled(id: any): boolean;
+        option_hint(id: any): string;
+        items(): readonly $mol_check[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_switch extends $.$mol_switch {
+        value(next?: any): any;
+        options(): {
+            [key: string]: string;
+        };
+        keys(): string[];
+        items(): $mol_check[];
+        option_title(key: string): string;
+        option_checked(key: string, next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
-        user_profile(val?: any): string;
         model(): $$.$hyoo_speculant_world;
         title(): string;
         page_tools(): readonly any[];
@@ -2569,7 +2600,9 @@ declare namespace $ {
         Theme(): $$.$mol_theme_auto;
         Description(): $$.$mol_text;
         Select_profile(): $$.$mol_text;
-        page_profile_body(): readonly any[];
+        select_profile(val?: any): any;
+        profile_dict(): {};
+        Profile_switch(): $$.$mol_switch;
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
     }
@@ -2581,11 +2614,9 @@ declare namespace $.$$ {
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
         profile(id: string): any;
+        select_profile(next?: string): void;
+        profile_dict(): {};
         pages(): ($mol_page | $hyoo_speculant_app_dashboard)[];
-        profile_buttons(): $mol_button_major[];
-        profile_title(id: string): any;
-        profile_select(id: string): void;
-        page_profile_body(): ($mol_text | $mol_button_major)[];
     }
 }
 
