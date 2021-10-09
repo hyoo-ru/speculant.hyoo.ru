@@ -23,7 +23,9 @@ namespace $.$$ {
 	export class $hyoo_speculant_world extends $.$hyoo_speculant_world {
 		
 		@ $mol_mem
-		time( next?: 'next' ): $mol_time_moment {
+		time( next?: $mol_time_moment ): $mol_time_moment {
+			
+			if( next ) return next
 			
 			this.$.$mol_state_time.now( 1000 )
 			

@@ -6,7 +6,7 @@ namespace $.$$ {
 			const world = new $hyoo_speculant_world
 			$mol_assert_equal( world.time().toString(), new $mol_time_moment().toString( 'YYYY-MM-DD' ) )
 			
-			world.time( 'next' )
+			world.time( null as any )
 			$mol_assert_unique( world.time().toString(), new $mol_time_moment().toString( 'YYYY-MM-DD' ) )
 			
 			world.destructor()
@@ -19,7 +19,7 @@ namespace $.$$ {
 			$mol_assert_equal( world.indicators().KBK.history.length, 1 )
 			const kbk = world.indicators().KBK.current
 			
-			world.time( 'next' )
+			world.time( null as any )
 			$mol_assert_equal( world.indicators().CSH.current, 1 )
 			$mol_assert_equal( world.indicators().KBK.history.length, 2 )
 			$mol_assert_equal( world.indicators().KBK.history.slice(-1)[0], world.indicators().KBK.current )
