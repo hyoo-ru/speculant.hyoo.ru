@@ -32,6 +32,8 @@ namespace $.$$ {
 			const prev = $mol_mem_cached( ()=> this.time() )
 			if( !prev ) return new $mol_time_moment().mask( '0000-00-00' )
 			
+			if( prev.toString() >= this.time_end().toString() ) return prev
+			
 			return prev.shift({ day: +1 })
 		}
 		
