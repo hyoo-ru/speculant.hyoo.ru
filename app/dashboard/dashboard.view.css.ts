@@ -1,6 +1,6 @@
 namespace $.$$ {
 	
-	const { rem, per } = $mol_style_unit
+	const { rem, per, px } = $mol_style_unit
 
 	$mol_style_define( $hyoo_speculant_app_dashboard , {
 
@@ -51,6 +51,12 @@ namespace $.$$ {
 		Icon_currency_down: {
 			color: 'red' ,
 		} ,
+		
+		Currency_icon: {
+			width: px(16) ,
+			height: px(16) ,
+			marginRight: '1rem' ,
+		}
 	} )
 
 }

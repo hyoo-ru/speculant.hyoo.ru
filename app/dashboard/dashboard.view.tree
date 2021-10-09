@@ -26,7 +26,11 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= currency_have!id \
 	Row!id $mol_view
 		sub /
-			<= Currency_name!id $mol_view sub / <= currency_name!id \
+			<= Currency_name!id $mol_view
+				sub /
+					<= Currency_icon!id $mol_image2
+						links / <= currency_icon_link!id \
+					<= currency_name!id \
 			<= Rate!id
 			<= Sell_button!id
 			<= Balance_currency!id

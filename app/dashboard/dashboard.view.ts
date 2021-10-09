@@ -69,6 +69,10 @@ namespace $.$$ {
 			return indicator.diff > 0 ? this.Icon_currency_up( id ) : this.Icon_currency_down( id )
 		}
 		
+		@ $mol_mem_key
+		currency_icon_link( id : string ) {
+			return this.indicator( id ).icon
+		}
 	}
 
 }
