@@ -56,10 +56,26 @@ namespace $.$$ {
 			this.model().exchange( this.currency_chart()[ index ] , -1 )
 		}
 		
+		@ $mol_mem_key
+		currency_name( id : string ) {
+			return this.indicator( id ).name
+		}
+		
+		@ $mol_mem_key
+		currency_have( id : string ) {
+			return this.indicator( id ).have.toFixed( 2 )
+		}
+		
 		balance_list() {
-			return this.currency_all().map( id => {
-				return `${ id }: ${ this.indicator( id ).have.toFixed( 2 ) } `
-			} )
+			return this.currency_all().map( id => this.Balance_currency( id ) )
+		}
+		
+		balance_total() {
+			const list = this.currency_chart().map( id => this.indicator( id ) )
+			const sum = list.reduce( ( sum , cur ) => {
+				return sum + ( cur.current * cur.have )
+			} , 0 )
+			return ( sum + this.indicator( 'CSH' ).have ).toFixed( 2 )
 		}
 
 	}
