@@ -7892,9 +7892,6 @@ var $;
     (function ($$) {
         const { rem } = $.$mol_style_unit;
         $.$mol_style_define($$.$hyoo_speculant_app_news, {
-            flex: {
-                basis: rem(30),
-            },
             List: {
                 padding: $.$mol_gap.block,
             },
@@ -8029,6 +8026,9 @@ var $;
         model() {
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
+        }
+        user_profile() {
+            return "";
         }
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
@@ -8251,7 +8251,7 @@ var $;
     (function ($$) {
         class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
             currency_all() {
-                return Object.keys(this.model().indicators());
+                return this.model().profiles()[this.user_profile()].indicators;
             }
             currency_work() {
                 return this.currency_all().filter(key => key !== 'CSH');
@@ -8942,6 +8942,7 @@ var $;
             const obj = new this.$.$hyoo_speculant_app_dashboard();
             obj.model = () => this.model();
             obj.tools = () => this.page_tools();
+            obj.user_profile = () => this.user_profile();
             return obj;
         }
         Page_profile() {

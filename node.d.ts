@@ -2298,6 +2298,7 @@ declare namespace $ {
 declare namespace $ {
     class $hyoo_speculant_app_dashboard extends $mol_page {
         model(): $$.$hyoo_speculant_world;
+        user_profile(): string;
         title(): string;
         Title(): $mol_view;
         Buy_button(id: any): $mol_button_typed;
