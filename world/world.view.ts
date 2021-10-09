@@ -7,6 +7,7 @@ namespace $.$$ {
 		type: string
 		have: number
 		current: number
+		diff: number
 		history: readonly number[]
 	}
 	
@@ -54,11 +55,14 @@ namespace $.$$ {
 					+ Math.round( ( Math.random() * 2 - 1 ) * entropy )
 				)
 				
+				const diff = current - next[ code ].current
+				
 				const history = [ ... next[ code ].history, current ]
 				
 				next[ code ] = {
 					... next[ code ],
 					current,
+					diff,
 					history,
 				}
 				
