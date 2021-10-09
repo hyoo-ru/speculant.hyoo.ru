@@ -31,5 +31,5 @@ $hyoo_speculant_app_dashboard $mol_page
 	News $hyoo_speculant_app_news
 		model <= model
 	body /
-		<= Currency_list
 		<= News
+		<= Currency_list
