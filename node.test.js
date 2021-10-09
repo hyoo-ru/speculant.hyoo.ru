@@ -8290,7 +8290,7 @@ var $;
             ];
         }
         balance_total_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_balance_total_title');
+            return "Баланс";
         }
         balance_total() {
             return "";
@@ -8578,13 +8578,13 @@ var $;
                 const sum = list.reduce((sum, cur) => {
                     return sum + (cur.current * cur.have);
                 }, 0);
-                return (sum + this.indicator('CSH').have).toFixed(2);
+                return (sum + this.indicator('CSH').have).toLocaleString();
             }
             balance_cash_title() {
                 return this.indicator('CSH').name;
             }
             balance_cash() {
-                return this.indicator('CSH').have.toString();
+                return this.indicator('CSH').have.toLocaleString();
             }
             currency_list() {
                 return this.currency_work().map(id => this.Row(id));
