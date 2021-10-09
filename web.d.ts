@@ -2155,12 +2155,15 @@ declare namespace $ {
     class $hyoo_speculant_app_dashboard extends $mol_page {
         model(): $$.$hyoo_speculant_world;
         title(): string;
+        Title(): $mol_labeler;
         Linear(id: any): $$.$mol_plot_group;
         Buy_button(id: any): $mol_button_typed;
         Sell_button(id: any): $mol_button_typed;
         Balance_currency(id: any): $mol_labeler;
-        Balance_total(): $mol_labeler;
         body(): readonly any[];
+        balance_total_title(): string;
+        balance_total(): string;
+        Balance_total(): $mol_labeler;
         linear_title(id: any): string;
         linear_series(id: any): readonly any[];
         Linear_line(id: any): $$.$mol_plot_line;
@@ -2168,8 +2171,6 @@ declare namespace $ {
         sell(id: any, val?: any): any;
         currency_name(id: any): string;
         currency_have(id: any): string;
-        balance_total_title(): string;
-        balance_total(): string;
         balance_list(): readonly any[];
         Balance(): $mol_row;
         Buttons(index: any): $mol_view;

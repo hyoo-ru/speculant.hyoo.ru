@@ -8009,6 +8009,9 @@ var $;
         title() {
             return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_title');
         }
+        Title() {
+            return this.Balance_total();
+        }
         Linear(id) {
             const obj = new this.$.$mol_plot_group();
             obj.title = () => this.linear_title(id);
@@ -8038,6 +8041,18 @@ var $;
             ];
             return obj;
         }
+        body() {
+            return [
+                this.Balance(),
+                this.Chart()
+            ];
+        }
+        balance_total_title() {
+            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_balance_total_title');
+        }
+        balance_total() {
+            return "";
+        }
         Balance_total() {
             const obj = new this.$.$mol_labeler();
             obj.title = () => this.balance_total_title();
@@ -8045,12 +8060,6 @@ var $;
                 this.balance_total()
             ];
             return obj;
-        }
-        body() {
-            return [
-                this.Balance(),
-                this.Chart()
-            ];
         }
         linear_title(id) {
             return "";
@@ -8076,12 +8085,6 @@ var $;
             return "";
         }
         currency_have(id) {
-            return "";
-        }
-        balance_total_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_dashboard_balance_total_title');
-        }
-        balance_total() {
             return "";
         }
         balance_list() {
@@ -8243,10 +8246,7 @@ var $;
                 return this.indicator(id).have.toFixed(2);
             }
             balance_list() {
-                return [
-                    this.Balance_total(),
-                    ...this.currency_all().map(id => this.Balance_currency(id)),
-                ];
+                return this.currency_all().map(id => this.Balance_currency(id));
             }
             balance_total() {
                 const list = this.currency_chart().map(id => this.indicator(id));
