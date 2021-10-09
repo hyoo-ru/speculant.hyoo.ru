@@ -1,17 +1,22 @@
 $hyoo_speculant_app $mol_book2
 	model $hyoo_speculant_world
 	title @ \Speculant
+	plugins /
+		<= Theme $mol_theme_auto
 	Page_dashboard $hyoo_speculant_app_dashboard
 		model <= model
 		tools /
 			<= Source $mol_link_source
 				uri \https://github.com/hyoo-ru/speculant.hyoo.ru
+			<= Lights $mol_lights_toggle
 			<= News_open $mol_link
 				arg * news \
 				sub <= news_open_sub /
 					<= News_unread_count $mol_speck
 						value <= unread_count 0
 					<= News_open_icon $mol_icon_bell_outline
+			<= Chat $mol_chat
+				pages => chat_pages
 	Page_news $hyoo_speculant_app_news
 		read_count => read_count
 		model <= model
