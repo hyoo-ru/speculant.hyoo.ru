@@ -9616,7 +9616,7 @@ var $;
         }
         Conglaturation() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "# Игра завершена!\n## За один год {увеличили|уменьшили} ваш капитал на {balance} единиц\n## Обучение инвестициям в [Школе инвестора](https://school.vtb.ru/) \n## Установить приложение для инвестирования [Android](https://play.google.com/store/apps/details?id=ru.vtb.invest) [IOS](https://apps.apple.com/us/app/%D0%B2%D1%82%D0%B1-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8/id1364026756)";
+            obj.text = () => "# Игра завершена!\n## За один год {увеличили|уменьшили} ваш капитал на {balance} единиц\n## Как насчёт пройти [школу инвестора](https://school.vtb.ru/) и попробовать снова?\n## Или даже воспользоваться [приложением от ВТБ](http://olb.ru/app), чтобы попробовать себя в реальном деле?";
             return obj;
         }
         share_uri() {
