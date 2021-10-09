@@ -4,6 +4,7 @@ $hyoo_speculant_world $mol_object2
 	- \
 		\Выбранный на старте пользователем профиль.
 	profiles *
+		- \Варианты профилей
 		scholar *
 			title \Школьник
 			indicators /
