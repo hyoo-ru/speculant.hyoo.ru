@@ -26,11 +26,11 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= Balance_currency!id
 			<= Buy_button!id
 			<= Sell_button!id
-	Currency_list $mol_view
-		sub / <= List $mol_list
-			rows <= currency_list /
+	Currency_list $mol_list
+		rows <= currency_list /
 	News $hyoo_speculant_app_news
 		model <= model
-	body /
-		<= News
-		<= Currency_list
+	body / <= Body_list $mol_list
+		rows /
+			<= News
+			<= Currency_list

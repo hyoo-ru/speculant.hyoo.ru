@@ -8,7 +8,10 @@ namespace $.$$ {
 			flex: {
 				basis: rem( 30 ) ,
 			} ,
-			justifyContent: 'center' ,
+			
+			Body: {
+				alignItems: 'center' ,
+			}
 		} ,
 		
 		Profile_button: {
