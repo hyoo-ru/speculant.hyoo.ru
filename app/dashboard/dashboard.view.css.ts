@@ -37,7 +37,7 @@ namespace $.$$ {
 			padding: $mol_gap.text ,
 			flex: {
 				grow: 1,
-				basis: rem(10),
+				basis: rem(8),
 			},
 		} ,
 
@@ -60,7 +60,7 @@ namespace $.$$ {
 		Currency_icon: {
 			width: px(16) ,
 			height: px(16) ,
-			marginRight: '1rem' ,
+			marginRight: '.25rem' ,
 		}
 	} )
 
