@@ -13,11 +13,13 @@ $hyoo_speculant_app_dashboard $mol_page
 				title \Дата
 				content / <= date \
 	Buy_button!id $mol_button_typed
-		title \+
 		click?val <=> buy!id?val null
+		sub /
+			<= Buy_button_icon!id $mol_icon_plus
 	Sell_button!id $mol_button_typed
-		title \-
 		click?val <=> sell!id?val null
+		sub /
+			<= Sell_button_icon!id $mol_icon_minus
 	Rate!id $mol_view
 		sub /
 			<= rate!id \
