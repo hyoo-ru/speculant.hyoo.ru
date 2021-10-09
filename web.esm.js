@@ -103,70 +103,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_decor {
-        value;
-        constructor(value) {
-            this.value = value;
-        }
-        prefix() { return ''; }
-        valueOf() { return this.value; }
-        postfix() { return ''; }
-        toString() {
-            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
-        }
-    }
-    $.$mol_decor = $mol_decor;
-})($ || ($ = {}));
-//decor.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_style_unit extends $.$mol_decor {
-        literal;
-        constructor(value, literal) {
-            super(value);
-            this.literal = literal;
-        }
-        postfix() {
-            return this.literal;
-        }
-        static per(value) { return new $mol_style_unit(value, '%'); }
-        static px(value) { return new $mol_style_unit(value, 'px'); }
-        static mm(value) { return new $mol_style_unit(value, 'mm'); }
-        static cm(value) { return new $mol_style_unit(value, 'cm'); }
-        static Q(value) { return new $mol_style_unit(value, 'Q'); }
-        static in(value) { return new $mol_style_unit(value, 'in'); }
-        static pc(value) { return new $mol_style_unit(value, 'pc'); }
-        static pt(value) { return new $mol_style_unit(value, 'pt'); }
-        static cap(value) { return new $mol_style_unit(value, 'cap'); }
-        static ch(value) { return new $mol_style_unit(value, 'ch'); }
-        static em(value) { return new $mol_style_unit(value, 'em'); }
-        static rem(value) { return new $mol_style_unit(value, 'rem'); }
-        static ex(value) { return new $mol_style_unit(value, 'ex'); }
-        static ic(value) { return new $mol_style_unit(value, 'ic'); }
-        static lh(value) { return new $mol_style_unit(value, 'lh'); }
-        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
-        static vh(value) { return new $mol_style_unit(value, 'vh'); }
-        static vw(value) { return new $mol_style_unit(value, 'vw'); }
-        static vi(value) { return new $mol_style_unit(value, 'vi'); }
-        static vb(value) { return new $mol_style_unit(value, 'vb'); }
-        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
-        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
-        static deg(value) { return new $mol_style_unit(value, 'deg'); }
-        static rad(value) { return new $mol_style_unit(value, 'rad'); }
-        static grad(value) { return new $mol_style_unit(value, 'grad'); }
-        static turn(value) { return new $mol_style_unit(value, 'turn'); }
-        static s(value) { return new $mol_style_unit(value, 's'); }
-        static ms(value) { return new $mol_style_unit(value, 'ms'); }
-    }
-    $.$mol_style_unit = $mol_style_unit;
-})($ || ($ = {}));
-//unit.js.map
-;
-"use strict";
-var $;
-(function ($) {
     $.$mol_ambient_ref = Symbol('$mol_ambient_ref');
     function $mol_ambient(overrides) {
         return Object.setPrototypeOf(overrides, this || $);
@@ -381,6 +317,70 @@ var $;
     $.$mol_style_attach = $mol_style_attach;
 })($ || ($ = {}));
 //attach.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_decor {
+        value;
+        constructor(value) {
+            this.value = value;
+        }
+        prefix() { return ''; }
+        valueOf() { return this.value; }
+        postfix() { return ''; }
+        toString() {
+            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
+        }
+    }
+    $.$mol_decor = $mol_decor;
+})($ || ($ = {}));
+//decor.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_style_unit extends $.$mol_decor {
+        literal;
+        constructor(value, literal) {
+            super(value);
+            this.literal = literal;
+        }
+        postfix() {
+            return this.literal;
+        }
+        static per(value) { return new $mol_style_unit(value, '%'); }
+        static px(value) { return new $mol_style_unit(value, 'px'); }
+        static mm(value) { return new $mol_style_unit(value, 'mm'); }
+        static cm(value) { return new $mol_style_unit(value, 'cm'); }
+        static Q(value) { return new $mol_style_unit(value, 'Q'); }
+        static in(value) { return new $mol_style_unit(value, 'in'); }
+        static pc(value) { return new $mol_style_unit(value, 'pc'); }
+        static pt(value) { return new $mol_style_unit(value, 'pt'); }
+        static cap(value) { return new $mol_style_unit(value, 'cap'); }
+        static ch(value) { return new $mol_style_unit(value, 'ch'); }
+        static em(value) { return new $mol_style_unit(value, 'em'); }
+        static rem(value) { return new $mol_style_unit(value, 'rem'); }
+        static ex(value) { return new $mol_style_unit(value, 'ex'); }
+        static ic(value) { return new $mol_style_unit(value, 'ic'); }
+        static lh(value) { return new $mol_style_unit(value, 'lh'); }
+        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
+        static vh(value) { return new $mol_style_unit(value, 'vh'); }
+        static vw(value) { return new $mol_style_unit(value, 'vw'); }
+        static vi(value) { return new $mol_style_unit(value, 'vi'); }
+        static vb(value) { return new $mol_style_unit(value, 'vb'); }
+        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
+        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
+        static deg(value) { return new $mol_style_unit(value, 'deg'); }
+        static rad(value) { return new $mol_style_unit(value, 'rad'); }
+        static grad(value) { return new $mol_style_unit(value, 'grad'); }
+        static turn(value) { return new $mol_style_unit(value, 'turn'); }
+        static s(value) { return new $mol_style_unit(value, 's'); }
+        static ms(value) { return new $mol_style_unit(value, 'ms'); }
+    }
+    $.$mol_style_unit = $mol_style_unit;
+})($ || ($ = {}));
+//unit.js.map
 ;
 "use strict";
 var $;
@@ -3547,7 +3547,7 @@ var $;
         news() {
             return [
                 {
-                    text: "*Новый профи вышел на рынок*\nВсе спекулянты замерли в ожидании.",
+                    text: "# Новый профи вышел на рынок\nВсе спекулянты замерли в ожидании.",
                     moment: ""
                 }
             ];
@@ -3556,27 +3556,27 @@ var $;
             return [
                 {
                     trend: -5,
-                    text: "*Утечка персональных данных*\nХорошо, что в **{name}** нет на вас досье."
+                    text: "# Утечка персональных данных\nХорошо, что в **{name}** нет на вас досье."
                 },
                 {
                     trend: -1,
-                    text: "Сайт **{name}** не отвечает\nПроизводительность труда выросла в два раза."
+                    text: "# Сайт **{name}** не отвечает\nПроизводительность труда выросла в два раза."
                 },
                 {
                     trend: -1,
-                    text: "*РосЮсбНаблюд заблокировал* **{name}**\nВаш любимый сайт теперь открывается через раз."
+                    text: "# РосЮсбНаблюд заблокировал **{name}**\nВаш любимый сайт теперь открывается через раз."
                 },
                 {
                     trend: 0,
-                    text: "*Московия вступила в ЗНАТО*\nИнтернет группа Ананимус взяла ответственность на себя."
+                    text: "# Московия вступила в ЗНАТО\nИнтернет группа Ананимус взяла ответственность на себя."
                 },
                 {
                     trend: 5,
-                    text: "*Айрон Маск твитнул что-то про* **{name}**\nБиржы еле справляются с начавшимся ажиотажем."
+                    text: "# Айрон Маск твитнул что-то про **{name}**\nБиржы еле справляются с начавшимся ажиотажем."
                 },
                 {
                     trend: 1,
-                    text: "*Новый отчёт финансового аналитика*\nНичего интересного про **{name}** в нём нет."
+                    text: "# Новый отчёт финансового аналитика\nНичего интересного про **{name}** в нём нет."
                 }
             ];
         }
@@ -3864,7 +3864,7 @@ var $;
             news() {
                 const moment = this.time();
                 const indicators = this.indicators();
-                const prev = $.$mol_mem_cached(() => this.news()) ?? super.news();
+                const prev = $.$mol_mem_cached(() => this.news()) ?? [{ ...[...super.news()][0], moment: moment.toString('DD.MM.YYYY') }];
                 if (Math.random() > .1)
                     return prev;
                 const template = $.$mol_stub_select_random(this.news_templates());
@@ -3872,7 +3872,7 @@ var $;
                 const name = indicators[indicator].name;
                 return [
                     ...prev, {
-                        moment: moment.toString('YYYY-MM-DD'),
+                        moment: moment.toString('DD.MM.YYYY'),
                         text: template.text.replace('{name}', name),
                     },
                 ];
@@ -7760,35 +7760,26 @@ var $;
         }
         rows() {
             return [
-                this.Date(),
                 this.News_item_title(),
-                this.News_item_body()
+                this.Date()
             ];
         }
-        news_item_date() {
+        text() {
+            return "";
+        }
+        News_item_title() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.text();
+            return obj;
+        }
+        date() {
             return "";
         }
         Date() {
             const obj = new this.$.$mol_view();
             obj.sub = () => [
-                this.news_item_date()
+                this.date()
             ];
-            return obj;
-        }
-        news_item_title() {
-            return "";
-        }
-        News_item_title() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.news_item_title();
-            return obj;
-        }
-        news_item_body() {
-            return "";
-        }
-        News_item_body() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.news_item_body();
             return obj;
         }
     }
@@ -7797,13 +7788,10 @@ var $;
     ], $hyoo_speculant_app_news_item.prototype, "news_read", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_news_item.prototype, "Date", null);
-    __decorate([
-        $.$mol_mem
     ], $hyoo_speculant_app_news_item.prototype, "News_item_title", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_news_item.prototype, "News_item_body", null);
+    ], $hyoo_speculant_app_news_item.prototype, "Date", null);
     $.$hyoo_speculant_app_news_item = $hyoo_speculant_app_news_item;
 })($ || ($ = {}));
 //news.view.tree.js.map
@@ -7813,11 +7801,34 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const { rem } = $.$mol_style_unit;
+        const { rem, em } = $.$mol_style_unit;
         $.$mol_style_define($$.$hyoo_speculant_app_news, {
             List: {
                 padding: $.$mol_gap.block,
             },
+        });
+        $.$mol_style_define($$.$hyoo_speculant_app_news_item, {
+            Date: {
+                justifyContent: 'flex-end',
+                font: {
+                    size: em(0.9),
+                },
+            },
+            News_item_title: {
+                Row: {
+                    margin: {
+                        bottom: 0,
+                    },
+                },
+                Header: {
+                    font: {
+                        size: em(1.3),
+                    },
+                    padding: {
+                        bottom: 0,
+                    },
+                },
+            }
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -7867,13 +7878,10 @@ var $;
             current() {
                 return this.news_item();
             }
-            news_item_title() {
+            text() {
                 return this.current().text;
             }
-            news_item_body() {
-                return '';
-            }
-            news_item_date() {
+            date() {
                 return this.current().moment;
             }
         }
@@ -7882,13 +7890,10 @@ var $;
         ], $hyoo_speculant_app_news_item.prototype, "current", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_news_item.prototype, "news_item_title", null);
+        ], $hyoo_speculant_app_news_item.prototype, "text", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_news_item.prototype, "news_item_body", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app_news_item.prototype, "news_item_date", null);
+        ], $hyoo_speculant_app_news_item.prototype, "date", null);
         $$.$hyoo_speculant_app_news_item = $hyoo_speculant_app_news_item;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -9722,6 +9727,13 @@ var $;
     $.$hyoo_speculant_app = $hyoo_speculant_app;
 })($ || ($ = {}));
 //app.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("hyoo/speculant/app/app.view.css", "[hyoo_speculant_app][mol_theme=\"$mol_theme_dark\"] {\n\t--mol_theme_back: #1D2128;\n\t--mol_theme_hover: rgba( 255 , 255 , 255 , .05 );\n\t--mol_theme_current: #3A83F1;\n\t--mol_theme_text: hsl( 0 , 0% , 90% );\n\t--mol_theme_control: #C2D4EF;\n\t--mol_theme_shade: rgba( 255 , 255 , 255 , .5 );\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_focus: #18A5F6;\n\t--mol_theme_field: #2B313B;\n\t--mol_theme_image: invert(1) hue-rotate(180deg);\n}\n\n[hyoo_speculant_app][mol_theme=\"$mol_theme_accent\"] {\n\t--mol_theme_back: #3A83F1;\n\t--mol_theme_hover: #234171;\n\t--mol_theme_text: white;\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_control: white;\n\t--mol_theme_focus: black;\n}\n\n[mol_page_head],\n[mol_page_foot] {\n\tbackground-color: var(--mol_theme_field);\n}\n");
+})($ || ($ = {}));
+//app.view.css.js.map
 ;
 "use strict";
 var $;

@@ -39,70 +39,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_decor {
-        value;
-        constructor(value) {
-            this.value = value;
-        }
-        prefix() { return ''; }
-        valueOf() { return this.value; }
-        postfix() { return ''; }
-        toString() {
-            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
-        }
-    }
-    $.$mol_decor = $mol_decor;
-})($ || ($ = {}));
-//decor.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_style_unit extends $.$mol_decor {
-        literal;
-        constructor(value, literal) {
-            super(value);
-            this.literal = literal;
-        }
-        postfix() {
-            return this.literal;
-        }
-        static per(value) { return new $mol_style_unit(value, '%'); }
-        static px(value) { return new $mol_style_unit(value, 'px'); }
-        static mm(value) { return new $mol_style_unit(value, 'mm'); }
-        static cm(value) { return new $mol_style_unit(value, 'cm'); }
-        static Q(value) { return new $mol_style_unit(value, 'Q'); }
-        static in(value) { return new $mol_style_unit(value, 'in'); }
-        static pc(value) { return new $mol_style_unit(value, 'pc'); }
-        static pt(value) { return new $mol_style_unit(value, 'pt'); }
-        static cap(value) { return new $mol_style_unit(value, 'cap'); }
-        static ch(value) { return new $mol_style_unit(value, 'ch'); }
-        static em(value) { return new $mol_style_unit(value, 'em'); }
-        static rem(value) { return new $mol_style_unit(value, 'rem'); }
-        static ex(value) { return new $mol_style_unit(value, 'ex'); }
-        static ic(value) { return new $mol_style_unit(value, 'ic'); }
-        static lh(value) { return new $mol_style_unit(value, 'lh'); }
-        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
-        static vh(value) { return new $mol_style_unit(value, 'vh'); }
-        static vw(value) { return new $mol_style_unit(value, 'vw'); }
-        static vi(value) { return new $mol_style_unit(value, 'vi'); }
-        static vb(value) { return new $mol_style_unit(value, 'vb'); }
-        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
-        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
-        static deg(value) { return new $mol_style_unit(value, 'deg'); }
-        static rad(value) { return new $mol_style_unit(value, 'rad'); }
-        static grad(value) { return new $mol_style_unit(value, 'grad'); }
-        static turn(value) { return new $mol_style_unit(value, 'turn'); }
-        static s(value) { return new $mol_style_unit(value, 's'); }
-        static ms(value) { return new $mol_style_unit(value, 'ms'); }
-    }
-    $.$mol_style_unit = $mol_style_unit;
-})($ || ($ = {}));
-//unit.js.map
-;
-"use strict";
-var $;
-(function ($) {
     $.$mol_ambient_ref = Symbol('$mol_ambient_ref');
     function $mol_ambient(overrides) {
         return Object.setPrototypeOf(overrides, this || $);
@@ -379,6 +315,70 @@ var $;
     $.$mol_style_attach = $mol_style_attach;
 })($ || ($ = {}));
 //attach.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_decor {
+        value;
+        constructor(value) {
+            this.value = value;
+        }
+        prefix() { return ''; }
+        valueOf() { return this.value; }
+        postfix() { return ''; }
+        toString() {
+            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
+        }
+    }
+    $.$mol_decor = $mol_decor;
+})($ || ($ = {}));
+//decor.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_style_unit extends $.$mol_decor {
+        literal;
+        constructor(value, literal) {
+            super(value);
+            this.literal = literal;
+        }
+        postfix() {
+            return this.literal;
+        }
+        static per(value) { return new $mol_style_unit(value, '%'); }
+        static px(value) { return new $mol_style_unit(value, 'px'); }
+        static mm(value) { return new $mol_style_unit(value, 'mm'); }
+        static cm(value) { return new $mol_style_unit(value, 'cm'); }
+        static Q(value) { return new $mol_style_unit(value, 'Q'); }
+        static in(value) { return new $mol_style_unit(value, 'in'); }
+        static pc(value) { return new $mol_style_unit(value, 'pc'); }
+        static pt(value) { return new $mol_style_unit(value, 'pt'); }
+        static cap(value) { return new $mol_style_unit(value, 'cap'); }
+        static ch(value) { return new $mol_style_unit(value, 'ch'); }
+        static em(value) { return new $mol_style_unit(value, 'em'); }
+        static rem(value) { return new $mol_style_unit(value, 'rem'); }
+        static ex(value) { return new $mol_style_unit(value, 'ex'); }
+        static ic(value) { return new $mol_style_unit(value, 'ic'); }
+        static lh(value) { return new $mol_style_unit(value, 'lh'); }
+        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
+        static vh(value) { return new $mol_style_unit(value, 'vh'); }
+        static vw(value) { return new $mol_style_unit(value, 'vw'); }
+        static vi(value) { return new $mol_style_unit(value, 'vi'); }
+        static vb(value) { return new $mol_style_unit(value, 'vb'); }
+        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
+        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
+        static deg(value) { return new $mol_style_unit(value, 'deg'); }
+        static rad(value) { return new $mol_style_unit(value, 'rad'); }
+        static grad(value) { return new $mol_style_unit(value, 'grad'); }
+        static turn(value) { return new $mol_style_unit(value, 'turn'); }
+        static s(value) { return new $mol_style_unit(value, 's'); }
+        static ms(value) { return new $mol_style_unit(value, 'ms'); }
+    }
+    $.$mol_style_unit = $mol_style_unit;
+})($ || ($ = {}));
+//unit.js.map
 ;
 "use strict";
 var $;
@@ -3808,7 +3808,7 @@ var $;
         news() {
             return [
                 {
-                    text: "*Новый профи вышел на рынок*\nВсе спекулянты замерли в ожидании.",
+                    text: "# Новый профи вышел на рынок\nВсе спекулянты замерли в ожидании.",
                     moment: ""
                 }
             ];
@@ -3817,27 +3817,27 @@ var $;
             return [
                 {
                     trend: -5,
-                    text: "*Утечка персональных данных*\nХорошо, что в **{name}** нет на вас досье."
+                    text: "# Утечка персональных данных\nХорошо, что в **{name}** нет на вас досье."
                 },
                 {
                     trend: -1,
-                    text: "Сайт **{name}** не отвечает\nПроизводительность труда выросла в два раза."
+                    text: "# Сайт **{name}** не отвечает\nПроизводительность труда выросла в два раза."
                 },
                 {
                     trend: -1,
-                    text: "*РосЮсбНаблюд заблокировал* **{name}**\nВаш любимый сайт теперь открывается через раз."
+                    text: "# РосЮсбНаблюд заблокировал **{name}**\nВаш любимый сайт теперь открывается через раз."
                 },
                 {
                     trend: 0,
-                    text: "*Московия вступила в ЗНАТО*\nИнтернет группа Ананимус взяла ответственность на себя."
+                    text: "# Московия вступила в ЗНАТО\nИнтернет группа Ананимус взяла ответственность на себя."
                 },
                 {
                     trend: 5,
-                    text: "*Айрон Маск твитнул что-то про* **{name}**\nБиржы еле справляются с начавшимся ажиотажем."
+                    text: "# Айрон Маск твитнул что-то про **{name}**\nБиржы еле справляются с начавшимся ажиотажем."
                 },
                 {
                     trend: 1,
-                    text: "*Новый отчёт финансового аналитика*\nНичего интересного про **{name}** в нём нет."
+                    text: "# Новый отчёт финансового аналитика\nНичего интересного про **{name}** в нём нет."
                 }
             ];
         }
@@ -4113,7 +4113,7 @@ var $;
             news() {
                 const moment = this.time();
                 const indicators = this.indicators();
-                const prev = $.$mol_mem_cached(() => this.news()) ?? super.news();
+                const prev = $.$mol_mem_cached(() => this.news()) ?? [{ ...[...super.news()][0], moment: moment.toString('DD.MM.YYYY') }];
                 if (Math.random() > .1)
                     return prev;
                 const template = $.$mol_stub_select_random(this.news_templates());
@@ -4121,7 +4121,7 @@ var $;
                 const name = indicators[indicator].name;
                 return [
                     ...prev, {
-                        moment: moment.toString('YYYY-MM-DD'),
+                        moment: moment.toString('DD.MM.YYYY'),
                         text: template.text.replace('{name}', name),
                     },
                 ];
@@ -7926,35 +7926,26 @@ var $;
         }
         rows() {
             return [
-                this.Date(),
                 this.News_item_title(),
-                this.News_item_body()
+                this.Date()
             ];
         }
-        news_item_date() {
+        text() {
+            return "";
+        }
+        News_item_title() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.text();
+            return obj;
+        }
+        date() {
             return "";
         }
         Date() {
             const obj = new this.$.$mol_view();
             obj.sub = () => [
-                this.news_item_date()
+                this.date()
             ];
-            return obj;
-        }
-        news_item_title() {
-            return "";
-        }
-        News_item_title() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.news_item_title();
-            return obj;
-        }
-        news_item_body() {
-            return "";
-        }
-        News_item_body() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => this.news_item_body();
             return obj;
         }
     }
@@ -7963,13 +7954,10 @@ var $;
     ], $hyoo_speculant_app_news_item.prototype, "news_read", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_news_item.prototype, "Date", null);
-    __decorate([
-        $.$mol_mem
     ], $hyoo_speculant_app_news_item.prototype, "News_item_title", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app_news_item.prototype, "News_item_body", null);
+    ], $hyoo_speculant_app_news_item.prototype, "Date", null);
     $.$hyoo_speculant_app_news_item = $hyoo_speculant_app_news_item;
 })($ || ($ = {}));
 //news.view.tree.js.map
@@ -7979,11 +7967,34 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const { rem } = $.$mol_style_unit;
+        const { rem, em } = $.$mol_style_unit;
         $.$mol_style_define($$.$hyoo_speculant_app_news, {
             List: {
                 padding: $.$mol_gap.block,
             },
+        });
+        $.$mol_style_define($$.$hyoo_speculant_app_news_item, {
+            Date: {
+                justifyContent: 'flex-end',
+                font: {
+                    size: em(0.9),
+                },
+            },
+            News_item_title: {
+                Row: {
+                    margin: {
+                        bottom: 0,
+                    },
+                },
+                Header: {
+                    font: {
+                        size: em(1.3),
+                    },
+                    padding: {
+                        bottom: 0,
+                    },
+                },
+            }
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -8033,13 +8044,10 @@ var $;
             current() {
                 return this.news_item();
             }
-            news_item_title() {
+            text() {
                 return this.current().text;
             }
-            news_item_body() {
-                return '';
-            }
-            news_item_date() {
+            date() {
                 return this.current().moment;
             }
         }
@@ -8048,13 +8056,10 @@ var $;
         ], $hyoo_speculant_app_news_item.prototype, "current", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_news_item.prototype, "news_item_title", null);
+        ], $hyoo_speculant_app_news_item.prototype, "text", null);
         __decorate([
             $.$mol_mem_key
-        ], $hyoo_speculant_app_news_item.prototype, "news_item_body", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $hyoo_speculant_app_news_item.prototype, "news_item_date", null);
+        ], $hyoo_speculant_app_news_item.prototype, "date", null);
         $$.$hyoo_speculant_app_news_item = $hyoo_speculant_app_news_item;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -9888,6 +9893,13 @@ var $;
     $.$hyoo_speculant_app = $hyoo_speculant_app;
 })($ || ($ = {}));
 //app.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("hyoo/speculant/app/app.view.css", "[hyoo_speculant_app][mol_theme=\"$mol_theme_dark\"] {\n\t--mol_theme_back: #1D2128;\n\t--mol_theme_hover: rgba( 255 , 255 , 255 , .05 );\n\t--mol_theme_current: #3A83F1;\n\t--mol_theme_text: hsl( 0 , 0% , 90% );\n\t--mol_theme_control: #C2D4EF;\n\t--mol_theme_shade: rgba( 255 , 255 , 255 , .5 );\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_focus: #18A5F6;\n\t--mol_theme_field: #2B313B;\n\t--mol_theme_image: invert(1) hue-rotate(180deg);\n}\n\n[hyoo_speculant_app][mol_theme=\"$mol_theme_accent\"] {\n\t--mol_theme_back: #3A83F1;\n\t--mol_theme_hover: #234171;\n\t--mol_theme_text: white;\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_control: white;\n\t--mol_theme_focus: black;\n}\n\n[mol_page_head],\n[mol_page_foot] {\n\tbackground-color: var(--mol_theme_field);\n}\n");
+})($ || ($ = {}));
+//app.view.css.js.map
 ;
 "use strict";
 var $;
@@ -12397,6 +12409,152 @@ var $;
 ;
 "use strict";
 var $;
+(function ($_1) {
+    $_1.$mol_test({
+        'tree parsing'() {
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo\nbar\n").sub.length, 2);
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo\nbar\n").sub[1].type, "bar");
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo\n\n\n").sub.length, 1);
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("=foo\n\\bar\n").sub.length, 2);
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("=foo\n\\bar\n").sub[1].data, "bar");
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo bar \\pol").sub[0].sub[0].sub[0].data, "pol");
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo bar\n\t\\pol\n\t\\men").sub[0].sub[0].sub[1].data, "men");
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('foo bar \\text\n').toString(), 'foo bar \\text\n');
+        },
+        'inserting'() {
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b c d').insert(new $_1.$mol_tree, 'a', 'b', 'c').toString(), 'a b \\\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b').insert(new $_1.$mol_tree, 'a', 'b', 'c', 'd').toString(), 'a b c \\\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b c d').insert(new $_1.$mol_tree, 0, 0, 0).toString(), 'a b \\\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b').insert(new $_1.$mol_tree, 0, 0, 0, 0).toString(), 'a b \\\n\t\\\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b c d').insert(new $_1.$mol_tree, null, null, null).toString(), 'a b \\\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b').insert(new $_1.$mol_tree, null, null, null, null).toString(), 'a b \\\n\t\\\n');
+        },
+        'fromJSON'() {
+            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON([]).toString(), '/\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON([false, true]).toString(), '/\n\tfalse\n\ttrue\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON([0, 1, 2.3]).toString(), '/\n\t0\n\t1\n\t2.3\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON(['', 'foo', 'bar\nbaz']).toString(), '/\n\t\\\n\t\\foo\n\t\\\n\t\t\\bar\n\t\t\\baz\n');
+            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON({ 'foo': false, 'bar\nbaz': 'lol' }).toString(), '*\n\tfoo false\n\t\\\n\t\t\\bar\n\t\t\\baz\n\t\t\\lol\n');
+        },
+        'toJSON'() {
+            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n').sub[0]), '[]');
+            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n\tfalse\n\ttrue\n').sub[0]), '[false,true]');
+            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n\t0\n\t1\n\t2.3\n').sub[0]), '[0,1,2.3]');
+            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n\t\\\n\t\\foo\n\t\\\n\t\t\\bar\n\t\t\\baz\n').sub[0]), '["","foo","bar\\nbaz"]');
+            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('*\n\tfoo false\n\t\\\n\t\t\\bar\n\t\t\\baz\n\t\t\\lol\n').sub[0]), '{"foo":false,"bar\\nbaz":"lol"}');
+        },
+        'hack'() {
+            const res = $_1.$mol_tree.fromString(`foo bar xxx`).hack({
+                '': (tree, context) => [tree.hack(context)],
+                'bar': (tree, context) => [tree.hack(context).clone({ type: '777' })],
+            });
+            $_1.$mol_assert_equal(res.toString(), new $_1.$mol_tree({ type: 'foo 777 xxx' }).toString());
+        },
+        'errors handling'($) {
+            const errors = [];
+            class Tree extends $_1.$mol_tree {
+                static $ = $.$mol_ambient({
+                    $mol_fail: error => errors.push(error.message)
+                });
+            }
+            Tree.fromString(`
+				\t \tfoo
+				bar \\data
+			`, 'test');
+            $_1.$mol_assert_like(errors, ['Syntax error at test:2\n \tfoo']);
+        },
+    });
+})($ || ($ = {}));
+//tree.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'equal paths'() {
+            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]);
+            $.$mol_assert_like(diff, {
+                prefix: [1, 2, 3, 4],
+                suffix: [[], [], []],
+            });
+        },
+        'different suffix'() {
+            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 5, 4]);
+            $.$mol_assert_like(diff, {
+                prefix: [1, 2],
+                suffix: [[3, 4], [3, 5], [5, 4]],
+            });
+        },
+        'one contains other'() {
+            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2], [1, 2, 3]);
+            $.$mol_assert_like(diff, {
+                prefix: [1, 2],
+                suffix: [[3, 4], [], [3]],
+            });
+        },
+        'fully different'() {
+            const diff = $.$mol_diff_path([1, 2], [3, 4], [5, 6]);
+            $.$mol_assert_like(diff, {
+                prefix: [],
+                suffix: [[1, 2], [3, 4], [5, 6]],
+            });
+        },
+    });
+})($ || ($ = {}));
+//path.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_diff_path(...paths) {
+        const limit = Math.min(...paths.map(path => path.length));
+        lookup: for (var i = 0; i < limit; ++i) {
+            const first = paths[0][i];
+            for (let j = 1; j < paths.length; ++j) {
+                if (paths[j][i] !== first)
+                    break lookup;
+            }
+        }
+        return {
+            prefix: paths[0].slice(0, i),
+            suffix: paths.map(path => path.slice(i)),
+        };
+    }
+    $.$mol_diff_path = $mol_diff_path;
+})($ || ($ = {}));
+//path.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_error_mix extends Error {
+        errors;
+        constructor(message, ...errors) {
+            super(message);
+            this.errors = errors;
+            if (errors.length) {
+                const stacks = [...errors.map(error => error.stack), this.stack];
+                const diff = $.$mol_diff_path(...stacks.map(stack => {
+                    if (!stack)
+                        return [];
+                    return stack.split('\n').reverse();
+                }));
+                const head = diff.prefix.reverse().join('\n');
+                const tails = diff.suffix.map(path => path.reverse().map(line => line.replace(/^(?!\s+at)/, '\tat (.) ')).join('\n')).join('\n\tat (.) -----\n');
+                this.stack = `Error: ${this.constructor.name}\n\tat (.) /"""\\\n${tails}\n\tat (.) \\___/\n${head}`;
+                this.message += errors.map(error => '\n' + error.message).join('');
+            }
+        }
+        toJSON() {
+            return this.message;
+        }
+    }
+    $.$mol_error_mix = $mol_error_mix;
+})($ || ($ = {}));
+//mix.js.map
+;
+"use strict";
+var $;
 (function ($) {
     class $mol_view_tree_test_attributes_super extends $.$mol_view {
         some() {
@@ -12588,66 +12746,6 @@ var $;
             },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-//tree.test.js.map
-;
-"use strict";
-var $;
-(function ($_1) {
-    $_1.$mol_test({
-        'tree parsing'() {
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo\nbar\n").sub.length, 2);
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo\nbar\n").sub[1].type, "bar");
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo\n\n\n").sub.length, 1);
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("=foo\n\\bar\n").sub.length, 2);
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("=foo\n\\bar\n").sub[1].data, "bar");
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo bar \\pol").sub[0].sub[0].sub[0].data, "pol");
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString("foo bar\n\t\\pol\n\t\\men").sub[0].sub[0].sub[1].data, "men");
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('foo bar \\text\n').toString(), 'foo bar \\text\n');
-        },
-        'inserting'() {
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b c d').insert(new $_1.$mol_tree, 'a', 'b', 'c').toString(), 'a b \\\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b').insert(new $_1.$mol_tree, 'a', 'b', 'c', 'd').toString(), 'a b c \\\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b c d').insert(new $_1.$mol_tree, 0, 0, 0).toString(), 'a b \\\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b').insert(new $_1.$mol_tree, 0, 0, 0, 0).toString(), 'a b \\\n\t\\\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b c d').insert(new $_1.$mol_tree, null, null, null).toString(), 'a b \\\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromString('a b').insert(new $_1.$mol_tree, null, null, null, null).toString(), 'a b \\\n\t\\\n');
-        },
-        'fromJSON'() {
-            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON([]).toString(), '/\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON([false, true]).toString(), '/\n\tfalse\n\ttrue\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON([0, 1, 2.3]).toString(), '/\n\t0\n\t1\n\t2.3\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON(['', 'foo', 'bar\nbaz']).toString(), '/\n\t\\\n\t\\foo\n\t\\\n\t\t\\bar\n\t\t\\baz\n');
-            $_1.$mol_assert_equal($_1.$mol_tree.fromJSON({ 'foo': false, 'bar\nbaz': 'lol' }).toString(), '*\n\tfoo false\n\t\\\n\t\t\\bar\n\t\t\\baz\n\t\t\\lol\n');
-        },
-        'toJSON'() {
-            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n').sub[0]), '[]');
-            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n\tfalse\n\ttrue\n').sub[0]), '[false,true]');
-            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n\t0\n\t1\n\t2.3\n').sub[0]), '[0,1,2.3]');
-            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('/\n\t\\\n\t\\foo\n\t\\\n\t\t\\bar\n\t\t\\baz\n').sub[0]), '["","foo","bar\\nbaz"]');
-            $_1.$mol_assert_equal(JSON.stringify($_1.$mol_tree.fromString('*\n\tfoo false\n\t\\\n\t\t\\bar\n\t\t\\baz\n\t\t\\lol\n').sub[0]), '{"foo":false,"bar\\nbaz":"lol"}');
-        },
-        'hack'() {
-            const res = $_1.$mol_tree.fromString(`foo bar xxx`).hack({
-                '': (tree, context) => [tree.hack(context)],
-                'bar': (tree, context) => [tree.hack(context).clone({ type: '777' })],
-            });
-            $_1.$mol_assert_equal(res.toString(), new $_1.$mol_tree({ type: 'foo 777 xxx' }).toString());
-        },
-        'errors handling'($) {
-            const errors = [];
-            class Tree extends $_1.$mol_tree {
-                static $ = $.$mol_ambient({
-                    $mol_fail: error => errors.push(error.message)
-                });
-            }
-            Tree.fromString(`
-				\t \tfoo
-				bar \\data
-			`, 'test');
-            $_1.$mol_assert_like(errors, ['Syntax error at test:2\n \tfoo']);
-        },
-    });
 })($ || ($ = {}));
 //tree.test.js.map
 ;
@@ -12931,91 +13029,5 @@ var $;
     $.$mol_view_tree_compile = $mol_view_tree_compile;
 })($ || ($ = {}));
 //tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'equal paths'() {
-            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]);
-            $.$mol_assert_like(diff, {
-                prefix: [1, 2, 3, 4],
-                suffix: [[], [], []],
-            });
-        },
-        'different suffix'() {
-            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 5, 4]);
-            $.$mol_assert_like(diff, {
-                prefix: [1, 2],
-                suffix: [[3, 4], [3, 5], [5, 4]],
-            });
-        },
-        'one contains other'() {
-            const diff = $.$mol_diff_path([1, 2, 3, 4], [1, 2], [1, 2, 3]);
-            $.$mol_assert_like(diff, {
-                prefix: [1, 2],
-                suffix: [[3, 4], [], [3]],
-            });
-        },
-        'fully different'() {
-            const diff = $.$mol_diff_path([1, 2], [3, 4], [5, 6]);
-            $.$mol_assert_like(diff, {
-                prefix: [],
-                suffix: [[1, 2], [3, 4], [5, 6]],
-            });
-        },
-    });
-})($ || ($ = {}));
-//path.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_diff_path(...paths) {
-        const limit = Math.min(...paths.map(path => path.length));
-        lookup: for (var i = 0; i < limit; ++i) {
-            const first = paths[0][i];
-            for (let j = 1; j < paths.length; ++j) {
-                if (paths[j][i] !== first)
-                    break lookup;
-            }
-        }
-        return {
-            prefix: paths[0].slice(0, i),
-            suffix: paths.map(path => path.slice(i)),
-        };
-    }
-    $.$mol_diff_path = $mol_diff_path;
-})($ || ($ = {}));
-//path.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_error_mix extends Error {
-        errors;
-        constructor(message, ...errors) {
-            super(message);
-            this.errors = errors;
-            if (errors.length) {
-                const stacks = [...errors.map(error => error.stack), this.stack];
-                const diff = $.$mol_diff_path(...stacks.map(stack => {
-                    if (!stack)
-                        return [];
-                    return stack.split('\n').reverse();
-                }));
-                const head = diff.prefix.reverse().join('\n');
-                const tails = diff.suffix.map(path => path.reverse().map(line => line.replace(/^(?!\s+at)/, '\tat (.) ')).join('\n')).join('\n\tat (.) -----\n');
-                this.stack = `Error: ${this.constructor.name}\n\tat (.) /"""\\\n${tails}\n\tat (.) \\___/\n${head}`;
-                this.message += errors.map(error => '\n' + error.message).join('');
-            }
-        }
-        toJSON() {
-            return this.message;
-        }
-    }
-    $.$mol_error_mix = $mol_error_mix;
-})($ || ($ = {}));
-//mix.js.map
 
 //# sourceMappingURL=node.test.js.map
