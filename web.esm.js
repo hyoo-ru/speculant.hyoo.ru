@@ -9391,9 +9391,6 @@ var $;
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
         }
-        title() {
-            return this.app_title();
-        }
         page_tools() {
             return [
                 this.Source(),
@@ -9414,7 +9411,7 @@ var $;
         }
         Page_profile() {
             const obj = new this.$.$mol_page();
-            obj.title = () => this.app_title();
+            obj.title = () => "Спекулянтъ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
                 this.Description(),
@@ -9430,9 +9427,6 @@ var $;
             obj.title = () => this.profile_title(id);
             obj.click = (val) => this.profile_select(id, val);
             return obj;
-        }
-        app_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_app_title');
         }
         Source() {
             const obj = new this.$.$mol_link_source();

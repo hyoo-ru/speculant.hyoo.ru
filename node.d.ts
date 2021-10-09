@@ -2839,13 +2839,11 @@ declare namespace $.$$ {
 declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
         model(): $$.$hyoo_speculant_world;
-        title(): string;
         page_tools(): readonly any[];
         plugins(): readonly any[];
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         Page_profile(): $$.$mol_page;
         Profile_button(id: any): $mol_button_major;
-        app_title(): string;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
         chat_pages(): $$.$mol_page[];

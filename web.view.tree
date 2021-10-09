@@ -740,7 +740,6 @@ $mol_switch $mol_view
 
 $hyoo_speculant_app $mol_book2
 	model $hyoo_speculant_world
-	title <= app_title @ \Спекулянтъ
 	page_tools /
 		<= Source $mol_link_source
 			uri \https://github.com/hyoo-ru/speculant.hyoo.ru
@@ -753,7 +752,7 @@ $hyoo_speculant_app $mol_book2
 		model <= model
 		tools <= page_tools
 	Page_profile $mol_page
-		title <= app_title
+		title \Спекулянтъ
 		tools <= page_tools
 		body /
 			<= Description $mol_text
