@@ -11,6 +11,7 @@ namespace $.$$ {
 			return [
 				this.Page_dashboard() ,
 				... ( this.news() ? [ this.Page_news() ]  : [] ) ,
+				... this.chat_pages(),
 			]
 		}
 

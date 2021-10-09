@@ -40,7 +40,7 @@ $hyoo_speculant_world $mol_object2
 			current 200
 			history /number
 		RIK *
-			name \МордоСвиток
+			name \ЛицеСвиток
 			type \share
 			have 0
 			current 50
