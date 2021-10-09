@@ -19,16 +19,15 @@ $hyoo_speculant_app_dashboard $mol_page
 		title \Курс
 		content / <= rate!index \
 	Balance_currency!index $mol_labeler
-		title \Баланс
+		title \Куплено
 		content / <= currency_have!index \
 	body /
 		<= Chart $hyoo_speculant_chart
-			Legend_tools!index <= Buttons!index $mol_view
-				sub /
-					<= Rate!index
-					<= Balance_currency!index
-					<= Buy_button!index
-					<= Sell_button!index
+			Legend_tools!index <= Buttons!index /
+				<= Rate!index
+				<= Balance_currency!index
+				<= Buy_button!index
+				<= Sell_button!index
 			graphs <= linear_list /
 				<= Vert_ruler $mol_plot_ruler_vert
 					title <= vert_title @ \Values
