@@ -5099,22 +5099,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_row extends $.$mol_view {
-    }
-    $.$mol_row = $mol_row;
-})($ || ($ = {}));
-//row.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
-})($ || ($ = {}));
-//row.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_list extends $.$mol_view {
         render_visible_only() {
             return true;
@@ -8073,13 +8057,13 @@ var $;
             return obj;
         }
         Row(id) {
-            const obj = new this.$.$mol_row();
+            const obj = new this.$.$mol_view();
             obj.sub = () => [
                 this.Currency_name(id),
                 this.Rate(id),
+                this.Sell_button(id),
                 this.Balance_currency(id),
-                this.Buy_button(id),
-                this.Sell_button(id)
+                this.Buy_button(id)
             ];
             return obj;
         }
@@ -8242,9 +8226,20 @@ var $;
             },
             Rate: {
                 padding: $.$mol_gap.text,
+                flex: {
+                    grow: 1,
+                    basis: rem(3),
+                },
+            },
+            Currency_list: {
+                padding: $.$mol_gap.block,
             },
             Currency_name: {
                 padding: $.$mol_gap.text,
+                flex: {
+                    grow: 1,
+                    basis: rem(10),
+                },
             },
             Balance_currency: {
                 padding: $.$mol_gap.text,

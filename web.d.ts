@@ -1470,14 +1470,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_row extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_list extends $mol_view {
         render_visible_only(): boolean;
         render_over(): number;
@@ -2330,7 +2322,7 @@ declare namespace $ {
         Sell_button(id: any): $mol_button_typed;
         Rate(id: any): $mol_view;
         Balance_currency(id: any): $mol_view;
-        Row(id: any): $mol_row;
+        Row(id: any): $mol_view;
         Currency_list(): $$.$mol_list;
         News(): $$.$hyoo_speculant_app_news;
         body(): readonly any[];
@@ -2369,7 +2361,7 @@ declare namespace $.$$ {
         balance_total(): string;
         balance_cash_title(): string;
         balance_cash(): string;
-        currency_list(): $mol_row[];
+        currency_list(): $mol_view[];
     }
 }
 
