@@ -8442,8 +8442,11 @@ var $;
             Currency_icon: {
                 width: px(16),
                 height: px(16),
-                marginRight: '.25rem',
-            }
+                alignSelf: 'center',
+                margin: {
+                    right: rem(.25),
+                },
+            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
