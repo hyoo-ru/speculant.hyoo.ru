@@ -575,6 +575,9 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= Balance_cash $mol_labeler
 				title <= balance_cash_title \
 				content / <= balance_cash \
+			<= Date $mol_labeler
+				title \Дата
+				content / <= date \
 	Buy_button!id $mol_button_typed
 		title \+
 		click?val <=> buy!id?val null

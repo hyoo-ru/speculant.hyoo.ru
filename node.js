@@ -8248,10 +8248,22 @@ var $;
             ];
             return obj;
         }
+        date() {
+            return "";
+        }
+        Date() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => "Дата";
+            obj.content = () => [
+                this.date()
+            ];
+            return obj;
+        }
         title_list() {
             return [
                 this.Balance_total(),
-                this.Balance_cash()
+                this.Balance_cash(),
+                this.Date()
             ];
         }
         Title_list() {
@@ -8356,6 +8368,9 @@ var $;
     ], $hyoo_speculant_app_dashboard.prototype, "Balance_cash", null);
     __decorate([
         $.$mol_mem
+    ], $hyoo_speculant_app_dashboard.prototype, "Date", null);
+    __decorate([
+        $.$mol_mem
     ], $hyoo_speculant_app_dashboard.prototype, "Title_list", null);
     __decorate([
         $.$mol_mem_key
@@ -8393,6 +8408,9 @@ var $;
                 basis: rem(30),
             },
             Balance_total: {
+                marginRight: '1rem',
+            },
+            Balance_cash: {
                 marginRight: '1rem',
             },
             Head: {
@@ -8491,6 +8509,9 @@ var $;
             currency_icon_link(id) {
                 return this.indicator(id).icon;
             }
+            date() {
+                return this.model().time().toString('DD Mon YYYY');
+            }
         }
         __decorate([
             $.$mol_mem
@@ -8525,6 +8546,9 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app_dashboard.prototype, "currency_icon_link", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app_dashboard.prototype, "date", null);
         $$.$hyoo_speculant_app_dashboard = $hyoo_speculant_app_dashboard;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

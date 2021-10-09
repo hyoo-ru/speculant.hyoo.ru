@@ -2372,6 +2372,8 @@ declare namespace $ {
         balance_cash_title(): string;
         balance_cash(): string;
         Balance_cash(): $mol_labeler;
+        date(): string;
+        Date(): $mol_labeler;
         title_list(): readonly any[];
         Title_list(): $mol_view;
         buy(id: any, val?: any): any;
@@ -2408,6 +2410,7 @@ declare namespace $.$$ {
         currency_list(): $mol_view[];
         Currency_diff(id: string): $mol_icon_arrow_up_bold | $mol_icon_arrow_down_bold;
         currency_icon_link(id: string): string;
+        date(): string;
     }
 }
 
