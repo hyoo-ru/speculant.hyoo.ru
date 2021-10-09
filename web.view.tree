@@ -748,8 +748,6 @@ $mol_switch $mol_view
 	keys /string
 	sub <= items /$mol_check
 
-$mol_row $mol_view
-
 $mol_icon_share $mol_icon path \M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z
 
 $mol_icon_share_variant $mol_icon path \M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8C19.66,8 21,6.66 21,5C21,3.34 19.66,2 18,2C16.34,2 15,3.34 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9C4.34,9 3,10.34 3,12C3,13.66 4.34,15 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19C20.92,17.39 19.61,16.08 18,16.08Z
@@ -761,6 +759,7 @@ $mol_button_share $mol_button_minor
 
 $hyoo_speculant_app $mol_book2
 	model $hyoo_speculant_world
+	balance_total \
 	page_tools /
 		<= Source $mol_link_source
 			uri \https://github.com/hyoo-ru/speculant.hyoo.ru
@@ -772,8 +771,6 @@ $hyoo_speculant_app $mol_book2
 	Page_dashboard $hyoo_speculant_app_dashboard
 		model <= model
 		tools <= page_tools
-		balance_total => balance_total
-		currency_all => currency_all
 	Page_profile $mol_page
 		title \СпекулянтЪ
 		tools <= page_tools
@@ -815,7 +812,7 @@ $hyoo_speculant_app $mol_book2
 					\## За один год ваш капитал увеличился на {balance} кэша.
 					\## Как насчёт пройти [школу инвестора](https://school.vtb.ru/) и попробовать снова?
 					\## Или даже воспользоваться [приложением от ВТБ](http://olb.ru/app), чтобы попробовать себя в реальном деле?
-			<= Portfolio $mol_row
+			- <= Portfolio $mol_row
 				sub <= protfolio /
 		foot /
 			<= Share $mol_button_share

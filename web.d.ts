@@ -2866,14 +2866,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_row extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_icon_share extends $mol_icon {
         path(): string;
     }
@@ -2902,10 +2894,9 @@ declare namespace $.$$ {
 declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
         model(): $$.$hyoo_speculant_world;
+        balance_total(): string;
         page_tools(): readonly any[];
         plugins(): readonly any[];
-        balance_total(): string;
-        currency_all(): ("KBK" | "INS" | "LKN" | "TTK" | "TLT" | "VBL" | "CHK" | "OGR" | "CSH")[];
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
         Page_profile(): $$.$mol_page;
         Profile_button(id: any): $mol_button_major;
@@ -2931,8 +2922,6 @@ declare namespace $ {
         balance_total_title(): string;
         final_text(): string;
         Final_text(): $$.$mol_text;
-        protfolio(): readonly any[];
-        Portfolio(): $mol_row;
         share_uri(): string;
         Share(): $$.$mol_button_share;
     }
@@ -2952,6 +2941,9 @@ declare namespace $.$$ {
         final_text(): string;
         portfolio_title(id: string): string;
         portfolio_have(id: string): string;
+        currency_all(): ("KBK" | "INS" | "LKN" | "TTK" | "TLT" | "VBL" | "CHK" | "OGR" | "CSH")[];
+        currency_work(): ("KBK" | "INS" | "LKN" | "TTK" | "TLT" | "VBL" | "CHK" | "OGR" | "CSH")[];
+        balance_total(): string;
         portfolio(): $mol_labeler[];
     }
 }

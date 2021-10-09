@@ -9607,22 +9607,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_row extends $.$mol_view {
-    }
-    $.$mol_row = $mol_row;
-})($ || ($ = {}));
-//row.view.tree.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
-})($ || ($ = {}));
-//row.view.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_icon_share extends $.$mol_icon {
         path() {
             return "M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z";
@@ -9691,6 +9675,9 @@ var $;
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
         }
+        balance_total() {
+            return "";
+        }
         page_tools() {
             return [
                 this.Source(),
@@ -9702,12 +9689,6 @@ var $;
             return [
                 this.Theme()
             ];
-        }
-        balance_total() {
-            return this.Page_dashboard().balance_total();
-        }
-        currency_all() {
-            return this.Page_dashboard().currency_all();
         }
         Page_dashboard() {
             const obj = new this.$.$hyoo_speculant_app_dashboard();
@@ -9751,8 +9732,7 @@ var $;
             obj.title = () => "СпекулянтЪ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
-                this.Final_text(),
-                this.Portfolio()
+                this.Final_text()
             ];
             obj.foot = () => [
                 this.Share()
@@ -9843,14 +9823,6 @@ var $;
             obj.text = () => this.final_text();
             return obj;
         }
-        protfolio() {
-            return [];
-        }
-        Portfolio() {
-            const obj = new this.$.$mol_row();
-            obj.sub = () => this.protfolio();
-            return obj;
-        }
         share_uri() {
             return "";
         }
@@ -9918,9 +9890,6 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Final_text", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Portfolio", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Share", null);
@@ -10006,6 +9975,19 @@ var $;
             portfolio_have(id) {
                 return this.indicator(id).have.toString();
             }
+            currency_all() {
+                return this.model().profiles()[this.model().profile()].indicators;
+            }
+            currency_work() {
+                return this.currency_all().filter(key => key !== 'CSH');
+            }
+            balance_total() {
+                const list = this.currency_work().map(id => this.indicator(id));
+                const sum = list.reduce((sum, cur) => {
+                    return sum + (cur.current * cur.have);
+                }, 0);
+                return (sum + this.indicator('CSH').have).toString();
+            }
             portfolio() {
                 return [
                     this.Balance_total(),
@@ -10031,6 +10013,12 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app.prototype, "portfolio_have", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "currency_all", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "currency_work", null);
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "portfolio", null);
