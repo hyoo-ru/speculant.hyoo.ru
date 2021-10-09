@@ -11,8 +11,6 @@ $hyoo_speculant_app_news_item $mol_list
 	news_item \
 	news_read?val false
 	rows /
-		<= Date $mol_view sub / <= news_item_date \
 		<= News_item_title $mol_text
-			text <= news_item_title \
-		<= News_item_body $mol_text
-			text <= news_item_body \
+			text <= text \
+		<= Date $mol_view sub / <= date \

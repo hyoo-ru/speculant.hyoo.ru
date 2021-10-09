@@ -112,7 +112,7 @@ namespace $.$$ {
 			const moment = this.time()
 			const indicators = this.indicators()
 			
-			const prev = $mol_mem_cached( ()=> this.news() ) ?? super.news()
+			const prev = $mol_mem_cached( ()=> this.news() ) ?? [ { ... [... super.news()][0] , moment: moment.toString( 'DD.MM.YYYY' ) } ]
 			if( Math.random() > .1 ) return prev
 			
 			const template = $mol_stub_select_random( this.news_templates() )
@@ -124,7 +124,7 @@ namespace $.$$ {
 			
 			return [
 				... prev, {
-					moment: moment.toString( 'YYYY-MM-DD' ),
+					moment: moment.toString( 'DD.MM.YYYY' ),
 					text: template.text.replace( '{name}', name ),
 				},
 			]

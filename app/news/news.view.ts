@@ -42,17 +42,12 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem_key
-		news_item_title() {
+		text() {
 			return this.current().text
 		}
 		
 		@ $mol_mem_key
-		news_item_body() {
-			return ''
-		}
-		
-		@ $mol_mem_key
-		news_item_date() {
+		date() {
 			return this.current().moment
 		}
 		

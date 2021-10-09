@@ -6,8 +6,8 @@
 	--mol_theme_control: #C2D4EF;
 	--mol_theme_shade: rgba( 255 , 255 , 255 , .5 );
 	--mol_theme_line: rgba( 50 , 50 , 50 , 1 );
-	--mol_theme_focus: #65BCED;
-	--mol_theme_field: #2E3340;
+	--mol_theme_focus: #18A5F6;
+	--mol_theme_field: #2B313B;
 	--mol_theme_image: invert(1) hue-rotate(180deg);
 }
 
@@ -22,5 +22,5 @@
 
 [mol_page_head],
 [mol_page_foot] {
-	background-color: #2B313B;
+	background-color: var(--mol_theme_field);
 }
