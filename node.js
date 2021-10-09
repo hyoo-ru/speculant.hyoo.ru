@@ -9816,7 +9816,7 @@ var $;
             return this.$.$mol_locale.text('$hyoo_speculant_app_balance_total_title');
         }
         final_text() {
-            return "# Игра завершена!\n## За один год ваш капитал увеличился на {balance} кэша.\n## Как насчёт пройти [школу инвестора](https://school.vtb.ru/) и попробовать снова?\n## Или даже воспользоваться [приложением от ВТБ](http://olb.ru/app), чтобы попробовать себя в реальном деле?";
+            return "# Ого, {balance} за год!\n\nКак насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?\n\nИли даже попробовать по настоящему в [ВТБ Мои Инвестиции](http://olb.ru/app)?";
         }
         Final_text() {
             const obj = new this.$.$mol_text();
