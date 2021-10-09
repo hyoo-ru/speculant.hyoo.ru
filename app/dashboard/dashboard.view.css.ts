@@ -12,6 +12,10 @@ namespace $.$$ {
 			marginRight: '1rem',
 		} ,
 
+		Balance_cash: {
+			marginRight: '1rem',
+		} ,
+
 		Head: {
 			justifyContent: 'space-between' ,
 		} ,

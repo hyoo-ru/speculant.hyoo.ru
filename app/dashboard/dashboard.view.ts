@@ -73,6 +73,11 @@ namespace $.$$ {
 		currency_icon_link( id : string ) {
 			return this.indicator( id ).icon
 		}
+		
+		@ $mol_mem
+		date() {
+			return this.model().time().toString( 'DD Mon YYYY' )
+		}
 	}
 
 }
