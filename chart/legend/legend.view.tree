@@ -1,6 +1,6 @@
 $hyoo_speculant_chart_legend $mol_chart_legend
-	Graph_legend!id $mol_view
-		sub /
+	Graph_legend!id $mol_row
+		sub <= rows!id /
 			<= Graph_sample_box!id
 			<= Graph_title!id
-			<= Tools!id $mol_view
+			<= Tools!id /
