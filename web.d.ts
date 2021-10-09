@@ -29,6 +29,57 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_decor<Value> {
+        readonly value: Value;
+        constructor(value: Value);
+        prefix(): string;
+        valueOf(): Value;
+        postfix(): string;
+        toString(): string;
+    }
+}
+
+declare namespace $ {
+    type $mol_style_unit_length = '%' | 'px' | 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt' | 'cap' | 'ch' | 'em' | 'rem' | 'ex' | 'ic' | 'lh' | 'rlh' | 'vh' | 'vw' | 'vi' | 'vb' | 'vmin' | 'vmax';
+    type $mol_style_unit_angle = 'deg' | 'rad' | 'grad' | 'turn';
+    type $mol_style_unit_time = 's' | 'ms';
+    type $mol_style_unit_any = $mol_style_unit_length | $mol_style_unit_angle | $mol_style_unit_time;
+    class $mol_style_unit<Literal extends $mol_style_unit_any> extends $mol_decor<number> {
+        readonly literal: Literal;
+        constructor(value: number, literal: Literal);
+        postfix(): Literal;
+        static per(value: number): $mol_style_unit<"%">;
+        static px(value: number): $mol_style_unit<"px">;
+        static mm(value: number): $mol_style_unit<"mm">;
+        static cm(value: number): $mol_style_unit<"cm">;
+        static Q(value: number): $mol_style_unit<"Q">;
+        static in(value: number): $mol_style_unit<"in">;
+        static pc(value: number): $mol_style_unit<"pc">;
+        static pt(value: number): $mol_style_unit<"pt">;
+        static cap(value: number): $mol_style_unit<"cap">;
+        static ch(value: number): $mol_style_unit<"ch">;
+        static em(value: number): $mol_style_unit<"em">;
+        static rem(value: number): $mol_style_unit<"rem">;
+        static ex(value: number): $mol_style_unit<"ex">;
+        static ic(value: number): $mol_style_unit<"ic">;
+        static lh(value: number): $mol_style_unit<"lh">;
+        static rlh(value: number): $mol_style_unit<"rlh">;
+        static vh(value: number): $mol_style_unit<"vh">;
+        static vw(value: number): $mol_style_unit<"vw">;
+        static vi(value: number): $mol_style_unit<"vi">;
+        static vb(value: number): $mol_style_unit<"vb">;
+        static vmin(value: number): $mol_style_unit<"vmin">;
+        static vmax(value: number): $mol_style_unit<"vmax">;
+        static deg(value: number): $mol_style_unit<"deg">;
+        static rad(value: number): $mol_style_unit<"rad">;
+        static grad(value: number): $mol_style_unit<"grad">;
+        static turn(value: number): $mol_style_unit<"turn">;
+        static s(value: number): $mol_style_unit<"s">;
+        static ms(value: number): $mol_style_unit<"ms">;
+    }
+}
+
+declare namespace $ {
     const $mol_ambient_ref: unique symbol;
     type $mol_ambient_context = $;
     function $mol_ambient(this: $ | void, overrides: Partial<$>): $;
@@ -93,57 +144,6 @@ declare namespace $ {
 
 declare namespace $ {
     function $mol_style_attach(id: string, text: string): HTMLStyleElement | null;
-}
-
-declare namespace $ {
-    class $mol_decor<Value> {
-        readonly value: Value;
-        constructor(value: Value);
-        prefix(): string;
-        valueOf(): Value;
-        postfix(): string;
-        toString(): string;
-    }
-}
-
-declare namespace $ {
-    type $mol_style_unit_length = '%' | 'px' | 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt' | 'cap' | 'ch' | 'em' | 'rem' | 'ex' | 'ic' | 'lh' | 'rlh' | 'vh' | 'vw' | 'vi' | 'vb' | 'vmin' | 'vmax';
-    type $mol_style_unit_angle = 'deg' | 'rad' | 'grad' | 'turn';
-    type $mol_style_unit_time = 's' | 'ms';
-    type $mol_style_unit_any = $mol_style_unit_length | $mol_style_unit_angle | $mol_style_unit_time;
-    class $mol_style_unit<Literal extends $mol_style_unit_any> extends $mol_decor<number> {
-        readonly literal: Literal;
-        constructor(value: number, literal: Literal);
-        postfix(): Literal;
-        static per(value: number): $mol_style_unit<"%">;
-        static px(value: number): $mol_style_unit<"px">;
-        static mm(value: number): $mol_style_unit<"mm">;
-        static cm(value: number): $mol_style_unit<"cm">;
-        static Q(value: number): $mol_style_unit<"Q">;
-        static in(value: number): $mol_style_unit<"in">;
-        static pc(value: number): $mol_style_unit<"pc">;
-        static pt(value: number): $mol_style_unit<"pt">;
-        static cap(value: number): $mol_style_unit<"cap">;
-        static ch(value: number): $mol_style_unit<"ch">;
-        static em(value: number): $mol_style_unit<"em">;
-        static rem(value: number): $mol_style_unit<"rem">;
-        static ex(value: number): $mol_style_unit<"ex">;
-        static ic(value: number): $mol_style_unit<"ic">;
-        static lh(value: number): $mol_style_unit<"lh">;
-        static rlh(value: number): $mol_style_unit<"rlh">;
-        static vh(value: number): $mol_style_unit<"vh">;
-        static vw(value: number): $mol_style_unit<"vw">;
-        static vi(value: number): $mol_style_unit<"vi">;
-        static vb(value: number): $mol_style_unit<"vb">;
-        static vmin(value: number): $mol_style_unit<"vmin">;
-        static vmax(value: number): $mol_style_unit<"vmax">;
-        static deg(value: number): $mol_style_unit<"deg">;
-        static rad(value: number): $mol_style_unit<"rad">;
-        static grad(value: number): $mol_style_unit<"grad">;
-        static turn(value: number): $mol_style_unit<"turn">;
-        static s(value: number): $mol_style_unit<"s">;
-        static ms(value: number): $mol_style_unit<"ms">;
-    }
 }
 
 declare namespace $ {
@@ -2919,25 +2919,41 @@ declare namespace $ {
     class $hyoo_speculant_app_news extends $mol_page {
         model(): $$.$hyoo_speculant_world;
         title(): string;
+        unread_count(): number;
+        News_item(id: any): $$.$hyoo_speculant_app_news_item;
         body(): readonly any[];
-        News_item(id: any): $$.$mol_list;
+        news_item(id: any): string;
+        news_read(id: any, val?: any): boolean;
         news_list(): readonly any[];
         List(): $$.$mol_list;
-        news_item_date(id: any): string;
-        Date(id: any): $mol_view;
-        news_item_title(id: any): string;
-        News_item_title(id: any): $$.$mol_text;
-        news_item_body(id: any): string;
-        News_item_body(id: any): $$.$mol_text;
+    }
+    class $hyoo_speculant_app_news_item extends $mol_list {
+        news_item(): string;
+        news_read(val?: any): boolean;
+        rows(): readonly any[];
+        news_item_date(): string;
+        Date(): $mol_view;
+        news_item_title(): string;
+        News_item_title(): $$.$mol_text;
+        news_item_body(): string;
+        News_item_body(): $$.$mol_text;
     }
 }
 
 declare namespace $.$$ {
     class $hyoo_speculant_app_news extends $.$hyoo_speculant_app_news {
-        news_list(): $mol_list[];
-        news_item_title(news_item: any): any;
-        news_item_body(news_item: any): any;
-        news_item_date(news_item: any): any;
+        news_list(): $hyoo_speculant_app_news_item[];
+        news_item(item: any): any;
+        news_read(news_item: any, read?: boolean): boolean;
+        unread_count(): number;
+    }
+    class $hyoo_speculant_app_news_item extends $.$hyoo_speculant_app_news_item {
+        current(): any;
+        news_item_title(): any;
+        news_item_body(): any;
+        news_item_date(): any;
+        read(): void;
+        auto(): void;
     }
 }
 
@@ -2978,9 +2994,12 @@ declare namespace $ {
         model(): $$.$hyoo_speculant_world;
         title(): string;
         Page_dashboard(): $$.$hyoo_speculant_app_dashboard;
+        unread_count(): number;
         Page_news(): $$.$hyoo_speculant_app_news;
         Source(): $mol_link_source;
+        News_unread_count(): $mol_speck;
         News_open_icon(): $mol_icon_bell_outline;
+        news_open_sub(): readonly any[];
         News_open(): $$.$mol_link;
         News_close_icon(): $mol_icon_cross;
         News_close(): $$.$mol_link;
@@ -2988,9 +3007,13 @@ declare namespace $ {
 }
 
 declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
         news(): boolean;
         pages(): ($hyoo_speculant_app_dashboard | $hyoo_speculant_app_news)[];
+        news_open_sub(): ($mol_speck | $mol_icon_bell_outline)[];
     }
 }
 
