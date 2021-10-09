@@ -77,7 +77,17 @@ namespace $.$$ {
 			} , 0 )
 			return ( sum + this.indicator( 'CSH' ).have ).toFixed( 2 )
 		}
+		
 
+		@ $mol_mem
+		balance_cash_title() {
+			return this.indicator( 'CSH' ).name
+		}
+		
+		@ $mol_mem
+		balance_cash() {
+			return this.indicator( 'CSH' ).have.toString()
+		}
 	}
 
 }
