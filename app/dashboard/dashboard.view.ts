@@ -59,19 +59,15 @@ namespace $.$$ {
 		sell( index: number ) {
 			this.model().exchange( this.currency_chart()[ index ] , -1 )
 		}
-		
+
 		@ $mol_mem_key
-		currency_name( id : string ) {
-			return this.indicator( id ).name
+		currency_have( index: number ) {
+			return this.indicator( this.currency_chart()[ index ] ).have.toString()
 		}
 		
 		@ $mol_mem_key
-		currency_have( id : string ) {
-			return this.indicator( id ).have.toFixed( 2 )
-		}
-		
-		balance_list() {
-			return this.currency_all().map( id => this.Balance_currency( id ) )
+		rate( index: number ) {
+			return this.indicator( this.currency_chart()[ index ] ).current.toString()
 		}
 		
 		balance_total() {
