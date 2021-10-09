@@ -19,8 +19,8 @@ $hyoo_speculant_app_dashboard $mol_page
 		sub /
 			<= rate!id \
 			<= Currency_diff!id $mol_view
-	Icon_currency_up!id $mol_icon_arrow_down_bold
-	Icon_currency_down!id $mol_icon_arrow_up_bold
+	Icon_currency_up!id $mol_icon_arrow_up_bold
+	Icon_currency_down!id $mol_icon_arrow_down_bold
 	Balance_currency!id $mol_view
 		sub /
 			<= currency_have!id \
