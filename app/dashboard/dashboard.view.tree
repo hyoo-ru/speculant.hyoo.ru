@@ -9,31 +9,22 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= Balance_cash $mol_labeler
 				title <= balance_cash_title \
 				content / <= balance_cash \
-	Linear!id $mol_plot_group
-		title <= linear_title!id \
-		series_y <= linear_series!id /
-		graphs /
-			<= Linear_line!id $mol_plot_line
 	Buy_button!id $mol_button_typed
 		title \+
 		click?val <=> buy!id?val null
 	Sell_button!id $mol_button_typed
 		title \-
 		click?val <=> sell!id?val null
-	Rate!index $mol_view
-		sub / <= rate!index \
-	Balance_currency!index $mol_view
-		sub / <= currency_have!index \
-	body /
-		<= Chart $hyoo_speculant_chart
-			Legend_tools!index <= Buttons!index /
-				<= Rate!index
-				<= Balance_currency!index
-				<= Buy_button!index
-				<= Sell_button!index
-			graphs <= linear_list /
-				<= Vert_ruler $mol_plot_ruler_vert
-					title <= vert_title @ \Values
-				<= Marker_hor $mol_plot_mark_hor
-					title <= marker_hor_title @ \Days
-					labels <= days /
+	Rate!id $mol_view
+		sub / <= rate!id \
+	Balance_currency!id $mol_view
+		sub / <= currency_have!id \
+	Row!id $mol_row
+		sub /
+			<= Currency_name!id $mol_view sub / <= currency_name!id \
+			<= Rate!id
+			<= Balance_currency!id
+			<= Buy_button!id
+			<= Sell_button!id
+	body / <= Currency_list $mol_list
+		rows <= currency_list /
