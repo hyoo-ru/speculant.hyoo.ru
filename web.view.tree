@@ -26,29 +26,29 @@ $hyoo_speculant_world $mol_object2
 			indicators /
 				\KBK
 				\BRT
-				\RIK
-				\VBL
+				\LKN
+				\TTK
 		student *
 			title \Студент
 			indicators /
 				\KBK
 				\BRT
-				\RIK
+				\LKN
 				\VBL
 		mature *
 			title \Взрослый
 			indicators /
 				\KBK
 				\BRT
-				\RIK
+				\LKN
 				\VBL
 		pensioner *
 			title \Пенсионер
 			indicators /
 				\KBK
 				\BRT
-				\RIK
-				\VBL
+				\LKN
+				\OGR
 	
 	scoring \care
 	- \
@@ -72,6 +72,7 @@ $hyoo_speculant_world $mol_object2
 			have 1000
 			current 1
 			diff 0
+			trend 0
 			history /number
 		KBK *
 			name \КилоБакс
@@ -79,6 +80,7 @@ $hyoo_speculant_world $mol_object2
 			have 0
 			current 100
 			diff 0
+			trend 0
 			history /number
 		BRT *
 			name \Телетайп
@@ -86,20 +88,39 @@ $hyoo_speculant_world $mol_object2
 			have 0
 			current 200
 			diff 0
+			trend 0
 			history /number
-		RIK *
-			name \ЛицеСвиток
+		LKN *
+			name \ЛицеКнига
 			type \share
 			have 0
 			current 50
 			diff 0
+			trend 0
+			history /number
+		TTK *
+			name \ТукТок
+			type \share
+			have 0
+			current 60
+			diff 0
+			trend 0
 			history /number
 		VBL *
-			name \Вблизи
+			name \ВБлизи
 			type \share
 			have 0
 			current 30
 			diff 0
+			trend 0
+			history /number
+		OGR *
+			name \Одногрупники
+			type \share
+			have 0
+			current 20
+			diff 0
+			trend 0
 			history /number
 	
 	entropy *
@@ -111,19 +132,37 @@ $hyoo_speculant_world $mol_object2
 	news /
 		- \Новости в мире, влияют на курсы.
 		*
-			title \# Новый профи вышел на рынок
-			body \Все спекулянты замерли в ожидании.
+			text \
+				\# Новый профи вышел на рынок
+				\Все спекулянты замерли в ожидании.
 			moment \
-	causes /string
-		- \События в мире
-		\# Крупнейшая соцсеть накрылась
-		\# РосЮсбНаблюд заблокировал Телетайп
-		\# Московия вступила в ЗНАТО
-	conses /string
-		- \Последствия событий
-		\Производительность труда выросла **в 2.5 раза.**
-		\Ваш любимый сайт теперь открывается через раз.
-		\Интернет группа Ананимус взяла ответственность на себя.
+	news_templates /
+		- \Шаблоны новостей
+		*
+			trend -1
+			text \
+				\# Сайт {name} не отвечает
+				\Производительность труда выросла **в 2.5 раза.**
+		*
+			trend -1
+			text \
+				\# РосЮсбНаблюд заблокировал {name}
+				\Ваш любимый сайт теперь открывается через раз.
+		*
+			trend 0
+			text \
+				\# Московия вступила в ЗНАТО
+				\Интернет группа Ананимус взяла ответственность на себя.
+		*
+			trend 5
+			text \
+				\# Илон Маск твитнул, что за {name} - будущее.
+				\Биржы еле справляются с начавшимся ажиотажем.
+		*
+			trend 1
+			text \
+				\# Новый отчёт финансового аналитика
+				\Ничего интересного про {name} в нём нет.
 
 $mol_page $mol_view
 	sub /

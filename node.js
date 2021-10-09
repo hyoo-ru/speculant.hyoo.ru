@@ -3117,8 +3117,8 @@ var $;
                     indicators: [
                         "KBK",
                         "BRT",
-                        "RIK",
-                        "VBL"
+                        "LKN",
+                        "TTK"
                     ]
                 },
                 student: {
@@ -3126,7 +3126,7 @@ var $;
                     indicators: [
                         "KBK",
                         "BRT",
-                        "RIK",
+                        "LKN",
                         "VBL"
                     ]
                 },
@@ -3135,7 +3135,7 @@ var $;
                     indicators: [
                         "KBK",
                         "BRT",
-                        "RIK",
+                        "LKN",
                         "VBL"
                     ]
                 },
@@ -3144,8 +3144,8 @@ var $;
                     indicators: [
                         "KBK",
                         "BRT",
-                        "RIK",
-                        "VBL"
+                        "LKN",
+                        "OGR"
                     ]
                 }
             };
@@ -3168,6 +3168,7 @@ var $;
                     have: 1000,
                     current: 1,
                     diff: 0,
+                    trend: 0,
                     history: []
                 },
                 KBK: {
@@ -3176,6 +3177,7 @@ var $;
                     have: 0,
                     current: 100,
                     diff: 0,
+                    trend: 0,
                     history: []
                 },
                 BRT: {
@@ -3184,22 +3186,43 @@ var $;
                     have: 0,
                     current: 200,
                     diff: 0,
+                    trend: 0,
                     history: []
                 },
-                RIK: {
-                    name: "ЛицеСвиток",
+                LKN: {
+                    name: "ЛицеКнига",
                     type: "share",
                     have: 0,
                     current: 50,
                     diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                TTK: {
+                    name: "ТукТок",
+                    type: "share",
+                    have: 0,
+                    current: 60,
+                    diff: 0,
+                    trend: 0,
                     history: []
                 },
                 VBL: {
-                    name: "Вблизи",
+                    name: "ВБлизи",
                     type: "share",
                     have: 0,
                     current: 30,
                     diff: 0,
+                    trend: 0,
+                    history: []
+                },
+                OGR: {
+                    name: "Одногрупники",
+                    type: "share",
+                    have: 0,
+                    current: 20,
+                    diff: 0,
+                    trend: 0,
                     history: []
                 }
             };
@@ -3214,24 +3237,33 @@ var $;
         news() {
             return [
                 {
-                    title: "# Новый профи вышел на рынок",
-                    body: "Все спекулянты замерли в ожидании.",
+                    text: "# Новый профи вышел на рынок\nВсе спекулянты замерли в ожидании.",
                     moment: ""
                 }
             ];
         }
-        causes() {
+        news_templates() {
             return [
-                "# Крупнейшая соцсеть накрылась",
-                "# РосЮсбНаблюд заблокировал Телетайп",
-                "# Московия вступила в ЗНАТО"
-            ];
-        }
-        conses() {
-            return [
-                "Производительность труда выросла **в 2.5 раза.**",
-                "Ваш любимый сайт теперь открывается через раз.",
-                "Интернет группа Ананимус взяла ответственность на себя."
+                {
+                    trend: -1,
+                    text: "# Сайт {name} не отвечает\nПроизводительность труда выросла **в 2.5 раза.**"
+                },
+                {
+                    trend: -1,
+                    text: "# РосЮсбНаблюд заблокировал {name}\nВаш любимый сайт теперь открывается через раз."
+                },
+                {
+                    trend: 0,
+                    text: "# Московия вступила в ЗНАТО\nИнтернет группа Ананимус взяла ответственность на себя."
+                },
+                {
+                    trend: 5,
+                    text: "# Илон Маск твитнул, что за {name} - будущее.\nБиржы еле справляются с начавшимся ажиотажем."
+                },
+                {
+                    trend: 1,
+                    text: "# Новый отчёт финансового аналитика\nНичего интересного про {name} в нём нет."
+                }
             ];
         }
     }
@@ -4006,7 +4038,8 @@ var $;
                     if (entropy === undefined)
                         $.$mol_fail(new RangeError(`No entropy for ${type}`));
                     const current = Math.max(0, +next[code].current
-                        + Math.round((Math.random() * 2 - 1) * entropy));
+                        + Math.round(+next[code].trend
+                            + (Math.random() * 2 - 1) * entropy));
                     const diff = current - next[code].current;
                     const history = [...next[code].history, current];
                     next[code] = {
@@ -4039,14 +4072,16 @@ var $;
             }
             news() {
                 const moment = this.time();
+                const indicators = this.indicators();
                 const prev = $.$mol_mem_cached(() => this.news()) ?? super.news();
-                if (Math.random() * (10 + this.indicators().CSH.have) > 10)
+                if (Math.random() > .1)
                     return prev;
+                const template = $.$mol_stub_select_random(this.news_templates());
+                const indicator = $.$mol_stub_select_random(Object.keys(indicators));
                 return [
                     ...prev, {
                         moment: moment.toString('YYYY-MM-DD'),
-                        title: $.$mol_stub_select_random(this.causes()),
-                        body: $.$mol_stub_select_random(this.conses()),
+                        text: template.text.replace('{name}', indicators[indicator].name),
                     },
                 ];
             }
@@ -10906,7 +10941,7 @@ var $;
     (function ($$) {
         class $hyoo_speculant_app_news extends $.$hyoo_speculant_app_news {
             news_list() {
-                return this.model().news().map(news => this.News_item(news)).reverse();
+                return this.model().news().map(news => this.News_item(news));
             }
             news_item(item) {
                 return item;
@@ -10944,10 +10979,10 @@ var $;
                 return this.news_item();
             }
             news_item_title() {
-                return this.current().title;
+                return this.current().text;
             }
             news_item_body() {
-                return this.current().body;
+                return '';
             }
             news_item_date() {
                 return this.current().moment;

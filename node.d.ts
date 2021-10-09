@@ -896,6 +896,7 @@ declare namespace $ {
                 have: number;
                 current: number;
                 diff: number;
+                trend: number;
                 history: readonly number[];
             };
             KBK: {
@@ -904,6 +905,7 @@ declare namespace $ {
                 have: number;
                 current: number;
                 diff: number;
+                trend: number;
                 history: readonly number[];
             };
             BRT: {
@@ -912,14 +914,25 @@ declare namespace $ {
                 have: number;
                 current: number;
                 diff: number;
+                trend: number;
                 history: readonly number[];
             };
-            RIK: {
+            LKN: {
                 name: string;
                 type: string;
                 have: number;
                 current: number;
                 diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            TTK: {
+                name: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
                 history: readonly number[];
             };
             VBL: {
@@ -928,6 +941,16 @@ declare namespace $ {
                 have: number;
                 current: number;
                 diff: number;
+                trend: number;
+                history: readonly number[];
+            };
+            OGR: {
+                name: string;
+                type: string;
+                have: number;
+                current: number;
+                diff: number;
+                trend: number;
                 history: readonly number[];
             };
         };
@@ -937,8 +960,7 @@ declare namespace $ {
             share: number;
         };
         news(): readonly any[];
-        causes(): readonly string[];
-        conses(): readonly string[];
+        news_templates(): readonly any[];
     }
 }
 
@@ -1119,6 +1141,7 @@ declare namespace $.$$ {
         have: number;
         current: number;
         diff: number;
+        trend: number;
         history: readonly number[];
     };
     type $hyoo_speculant_world_indicators = Record<$hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator>;
@@ -2215,8 +2238,8 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app_dashboard extends $.$hyoo_speculant_app_dashboard {
-        currency_all(): ("KBK" | "BRT" | "RIK" | "VBL" | "CSH")[];
-        currency_chart(): ("KBK" | "BRT" | "RIK" | "VBL" | "CSH")[];
+        currency_all(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
+        currency_chart(): ("KBK" | "BRT" | "LKN" | "TTK" | "VBL" | "OGR" | "CSH")[];
         day_start(): $mol_time_moment;
         history_length(): number;
         days(): string[];
@@ -2976,7 +2999,7 @@ declare namespace $.$$ {
     class $hyoo_speculant_app_news_item extends $.$hyoo_speculant_app_news_item {
         current(): any;
         news_item_title(): any;
-        news_item_body(): any;
+        news_item_body(): string;
         news_item_date(): any;
     }
 }
