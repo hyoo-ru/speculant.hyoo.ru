@@ -98,7 +98,7 @@ $hyoo_speculant_world $mol_object2
 			trend 0
 			history /number
 		OGR *
-			name \Одногрупники
+			name \Одногруппники
 			type \share
 			have 0
 			current 20
@@ -139,7 +139,7 @@ $hyoo_speculant_world $mol_object2
 		*
 			trend 5
 			text \
-				\# Илон Маск твитнул, что за {name} - будущее.
+				\# Айрон Маск твитнул что-то про {name}
 				\Биржы еле справляются с начавшимся ажиотажем.
 		*
 			trend 1
