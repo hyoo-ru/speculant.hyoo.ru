@@ -2949,8 +2949,14 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_icon_restart extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
     class $hyoo_speculant_app extends $mol_book2 {
-        model(): $$.$hyoo_speculant_world;
+        model(val?: any): $$.$hyoo_speculant_world;
         balance_total(): string;
         page_tools(): readonly any[];
         plugins(): readonly any[];
@@ -2988,6 +2994,9 @@ declare namespace $ {
         Final_text(): $$.$mol_text;
         share_uri(): string;
         Share(): $$.$mol_button_share;
+        restart(val?: any): any;
+        Restart_icon(): $mol_icon_restart;
+        Restart(): $mol_button_typed;
     }
 }
 
@@ -2999,6 +3008,7 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+        restart(): void;
         age(next?: string): string;
         profile(id: string): any;
         name(next?: string): any;

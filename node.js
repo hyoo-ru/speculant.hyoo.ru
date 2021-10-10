@@ -9947,8 +9947,22 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_restart extends $.$mol_icon {
+        path() {
+            return "M12,4C14.1,4 16.1,4.8 17.6,6.3C20.7,9.4 20.7,14.5 17.6,17.6C15.8,19.5 13.3,20.2 10.9,19.9L11.4,17.9C13.1,18.1 14.9,17.5 16.2,16.2C18.5,13.9 18.5,10.1 16.2,7.7C15.1,6.6 13.5,6 12,6V10.6L7,5.6L12,0.6V4M6.3,17.6C3.7,15 3.3,11 5.1,7.9L6.6,9.4C5.5,11.6 5.9,14.4 7.8,16.2C8.3,16.7 8.9,17.1 9.6,17.4L9,19.4C8,19 7.1,18.4 6.3,17.6Z";
+        }
+    }
+    $.$mol_icon_restart = $mol_icon_restart;
+})($ || ($ = {}));
+//restart.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $hyoo_speculant_app extends $.$mol_book2 {
-        model() {
+        model(val) {
+            if (val !== undefined)
+                return val;
             const obj = new this.$.$hyoo_speculant_world();
             return obj;
         }
@@ -10012,7 +10026,8 @@ var $;
                 this.Final_text()
             ];
             obj.foot = () => [
-                this.Share()
+                this.Share(),
+                this.Restart()
             ];
             return obj;
         }
@@ -10147,7 +10162,25 @@ var $;
         Share() {
             const obj = new this.$.$mol_button_share();
             obj.uri = () => this.share_uri();
-            obj.title = () => "Поделиться";
+            obj.hint = () => "Поделиться";
+            return obj;
+        }
+        restart(val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        Restart_icon() {
+            const obj = new this.$.$mol_icon_restart();
+            return obj;
+        }
+        Restart() {
+            const obj = new this.$.$mol_button_typed();
+            obj.click = (val) => this.restart(val);
+            obj.hint = () => "Рестарт";
+            obj.sub = () => [
+                this.Restart_icon()
+            ];
             return obj;
         }
     }
@@ -10226,6 +10259,15 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Share", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "restart", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Restart_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Restart", null);
     $.$hyoo_speculant_app = $hyoo_speculant_app;
 })($ || ($ = {}));
 //app.view.tree.js.map
@@ -10271,6 +10313,9 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+            restart() {
+                this.model(new this.$.$hyoo_speculant_world);
+            }
             age(next) {
                 return this.model().age(next);
             }
@@ -10284,7 +10329,7 @@ var $;
                 return this.model().profile(next);
             }
             start() {
-                this.model().age('go');
+                this.model().age('finish');
             }
             profile_dict() {
                 return Object.keys(this.model().profiles()).reduce((dict, id) => {
