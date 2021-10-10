@@ -10386,7 +10386,7 @@ var $;
                 return this.model().profile(next);
             }
             start() {
-                this.model().age('finish');
+                this.model().age('go');
             }
             profile_dict() {
                 return Object.keys(this.model().profiles()).reduce((dict, id) => {
