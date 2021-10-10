@@ -48,7 +48,7 @@ namespace $.$$ {
 		
 		@ $mol_mem_key
 		date() {
-			return this.current().moment
+			return this.current().moment.toString( 'DD Mon YYYY' )
 		}
 		
 	}
