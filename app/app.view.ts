@@ -130,6 +130,10 @@ namespace $.$$ {
 			} )
 		}
 		
+		share_uri() {
+			return this.$.$mol_dom_context.location.href
+		}
+		
 	}
 
 }
