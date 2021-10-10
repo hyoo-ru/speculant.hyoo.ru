@@ -1101,6 +1101,7 @@ declare namespace $ {
             share: number;
         };
         age(next?: any): string;
+        intro(): readonly any[];
         news(): readonly any[];
         news_templates(): readonly any[];
     }

@@ -3805,6 +3805,26 @@ var $;
                 return next;
             return "ready";
         }
+        intro() {
+            return [
+                {
+                    text: "# Привет!\nЯ помогу тебе тут освоится.",
+                    wait: 2
+                },
+                {
+                    text: "Внизу ты видишь панель управления торговым...\nТам четыре акции, разных компаний.",
+                    wait: 5
+                },
+                {
+                    text: "Мигающие стрелочки - это их текущая стоимость покупки/продажи",
+                    wait: 5
+                },
+                {
+                    text: "Удачи! Листай ленту вниз!",
+                    wait: 1
+                }
+            ];
+        }
         news() {
             return [
                 {
@@ -4228,8 +4248,27 @@ var $;
             news() {
                 const moment = this.time().mask('0000-00-00');
                 const indicators = this.indicators();
+                const age = this.age();
                 const prev = $.$mol_mem_cached(() => this.news()) ?? [{ ...[...super.news()][0], moment: moment }];
                 const last = prev.slice(-1)[0];
+                if (this.age() === 'intro' && this.intro()[prev.length - 1]) {
+                    const duration = new $.$mol_time_duration(moment.valueOf() - last.moment.valueOf());
+                    if (duration.count('P1DT') < this.intro()[prev.length - 1].wait) {
+                        return prev;
+                    }
+                    return [
+                        ...prev,
+                        {
+                            moment,
+                            text: this.intro()[prev.length - 1].text,
+                        }
+                    ];
+                }
+                else {
+                    $.$mol_fiber_defer(() => {
+                        this.age('go');
+                    });
+                }
                 const chance = last.moment.day === moment.day ? .01 : .07;
                 if (Math.random() > chance)
                     return prev;
@@ -10391,7 +10430,7 @@ var $;
                 return this.model().profile(next);
             }
             start() {
-                this.model().age('go');
+                this.model().age('intro');
             }
             profile_dict() {
                 return Object.keys(this.model().profiles()).reduce((dict, id) => {
@@ -10413,7 +10452,7 @@ var $;
                 }
                 return [
                     ...(this.age() === 'ready' ? [this.Page_profile()] : []),
-                    ...(this.age() === 'go' ? [this.Page_dashboard()] : []),
+                    ...(['go', 'intro'].includes(this.age()) ? [this.Page_dashboard()] : []),
                     ...(this.age() === 'finish' ? [this.Page_final()] : []),
                     ...this.chat_pages(),
                 ];
