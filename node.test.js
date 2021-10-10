@@ -10023,9 +10023,7 @@ var $;
             obj.title = () => "СпекулянтЪ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
-                this.Final_text(),
-                this.Results_text(),
-                this.Portfolio()
+                this.Page_final_content()
             ];
             obj.foot = () => [
                 this.Share(),
@@ -10174,6 +10172,15 @@ var $;
             obj.sub = () => this.portfolio();
             return obj;
         }
+        Page_final_content() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Final_text(),
+                this.Results_text(),
+                this.Portfolio()
+            ];
+            return obj;
+        }
         share_uri() {
             return "";
         }
@@ -10286,6 +10293,9 @@ var $;
     ], $hyoo_speculant_app.prototype, "Portfolio", null);
     __decorate([
         $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Page_final_content", null);
+    __decorate([
+        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Share", null);
     __decorate([
         $.$mol_mem
@@ -10329,6 +10339,9 @@ var $;
                 Foot: {
                     justifyContent: 'center',
                 }
+            },
+            Page_final_content: {
+                padding: $.$mol_gap.block,
             },
             Portfolio_item: {
                 flex: {

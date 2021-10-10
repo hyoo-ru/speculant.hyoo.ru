@@ -2997,6 +2997,7 @@ declare namespace $ {
         Results_text(): $$.$mol_text;
         portfolio(): readonly any[];
         Portfolio(): $mol_row;
+        Page_final_content(): $$.$mol_list;
         share_uri(): string;
         Share(): $$.$mol_button_share;
         restart(val?: any): any;
