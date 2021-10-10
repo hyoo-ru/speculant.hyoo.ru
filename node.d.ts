@@ -1107,6 +1107,34 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_store<Data> extends $mol_object2 {
+        data_default?: Data | undefined;
+        constructor(data_default?: Data | undefined);
+        data(next?: Data): Data;
+        snapshot(next?: string): string;
+        value<Key extends keyof Data>(key: Key, next?: Data[Key]): NonNullable<Data[Key]>;
+        selection<Key extends keyof Data>(key: Key, next?: number[]): number[];
+        sub<Key extends keyof Data, Lens extends $mol_store<Data[Key]> = $mol_store<NonNullable<Data[Key]>>>(key: Key, lens?: Lens): NonNullable<Lens>;
+        reset(): void;
+        active(): boolean;
+    }
+}
+
+declare namespace $ {
+    class $mol_store_local_class extends $mol_store<Record<string, any>> {
+        native(): Storage | {
+            map: Map<string, string>;
+            getItem: (key: string) => string | undefined;
+            setItem: (key: string, value: string) => Map<string, string>;
+            removeItem: (key: string) => boolean;
+        };
+        data(): never;
+        value<Value>(key: string, next?: Value, force?: $mol_mem_force_cache): any;
+    }
+    let $mol_store_local: $mol_store<Record<string, any>>;
+}
+
+declare namespace $ {
     class $mol_after_work extends $mol_after_timeout {
     }
 }
@@ -1174,6 +1202,7 @@ declare namespace $.$$ {
     type $hyoo_speculant_world_indicators = Record<$hyoo_speculant_world_indicator_codes, $hyoo_speculant_world_indicator>;
     type $hyoo_speculant_world_news = ReturnType<$.$hyoo_speculant_world['news']>;
     class $hyoo_speculant_world extends $.$hyoo_speculant_world {
+        profile(next?: string): any;
         time(next?: $mol_time_moment): $mol_time_moment;
         indicators(next?: $hyoo_speculant_world_indicators): $hyoo_speculant_world_indicators;
         exchange(code: $hyoo_speculant_world_indicator_codes, diff: number): null;
@@ -2972,7 +3001,8 @@ declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
         age(next?: string): string;
         profile(id: string): any;
-        select_profile(next?: string): string;
+        name(next?: string): any;
+        select_profile(next?: string): any;
         start(): void;
         profile_dict(): {};
         indicator(id: string): $hyoo_speculant_world_indicator;

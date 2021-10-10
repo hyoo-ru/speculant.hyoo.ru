@@ -3867,6 +3867,109 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_store extends $.$mol_object2 {
+        data_default;
+        constructor(data_default) {
+            super();
+            this.data_default = data_default;
+        }
+        data(next) {
+            return next === undefined ? this.data_default : next;
+        }
+        snapshot(next) {
+            return JSON.stringify(this.data(next === undefined ? next : JSON.parse(next)));
+        }
+        value(key, next) {
+            const data = this.data();
+            if (next === undefined)
+                return data && data[key];
+            const Constr = Reflect.getPrototypeOf(data).constructor;
+            this.data(Object.assign(new Constr, data, { [key]: next }));
+            return next;
+        }
+        selection(key, next = [0, 0]) {
+            return next;
+        }
+        sub(key, lens) {
+            if (!lens)
+                lens = new $mol_store();
+            const data = lens.data;
+            lens.data = next => {
+                if (next == undefined) {
+                    return this.value(key) ?? lens.data_default;
+                }
+                return this.value(key, next);
+            };
+            return lens;
+        }
+        reset() {
+            this.data(this.data_default);
+        }
+        active() {
+            return true;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_store.prototype, "data", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_store.prototype, "selection", null);
+    $.$mol_store = $mol_store;
+})($ || ($ = {}));
+//store.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_store_local_class extends $.$mol_store {
+        native() {
+            check: try {
+                const native = $.$mol_dom_context.localStorage;
+                if (!native)
+                    break check;
+                native.setItem('', '');
+                native.removeItem('');
+                return native;
+            }
+            catch (error) {
+                console.warn(error);
+            }
+            const dict = new Map();
+            return {
+                map: dict,
+                getItem: (key) => dict.get(key),
+                setItem: (key, value) => dict.set(key, value),
+                removeItem: (key) => dict.delete(key),
+            };
+        }
+        data() {
+            return $.$mol_fail(new Error('Forbidden for local storage'));
+        }
+        value(key, next, force) {
+            if (next === undefined)
+                return JSON.parse(this.native().getItem(key) || 'null');
+            if (next === null)
+                this.native().removeItem(key);
+            else
+                this.native().setItem(key, JSON.stringify(next));
+            return next;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_store_local_class.prototype, "native", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_store_local_class.prototype, "value", null);
+    $.$mol_store_local_class = $mol_store_local_class;
+    $.$mol_store_local = new $mol_store_local_class;
+})($ || ($ = {}));
+//local.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_after_work extends $.$mol_after_timeout {
     }
     $.$mol_after_work = $mol_after_work;
@@ -4053,6 +4156,9 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_world extends $.$hyoo_speculant_world {
+            profile(next) {
+                return this.$.$mol_store_local.value('profile', next) ?? super.profile();
+            }
             time(next) {
                 if (next)
                     return next;
@@ -4149,6 +4255,9 @@ var $;
                 return $.$mol_mem_cached(() => this.age()) ?? super.age();
             }
         }
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_world.prototype, "profile", null);
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_world.prototype, "time", null);
@@ -10160,6 +10269,9 @@ var $;
             profile(id) {
                 return this.model().profiles()[id];
             }
+            name(next) {
+                return this.$.$mol_store_local.value('name', next);
+            }
             select_profile(next) {
                 return this.model().profile(next);
             }
@@ -10219,6 +10331,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "profile", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "name", null);
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app.prototype, "indicator", null);
@@ -12086,6 +12201,154 @@ var $;
     });
 })($ || ($ = {}));
 //moment.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'default data'() {
+            const store = new $.$mol_store({
+                foo: 1,
+                bar: 2,
+            });
+            $.$mol_assert_equal(store.data().foo, 1);
+            $.$mol_assert_equal(store.data().bar, 2);
+        },
+        'safe reference'() {
+            const foo = { foo: 1 };
+            const bar = { bar: 1 };
+            const store = new $.$mol_store({ foo, bar });
+            store.data({ foo, bar });
+            store.data({
+                foo: { foo: 1 },
+                bar: { bar: 3 },
+            });
+            $.$mol_assert_equal(store.data().foo, foo);
+            $.$mol_assert_unique(store.data().bar, bar);
+        },
+        'get and set by shapshot'() {
+            const store = new $.$mol_store({
+                foo: 1,
+                bar: 2,
+            });
+            $.$mol_assert_equal(store.snapshot(), '{"foo":1,"bar":2}');
+            store.snapshot('{"foo":2,"bar":1}');
+            $.$mol_assert_equal(store.data().foo, 2);
+            $.$mol_assert_equal(store.data().bar, 1);
+        },
+        'get and set by key'() {
+            const store = new $.$mol_store({
+                foo: 1,
+            });
+            $.$mol_assert_equal(store.value('foo'), 1);
+            store.value('foo', 2);
+            $.$mol_assert_equal(store.value('foo'), 2);
+        },
+        'get and set by lens'() {
+            const store = new $.$mol_store({
+                foo: 1,
+            });
+            const lens = store.sub('foo');
+            $.$mol_assert_equal(lens.data(), 1);
+            lens.data(2);
+            $.$mol_assert_equal(lens.data(), 2);
+        },
+        'views and actions'() {
+            const Person = class extends $.$mol_store {
+                get full_name() {
+                    const name = this.value('name');
+                    return name.first + ' ' + name.last;
+                }
+                swap_names() {
+                    const name = this.value('name');
+                    this.value('name', {
+                        first: name.last,
+                        last: name.first,
+                    });
+                }
+            };
+            const store = new Person({
+                name: {
+                    first: 'Foo',
+                    last: 'Bar',
+                },
+            });
+            $.$mol_assert_equal(store.full_name, 'Foo Bar');
+            store.swap_names();
+            $.$mol_assert_equal(store.full_name, 'Bar Foo');
+        },
+        'nested views and actions'() {
+            class Person extends $.$mol_store {
+                get full_name() {
+                    const name = this.value('name');
+                    return name.first + ' ' + name.last;
+                }
+                swap_names() {
+                    const name = this.value('name');
+                    this.value('name', {
+                        first: name.last,
+                        last: name.first,
+                    });
+                }
+            }
+            class Band extends $.$mol_store {
+                get members() {
+                    const lens = this.sub('members');
+                    return new Proxy({}, {
+                        get: (_, id) => lens.sub(id, new Person),
+                    });
+                }
+            }
+            const band = new Band({
+                name: 'Dream Team',
+                members: {
+                    foo: {
+                        name: {
+                            first: 'Foo',
+                            last: 'Bar',
+                        },
+                    }
+                }
+            });
+            const person = band.members['foo'];
+            $.$mol_assert_equal(person.full_name, 'Foo Bar');
+            person.swap_names();
+            $.$mol_assert_equal(band.data().members['foo'].name.first, 'Bar');
+            $.$mol_assert_equal(band.data().members['foo'].name.last, 'Foo');
+        },
+    });
+})($ || ($ = {}));
+//store.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test_mocks.push(context => {
+        context.$mol_store_local = new $.$mol_store({});
+    });
+})($ || ($ = {}));
+//local.mock.test.js.map
+;
+"use strict";
+var $;
+(function ($_1) {
+    $_1.$mol_test({
+        'get/set/delete'() {
+            var key = '$mol_store_local_test';
+            $_1.$mol_assert_equal($_1.$mol_store_local.value(key), null);
+            $_1.$mol_store_local.value(key, 123);
+            $_1.$mol_assert_equal($_1.$mol_store_local.value(key), 123);
+            $_1.$mol_store_local.value(key, null);
+            $_1.$mol_assert_equal($_1.$mol_store_local.value(key), null);
+        },
+        'mocked'($) {
+            var key = '$mol_store_local_test';
+            $.$mol_store_local.value(key, 321);
+            $_1.$mol_assert_unique($_1.$mol_store_local.value(key), 321);
+        },
+    });
+})($ || ($ = {}));
+//local.test.js.map
 ;
 "use strict";
 var $;

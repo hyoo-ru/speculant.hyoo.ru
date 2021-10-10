@@ -3606,6 +3606,121 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_store extends $.$mol_object2 {
+        data_default;
+        constructor(data_default) {
+            super();
+            this.data_default = data_default;
+        }
+        data(next) {
+            return next === undefined ? this.data_default : next;
+        }
+        snapshot(next) {
+            return JSON.stringify(this.data(next === undefined ? next : JSON.parse(next)));
+        }
+        value(key, next) {
+            const data = this.data();
+            if (next === undefined)
+                return data && data[key];
+            const Constr = Reflect.getPrototypeOf(data).constructor;
+            this.data(Object.assign(new Constr, data, { [key]: next }));
+            return next;
+        }
+        selection(key, next = [0, 0]) {
+            return next;
+        }
+        sub(key, lens) {
+            if (!lens)
+                lens = new $mol_store();
+            const data = lens.data;
+            lens.data = next => {
+                if (next == undefined) {
+                    return this.value(key) ?? lens.data_default;
+                }
+                return this.value(key, next);
+            };
+            return lens;
+        }
+        reset() {
+            this.data(this.data_default);
+        }
+        active() {
+            return true;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_store.prototype, "data", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_store.prototype, "selection", null);
+    $.$mol_store = $mol_store;
+})($ || ($ = {}));
+//store.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_store_local_class extends $.$mol_store {
+        native() {
+            check: try {
+                const native = $.$mol_dom_context.localStorage;
+                if (!native)
+                    break check;
+                native.setItem('', '');
+                native.removeItem('');
+                return native;
+            }
+            catch (error) {
+                console.warn(error);
+            }
+            const dict = new Map();
+            return {
+                map: dict,
+                getItem: (key) => dict.get(key),
+                setItem: (key, value) => dict.set(key, value),
+                removeItem: (key) => dict.delete(key),
+            };
+        }
+        data() {
+            return $.$mol_fail(new Error('Forbidden for local storage'));
+        }
+        value(key, next, force) {
+            if (next === undefined)
+                return JSON.parse(this.native().getItem(key) || 'null');
+            if (next === null)
+                this.native().removeItem(key);
+            else
+                this.native().setItem(key, JSON.stringify(next));
+            return next;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_store_local_class.prototype, "native", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_store_local_class.prototype, "value", null);
+    $.$mol_store_local_class = $mol_store_local_class;
+    $.$mol_store_local = new $mol_store_local_class;
+})($ || ($ = {}));
+//local.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_dom_context.addEventListener('storage', event => {
+        const store = $.$mol_store_local;
+        if (event.key) {
+            store.value(event.key, undefined, $.$mol_mem_force_cache);
+        }
+    });
+})($ || ($ = {}));
+//local.web.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_after_work extends $.$mol_object2 {
         delay;
         task;
@@ -3804,6 +3919,9 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_world extends $.$hyoo_speculant_world {
+            profile(next) {
+                return this.$.$mol_store_local.value('profile', next) ?? super.profile();
+            }
             time(next) {
                 if (next)
                     return next;
@@ -3900,6 +4018,9 @@ var $;
                 return $.$mol_mem_cached(() => this.age()) ?? super.age();
             }
         }
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_world.prototype, "profile", null);
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_world.prototype, "time", null);
@@ -9994,6 +10115,9 @@ var $;
             profile(id) {
                 return this.model().profiles()[id];
             }
+            name(next) {
+                return this.$.$mol_store_local.value('name', next);
+            }
             select_profile(next) {
                 return this.model().profile(next);
             }
@@ -10053,6 +10177,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "profile", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "name", null);
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app.prototype, "indicator", null);
