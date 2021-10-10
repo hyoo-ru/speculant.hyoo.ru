@@ -53,16 +53,18 @@ namespace $.$$ {
 		
 		@ $mol_mem
 		final_text() {
-			return super.final_text().replace( '{balance}' , String( Number(this.balance_total()) - 1000 ))
+			return super.final_text().replace( '{balance}' , String( Number(this.balance_total().replace( /\D/gsu , '' )) - 1000 ))
 		}
 		
 		@ $mol_mem_key
 		portfolio_title( id : string ) {
+			if ( id === 'BALANCE' ) return 'Баланс'
 			return this.indicator( id ).name
 		}
 		
 		@ $mol_mem_key
 		portfolio_have( id : string ) {
+			if ( id === 'BALANCE' ) return this.balance_total()
 			return this.indicator( id ).have.toString()
 		}
 		
@@ -75,6 +77,7 @@ namespace $.$$ {
 		currency_work() {
 			return this.currency_all().filter( key => key !== 'CSH' ) as $hyoo_speculant_world_indicator_codes[]
 		}
+
 		balance_total() {
 			const list = this.currency_work().map( id => this.indicator( id ) )
 			const sum = list.reduce( ( sum , cur ) => {
@@ -82,14 +85,10 @@ namespace $.$$ {
 			} , 0 )
 			return ( sum + this.indicator( 'CSH' ).have ).toString()
 		}
-		
 
 		@ $mol_mem
 		portfolio() {
-			return [
-				this.Balance_total() ,
-				... this.currency_all().map( id => this.Portfolio_item( id ) )
-			]
+			return [ 'BALANCE' , 'CSH', ... this.currency_all() ].map( id => this.Portfolio_item( id ) )
 		}
 		
 	}

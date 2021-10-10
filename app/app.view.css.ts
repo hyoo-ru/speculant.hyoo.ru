@@ -24,6 +24,20 @@ namespace $.$$ {
 			}
 		} ,
 		
+		Portfolio_item: {
+			flex: {
+				grow: 1,
+				shrink: 1,
+				basis: rem(7),
+			},
+			font: {
+				weight: 'bold',
+			},
+			Label: {
+				wordBreak: 'keep-all',
+			}
+		},
+		
 	} )
 
 }
