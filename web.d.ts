@@ -2985,6 +2985,7 @@ declare namespace $ {
         Profile_button(id: any): $mol_button_major;
         Portfolio_item(id: any): $mol_labeler;
         Balance_total(): $mol_labeler;
+        Cash_total(): $mol_labeler;
         Page_final(): $$.$mol_page;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
@@ -3008,10 +3009,14 @@ declare namespace $ {
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
         portfolio_title(id: any): string;
-        protfolio_have(id: any): string;
+        portfolio_have(id: any): string;
         balance_total_title(): string;
+        cash_total(): string;
         final_text(): string;
         Final_text(): $$.$mol_text;
+        Results_text(): $$.$mol_text;
+        portfolio(): readonly any[];
+        Portfolio(): $mol_row;
         share_uri(): string;
         Share(): $$.$mol_button_share;
         restart(val?: any): any;

@@ -830,10 +830,13 @@ $hyoo_speculant_app $mol_book2
 	-
 	Portfolio_item!id $mol_labeler
 		title <= portfolio_title!id \
-		content / <= protfolio_have!id \
+		content / <= portfolio_have!id \
 	Balance_total $mol_labeler
-		title <= balance_total_title @ \Баланс
+		title <= balance_total_title \Итоговый баланс
 		content / <= balance_total
+	Cash_total $mol_labeler
+		title \Кэш
+		content / <= cash_total \
 	Page_final $mol_page
 		title \СпекулянтЪ
 		tools <= page_tools
@@ -844,9 +847,11 @@ $hyoo_speculant_app $mol_book2
 					\
 					\Как насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?
 					\
-					\Или даже попробовать по настоящему в [ВТБ Мои Инвестиции](http://olb.ru/app)?
-			- <= Portfolio $mol_row
-				sub <= protfolio /
+					\Или даже попробовать по настоящему(а можно и в демо режиме) в [ВТБ Мои Инвестиции](http://olb.ru/app)?
+			<= Results_text $mol_text
+				text \## Итоговые показатели
+			<= Portfolio $mol_row
+				sub <= portfolio /
 		foot /
 			<= Share $mol_button_share
 				uri <= share_uri \

@@ -9998,7 +9998,7 @@ var $;
             const obj = new this.$.$mol_labeler();
             obj.title = () => this.portfolio_title(id);
             obj.content = () => [
-                this.protfolio_have(id)
+                this.portfolio_have(id)
             ];
             return obj;
         }
@@ -10010,12 +10010,22 @@ var $;
             ];
             return obj;
         }
+        Cash_total() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => "Кэш";
+            obj.content = () => [
+                this.cash_total()
+            ];
+            return obj;
+        }
         Page_final() {
             const obj = new this.$.$mol_page();
             obj.title = () => "СпекулянтЪ";
             obj.tools = () => this.page_tools();
             obj.body = () => [
-                this.Final_text()
+                this.Final_text(),
+                this.Results_text(),
+                this.Portfolio()
             ];
             obj.foot = () => [
                 this.Share(),
@@ -10134,18 +10144,34 @@ var $;
         portfolio_title(id) {
             return "";
         }
-        protfolio_have(id) {
+        portfolio_have(id) {
             return "";
         }
         balance_total_title() {
-            return this.$.$mol_locale.text('$hyoo_speculant_app_balance_total_title');
+            return "Итоговый баланс";
+        }
+        cash_total() {
+            return "";
         }
         final_text() {
-            return "# Ого, {balance} за год!\n\nКак насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?\n\nИли даже попробовать по настоящему в [ВТБ Мои Инвестиции](http://olb.ru/app)?";
+            return "# Ого, {balance} за год!\n\nКак насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?\n\nИли даже попробовать по настоящему(а можно и в демо режиме) в [ВТБ Мои Инвестиции](http://olb.ru/app)?";
         }
         Final_text() {
             const obj = new this.$.$mol_text();
             obj.text = () => this.final_text();
+            return obj;
+        }
+        Results_text() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "## Итоговые показатели";
+            return obj;
+        }
+        portfolio() {
+            return [];
+        }
+        Portfolio() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => this.portfolio();
             return obj;
         }
         share_uri() {
@@ -10194,6 +10220,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Balance_total", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Cash_total", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Page_final", null);
@@ -10250,6 +10279,12 @@ var $;
     ], $hyoo_speculant_app.prototype, "Final_text", null);
     __decorate([
         $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Results_text", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Portfolio", null);
+    __decorate([
+        $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Share", null);
     __decorate([
         $.$mol_mem
@@ -10292,6 +10327,19 @@ var $;
                 },
                 Foot: {
                     justifyContent: 'center',
+                }
+            },
+            Portfolio_item: {
+                flex: {
+                    grow: 1,
+                    shrink: 1,
+                    basis: rem(7),
+                },
+                font: {
+                    weight: 'bold',
+                },
+                Label: {
+                    wordBreak: 'keep-all',
                 }
             },
         });
@@ -10342,12 +10390,16 @@ var $;
                 ];
             }
             final_text() {
-                return super.final_text().replace('{balance}', String(Number(this.balance_total()) - 1000));
+                return super.final_text().replace('{balance}', String(Number(this.balance_total().replace(/\D/gsu, '')) - 1000));
             }
             portfolio_title(id) {
+                if (id === 'BALANCE')
+                    return 'Баланс';
                 return this.indicator(id).name;
             }
             portfolio_have(id) {
+                if (id === 'BALANCE')
+                    return this.balance_total();
                 return this.indicator(id).have.toString();
             }
             currency_all() {
@@ -10364,10 +10416,7 @@ var $;
                 return (sum + this.indicator('CSH').have).toString();
             }
             portfolio() {
-                return [
-                    this.Balance_total(),
-                    ...this.currency_all().map(id => this.Portfolio_item(id))
-                ];
+                return ['BALANCE', 'CSH', ...this.currency_all()].map(id => this.Portfolio_item(id));
             }
         }
         __decorate([
