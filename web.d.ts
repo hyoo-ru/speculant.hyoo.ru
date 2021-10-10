@@ -3033,8 +3033,9 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+        persist(): boolean;
         restart(): void;
-        age(next?: string): string;
+        age(next?: string): string | null;
         profile(id: string): any;
         name(next?: string): any;
         select_profile(next?: string): any;
@@ -3049,6 +3050,11 @@ declare namespace $.$$ {
         currency_work(): ("KBK" | "INS" | "LKN" | "TTK" | "TLT" | "VBL" | "CHK" | "OGR" | "CSH")[];
         balance_total(): string;
         portfolio(): $mol_labeler[];
+        persist_final(): {
+            [key: string]: string;
+        };
+        auto(): void;
+        share_uri(): string;
     }
 }
 

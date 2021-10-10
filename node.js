@@ -10361,10 +10361,15 @@ var $;
     var $$;
     (function ($$) {
         class $hyoo_speculant_app extends $.$hyoo_speculant_app {
+            persist() {
+                return !!this.$.$mol_state_arg.value('persist');
+            }
             restart() {
                 this.model(new this.$.$hyoo_speculant_world);
             }
             age(next) {
+                if (this.persist())
+                    return this.$.$mol_state_arg.value('age');
                 return this.model().age(next);
             }
             profile(id) {
@@ -10374,6 +10379,8 @@ var $;
                 return this.$.$mol_store_local.value('name', next);
             }
             select_profile(next) {
+                if (this.persist())
+                    return this.$.$mol_state_arg.value('profile');
                 return this.model().profile(next);
             }
             start() {
@@ -10390,6 +10397,13 @@ var $;
                 return this.model().indicators()[id];
             }
             pages() {
+                const persist = this.$.$mol_state_arg.value('persist');
+                if (persist) {
+                    return [
+                        this.Page_final(),
+                        ...this.chat_pages(),
+                    ];
+                }
                 return [
                     ...(this.age() === 'ready' ? [this.Page_profile()] : []),
                     ...(this.age() === 'go' ? [this.Page_dashboard()] : []),
@@ -10406,12 +10420,14 @@ var $;
                 return this.indicator(id).name;
             }
             portfolio_have(id) {
+                if (this.persist())
+                    return this.$.$mol_state_arg.value(id);
                 if (id === 'BALANCE')
                     return this.balance_total();
                 return this.indicator(id).have.toString();
             }
             currency_all() {
-                return this.model().profiles()[this.model().profile()].indicators;
+                return this.model().profiles()[this.select_profile()].indicators;
             }
             currency_work() {
                 return this.currency_all().filter(key => key !== 'CSH');
@@ -10426,6 +10442,28 @@ var $;
             portfolio() {
                 return ['BALANCE', 'CSH', ...this.currency_all()].map(id => this.Portfolio_item(id));
             }
+            persist_final() {
+                const ids = ['BALANCE', 'CSH', ...this.currency_all()];
+                return this.$.$mol_state_arg.dict({
+                    persist: 'true',
+                    age: 'finish',
+                    profile: this.select_profile(),
+                    ...ids.reduce((dict, id) => {
+                        dict[id] = this.portfolio_have(id);
+                        return dict;
+                    }, {}),
+                });
+            }
+            auto() {
+                $.$mol_fiber_defer(() => {
+                    if (!this.persist() && this.age() === 'finish') {
+                        this.persist_final();
+                    }
+                });
+            }
+            share_uri() {
+                return this.$.$mol_dom_context.location.href;
+            }
         }
         __decorate([
             $.$mol_mem
@@ -10439,6 +10477,9 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $hyoo_speculant_app.prototype, "indicator", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "pages", null);
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "final_text", null);
@@ -10457,6 +10498,9 @@ var $;
         __decorate([
             $.$mol_mem
         ], $hyoo_speculant_app.prototype, "portfolio", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_speculant_app.prototype, "persist_final", null);
         $$.$hyoo_speculant_app = $hyoo_speculant_app;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
