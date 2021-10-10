@@ -2,6 +2,10 @@ namespace $.$$ {
 
 	export class $hyoo_speculant_app extends $.$hyoo_speculant_app {
 		
+		restart() {
+			this.model( new this.$.$hyoo_speculant_world )
+		}
+
 		@ $mol_mem
 		age( next?: string ) {
 			return this.model().age( next )
@@ -22,7 +26,7 @@ namespace $.$$ {
 		}
 		
 		start() {
-			this.model().age( 'go' )
+			this.model().age( 'finish' )
 		}
 		
 		profile_dict() {

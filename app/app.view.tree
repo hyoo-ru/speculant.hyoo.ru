@@ -1,5 +1,5 @@
 $hyoo_speculant_app $mol_book2
-	model $hyoo_speculant_world
+	model?val $hyoo_speculant_world
 	balance_total \
 	page_tools /
 		<= Source $mol_link_source
@@ -70,4 +70,8 @@ $hyoo_speculant_app $mol_book2
 		foot /
 			<= Share $mol_button_share
 				uri <= share_uri \
-				title \Поделиться
+				hint \Поделиться
+			<= Restart $mol_button_typed
+				click?val <=> restart?val null
+				hint \Рестарт
+				sub / <= Restart_icon $mol_icon_restart
