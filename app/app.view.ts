@@ -33,7 +33,7 @@ namespace $.$$ {
 		}
 		
 		start() {
-			this.model().age( 'finish' )
+			this.model().age( 'go' )
 		}
 		
 		profile_dict() {
