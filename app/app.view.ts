@@ -7,6 +7,7 @@ namespace $.$$ {
 		}
 		
 		restart() {
+			this.$.$mol_state_arg.dict( {} )
 			this.model( new this.$.$hyoo_speculant_world )
 		}
 
