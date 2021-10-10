@@ -23,6 +23,11 @@ namespace $.$$ {
 	export class $hyoo_speculant_world extends $.$hyoo_speculant_world {
 		
 		@ $mol_mem
+		profile( next?: string ) {
+			return this.$.$mol_store_local.value( 'profile' , next ) ?? super.profile()
+		}
+
+		@ $mol_mem
 		time( next?: $mol_time_moment ): $mol_time_moment {
 			
 			if( next ) return next

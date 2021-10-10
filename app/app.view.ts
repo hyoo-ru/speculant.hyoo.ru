@@ -12,6 +12,11 @@ namespace $.$$ {
 			return this.model().profiles()[ id ]
 		}
 		
+		@ $mol_mem
+		name( next?: string ) {
+			return this.$.$mol_store_local.value( 'name' , next )
+		}
+		
 		select_profile( next?: string ) {
 			return this.model().profile( next )
 		}
