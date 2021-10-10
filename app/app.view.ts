@@ -2,12 +2,17 @@ namespace $.$$ {
 
 	export class $hyoo_speculant_app extends $.$hyoo_speculant_app {
 		
+		persist() {
+			return !!this.$.$mol_state_arg.value( 'persist' )
+		}
+		
 		restart() {
 			this.model( new this.$.$hyoo_speculant_world )
 		}
 
 		@ $mol_mem
 		age( next?: string ) {
+			if ( this.persist() ) return this.$.$mol_state_arg.value( 'age' )
 			return this.model().age( next )
 		}
 
@@ -22,6 +27,7 @@ namespace $.$$ {
 		}
 		
 		select_profile( next?: string ) {
+			if ( this.persist() ) return this.$.$mol_state_arg.value( 'profile' )
 			return this.model().profile( next )
 		}
 		
@@ -42,7 +48,16 @@ namespace $.$$ {
 			return this.model().indicators()[ id ] as $hyoo_speculant_world_indicator
 		}
 
+		@ $mol_mem
 		pages() {
+			const persist = this.$.$mol_state_arg.value( 'persist' )
+			if ( persist ) {
+				return [
+					this.Page_final() ,
+					... this.chat_pages() ,
+				]
+			}
+
 			return [
 				... ( this.age() === 'ready' ? [ this.Page_profile() ] : []) ,
 				... ( this.age() === 'go' ? [ this.Page_dashboard() ] : []) ,
@@ -64,13 +79,14 @@ namespace $.$$ {
 		
 		@ $mol_mem_key
 		portfolio_have( id : string ) {
+			if ( this.persist() ) return this.$.$mol_state_arg.value( id )!
 			if ( id === 'BALANCE' ) return this.balance_total()
 			return this.indicator( id ).have.toString()
 		}
 		
 		@ $mol_mem
 		currency_all() {
-			return this.model().profiles()[ this.model().profile() ].indicators as $hyoo_speculant_world_indicator_codes[]
+			return this.model().profiles()[ this.select_profile() ].indicators as $hyoo_speculant_world_indicator_codes[]
 		}
 
 		@ $mol_mem
@@ -89,6 +105,29 @@ namespace $.$$ {
 		@ $mol_mem
 		portfolio() {
 			return [ 'BALANCE' , 'CSH', ... this.currency_all() ].map( id => this.Portfolio_item( id ) )
+		}
+		
+		@ $mol_mem
+		persist_final() {
+			const ids = [ 'BALANCE' , 'CSH' , ... this.currency_all() ]
+
+			return this.$.$mol_state_arg.dict( {
+				persist: 'true' ,
+				age: 'finish' ,
+				profile: this.select_profile() ,
+				... ids.reduce( ( dict , id ) => {
+					dict[ id ] = this.portfolio_have( id )
+					return dict
+				}, {} ) ,
+			} )
+		}
+		
+		auto() {
+			$mol_fiber_defer( () => {
+				if ( !this.persist() && this.age() === 'finish' ) {
+					this.persist_final()
+				}
+			} )
 		}
 		
 	}
