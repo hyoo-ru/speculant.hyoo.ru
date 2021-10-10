@@ -127,9 +127,7 @@ namespace $.$$ {
 			
 			const prev = $mol_mem_cached( ()=> this.news() ) ?? [ { ... [... super.news()][0] , moment: moment } ]
 			
-			debugger
 			const last = prev.slice( -1 )[ 0 ]
-			console.log({ last })
 			const chance = last.moment.day === moment.day ? .01 : .07
 			if( Math.random() > chance ) return prev
 			

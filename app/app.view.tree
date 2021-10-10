@@ -26,12 +26,24 @@ $hyoo_speculant_app $mol_book2
 						\Следите за новостями и **заработайте миллион**, правильно инвестируя свой капиталл.
 						\
 						\Но сперва быстрое знакомство..
-				<= User_name $mol_string
-					hint \Имя
-					value?val <=> user_name?val null
-				<= Profile_switch $mol_switch
-					value?val <=> select_profile?val null
-					options <= profile_dict *
+				<= Form $mol_form
+					form_fields /
+						<= Name $mol_form_field
+							name \Как вас зовут?
+							bid <= name_bid \
+							control <= Name_control $mol_string
+								hint \Иванов
+								value?val <=> name?val \
+						<= Profile $mol_form_field
+							name \Род деятельности
+							bid <= profile_bid \
+							control <= Profile_control $mol_switch
+								value?val <=> select_profile?val null
+								options <= profile_dict *
+					buttons /
+						<= Start $mol_button_major
+							title \Начать
+							click?val <=> start?val null
 	Profile_button!id $mol_button_major
 		title <= profile_title!id \
 		click?val <=> profile_select!id?val null

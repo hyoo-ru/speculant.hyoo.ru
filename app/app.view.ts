@@ -13,8 +13,11 @@ namespace $.$$ {
 		}
 		
 		select_profile( next?: string ) {
-			this.model().profile( next )
-			if ( next ) this.age( 'go' ) //??
+			return this.model().profile( next )
+		}
+		
+		start() {
+			this.model().age( 'go' )
 		}
 		
 		profile_dict() {

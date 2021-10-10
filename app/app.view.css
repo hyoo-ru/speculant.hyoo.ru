@@ -11,7 +11,7 @@
 	--mol_theme_image: invert(1) hue-rotate(180deg);
 }
 
-[hyoo_speculant_app][mol_theme="$mol_theme_accent"] {
+[mol_theme="$mol_theme_accent"] {
 	--mol_theme_back: #3A83F1;
 	--mol_theme_hover: #234171;
 	--mol_theme_text: white;

@@ -24,14 +24,6 @@ namespace $.$$ {
 			}
 		} ,
 		
-		Profile_switch: {
-			flex: 'none',
-		},
-
-		User_name: {
-			flex: 'none',
-		},
-		
 	} )
 
 }
