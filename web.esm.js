@@ -3816,11 +3816,13 @@ var $;
                 return prev.shift({ day: +1 });
             }
             indicators(next) {
-                this.time();
+                const time = this.time();
                 if (next)
                     return next;
                 const prev = $.$mol_mem_cached(() => this.indicators()) ?? super.indicators();
                 next = { ...prev };
+                const duration = new $.$mol_time_duration(time.valueOf() - this.time_end().shift({ year: -1 }).valueOf());
+                const days = duration.count('P1DT');
                 for (const code in next) {
                     if (code === 'CSH')
                         continue;
@@ -3828,16 +3830,21 @@ var $;
                     const entropy = this.entropy()[type];
                     if (entropy === undefined)
                         $.$mol_fail(new RangeError(`No entropy for ${type}`));
-                    const current = Math.max(0, +next[code].current
+                    const current = Math.max(1, +next[code].current
                         + Math.round(+next[code].trend
                             + (Math.random() * 2 - 1) * entropy));
                     const diff = current - next[code].current;
                     const history = [...next[code].history, current];
+                    const trend = next[code].trend;
+                    const sign = trend < 0 ? -1 : 1;
+                    const zero = trend === 0;
+                    const trend_next = days % 7 !== 0 || zero ? trend : (Math.abs(trend) - 1) * sign;
                     next[code] = {
                         ...next[code],
                         current,
                         diff,
                         history,
+                        trend: trend_next,
                     };
                 }
                 return next;
@@ -3850,9 +3857,11 @@ var $;
                 if (cost > indicators.CSH.have)
                     $.$mol_fail(new RangeError(`Required at least ${cost} CSH`));
                 const next = { ...indicators };
+                const trend = next[code].trend;
                 next[code] = {
                     ...next[code],
-                    have: next[code].have + diff
+                    have: next[code].have + diff,
+                    trend: Math.abs(trend) <= 5 ? trend + diff : trend,
                 };
                 next.CSH = {
                     ...next.CSH,
@@ -3862,18 +3871,22 @@ var $;
                 return null;
             }
             news() {
-                const moment = this.time();
+                const moment = this.time().mask('0000-00-00');
                 const indicators = this.indicators();
-                const prev = $.$mol_mem_cached(() => this.news()) ?? [{ ...[...super.news()][0], moment: moment.toString('DD.MM.YYYY') }];
-                if (Math.random() > .1)
+                const prev = $.$mol_mem_cached(() => this.news()) ?? [{ ...[...super.news()][0], moment: moment }];
+                debugger;
+                const last = prev.slice(-1)[0];
+                console.log({ last });
+                const chance = last.moment.day === moment.day ? .01 : .07;
+                if (Math.random() > chance)
                     return prev;
                 const template = $.$mol_stub_select_random(this.news_templates());
                 const indicator = $.$mol_stub_select_random(this.profiles()[this.profile()].indicators);
-                indicators[indicator].trend += template.trend;
+                indicators[indicator].trend = template.trend;
                 const name = indicators[indicator].name;
                 return [
                     ...prev, {
-                        moment: moment.toString('DD.MM.YYYY'),
+                        moment,
                         text: template.text.replace('{name}', name),
                     },
                 ];
@@ -7883,7 +7896,7 @@ var $;
                 return this.current().text;
             }
             date() {
-                return this.current().moment;
+                return this.current().moment.toString('DD Mon YYYY');
             }
         }
         __decorate([
