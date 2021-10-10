@@ -734,6 +734,13 @@ $mol_string $mol_view
 		<= Submit $mol_hotkey
 			key * enter?event <=> submit?event null
 
+$mol_form_field $mol_labeler
+	label /
+		<= name \
+		<= Bid $mol_view
+			sub / <= bid \
+	Content <= control null
+
 $mol_switch $mol_view
 	Option!id $mol_check
 		checked?val <=> option_checked!id?val false
@@ -745,6 +752,20 @@ $mol_switch $mol_view
 	options *
 	keys /string
 	sub <= items /$mol_check
+
+$mol_row $mol_view
+
+$mol_form $mol_view
+	submit_blocked false
+	event *
+		^
+		keydown?event <=> keydown?event null
+	submit?event null
+	sub /
+		<= Bar_fields $mol_view
+			sub <= form_fields /$mol_form_field
+		<= Bar_buttons $mol_row
+			sub <= buttons /$mol_view
 
 $mol_icon_share $mol_icon path \M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z
 
@@ -783,12 +804,24 @@ $hyoo_speculant_app $mol_book2
 						\Следите за новостями и **заработайте миллион**, правильно инвестируя свой капиталл.
 						\
 						\Но сперва быстрое знакомство..
-				<= User_name $mol_string
-					hint \Имя
-					value?val <=> user_name?val null
-				<= Profile_switch $mol_switch
-					value?val <=> select_profile?val null
-					options <= profile_dict *
+				<= Form $mol_form
+					form_fields /
+						<= Name $mol_form_field
+							name \Как вас зовут?
+							bid <= name_bid \
+							control <= Name_control $mol_string
+								hint \Иванов
+								value?val <=> name?val \
+						<= Profile $mol_form_field
+							name \Род деятельности
+							bid <= profile_bid \
+							control <= Profile_control $mol_switch
+								value?val <=> select_profile?val null
+								options <= profile_dict *
+					buttons /
+						<= Start $mol_button_major
+							title \Начать
+							click?val <=> start?val null
 	Profile_button!id $mol_button_major
 		title <= profile_title!id \
 		click?val <=> profile_select!id?val null

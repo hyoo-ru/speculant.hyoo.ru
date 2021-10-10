@@ -2830,6 +2830,20 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_form_field extends $mol_labeler {
+        label(): readonly any[];
+        Content(): any;
+        name(): string;
+        bid(): string;
+        Bid(): $mol_view;
+        control(): any;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_switch extends $mol_view {
         Option(id: any): $$.$mol_check;
         value(val?: any): any;
@@ -2859,6 +2873,40 @@ declare namespace $.$$ {
         items(): $mol_check[];
         option_title(key: string): string;
         option_checked(key: string, next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form extends $mol_view {
+        submit_blocked(): boolean;
+        event(): {
+            keydown: (event?: any) => any;
+        };
+        submit(event?: any): any;
+        sub(): readonly any[];
+        keydown(event?: any): any;
+        form_fields(): readonly $mol_form_field[];
+        Bar_fields(): $mol_view;
+        buttons(): readonly $mol_view[];
+        Bar_buttons(): $mol_row;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_form extends $.$mol_form {
+        submit_blocked(): boolean;
+        keydown(next: KeyboardEvent): void;
     }
 }
 
@@ -2906,11 +2954,18 @@ declare namespace $ {
         Chat(): $$.$mol_chat;
         Theme(): $$.$mol_theme_auto;
         Description(): $$.$mol_text;
-        user_name(val?: any): any;
-        User_name(): $$.$mol_string;
+        name_bid(): string;
+        name(val?: any): string;
+        Name_control(): $$.$mol_string;
+        Name(): $mol_form_field;
+        profile_bid(): string;
         select_profile(val?: any): any;
         profile_dict(): {};
-        Profile_switch(): $$.$mol_switch;
+        Profile_control(): $$.$mol_switch;
+        Profile(): $mol_form_field;
+        start(val?: any): any;
+        Start(): $mol_button_major;
+        Form(): $$.$mol_form;
         Page_profile_content(): $$.$mol_list;
         profile_title(id: any): string;
         profile_select(id: any, val?: any): any;
@@ -2934,7 +2989,8 @@ declare namespace $.$$ {
     class $hyoo_speculant_app extends $.$hyoo_speculant_app {
         age(next?: string): string;
         profile(id: string): any;
-        select_profile(next?: string): void;
+        select_profile(next?: string): string;
+        start(): void;
         profile_dict(): {};
         indicator(id: string): $hyoo_speculant_world_indicator;
         pages(): ($mol_page | $hyoo_speculant_app_dashboard)[];

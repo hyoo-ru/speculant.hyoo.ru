@@ -4123,9 +4123,7 @@ var $;
                 const moment = this.time().mask('0000-00-00');
                 const indicators = this.indicators();
                 const prev = $.$mol_mem_cached(() => this.news()) ?? [{ ...[...super.news()][0], moment: moment }];
-                debugger;
                 const last = prev.slice(-1)[0];
-                console.log({ last });
                 const chance = last.moment.day === moment.day ? .01 : .07;
                 if (Math.random() > chance)
                     return prev;
@@ -9506,6 +9504,50 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_form_field extends $.$mol_labeler {
+        label() {
+            return [
+                this.name(),
+                this.Bid()
+            ];
+        }
+        Content() {
+            return this.control();
+        }
+        name() {
+            return "";
+        }
+        bid() {
+            return "";
+        }
+        Bid() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.bid()
+            ];
+            return obj;
+        }
+        control() {
+            return null;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_form_field.prototype, "Bid", null);
+    $.$mol_form_field = $mol_form_field;
+})($ || ($ = {}));
+//field.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/form/field/field.view.css", "[mol_form_field] {\n\talign-items: stretch;\n}\n\n[mol_form_field_bid] {\n\tcolor: var(--mol_theme_focus);\n\tmargin-left: 1rem;\n\tdisplay: inline-block;\n}\n");
+})($ || ($ = {}));
+//field.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_switch extends $.$mol_view {
         Option(id) {
             const obj = new this.$.$mol_check();
@@ -9614,6 +9656,113 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //switch.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_row extends $.$mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//row.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//row.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_form extends $.$mol_view {
+        submit_blocked() {
+            return false;
+        }
+        event() {
+            return {
+                ...super.event(),
+                keydown: (event) => this.keydown(event)
+            };
+        }
+        submit(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        sub() {
+            return [
+                this.Bar_fields(),
+                this.Bar_buttons()
+            ];
+        }
+        keydown(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        form_fields() {
+            return [];
+        }
+        Bar_fields() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => this.form_fields();
+            return obj;
+        }
+        buttons() {
+            return [];
+        }
+        Bar_buttons() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => this.buttons();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_form.prototype, "submit", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_form.prototype, "keydown", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_form.prototype, "Bar_fields", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_form.prototype, "Bar_buttons", null);
+    $.$mol_form = $mol_form;
+})($ || ($ = {}));
+//form.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/form/form.css", "[mol_form] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[mol_form_bar_fields] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[mol_form_bar_fields] > * {\n\tmargin: var(--mol_gap_block);\n}\n\n[mol_form_bar_buttons] {\n\tbox-shadow: none;\n\tpadding: 0;\n}\n\n[mol_form_bar_buttons] > * {\n\tflex: 1 1 auto;\n\tmargin: var(--mol_gap_block);\n}\n");
+})($ || ($ = {}));
+//form.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_form extends $.$mol_form {
+            submit_blocked() {
+                return this.form_fields().some(field => field.bid());
+            }
+            keydown(next) {
+                if (next.ctrlKey && next.keyCode === $.$mol_keyboard_code.enter && !this.submit_blocked())
+                    this.submit(event);
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_form.prototype, "submit_blocked", null);
+        $$.$mol_form = $mol_form;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//form.view.js.map
 ;
 "use strict";
 var $;
@@ -9775,16 +9924,29 @@ var $;
             obj.text = () => "Успешный инвестор держит руку на пульсе новостей.\n\nВ вашем рапоряжении **1 игровой год**, который пролетит за **считанные минуты**.\n\nСледите за новостями и **заработайте миллион**, правильно инвестируя свой капиталл.\n\nНо сперва быстрое знакомство..";
             return obj;
         }
-        user_name(val) {
+        name_bid() {
+            return "";
+        }
+        name(val) {
             if (val !== undefined)
                 return val;
-            return null;
+            return "";
         }
-        User_name() {
+        Name_control() {
             const obj = new this.$.$mol_string();
-            obj.hint = () => "Имя";
-            obj.value = (val) => this.user_name(val);
+            obj.hint = () => "Иванов";
+            obj.value = (val) => this.name(val);
             return obj;
+        }
+        Name() {
+            const obj = new this.$.$mol_form_field();
+            obj.name = () => "Как вас зовут?";
+            obj.bid = () => this.name_bid();
+            obj.control = () => this.Name_control();
+            return obj;
+        }
+        profile_bid() {
+            return "";
         }
         select_profile(val) {
             if (val !== undefined)
@@ -9794,18 +9956,46 @@ var $;
         profile_dict() {
             return {};
         }
-        Profile_switch() {
+        Profile_control() {
             const obj = new this.$.$mol_switch();
             obj.value = (val) => this.select_profile(val);
             obj.options = () => this.profile_dict();
+            return obj;
+        }
+        Profile() {
+            const obj = new this.$.$mol_form_field();
+            obj.name = () => "Род деятельности";
+            obj.bid = () => this.profile_bid();
+            obj.control = () => this.Profile_control();
+            return obj;
+        }
+        start(val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        Start() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Начать";
+            obj.click = (val) => this.start(val);
+            return obj;
+        }
+        Form() {
+            const obj = new this.$.$mol_form();
+            obj.form_fields = () => [
+                this.Name(),
+                this.Profile()
+            ];
+            obj.buttons = () => [
+                this.Start()
+            ];
             return obj;
         }
         Page_profile_content() {
             const obj = new this.$.$mol_list();
             obj.rows = () => [
                 this.Description(),
-                this.User_name(),
-                this.Profile_switch()
+                this.Form()
             ];
             return obj;
         }
@@ -9882,16 +10072,31 @@ var $;
     ], $hyoo_speculant_app.prototype, "Description", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "user_name", null);
+    ], $hyoo_speculant_app.prototype, "name", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "User_name", null);
+    ], $hyoo_speculant_app.prototype, "Name_control", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Name", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "select_profile", null);
     __decorate([
         $.$mol_mem
-    ], $hyoo_speculant_app.prototype, "Profile_switch", null);
+    ], $hyoo_speculant_app.prototype, "Profile_control", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Profile", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "start", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Start", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_speculant_app.prototype, "Form", null);
     __decorate([
         $.$mol_mem
     ], $hyoo_speculant_app.prototype, "Page_profile_content", null);
@@ -9911,7 +10116,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("hyoo/speculant/app/app.view.css", "[hyoo_speculant_app][mol_theme=\"$mol_theme_dark\"] {\n\t--mol_theme_back: #1D2128;\n\t--mol_theme_hover: rgba( 255 , 255 , 255 , .05 );\n\t--mol_theme_current: #3A83F1;\n\t--mol_theme_text: hsl( 0 , 0% , 90% );\n\t--mol_theme_control: #C2D4EF;\n\t--mol_theme_shade: rgba( 255 , 255 , 255 , .5 );\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_focus: #18A5F6;\n\t--mol_theme_field: #2B313B;\n\t--mol_theme_image: invert(1) hue-rotate(180deg);\n}\n\n[hyoo_speculant_app][mol_theme=\"$mol_theme_accent\"] {\n\t--mol_theme_back: #3A83F1;\n\t--mol_theme_hover: #234171;\n\t--mol_theme_text: white;\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_control: white;\n\t--mol_theme_focus: black;\n}\n\n[mol_page_head],\n[mol_page_foot] {\n\tbackground-color: var(--mol_theme_field);\n}\n");
+    $.$mol_style_attach("hyoo/speculant/app/app.view.css", "[hyoo_speculant_app][mol_theme=\"$mol_theme_dark\"] {\n\t--mol_theme_back: #1D2128;\n\t--mol_theme_hover: rgba( 255 , 255 , 255 , .05 );\n\t--mol_theme_current: #3A83F1;\n\t--mol_theme_text: hsl( 0 , 0% , 90% );\n\t--mol_theme_control: #C2D4EF;\n\t--mol_theme_shade: rgba( 255 , 255 , 255 , .5 );\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_focus: #18A5F6;\n\t--mol_theme_field: #2B313B;\n\t--mol_theme_image: invert(1) hue-rotate(180deg);\n}\n\n[mol_theme=\"$mol_theme_accent\"] {\n\t--mol_theme_back: #3A83F1;\n\t--mol_theme_hover: #234171;\n\t--mol_theme_text: white;\n\t--mol_theme_line: rgba( 50 , 50 , 50 , 1 );\n\t--mol_theme_control: white;\n\t--mol_theme_focus: black;\n}\n\n[mol_page_head],\n[mol_page_foot] {\n\tbackground-color: var(--mol_theme_field);\n}\n");
 })($ || ($ = {}));
 //app.view.css.js.map
 ;
@@ -9938,12 +10143,6 @@ var $;
                     justifyContent: 'center',
                 }
             },
-            Profile_switch: {
-                flex: 'none',
-            },
-            User_name: {
-                flex: 'none',
-            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -9962,9 +10161,10 @@ var $;
                 return this.model().profiles()[id];
             }
             select_profile(next) {
-                this.model().profile(next);
-                if (next)
-                    this.age('go');
+                return this.model().profile(next);
+            }
+            start() {
+                this.model().age('go');
             }
             profile_dict() {
                 return Object.keys(this.model().profiles()).reduce((dict, id) => {
