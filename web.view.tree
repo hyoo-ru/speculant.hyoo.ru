@@ -855,6 +855,7 @@ $hyoo_speculant_app $mol_book2
 		foot /
 			<= Share $mol_button_share
 				uri <= share_uri \
+				title \https://speculant.hyoo.ru/
 				hint \Поделиться
 			<= Restart $mol_button_typed
 				click?val <=> restart?val null

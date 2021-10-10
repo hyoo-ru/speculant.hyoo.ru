@@ -10026,6 +10026,7 @@ var $;
         Share() {
             const obj = new this.$.$mol_button_share();
             obj.uri = () => this.share_uri();
+            obj.title = () => "https://speculant.hyoo.ru/";
             obj.hint = () => "Поделиться";
             return obj;
         }
@@ -10203,6 +10204,7 @@ var $;
                 return !!this.$.$mol_state_arg.value('persist');
             }
             restart() {
+                this.$.$mol_state_arg.dict({});
                 this.model(new this.$.$hyoo_speculant_world);
             }
             age(next) {
