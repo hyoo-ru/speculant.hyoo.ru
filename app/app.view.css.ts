@@ -24,6 +24,10 @@ namespace $.$$ {
 			}
 		} ,
 		
+		Page_final_content: {
+			padding: $mol_gap.block ,
+		} ,
+		
 		Portfolio_item: {
 			flex: {
 				grow: 1,

@@ -21,7 +21,7 @@ $hyoo_speculant_app $mol_book2
 					text \
 						\Успешный инвестор держит руку на пульсе новостей.
 						\
-						\В вашем рапоряжении **1 игровой год**, который пролетит за **считанные минуты**.
+						\В вашем раcпоряжении **1 игровой год**, который пролетит за **считанные минуты**.
 						\
 						\Следите за новостями и **заработайте миллион**, правильно инвестируя свой капиталл.
 						\
@@ -61,17 +61,18 @@ $hyoo_speculant_app $mol_book2
 		title \СпекулянтЪ
 		tools <= page_tools
 		body /
-			<= Final_text $mol_text
-				text <= final_text \ 
-					\# Ого, {balance} за год!
-					\
-					\Как насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?
-					\
-					\Или даже попробовать по настоящему(а можно и в демо режиме) в [ВТБ Мои Инвестиции](http://olb.ru/app)?
-			<= Results_text $mol_text
-				text \## Итоговые показатели
-			<= Portfolio $mol_row
-				sub <= portfolio /
+			<= Page_final_content $mol_list rows /
+				<= Final_text $mol_text
+					text <= final_text \ 
+						\# Ого, {balance} за год!
+						\
+						\Как насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?
+						\
+						\Или даже попробовать по настоящему(а можно и в демо режиме) в [ВТБ Мои Инвестиции](http://olb.ru/app)?
+				<= Results_text $mol_text
+					text \## Итоговые показатели
+				<= Portfolio $mol_row
+					sub <= portfolio /
 		foot /
 			<= Share $mol_button_share
 				uri <= share_uri \
