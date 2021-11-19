@@ -7073,6 +7073,9 @@ var $;
             }
             return next;
         }
+        static href_normal() {
+            return this.link({});
+        }
         static dict(next) {
             var href = this.href(next && this.make_link(next)).split(/#!?/)[1] || '';
             var chunks = href.split(this.separator);
@@ -7143,6 +7146,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $mol_state_arg, "href", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_state_arg, "href_normal", null);
     __decorate([
         $.$mol_mem
     ], $mol_state_arg, "dict", null);
@@ -7227,7 +7233,7 @@ var $;
                 return new URL(this.uri(), base);
             }
             current() {
-                const base = this.$.$mol_state_arg.href();
+                const base = this.$.$mol_state_arg.href_normal();
                 const target = this.uri_native().toString();
                 if (base === target)
                     return true;
