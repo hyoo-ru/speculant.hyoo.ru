@@ -33,7 +33,7 @@ namespace $.$$ {
 		}
 		
 		start() {
-			this.model().age( 'go' )
+			this.model().age( 'intro' )
 		}
 		
 		profile_dict() {
@@ -61,7 +61,7 @@ namespace $.$$ {
 
 			return [
 				... ( this.age() === 'ready' ? [ this.Page_profile() ] : []) ,
-				... ( this.age() === 'go' ? [ this.Page_dashboard() ] : []) ,
+				... ( ['go','intro'].includes( this.age()! ) ? [ this.Page_dashboard() ] : []) ,
 				... ( this.age() === 'finish' ? [ this.Page_final() ] : []) ,
 				... this.chat_pages(),
 			]
