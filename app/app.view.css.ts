@@ -34,9 +34,6 @@ namespace $.$$ {
 				shrink: 1,
 				basis: rem(7),
 			},
-			font: {
-				weight: 'bold',
-			},
 			Label: {
 				wordBreak: 'keep-all',
 			}

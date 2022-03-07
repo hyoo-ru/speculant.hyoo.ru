@@ -65,8 +65,6 @@ $hyoo_speculant_app $mol_book2
 				<= Final_text $mol_text
 					text <= final_text \ 
 						\# Ого, {balance} за год!
-				<= Results_text $mol_text
-					text \## Итоговые показатели
 				<= Portfolio $mol_row
 					sub <= portfolio /
 		foot /

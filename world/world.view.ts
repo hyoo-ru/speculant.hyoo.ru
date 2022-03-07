@@ -129,30 +129,9 @@ namespace $.$$ {
 			
 			const moment = this.time().mask( '0000-00-00' )
 			const indicators = this.indicators()
-			const age = this.age()
 			
 			const prev = $mol_mem_cached( ()=> this.news() ) ?? [ { ... [... super.news()][0] , moment: moment } ]
 			const last = prev.slice( -1 )[ 0 ]
-			
-			if ( this.age() === 'intro' && this.intro()[ prev.length - 1 ] ) {
-				
-				const duration = new $mol_time_duration( moment.valueOf() - last.moment.valueOf() )
-				if ( duration.count( 'P1DT' ) < this.intro()[ prev.length - 1 ].wait ) {
-					return prev
-				}
-
-				return [
-					... prev ,
-					{
-						moment,
-						text: this.intro()[ prev.length - 1 ].text,
-					}
-				]
-			} else {
-				$mol_fiber_defer( () => {
-					this.age( 'go' )
-				} )
-			}
 			
 			const chance = last.moment.day === moment.day ? .01 : .07
 			if( Math.random() > chance ) return prev

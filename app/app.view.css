@@ -1,12 +1,12 @@
-[hyoo_speculant_app][mol_theme="$mol_theme_dark"] {
+/* [hyoo_speculant_app][mol_theme="$mol_theme_dark"] {
 	--mol_theme_back: #1D2128;
 	--mol_theme_hover: rgba( 255 , 255 , 255 , .05 );
-	--mol_theme_current: #3A83F1;
+	--mol_theme_current: #C2D4EF;
 	--mol_theme_text: hsl( 0 , 0% , 90% );
-	--mol_theme_control: #C2D4EF;
+	--mol_theme_control: #18A5F6;
 	--mol_theme_shade: rgba( 255 , 255 , 255 , .5 );
 	--mol_theme_line: rgba( 50 , 50 , 50 , 1 );
-	--mol_theme_focus: #18A5F6;
+	--mol_theme_focus: #C2D4EF;
 	--mol_theme_field: #2B313B;
 	--mol_theme_image: invert(1) hue-rotate(180deg);
 }
@@ -23,4 +23,4 @@
 [mol_page_head],
 [mol_page_foot] {
 	background-color: var(--mol_theme_field);
-}
+} */

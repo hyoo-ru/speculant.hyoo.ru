@@ -1,23 +1,14 @@
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
-	title @ \Dashboard
+	title \Последние Новости
 	currency_all /
-	Title <= Title_list $mol_view
-		sub <= title_list /
-			<= Balance_total $mol_labeler
-				title <= balance_total_title \Баланс
-				content / <= balance_total \
-			<= Balance_cash $mol_labeler
-				title <= balance_cash_title \
-				content / <= balance_cash \
-			<= Date $mol_labeler
-				title \Дата
-				content / <= date \
 	Buy_button!id $mol_button_typed
+		hint \Купить
 		click?val <=> buy!id?val null
 		sub /
 			<= Buy_button_icon!id $mol_icon_plus
 	Sell_button!id $mol_button_typed
+		hint \Продать
 		click?val <=> sell!id?val null
 		sub /
 			<= Sell_button_icon!id $mol_icon_minus
@@ -50,4 +41,15 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= News
 	foot / <= Foot_list $mol_list
 		rows /
+			<= Title_list $mol_view
+				sub <= title_list /
+					<= Date $mol_labeler
+						title \Дата
+						content / <= date \
+					<= Balance_total $mol_labeler
+						title <= balance_total_title \Портфель
+						content / <= balance_total \
+					<= Balance_cash $mol_labeler
+						title <= balance_cash_title \
+						content / <= balance_cash \
 			<= Currency_list

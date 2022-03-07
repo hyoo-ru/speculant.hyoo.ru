@@ -8,16 +8,13 @@ namespace $.$$ {
 			basis: rem(30),
 		},
 
-		Balance_total: {
-			marginRight: '1rem',
-		} ,
-
-		Balance_cash: {
-			marginRight: '1rem',
-		} ,
-
 		Head: {
 			justifyContent: 'space-between' ,
+		} ,
+		
+		Title_list: {
+			padding: $mol_gap.block,
+			justifyContent: 'space-between',
 		} ,
 		
 		Rate: {
@@ -28,10 +25,6 @@ namespace $.$$ {
 			},
 			justifyContent: 'flex-end',
 			wordBreak: 'keep-all',
-		} ,
-		
-		Currency_list: {
-			padding: $mol_gap.block ,
 		} ,
 		
 		Currency_name: {
@@ -47,7 +40,10 @@ namespace $.$$ {
 		} ,
 		
 		Foot_list: {
-			width: per(100),
+			padding: $mol_gap.block,
+			flex: {
+				grow: 1,
+			},
 		} ,
 		
 		Icon_currency_up: {

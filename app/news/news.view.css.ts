@@ -1,39 +1,15 @@
 namespace $.$$ {
 	
-	const { rem , em } = $mol_style_unit
+	const { rem } = $mol_style_unit
 
-	$mol_style_define( $hyoo_speculant_app_news , {
-
-		List: {
-			padding: $mol_gap.block,
-		},
-
-	} )
-	
 	$mol_style_define( $hyoo_speculant_app_news_item , {
+		
+		padding: $mol_gap.block,
 
 		Date: {
-			justifyContent: 'flex-end' ,
-			font: {
-				size: em(0.9) ,
-			} ,
+			color: $mol_theme.shade,
+			padding: [ 0, rem(.75) ],
 		} ,
-
-		News_item_title: {
-			Row: {
-				margin: {
-					bottom: 0 ,
-				},
-			},
-			Header: {
-				font: {
-					size: em(1.3),
-				},
-				padding: {
-					bottom: 0,
-				},
-			},
-		}
 
 	} )
 
