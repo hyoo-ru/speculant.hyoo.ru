@@ -136,8 +136,8 @@ namespace $.$$ {
 			const chance = last.moment.day === moment.day ? .01 : .07
 			if( Math.random() > chance ) return prev
 			
-			const template = $mol_stub_select_random( this.news_templates() )
-			const indicator = $mol_stub_select_random(
+			const template = $mol_array_lottery( this.news_templates() )
+			const indicator = $mol_array_lottery(
 				this.profiles()[ this.profile() ].indicators as readonly string[]
 			)
 			indicators[ indicator ].trend = template.trend
