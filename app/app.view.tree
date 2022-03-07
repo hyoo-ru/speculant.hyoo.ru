@@ -65,10 +65,6 @@ $hyoo_speculant_app $mol_book2
 				<= Final_text $mol_text
 					text <= final_text \ 
 						\# Ого, {balance} за год!
-						\
-						\Как насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?
-						\
-						\Или даже попробовать по настоящему(а можно и в демо режиме) в [ВТБ Мои Инвестиции](http://olb.ru/app)?
 				<= Results_text $mol_text
 					text \## Итоговые показатели
 				<= Portfolio $mol_row
