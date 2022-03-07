@@ -1,10 +1,8 @@
 $mol_scroll $mol_view
-	minimal_height 0
-	_event_scroll_timer?val null
+	scroll_top?val 0
+	scroll_left?val 0
 	field *
 		^
-		scrollTop <= scroll_top?val 0
-		scrollLeft <= scroll_left?val 0
 		tabIndex <= tabindex -1
 	event *
 		^
@@ -152,91 +150,74 @@ $hyoo_speculant_world $mol_object2
 		share 10
 	
 	age?next \ready
-		- \Этап мира: ready|intro|go|finish
-	intro /
-		*
-			text \
-				\# Привет!
-				\Я помогу тебе тут освоится.
-			wait 4
-		*
-			text \
-				\Внизу ты видишь панель управления портфелем.
-				\Там четыре акции, разных компаний.
-			wait 8
-		*
-			text \
-				\Мигающие стрелочки - это их текущая стоимость покупки/продажи.
-				\Она изменяется один раз в игровой день(1 секунда).
-			wait 10
-		*
-			text \
-				\Ты можешь покупать и продавать, нажимая на плюс/минус.
-				\Твоя задача купить девшевле, а продать дороже.
-				\Купи несколько акций.
-			wait 15
-		*
-			text \
-				\В вверху отображается твой баланс и кэш.
-				\Баланс - текущая стоимость всех твоих активов. Баланс изменяется в реальном времени, с учетом текущих цен.
-				\Кэш - аналог наличных денег. Он нужен, чтобы покупать акции.
-			wait 15
-		*
-			text \
-				\А тут появляются новости. По ним тебе необходимо предсказывать падениеи или подоражание акций, и принимать меры.
-			wait 10
-		*
-			text \
-				\У тебя есть 1 год(игровой), чтобы установить рекорд по балансу.
-			wait 8
-		*
-			text \Удачи!
-			wait 3
+		- \Этап мира: ready|go|finish
 	news /
 		- \Новости в мире, влияют на курсы.
 		*
 			text \
-				\# Новый профи вышел на рынок
+				\## Новый профи вышел на рынок
 				\Все спекулянты замерли в ожидании.
 			moment \
 	
 	news_templates /
 		- \Шаблоны новостей
 		*
+			trend -10
+			text \
+				\## ВедроСоюз ввёл санкции против Московии
+				\**{name}** уже объявил об уходе с рынка.
+		*
 			trend -5
 			text \
-				\# Утечка персональных данных
+				\## Утечка персональных данных
 				\Хорошо, что в **{name}** нет на вас досье.
+		*
+			trend -2
+			text \
+				\## Массовая дискриминация боевых вертолётов
+				\Борцы за социальную справедливость ревут в **{name}**
 		*
 			trend -1
 			text \
-				\# Сайт **{name}** не отвечает
+				\## Сайт **{name}** не отвечает
 				\Производительность труда выросла в два раза.
 		*
 			trend -1
 			text \
-				\# РосЮсбНаблюд заблокировал **{name}**
+				\## РосЮсбНаблюд заблокировал **{name}**
 				\Ваш любимый сайт теперь открывается через раз.
 		*
 			trend 0
 			text \
-				\# Московия вступила в ЗНАТО
-				\Интернет группа Ананимус взяла ответственность на себя.
+				\## Московия вступила в ЗНАТО
+				\Интернет группа Ананасус взяла ответственность на себя.
 		*
-			trend 5
+			trend 0
 			text \
-				\# Айрон Маск твитнул что-то про **{name}**
-				\Биржы еле справляются с начавшимся ажиотажем.
+				\## Родился бурый медвежонок альбинос
+				\Наблюдаются огромные очереди в центральный зоопарк.
 		*
 			trend 1
 			text \
-				\# Новый отчёт финансового аналитика
+				\## Новый отчёт финансового аналитика
 				\Ничего интересного про **{name}** в нём нет.
+		*
+			trend 5
+			text \
+				\## Айрон Маркс упомянул про **{name}**
+				\Биржы еле справляются с начавшимся ажиотажем.
+		*
+			trend 10
+			text \
+				\## Клавиатурные революционеры вторглись в Московию
+				\Военные Силы Московии координируют действия теперь через **{name}**
 
 $mol_page $mol_view
+	dom_name \article
 	sub /
 		<= Head $mol_view
 			minimal_height 64
+			dom_name \header
 			sub <= head /
 				<= Title $mol_view
 					dom_name \h1
@@ -245,9 +226,10 @@ $mol_page $mol_view
 				<= Tools $mol_view
 					sub <= tools /$mol_view_content
 		<= Body $mol_scroll
-			scroll_top?val <=> body_scroll_top?val 0
+			scroll_top?val => body_scroll_top?val
 			sub <= body /$mol_view_content
 		<= Foot $mol_view
+			dom_name \footer
 			sub <= foot /$mol_view
 
 $mol_speck $mol_view
@@ -287,6 +269,7 @@ $mol_svg $mol_view
 	dom_name_space \http://www.w3.org/2000/svg
 	font_size 16
 	font_family \
+	style_size *
 
 $mol_svg_root $mol_svg
 	dom_name \svg
@@ -588,19 +571,9 @@ $hyoo_speculant_app_news_item $mol_list
 	news_item \
 	news_read?val false
 	rows /
+		<= Date $mol_view sub / <= date \
 		<= News_item_title $mol_text
 			text <= text \
-		<= Date $mol_view sub / <= date \
-
-$mol_labeler $mol_list
-	rows /
-		<= Label $mol_view
-			minimal_height 16
-			sub <= label /$mol_view_content
-				<= title
-		<= Content $mol_view
-			minimal_height 24
-			sub <= content /
 
 $mol_icon_plus $mol_icon path \M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z
 
@@ -615,26 +588,27 @@ $mol_image2 $mol_view
 				paddingTop <= height \100%
 				backgroundImage <= background \
 
+$mol_labeler $mol_list
+	rows /
+		<= Label $mol_view
+			minimal_height 16
+			sub <= label /$mol_view_content
+				<= title
+		<= Content $mol_view
+			minimal_height 24
+			sub <= content /
+
 $hyoo_speculant_app_dashboard $mol_page
 	model $hyoo_speculant_world
-	title @ \Dashboard
+	title \Последние Новости
 	currency_all /
-	Title <= Title_list $mol_view
-		sub <= title_list /
-			<= Balance_total $mol_labeler
-				title <= balance_total_title \Баланс
-				content / <= balance_total \
-			<= Balance_cash $mol_labeler
-				title <= balance_cash_title \
-				content / <= balance_cash \
-			<= Date $mol_labeler
-				title \Дата
-				content / <= date \
 	Buy_button!id $mol_button_typed
+		hint \Купить
 		click?val <=> buy!id?val null
 		sub /
 			<= Buy_button_icon!id $mol_icon_plus
 	Sell_button!id $mol_button_typed
+		hint \Продать
 		click?val <=> sell!id?val null
 		sub /
 			<= Sell_button_icon!id $mol_icon_minus
@@ -667,6 +641,17 @@ $hyoo_speculant_app_dashboard $mol_page
 			<= News
 	foot / <= Foot_list $mol_list
 		rows /
+			<= Title_list $mol_view
+				sub <= title_list /
+					<= Date $mol_labeler
+						title \Дата
+						content / <= date \
+					<= Balance_total $mol_labeler
+						title <= balance_total_title \Портфель
+						content / <= balance_total \
+					<= Balance_cash $mol_labeler
+						title <= balance_cash_title \
+						content / <= balance_cash \
 			<= Currency_list
 
 $mol_button_major $mol_button_typed
@@ -698,9 +683,21 @@ $mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.4
 
 $mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
 
-$mol_frame $mol_scroll
+$mol_embed_native $mol_scroll
+	dom_name \object
+	window null
+	attr *
+		^
+		data <= uri?val \
+		type <= mime \
+	sub /
+		<= title?val \
+
+$mol_frame $mol_embed_native
 	dom_name \iframe
 	attr *
+		data null
+		type null
 		src <= uri?val \
 		srcdoc <= html null
 		allow <= allow \
@@ -757,7 +754,7 @@ $mol_string $mol_view
 		^
 		disabled <= disabled false
 		value <= value_changed?val <=> value?val \
-		placeholder <= hint \ 
+		placeholder <= hint_visible <= hint \
 		spellcheck <= spellcheck false
 		autocomplete <= autocomplete_native \
 		selectionEnd <= selection_end 0
@@ -886,12 +883,6 @@ $hyoo_speculant_app $mol_book2
 				<= Final_text $mol_text
 					text <= final_text \ 
 						\# Ого, {balance} за год!
-						\
-						\Как насчёт пройти [школу инвестора](https://school.vtb.ru/), чтобы побить свой рекорд?
-						\
-						\Или даже попробовать по настоящему(а можно и в демо режиме) в [ВТБ Мои Инвестиции](http://olb.ru/app)?
-				<= Results_text $mol_text
-					text \## Итоговые показатели
 				<= Portfolio $mol_row
 					sub <= portfolio /
 		foot /
