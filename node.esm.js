@@ -10026,6 +10026,9 @@ var $;
         capture() {
             return null;
         }
+        hint() {
+            return this.$.$mol_locale.text('$mol_button_share_hint');
+        }
         sub() {
             return [
                 this.Icon()
