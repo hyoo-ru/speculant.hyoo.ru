@@ -1052,7 +1052,7 @@ declare namespace $ {
             };
         };
         scoring(): string;
-        exchange(code: any, diff?: any): any;
+        exchange(id: any, diff?: any): any;
         indicators(next?: any): {
             CSH: {
                 name: string;
@@ -1915,7 +1915,7 @@ declare namespace $ {
     class $mol_grid extends $mol_view {
         row_height(): number;
         row_ids(): readonly string[][];
-        row_id(index: any): any;
+        row_id(id: any): any;
         col_ids(): readonly any[];
         records(): {};
         record(id: any): any;
@@ -2928,6 +2928,7 @@ declare namespace $.$$ {
 
 declare namespace $ {
     class $mol_form_field extends $mol_labeler {
+        bids(): readonly string[];
         label(): readonly any[];
         content(): readonly any[];
         name(): string;
@@ -2938,6 +2939,12 @@ declare namespace $ {
 }
 
 declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_form_field extends $.$mol_form_field {
+        bid(): string;
+    }
 }
 
 declare namespace $ {
@@ -3014,6 +3021,8 @@ declare namespace $ {
 
 declare namespace $.$$ {
     class $mol_form extends $.$mol_form {
+        form_fields(): readonly $mol_form_field[];
+        submit_allowed(): boolean;
         submit_blocked(): boolean;
         keydown(next: KeyboardEvent): void;
     }
@@ -3126,12 +3135,12 @@ declare namespace $ {
         name_bid(): string;
         name(val?: any): string;
         Name_control(): $$.$mol_string;
-        Name(): $mol_form_field;
+        Name(): $$.$mol_form_field;
         profile_bid(): string;
         select_profile(val?: any): any;
         profile_dict(): {};
         Profile_control(): $$.$mol_switch;
-        Profile(): $mol_form_field;
+        Profile(): $$.$mol_form_field;
         start(val?: any): any;
         Start(): $mol_button_major;
         Form(): $$.$mol_form;
