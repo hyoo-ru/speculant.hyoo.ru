@@ -214,6 +214,9 @@ $hyoo_speculant_world $mol_object2
 
 $mol_page $mol_view
 	dom_name \article
+	field *
+		^
+		tabIndex <= tabindex -1
 	sub /
 		<= Head $mol_view
 			minimal_height 64
@@ -473,10 +476,11 @@ $mol_grid_cell $mol_view
 $mol_grid_number $mol_grid_cell
 
 $mol_link $mol_view
+	uri \
 	dom_name \a
 	attr *
 		^
-		href <= uri \
+		href <= uri_toggle \
 		title <= hint \
 		target <= target \_self
 		download <= file_name \
@@ -495,6 +499,8 @@ $mol_image $mol_view
 		src <= uri \
 		alt <= title
 		loading <= loading \eager
+	minimal_width 16
+	minimal_height 16
 
 $mol_link_iconed $mol_link
 	sub /
@@ -505,21 +511,63 @@ $mol_link_iconed $mol_link
 		<= title <= uri
 	host \
 
+$mol_ghost $mol_view
+	Sub $mol_view
+
 $mol_embed_native $mol_scroll
 	uri?val \
 	dom_name \object
 	window null
 	attr *
 		^
-		data <= uri_object <= uri
+		data <= uri
 		type <= mime \
 	sub /
-		<= Fallback_link $mol_link
-			uri <= uri_link <= uri
+		<= Fallback $mol_link
+			uri <= uri
 			sub /
-				<= Fallback_image $mol_image
-					uri <= uri_image <= uri
-					title <= title?val \
+				<= title \
+
+$mol_frame $mol_embed_native
+	dom_name \iframe
+	attr *
+		^
+		data null
+		type null
+		src <= uri?val \
+		srcdoc <= html null
+		allow <= allow \
+		allowFullscreen <= fullscreen true
+	accelerometer true
+	autoplay true
+	encription true
+	gyroscope true
+	pip true
+
+$mol_embed_youtube $mol_check
+	uri \
+	video_preview \
+	video_id \
+	checked? <=> active? false
+	sub /
+		<= Image $mol_image
+			title <= title \
+			uri <= video_preview \
+		<= Frame $mol_frame
+			title <= title \
+			uri <= video_embed \
+
+
+$mol_embed_any $mol_ghost
+	Image $mol_image
+		title <= title \
+		uri <= uri \
+	Object $mol_embed_native
+		title <= title \
+		uri <= uri \
+	Youtube $mol_embed_youtube
+		title <= title \
+		uri <= uri \
 
 $mol_text $mol_list
 	uri_base \
@@ -534,19 +582,21 @@ $mol_text $mol_list
 	Quote* $mol_text
 		uri_resolve* <= uri_resolve* null
 		text <= quote_text* \
+		highlight <= highlight \
 		auto_scroll null
 	List* $mol_text
 		uri_resolve* <= uri_resolve* null
 		text <= list_text* \
+		highlight <= highlight \
 		auto_scroll null
 	Header* $mol_text_header
 		dom_name <= header_level* \h
 		content <= block_content* /
 		arg <= header_arg* *
-	Code* $mol_text_code
-		text <= code_text* \
+	Pre* $mol_text_code
+		text <= pre_text* \
 		highlight <= highlight \
-		sidebar_showed <= code_sidebar_showed true
+		sidebar_showed <= pre_sidebar_showed <= code_sidebar_showed true
 	- \Table
 	Table* $mol_grid
 		head_cells <= table_head_cells* /
@@ -555,6 +605,7 @@ $mol_text $mol_list
 		cells <= table_cells* /
 	Table_cell* $mol_text
 		auto_scroll null
+		highlight <= highlight \
 		uri_resolve* <= uri_resolve* null
 		text <= table_cell_text* \
 	- \Lines
@@ -576,11 +627,9 @@ $mol_text $mol_list
 	Link_http* $mol_link_iconed
 		uri <= link_uri* \
 		content / <= String*
-	Image* $mol_embed_native
+	Embed* $mol_embed_any
 		uri <= link_uri* \
 		title <= line_text* \
-		Fallback_image => Image_fallback*
-		sub / <= Image_fallback*
 
 $mol_text_header $mol_paragraph
 	sub /
@@ -720,21 +769,6 @@ $mol_icon_open_in_new $mol_icon path \M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.4
 
 $mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
 
-$mol_frame $mol_embed_native
-	dom_name \iframe
-	attr *
-		data null
-		type null
-		src <= uri?val \
-		srcdoc <= html null
-		allow <= allow \
-	fullscreen true
-	accelerometer true
-	autoplay true
-	encription true
-	gyroscope true
-	pip true
-
 $mol_chat $mol_link
 	seed \
 	opened false
@@ -747,9 +781,9 @@ $mol_chat $mol_link
 			title <= title @ \Discussion
 			tools /
 				<= Esternal $mol_link
-					uri <= external \
+					uri <= standalone \
 					sub /
-						<= External_icon $mol_icon_open_in_new
+						<= Standalone_icon $mol_icon_open_in_new
 				<= Close $mol_link
 					arg * mol_chat null
 					sub /
@@ -782,7 +816,7 @@ $mol_string $mol_view
 		disabled <= disabled false
 		value <= value_changed?val <=> value?val \
 		placeholder <= hint_visible <= hint \
-		spellcheck <= spellcheck false
+		spellcheck <= spellcheck true
 		autocomplete <= autocomplete_native \
 		selectionEnd <= selection_end 0
 		selectionStart <= selection_start 0
