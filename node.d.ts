@@ -2407,7 +2407,7 @@ declare namespace $ {
             src: string;
             srcdoc: any;
             allow: string;
-            allowFullscreen: boolean;
+            allowfullscreen: boolean;
         };
         accelerometer(): boolean;
         autoplay(): boolean;
@@ -3126,7 +3126,7 @@ declare namespace $ {
     class $mol_form_field extends $mol_labeler {
         bids(): readonly string[];
         label(): readonly any[];
-        content(): readonly any[];
+        Content(): any;
         name(): string;
         bid(): string;
         Bid(): $mol_view;

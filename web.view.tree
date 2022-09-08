@@ -539,7 +539,7 @@ $mol_frame $mol_embed_native
 		src <= uri?val \
 		srcdoc <= html null
 		allow <= allow \
-		allowFullscreen <= fullscreen true
+		allowfullscreen <= fullscreen true
 	accelerometer true
 	autoplay true
 	encription true
@@ -841,8 +841,7 @@ $mol_form_field $mol_labeler
 		<= name \
 		<= Bid $mol_view
 			sub / <= bid \
-	content /
-		<= control null
+	Content <= control null
 
 $mol_check_list $mol_view
 	Option* $mol_check
