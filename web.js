@@ -10595,6 +10595,14 @@ var $;
                     $mol_fail_log(error);
                 }
             }
+            if (re instanceof HTMLInputElement) {
+                re.setAttribute('value', el['value']);
+                if (el['checked'])
+                    re.setAttribute('checked', '');
+            }
+            if (re instanceof HTMLTextAreaElement) {
+                re.setAttribute('value', el['value']);
+            }
             const styles = $mol_dom_context.getComputedStyle(el);
             restyle(re, styles);
             const before = $mol_dom_context.getComputedStyle(el, ':before');
